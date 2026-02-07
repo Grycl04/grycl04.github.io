@@ -1,0 +1,257 @@
+from firebase_functions import https_fn, options
+from firebase_admin import initialize_app, firestore
+import json
+import logging
+import pickle
+import os
+from typing import Dict, Any, List
+import pandas as pd
+import numpy as np
+
+# Initialize Firebase
+initialize_app()
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+
+# Global variables for the model (loaded once per instance)
+MODEL = None
+VECTORIZER = None
+ITEM_FEATURES = None
+MODEL_LOADED = False
+
+def load_model():
+    """Load the recommender model once when the function instance starts"""
+    global MODEL, VECTORIZER, ITEM_FEATURES, MODEL_LOADED
+    
+    if MODEL_LOADED:
+        return
+    
+    try:
+        # Load from your trained model files
+        # You can store these in Firebase Storage or bundle with your function
+        
+        # Example: Load from local file (deployed with function)
+        model_path = os.path.join(os.path.dirname(__file__), 'model.pkl')
+        
+        # For Firebase Storage (recommended for larger models):
+        # from google.cloud import storage
+        # storage_client = storage.Client()
+        # bucket = storage_client.bucket('your-bucket-name')
+        # blob = bucket.blob('model.pkl')
+        # MODEL = pickle.loads(blob.download_as_bytes())
+        
+        logging.info("Model loading initialized")
+        
+        # TODO: Load your actual model here
+        # MODEL = pickle.load(open(model_path, 'rb'))
+        # VECTORIZER = pickle.load(open('vectorizer.pkl', 'rb'))
+        
+        MODEL_LOADED = True
+        logging.info("Model loaded successfully")
+        
+    except Exception as e:
+        logging.error(f"Error loading model: {str(e)}")
+        raise
+
+@https_fn.on_request(
+    cors=True,  # Enable CORS for web/mobile apps
+    memory=options.MemoryOption.MB_512,  # Increase memory for ML model
+    timeout_sec=300,  # 5 minutes timeout for model inference
+    max_instances=5   # Control concurrent instances
+)
+def get_recommendations(req: https_fn.Request) -> https_fn.Response:
+    """
+    Main endpoint for getting recommendations
+    Expects JSON body with user_id and optional parameters
+    """
+    # Load model on first request
+    load_model()
+    
+    # Handle CORS preflight requests
+    if req.method == "OPTIONS":
+        headers = {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "POST, OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type",
+        }
+        return https_fn.Response("", headers=headers)
+    
+    try:
+        # Parse request data
+        data = req.get_json()
+        
+        if not data:
+            return https_fn.Response(
+                json.dumps({"error": "No data provided"}),
+                status=400,
+                headers={"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"}
+            )
+        
+        # Extract parameters
+        user_id = data.get('user_id')
+        item_id = data.get('item_id', None)  # For item-based recommendations
+        count = data.get('count', 10)  # Number of recommendations
+        context = data.get('context', {})  # Additional context data
+        
+        # Validate input
+        if not user_id:
+            return https_fn.Response(
+                json.dumps({"error": "user_id is required"}),
+                status=400,
+                headers={"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"}
+            )
+        
+        # Get user data from Firestore (if needed)
+        db = firestore.client()
+        user_ref = db.collection('users').document(user_id)
+        user_doc = user_ref.get()
+        
+        user_data = {}
+        if user_doc.exists:
+            user_data = user_doc.to_dict()
+        
+        # TODO: Call your recommendation logic here
+        # This should be replaced with your actual recommender code
+        recommendations = generate_recommendations(
+            user_id=user_id,
+            user_data=user_data,
+            item_id=item_id,
+            count=count,
+            context=context
+        )
+        
+        # Log recommendation request (optional)
+        log_recommendation_request(user_id, recommendations)
+        
+        # Return recommendations
+        response = {
+            "success": True,
+            "user_id": user_id,
+            "recommendations": recommendations,
+            "timestamp": datetime.now().isoformat()
+        }
+        
+        return https_fn.Response(
+            json.dumps(response),
+            status=200,
+            headers={
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
+            }
+        )
+        
+    except Exception as e:
+        logging.error(f"Error in recommendation endpoint: {str(e)}")
+        return https_fn.Response(
+            json.dumps({"error": str(e)}),
+            status=500,
+            headers={"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"}
+        )
+
+@https_fn.on_request(
+    cors=True,
+    memory=options.MemoryOption.MB_512
+)
+def batch_recommendations(req: https_fn.Request) -> https_fn.Response:
+    """Endpoint for batch recommendations"""
+    load_model()
+    
+    if req.method == "OPTIONS":
+        headers = {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "POST, OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type",
+        }
+        return https_fn.Response("", headers=headers)
+    
+    try:
+        data = req.get_json()
+        user_ids = data.get('user_ids', [])
+        batch_size = data.get('batch_size', 50)
+        
+        if len(user_ids) > 100:  # Limit batch size
+            return https_fn.Response(
+                json.dumps({"error": "Maximum 100 users per batch"}),
+                status=400,
+                headers={"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"}
+            )
+        
+        results = []
+        for user_id in user_ids[:batch_size]:
+            # Generate recommendations for each user
+            recs = generate_recommendations(user_id=user_id, count=5)
+            results.append({
+                "user_id": user_id,
+                "recommendations": recs
+            })
+        
+        return https_fn.Response(
+            json.dumps({
+                "success": True,
+                "results": results,
+                "total_users": len(results)
+            }),
+            status=200,
+            headers={
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
+            }
+        )
+        
+    except Exception as e:
+        logging.error(f"Error in batch recommendations: {str(e)}")
+        return https_fn.Response(
+            json.dumps({"error": str(e)}),
+            status=500,
+            headers={"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"}
+        )
+
+# Health check endpoint
+@https_fn.on_request()
+def health_check(req: https_fn.Request) -> https_fn.Response:
+    """Simple health check endpoint"""
+    return https_fn.Response(
+        json.dumps({
+            "status": "healthy",
+            "service": "recommender-api",
+            "timestamp": datetime.now().isoformat(),
+            "model_loaded": MODEL_LOADED
+        }),
+        headers={"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"}
+    )
+
+# Helper functions (replace with your actual recommender logic)
+def generate_recommendations(user_id: str, user_data: Dict = None, 
+                           item_id: str = None, count: int = 10, 
+                           context: Dict = None) -> List[Dict]:
+    """
+    Replace this with your actual recommendation logic
+    This is just a placeholder example
+    """
+    # Example: Return dummy recommendations
+    # In practice, this would use your trained model
+    dummy_items = [
+        {"item_id": "item_001", "score": 0.95, "title": "Recommended Item 1"},
+        {"item_id": "item_002", "score": 0.88, "title": "Recommended Item 2"},
+        {"item_id": "item_003", "score": 0.82, "title": "Recommended Item 3"},
+        {"item_id": "item_004", "score": 0.78, "title": "Recommended Item 4"},
+        {"item_id": "item_005", "score": 0.75, "title": "Recommended Item 5"},
+    ]
+    
+    return dummy_items[:count]
+
+def log_recommendation_request(user_id: str, recommendations: List[Dict]):
+    """Log recommendation requests to Firestore for analytics"""
+    try:
+        db = firestore.client()
+        log_ref = db.collection('recommendation_logs').document()
+        
+        log_ref.set({
+            'user_id': user_id,
+            'recommendations': [r['item_id'] for r in recommendations],
+            'timestamp': firestore.SERVER_TIMESTAMP,
+            'count': len(recommendations)
+        })
+    except Exception as e:
+        logging.warning(f"Failed to log recommendation: {str(e)}")

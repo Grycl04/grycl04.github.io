@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BahAI Real Estate - Premium Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #0B3D61;
+      --primary-dark: #082A47;
+      --primary-light: #1A5276;
+      --accent: #D4AF37;
+      --accent-dark: #B8941F;
+      --neutral-light: #F8F9FA;
+      --neutral-medium: #E9ECEF;
+      --neutral-dark: #6C757D;
+      --text-dark: #212529;
+      --text-light: #495057;
+      --success: #28A745;
+      --error: #DC3545;
+      --warning: #FFC107;
+      --info: #17A2B8;
+      --white: #FFFFFF;
+      --beige: #F5F0E6;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-xl: 30px;
+      --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* Notification Styles */
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 16px 24px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      z-index: 1000;
+      font-weight: 500;
+      animation: slideInRight 0.3s ease-out;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      max-width: 400px;
+    }
+
+    .notification.error {
+      background: var(--error);
+      color: white;
+      border-left: 4px solid #c82333;
+    }
+
+    .notification.success {
+      background: var(--success);
+      color: white;
+      border-left: 4px solid #218838;
+    }
+
+    .notification.info {
+      background: var(--primary);
+      color: white;
+      border-left: 4px solid var(--primary-dark);
+    }
+
+    .notification.warning {
+      background: var(--warning);
+      color: var(--text-dark);
+      border-left: 4px solid #e0a800;
+    }
+
+    @keyframes slideInRight {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes slideOutRight {
+      from { transform: translateX(0); opacity: 1; }
+      to { transform: translateX(100%); opacity: 0; }
+    }
+
+    /* Mobile Google Instructions */
+    .mobile-instructions {
+      display: none;
+      background: #f8f9fa;
+      border: 2px solid #e9ecef;
+      border-radius: var(--radius-md);
+      padding: 15px;
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .mobile-instructions.show {
+      display: block;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    .mobile-steps {
+      text-align: left;
+      margin: 15px 0;
+    }
+
+    .mobile-steps li {
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .copy-email-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      transition: var(--transition);
+      margin: 10px 0;
+    }
+
+    .copy-email-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    .copy-email-btn i {
+      font-size: 14px;
+    }
+
+    /* Modal Styles */
+    .role-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    .role-modal-content {
+      background: var(--white);
+      padding: 30px;
+      border-radius: var(--radius-lg);
+      max-width: 400px;
+      width: 90%;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .role-modal h3 {
+      margin-bottom: 20px;
+      color: var(--primary);
+      font-size: 22px;
+    }
+
+    .role-modal p {
+      margin-bottom: 20px;
+      color: var(--text-light);
+      line-height: 1.5;
+    }
+
+    .role-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .role-option-btn {
+      padding: 12px;
+      border: 2px solid var(--neutral-medium);
+      border-radius: var(--radius-md);
+      background: white;
+      cursor: pointer;
+      text-align: left;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .role-option-btn:hover {
+      border-color: var(--primary);
+      background: var(--neutral-light);
+    }
+
+    .role-option-btn i {
+      font-size: 18px;
+      color: var(--primary);
+    }
+
+    .modal-buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .modal-btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .modal-btn-cancel {
+      background: var(--neutral-medium);
+      color: var(--text-dark);
+    }
+
+    .modal-btn-cancel:hover {
+      background: var(--neutral-dark);
+      color: white;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Existing styles... */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      background: linear-gradient(135deg, var(--neutral-light) 0%, var(--beige) 100%);
+      color: var(--text-dark);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .login-wrapper {
+      width: 100%;
+      max-width: 1200px;
+      min-height: 700px;
+      display: flex;
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    .visual-side {
+      flex: 1;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 60px 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .visual-side::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%231A5276' fill-opacity='0.15' fill-rule='evenodd'/%3E%3C/svg%3E");
+      opacity: 0.2;
+    }
+
+    .visual-content {
+      position: relative;
+      z-index: 1;
+      max-width: 500px;
+    }
+
+    .visual-title {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .visual-subtitle {
+      font-size: 20px;
+      font-weight: 300;
+      margin-bottom: 40px;
+      opacity: 0.9;
+    }
+
+    .visual-features {
+      list-style: none;
+      margin-top: 40px;
+    }
+
+    .visual-features li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 25px;
+      font-size: 16px;
+    }
+
+    .visual-features i {
+      color: var(--accent);
+      margin-right: 15px;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .form-side {
+      flex: 1;
+      padding: 60px 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--white);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .logo-icon {
+      width: 56px;
+      height: 56px;
+      margin-right: 15px;
+      flex-shrink: 0;
+    }
+    .logo-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .logo-text {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .logo-text span {
+      color: var(--accent);
+    }
+
+    .login-header {
+      margin-bottom: 40px;
+    }
+
+    .login-title {
+      font-size: 36px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+
+    .login-subtitle {
+      color: var(--text-light);
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    .login-subtitle strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .login-form {
+      width: 100%;
+    }
+
+    .form-group {
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+    }
+
+    .input-container {
+      position: relative;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 18px 20px;
+      border: 2px solid var(--neutral-medium);
+      border-radius: var(--radius-md);
+      font-size: 16px;
+      font-family: 'Poppins', sans-serif;
+      transition: var(--transition);
+      background: var(--neutral-light);
+      color: var(--text-dark);
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: var(--white);
+      box-shadow: 0 0 0 4px rgba(11, 61, 97, 0.1);
+    }
+
+    .form-input::placeholder {
+      color: var(--neutral-dark);
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--neutral-dark);
+      cursor: pointer;
+      font-size: 18px;
+      padding: 5px;
+      transition: var(--transition);
+    }
+
+    .password-toggle:hover {
+      color: var(--primary);
+    }
+
+    .forgot-password {
+      display: inline-block;
+      text-align: right;
+      width: 100%;
+      margin-top: 10px;
+      font-size: 15px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .forgot-password:hover {
+      color: var(--primary-dark);
+      text-decoration: underline;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 18px;
+      border-radius: var(--radius-md);
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: 'Poppins', sans-serif;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-primary:active {
+      transform: translateY(-1px);
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 30px 0;
+      color: var(--neutral-dark);
+      font-size: 14px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--neutral-medium);
+    }
+
+    .divider span {
+      padding: 0 15px;
+    }
+
+    .btn-google {
+      background: var(--white);
+      border: 2px solid var(--neutral-medium);
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+
+    .btn-google:hover {
+      border-color: var(--primary);
+      background: var(--neutral-light);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-google i {
+      color: #DB4437;
+      font-size: 18px;
+    }
+
+    .signup-link {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 15px;
+      color: var(--text-light);
+      padding-top: 30px;
+      border-top: 1px solid var(--neutral-medium);
+    }
+
+    .signup-link a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      margin-left: 5px;
+    }
+
+    .signup-link a:hover {
+      color: var(--primary-dark);
+      text-decoration: underline;
+    }
+
+    /* Error Styling */
+    .error-message {
+      color: var(--error);
+      font-size: 14px;
+      margin-top: 8px;
+      display: none;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .error-message.show {
+      display: flex;
+    }
+
+    .form-input.error {
+      border-color: var(--error);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .login-wrapper {
+        flex-direction: column;
+      }
+      
+      .visual-side {
+        padding: 40px 30px;
+        text-align: center;
+      }
+      
+      .visual-features {
+        display: none;
+      }
+      
+      .form-side {
+        padding: 40px 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .visual-title {
+        font-size: 28px;
+      }
+      
+      .login-title {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-wrapper">
+    <!-- Visual Side -->
+    <div class="visual-side">
+      <div class="visual-content">
+        <h1 class="visual-title">Your Real Estate Journey Begins Here</h1>
+        <p class="visual-subtitle">Access premium tools for agents, brokers, and landlords to manage properties, connect with clients, and grow your business.</p>
+        
+        <ul class="visual-features">
+          <li><i class="fas fa-home"></i> Manage multiple property listings with ease</li>
+          <li><i class="fas fa-chart-line"></i> Track performance with advanced analytics</li>
+          <li><i class="fas fa-handshake"></i> Connect with verified clients and partners</li>
+          <li><i class="fas fa-shield-alt"></i> Bank-level security for your sensitive data</li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- Form Side -->
+    <div class="form-side">
+      <div class="logo-container">
+        <div class="logo-icon">
+          <img src="images/logo-bahai.png" alt="BahAI Real Estate" />
+        </div>
+        <div class="logo-text">Bah<span>AI</span> Real Estate</div>
+      </div>
+      
+      <div class="login-header">
+        <h1 class="login-title">Welcome Back</h1>
+        <p class="login-subtitle">Login to your account.</p>
+      </div>
+
+      <form id="loginForm" class="login-form">
+        <div class="form-group">
+          <label for="email" class="form-label">Email Address</label>
+          <div class="input-container">
+            <input 
+              type="email" 
+              id="email" 
+              class="form-input"
+              placeholder="you@example.com" 
+              required 
+              aria-label="Email Address"
+              autocomplete="email"
+            />
+          </div>
+          <div id="emailError" class="error-message">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>Please enter a valid email address</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <div class="input-container">
+            <input 
+              type="password" 
+              id="password" 
+              class="form-input"
+              placeholder="Enter your password" 
+              required 
+              aria-label="Password"
+              autocomplete="current-password"
+            />
+            <button type="button" class="password-toggle" id="togglePassword" aria-label="Show password">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+          <div id="passwordError" class="error-message">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>Password must be at least 8 characters</span>
+          </div>
+          <a href="#" class="forgot-password">Forgot Password?</a>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-sign-in-alt"></i>
+            Login to Dashboard
+          </button>
+        </div>
+
+        <div class="divider">
+          <span>Or continue with</span>
+        </div>
+
+        <div class="form-group">
+          <button type="button" id="googleLoginBtn" class="btn btn-google">
+            <i class="fab fa-google"></i>
+            Continue with Google
+          </button>
+          
+          <!-- Mobile Instructions -->
+          <div id="mobileInstructions" class="mobile-instructions">
+            <p><strong>For Mobile Google Sign-in:</strong></p>
+            <ol class="mobile-steps">
+              <li>1. Copy this email: <strong>bahai.realestate@gmail.com</strong></li>
+              <li>2. Open Gmail app on your phone</li>
+              <li>3. Send a blank email to the copied address</li>
+              <li>4. We'll send you a secure login link</li>
+            </ol>
+            <button type="button" id="copyEmailBtn" class="copy-email-btn">
+              <i class="fas fa-copy"></i> Copy Email Address
+            </button>
+            <p style="font-size: 12px; margin-top: 10px; color: var(--neutral-dark);">
+              <i class="fas fa-info-circle"></i> This is a secure alternative method for mobile devices.
+            </p>
+          </div>
+        </div>
+      </form>
+
+      <p class="signup-link">
+        Don't have an account?
+        <a href="signup.html">Sign up here</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // Clear storage on page load
+    (function clearStorage() {
+      console.log('Clearing authentication storage...');
+      const keysToRemove = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.includes('firebase') || key.includes('auth') || key.includes('token')) {
+          keysToRemove.push(key);
+        }
+      }
+      keysToRemove.forEach(key => localStorage.removeItem(key));
+      sessionStorage.clear();
+      console.log('Storage cleared');
+    })();
+
+    // Check if mobile device
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (isMobile) {
+      document.getElementById('mobileInstructions').classList.add('show');
+    }
+  </script>
+
+<!-- Simplified Firebase Login Script -->
+<script type="module">
+  // Import Firebase modules
+  import { auth, db } from './firebase-common.js';
+  
+  // Check if we're in a restricted environment
+  const isRestrictedEnv = typeof window.self !== 'undefined' && 
+                         window.self !== window.top || 
+                         /chrome-extension:|moz-extension:|ms-browser-extension:/i.test(location.href);
+  
+  // Check if mobile
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  
+  console.log('Environment check:', { isRestrictedEnv, isMobile });
+
+  // Hide mobile instructions
+  document.getElementById('mobileInstructions').style.display = 'none';
+
+  // DOM Elements
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+  const togglePassword = document.getElementById('togglePassword');
+
+  // Password visibility toggle
+  togglePassword.addEventListener('click', function() {
+    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordInput.setAttribute('type', type);
+    this.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+  });
+
+  // Email/Password Login - Always works
+  document.getElementById("loginForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+
+    try {
+      // Import needed functions
+      const { signInWithEmailAndPassword } = await import(
+        "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js"
+      );
+      
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      
+      // Get user data from Firestore
+      const { doc, getDoc } = await import(
+        "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js"
+      );
+      
+      const userRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(userRef);
+
+      if (!docSnap.exists()) {
+        showNotification('error', '⚠️ User data not found! Please contact support.');
+        return;
+      }
+
+      const data = docSnap.data();
+      showNotification('success', 'Login successful! Redirecting...');
+      
+      setTimeout(() => {
+        window.location.href = getRedirectPage(data.role);
+      }, 1000);
+
+    } catch (error) {
+      console.error('Email login error:', error);
+      let message = 'Login failed: ';
+      
+      switch(error.code) {
+        case 'auth/user-not-found':
+          message += 'No account found with this email';
+          break;
+        case 'auth/wrong-password':
+          message += 'Incorrect password';
+          break;
+        case 'auth/invalid-email':
+          message += 'Invalid email address';
+          break;
+        default:
+          message += error.message;
+      }
+      
+      showNotification('error', message);
+    }
+  });
+
+  // Google Login Handler
+  document.getElementById("googleLoginBtn").addEventListener("click", async () => {
+    try {
+      // Dynamic imports to avoid issues
+      const { GoogleAuthProvider } = await import(
+        "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js"
+      );
+      
+      const googleProvider = new GoogleAuthProvider();
+      
+      // Add custom parameters for better UX
+      googleProvider.setCustomParameters({
+        prompt: 'select_account'
+      });
+      
+      if (isRestrictedEnv || isMobile) {
+        // Use a direct OAuth approach for restricted environments
+        await useDirectGoogleOAuth();
+      } else {
+        // Use Firebase popup for normal desktop environments
+        const { signInWithPopup } = await import(
+          "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js"
+        );
+        
+        showNotification('info', 'Opening Google sign-in...');
+        const result = await signInWithPopup(auth, googleProvider);
+        await handleGoogleSignIn(result.user);
+      }
+    } catch (error) {
+      console.error('Google login error:', error);
+      
+      // Fallback to direct OAuth if Firebase fails
+      if (error.code === 'auth/popup-blocked' || 
+          error.code === 'auth/unauthorized-domain' ||
+          error.code === 'auth/operation-not-supported-in-this-environment') {
+        
+        showNotification('info', 'Using alternative Google sign-in method...');
+        await useDirectGoogleOAuth();
+      } else {
+        showNotification('error', 'Google sign-in failed. Please try email login or contact support.');
+      }
+    }
+  });
+
+  // Direct Google OAuth (Fallback method)
+  async function useDirectGoogleOAuth() {
+    try {
+      // Create a custom OAuth URL
+      const clientId = '646878644941'; // Your Firebase web client ID
+      const redirectUri = encodeURIComponent(window.location.origin + '/google-callback.html');
+      const scope = encodeURIComponent('email profile');
+      const state = Date.now().toString();
+      
+      // Store state for verification
+      sessionStorage.setItem('oauth_state', state);
+      sessionStorage.setItem('oauth_redirect', window.location.href);
+      
+      // Build OAuth URL
+      const oauthUrl = `https://accounts.google.com/o/oauth2/v2/auth?
+        client_id=${clientId}&
+        redirect_uri=${redirectUri}&
+        response_type=id_token&
+        scope=openid%20${scope}&
+        state=${state}&
+        nonce=${Math.random().toString(36).substring(2)}`;
+      
+      // Open in same window for mobile, new window for desktop
+      if (isMobile) {
+        window.location.href = oauthUrl.replace(/\s+/g, '');
+      } else {
+        window.open(oauthUrl.replace(/\s+/g, ''), 'google_auth', 
+          'width=500,height=600,menubar=no,toolbar=no,location=no,resizable=yes,scrollbars=yes');
+      }
+    } catch (error) {
+      console.error('Direct OAuth error:', error);
+      showNotification('error', 'Unable to start Google sign-in. Please use email login.');
+    }
+  }
+
+  // Handle Google sign-in result
+  async function handleGoogleSignIn(user) {
+    try {
+      const { doc, getDoc, setDoc, serverTimestamp } = await import(
+        "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js"
+      );
+      
+      const userRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(userRef);
+
+      let data;
+      if (!docSnap.exists()) {
+        // New user - prompt for role
+        const role = await promptForRole();
+        if (!role) {
+          await auth.signOut(); // Sign out if user cancelled
+          return;
+        }
+        
+        data = {
+          fullName: user.displayName || 'Google User',
+          email: user.email,
+          role,
+          kycStatus: "not_submitted",
+          createdAt: serverTimestamp(),
+          provider: "google",
+          photoURL: user.photoURL || ''
+        };
+        
+        await setDoc(userRef, data);
+        showNotification('success', '✅ Account created!');
+        
+        setTimeout(() => {
+          window.location.href = getRedirectPage(role);
+        }, 1500);
+        
+      } else {
+        data = docSnap.data();
+        showNotification('success', 'Login successful! Redirecting...');
+        
+        setTimeout(() => {
+          window.location.href = getRedirectPage(data.role);
+        }, 1000);
+      }
+
+    } catch (error) {
+      console.error("Error handling Google sign-in:", error);
+      showNotification('error', '❌ Error: ' + error.message);
+    }
+  }
+
+  // Role selection modal (keep your existing function)
+  function promptForRole() {
+    return new Promise((resolve) => {
+      const modal = document.createElement('div');
+      modal.className = 'role-modal';
+      
+      const modalContent = `
+        <div class="role-modal-content">
+          <h3>Select Your Role</h3>
+          <p>Please select your primary role:</p>
+          <div class="role-options">
+            <button class="role-option-btn" data-role="buyer">
+              <i class="fas fa-user"></i> Buyer
+            </button>
+            <button class="role-option-btn" data-role="seller">
+              <i class="fas fa-home"></i> Seller
+            </button>
+            <button class="role-option-btn" data-role="landlord">
+              <i class="fas fa-building"></i> Landlord
+            </button>
+            <button class="role-option-btn" data-role="agent">
+              <i class="fas fa-handshake"></i> Agent
+            </button>
+            <button class="role-option-btn" data-role="broker">
+              <i class="fas fa-briefcase"></i> Broker
+            </button>
+          </div>
+          <div class="modal-buttons">
+            <button class="modal-btn modal-btn-cancel" id="cancelBtn">Cancel</button>
+          </div>
+        </div>
+      `;
+      
+      modal.innerHTML = modalContent;
+      document.body.appendChild(modal);
+      
+      modal.querySelectorAll('.role-option-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const role = e.target.closest('.role-option-btn').getAttribute('data-role');
+          document.body.removeChild(modal);
+          resolve(role);
+        });
+      });
+      
+      modal.querySelector('#cancelBtn').addEventListener('click', () => {
+        document.body.removeChild(modal);
+        resolve(null);
+      });
+    });
+  }
+
+  // Helper functions
+  function getRedirectPage(role) {
+    const pages = {
+      "seller": "seller/seller_dashboard.html",
+      "buyer": "buyer/buyer_dashboard.html",
+      "broker": "broker/broker_dashboard.html",
+      "agent": "broker/agent_dashboard.html",
+      "landlord": "landlord/landlord_dashboard.html",
+      "admin": "admin_login.html"
+    };
+    return pages[role] || "login.html";
+  }
+
+  function showNotification(type, message) {
+    const icon = {
+      error: '<i class="fas fa-exclamation-circle"></i>',
+      success: '<i class="fas fa-check-circle"></i>',
+      info: '<i class="fas fa-info-circle"></i>',
+      warning: '<i class="fas fa-exclamation-triangle"></i>'
+    };
+    
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.innerHTML = `
+      ${icon[type]}
+      <div>${message}</div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Remove after 4 seconds
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.parentNode.removeChild(notification);
+      }
+    }, 4000);
+  }
+
+  // Check for returning OAuth
+  checkForOAuthReturn();
+  
+  async function checkForOAuthReturn() {
+    const urlParams = new URLSearchParams(window.location.hash.substring(1));
+    const idToken = urlParams.get('id_token');
+    const state = urlParams.get('state');
+    
+    if (idToken && state) {
+      const savedState = sessionStorage.getItem('oauth_state');
+      if (state === savedState) {
+        try {
+          // Import needed for token verification
+          const { signInWithCredential, GoogleAuthProvider } = await import(
+            "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js"
+          );
+          
+          const credential = GoogleAuthProvider.credential(idToken);
+          const result = await signInWithCredential(auth, credential);
+          
+          // Clear OAuth data
+          sessionStorage.removeItem('oauth_state');
+          sessionStorage.removeItem('oauth_redirect');
+          
+          // Handle the signed-in user
+          await handleGoogleSignIn(result.user);
+          
+        } catch (error) {
+          console.error('OAuth callback error:', error);
+          showNotification('error', 'Authentication failed. Please try again.');
+        }
+      }
+    }
+  }
+
+  // Initialize
+  emailInput.focus();
+</script>
+</body>
+</html>

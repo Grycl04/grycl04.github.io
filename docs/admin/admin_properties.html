@@ -1,0 +1,2271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Property Management - BahAI Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* Updated CSS to match user management UI */
+:root {
+  --primary: #0b2e52;
+  --primary-dark: #001F3F;
+  --primary-light: #1976d2;
+  --secondary: #3b82f6;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --info: #3b82f6;
+  --text-dark: #1a202c;
+  --text-light: #718096;
+  --bg-light: #f8fafc;
+  --bg-white: #ffffff;
+  --border: #e2e8f0;
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+  --sidebar-width: 260px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  color: var(--text-dark);
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ==================== IMPROVED SIDEBAR STYLES ==================== */
+.sidebar {
+  width: var(--sidebar-width);
+  height: 100vh;
+  background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 25px 0;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+  overflow-y: auto;
+  z-index: 1000;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  padding: 0 25px 30px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: white;
+  text-decoration: none;
+  transition: var(--transition);
+  padding: 10px;
+  border-radius: 12px;
+}
+
+.logo:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.logo-icon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: var(--transition);
+}
+
+.logo:hover .logo-icon {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.logo-title {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 4px;
+  letter-spacing: -0.3px;
+  background: linear-gradient(135deg, #ffffff 0%, #e6f3ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.logo-subtitle {
+  font-size: 11px;
+  opacity: 0.9;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* Navigation */
+.sidebar-nav {
+  list-style: none;
+  padding: 0;
+  flex: 1;
+}
+
+.sidebar-nav li {
+  margin: 5px 15px;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  transition: var(--transition);
+  font-weight: 500;
+  font-size: 15px;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar-link::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: white;
+  transform: translateX(-10px);
+  transition: var(--transition);
+  border-radius: 0 4px 4px 0;
+}
+
+.sidebar-link:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+  transform: translateX(5px);
+}
+
+.sidebar-link:hover::before {
+  transform: translateX(0);
+}
+
+.sidebar-link.active {
+  background: rgba(255, 255, 255, 0.18);
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.sidebar-link.active::before {
+  transform: translateX(0);
+  background: linear-gradient(135deg, #ffffff 0%, #3b82f6 100%);
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+.sidebar-icon {
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+  font-size: 18px;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-link:hover .sidebar-icon {
+  transform: scale(1.1);
+}
+
+.sidebar-link.active .sidebar-icon {
+  transform: scale(1.1);
+}
+
+/* Sidebar footer */
+.sidebar-footer {
+  padding: 20px 25px 0;
+  margin-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+}
+
+.sidebar-footer a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.sidebar-footer a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+/* Main container */
+.container {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  padding: 30px;
+  transition: var(--transition);
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.header-left h1 {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+}
+
+.header-left p {
+  color: var(--text-light);
+  font-size: 16px;
+  max-width: 600px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-add {
+  background: linear-gradient(135deg, var(--success), #059669);
+  color: white;
+}
+
+.btn-add:hover {
+  background: linear-gradient(135deg, #059669, #047857);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(5, 150, 105, 0.35);
+}
+
+.btn-refresh {
+  background: linear-gradient(135deg, var(--secondary), #2563eb);
+  color: white;
+}
+
+.btn-refresh:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.35);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-bottom: 35px;
+}
+
+.stat-card {
+  background: white;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.stat-value {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 8px;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 15px;
+  color: var(--text-light);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-filter-bar {
+  background: white;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  margin-bottom: 30px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  border: 1px solid var(--border);
+}
+
+.search-input {
+  flex: 1;
+  min-width: 280px;
+  padding: 14px 18px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  font-size: 15px;
+  transition: var(--transition);
+  background: var(--bg-light);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(11, 46, 82, 0.1);
+}
+
+.filter-select {
+  padding: 14px 18px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  font-size: 15px;
+  background: var(--bg-light);
+  cursor: pointer;
+  transition: var(--transition);
+  min-width: 160px;
+  color: var(--text-dark);
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(11, 46, 82, 0.1);
+}
+
+.properties-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 28px;
+}
+
+.property-card {
+  background: white;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: var(--transition);
+  position: relative;
+}
+
+.property-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.property-image-container {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(135deg, var(--bg-light), #e9f2ff);
+}
+
+.property-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.property-card:hover .property-image {
+  transform: scale(1.05);
+}
+
+.property-content {
+  padding: 25px;
+}
+
+.property-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.property-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.property-price {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--primary);
+  white-space: nowrap;
+  background: linear-gradient(135deg, var(--primary-light), var(--primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.property-location {
+  color: var(--text-light);
+  font-size: 14px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.property-location i {
+  color: var(--primary);
+}
+
+.property-details {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-dark);
+  font-weight: 500;
+  background: var(--bg-light);
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.detail i {
+  color: var(--primary-light);
+}
+
+.badge {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.badge.active {
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  color: #065f46;
+  border: 1px solid #10b981;
+}
+
+.badge.pending {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  color: #92400e;
+  border: 1px solid #f59e0b;
+}
+
+.badge.sold {
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  color: #991b1b;
+  border: 1px solid #ef4444;
+}
+
+.badge.rented {
+  background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+  color: #4338ca;
+  border: 1px solid #3b82f6;
+}
+
+.badge.featured {
+  background: linear-gradient(135deg, #fef3c7, #fbbf24);
+  color: #92400e;
+  border: 1px solid #f59e0b;
+}
+
+.property-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border);
+}
+
+.property-date {
+  color: var(--text-light);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.property-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.btn-action {
+  flex: 1;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-view {
+  background: linear-gradient(135deg, var(--secondary), #2563eb);
+  color: white;
+}
+
+.btn-view:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 14px rgba(59, 130, 246, 0.3);
+}
+
+.btn-edit {
+  background: linear-gradient(135deg, #fef3c7, #fbbf24);
+  color: #92400e;
+}
+
+.btn-edit:hover {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: #78350f;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 14px rgba(245, 158, 11, 0.3);
+}
+
+.btn-delete {
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  color: var(--danger);
+}
+
+.btn-delete:hover {
+  background: linear-gradient(135deg, var(--danger), #dc2626);
+  color: white;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 14px rgba(239, 68, 68, 0.3);
+}
+
+.btn-featured {
+  background: linear-gradient(135deg, #fef3c7, #fbbf24);
+  color: #92400e;
+  border: 1px solid #fbbf24;
+}
+
+.btn-featured:hover {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: white;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal.show {
+  display: flex;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-content {
+  background: white;
+  border-radius: 24px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  padding: 30px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, var(--bg-light) 0%, #e9f2ff 100%);
+  border-radius: 24px 24px 0 0;
+}
+
+.modal-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+.modal-close {
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--text-light);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  transition: var(--transition);
+}
+
+.modal-close:hover {
+  background: var(--danger);
+  color: white;
+  transform: rotate(90deg);
+}
+
+.modal-body {
+  padding: 30px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-bottom: 20px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-field.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-label {
+  font-weight: 700;
+  color: var(--text-dark);
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.form-label span {
+  color: var(--danger);
+  font-weight: 800;
+}
+
+.form-input, .form-textarea, .form-select {
+  padding: 14px 18px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  font-size: 15px;
+  font-family: 'Inter', sans-serif;
+  transition: var(--transition);
+  background: var(--bg-light);
+}
+
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(11, 46, 82, 0.1);
+}
+
+.form-textarea {
+  min-height: 140px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 25px;
+  box-shadow: 0 6px 16px rgba(11, 46, 82, 0.2);
+}
+
+.btn-submit:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(11, 46, 82, 0.3);
+  background: linear-gradient(135deg, var(--primary-light), var(--primary));
+}
+
+.btn-submit.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.btn-submit .spinner {
+  display: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s linear infinite;
+  margin-left: 10px;
+}
+
+.btn-submit.loading .spinner {
+  display: inline-block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.empty-state {
+  text-align: center;
+  padding: 80px 30px;
+  color: var(--text-light);
+  background: white;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  grid-column: 1 / -1;
+  border: 2px dashed var(--border);
+}
+
+.empty-state-icon {
+  font-size: 72px;
+  margin-bottom: 25px;
+  opacity: 0.5;
+}
+
+.empty-state h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 15px;
+}
+
+.empty-state p {
+  font-size: 16px;
+  margin-bottom: 30px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mobile-menu-toggle {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1001;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  border: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition);
+}
+
+.mobile-menu-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 18px 28px;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 15px;
+  z-index: 3000;
+  animation: slideInRight 0.3s ease;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-left: 5px solid var(--primary);
+  max-width: 400px;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.toast.success {
+  background: white;
+  color: #065f46;
+  border-left-color: var(--success);
+}
+
+.toast.error {
+  background: white;
+  color: #991b1b;
+  border-left-color: var(--danger);
+}
+
+.toast.info {
+  background: white;
+  color: #1e40af;
+  border-left-color: var(--info);
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4000;
+  display: none;
+}
+
+.loading-overlay.show {
+  display: flex;
+  animation: fadeIn 0.3s ease;
+}
+
+.loading-spinner {
+  width: 70px;
+  height: 70px;
+  border: 4px solid rgba(11, 46, 82, 0.1);
+  border-top: 4px solid var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Improved loading spinner inside grid */
+.grid-loading {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 80px 30px;
+}
+
+.grid-loading .loading-spinner {
+  width: 50px;
+  height: 50px;
+  border-width: 4px;
+  margin: 0 auto 20px;
+}
+
+.grid-loading div {
+  color: var(--text-light);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+@media (max-width: 1200px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .properties-grid {
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  }
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    transform: translateX(-100%);
+    width: 300px;
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+  }
+
+  .container {
+    margin-left: 0;
+    padding: 25px;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .header-actions .btn {
+    flex: 1;
+  }
+
+  .search-filter-bar {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .search-input,
+  .filter-select {
+    min-width: 100%;
+    width: 100%;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .properties-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .property-card {
+    max-width: 100%;
+  }
+
+  .property-actions {
+    flex-direction: column;
+  }
+
+  .btn-action {
+    width: 100%;
+  }
+
+  .modal-content {
+    margin: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 15px;
+  }
+
+  .stat-card {
+    padding: 20px;
+  }
+
+  .stat-value {
+    font-size: 32px;
+  }
+
+  .property-title {
+    font-size: 18px;
+  }
+
+  .property-price {
+    font-size: 20px;
+  }
+
+  .property-details {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .detail {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+</style>
+</head>
+
+<body>
+<button class="mobile-menu-toggle" id="mobileMenuToggle">
+  <i class="fas fa-bars"></i>
+</button>
+
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-spinner"></div>
+</div>
+
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="admin_dashboard.html" class="logo">
+      <div class="logo-icon">BA</div>
+      <div class="logo-text">
+        <div class="logo-title">BahAI</div>
+        <div class="logo-subtitle">Admin Dashboard</div>
+      </div>
+    </a>
+  </div>
+
+  <ul class="sidebar-nav">
+    <li><a href="admin_dashboard.html" class="sidebar-link"><span class="sidebar-icon"><i class="fas fa-chart-line"></i></span>Dashboard Overview</a></li>
+    <li><a href="admin_users.html" class="sidebar-link"><span class="sidebar-icon"><i class="fas fa-users"></i></span>User Management</a></li>
+    <li><a href="admin_properties.html" class="sidebar-link active"><span class="sidebar-icon"><i class="fas fa-building"></i></span>Property Listings</a></li>
+    <li><a href="admin_analytics.html" class="sidebar-link"><span class="sidebar-icon"><i class="fas fa-chart-bar"></i></span>Reports & Analytics</a></li>
+    <li><a href="admin_settings.html" class="sidebar-link"><span class="sidebar-icon"><i class="fas fa-cog"></i></span>Settings</a></li>
+    <li><a href="admin_login.html" class="sidebar-link"><span class="sidebar-icon"><i class="fas fa-sign-out-alt"></i></span>Login</a></li>
+  </ul>
+
+  <div class="sidebar-footer">
+    <div style="margin-bottom: 8px; opacity: 0.7;"></div>
+    <div>© 2026 BahAI Admin</div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="dashboard-header">
+    <div class="header-left">
+      <h1>Property Management</h1>
+      <p>Manage all property listings with full CRUD operations</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-refresh" id="refreshBtn">
+        <i class="fas fa-sync-alt"></i> Refresh
+      </button>
+      <button class="btn btn-add" onclick="openAddModal()">
+        <i class="fas fa-plus"></i> Add Property
+      </button>
+    </div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value" id="totalProperties">0</div>
+      <div class="stat-label">
+        <i class="fas fa-building" style="color: var(--primary-light);"></i>
+        Total Properties
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="activeProperties">0</div>
+      <div class="stat-label">
+        <i class="fas fa-check-circle" style="color: var(--success);"></i>
+        Active Listings
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="featuredProperties">0</div>
+      <div class="stat-label">
+        <i class="fas fa-star" style="color: var(--warning);"></i>
+        Featured
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="soldProperties">0</div>
+      <div class="stat-label">
+        <i class="fas fa-tag" style="color: var(--danger);"></i>
+        Sold Properties
+      </div>
+    </div>
+  </div>
+
+  <div class="search-filter-bar">
+    <input type="text" class="search-input" id="searchInput" placeholder="🔍 Search by title, location..." />
+    <select class="filter-select" id="statusFilter">
+      <option value="">📊 All Status</option>
+      <option value="active">✅ Active</option>
+      <option value="pending">⏳ Pending</option>
+      <option value="featured">⭐ Featured</option>
+      <option value="sold">🏷️ Sold</option>
+      <option value="rented">🏠 Rented</option>
+    </select>
+    <select class="filter-select" id="typeFilter">
+      <option value="">🏠 All Types</option>
+      <option value="Condo">🏢 Condo</option>
+      <option value="House">🏡 House</option>
+      <option value="Lot">📐 Lot</option>
+      <option value="Apartment">🏘️ Apartment</option>
+      <option value="Villa">🏰 Villa</option>
+    </select>
+    <select class="filter-select" id="sortFilter">
+      <option value="newest">⬇️ Newest First</option>
+      <option value="oldest">⬆️ Oldest First</option>
+      <option value="price-high">💰 Price: High to Low</option>
+      <option value="price-low">💰 Price: Low to High</option>
+    </select>
+  </div>
+
+  <div class="properties-grid" id="propertiesGrid">
+    <div class="grid-loading">
+      <div class="loading-spinner"></div>
+      <div>Loading properties from database...</div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Property Modal -->
+<div class="modal" id="editModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="modal-title">Edit Property</h3>
+      <button class="modal-close" onclick="closeEditModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <form id="editForm">
+        <input type="hidden" id="editId" />
+        <div class="form-grid">
+          <div class="form-field full-width">
+            <label class="form-label">Property Title <span>*</span></label>
+            <input type="text" class="form-input" id="editTitle" required />
+          </div>
+          
+          <div class="form-field">
+            <label class="form-label">Price (₱) <span>*</span></label>
+            <input type="number" class="form-input" id="editPrice" required min="0" step="1000" />
+          </div>
+          
+          <div class="form-field">
+            <label class="form-label">Property Type <span>*</span></label>
+            <select class="form-select" id="editType" required>
+              <option value="">Select Type</option>
+              <option value="Condo">Condo</option>
+              <option value="House">House</option>
+              <option value="Lot">Lot</option>
+              <option value="Apartment">Apartment</option>
+              <option value="Villa">Villa</option>
+              <option value="Commercial">Commercial</option>
+            </select>
+          </div>
+          
+          <div class="form-field">
+            <label class="form-label">Bedrooms</label>
+            <input type="number" class="form-input" id="editBedrooms" min="0" />
+          </div>
+          
+          <div class="form-field">
+            <label class="form-label">Bathrooms</label>
+            <input type="number" class="form-input" id="editBathrooms" min="0" />
+          </div>
+          
+          <div class="form-field">
+            <label class="form-label">Square Footage</label>
+            <input type="text" class="form-input" id="editSquareFootage" placeholder="e.g., 1500 sq ft" />
+          </div>
+          
+          <div class="form-field">
+            <label class="form-label">Status <span>*</span></label>
+            <select class="form-select" id="editStatus" required>
+              <option value="active">Active</option>
+              <option value="pending">Pending</option>
+              <option value="featured">Featured</option>
+              <option value="sold">Sold</option>
+              <option value="rented">Rented</option>
+            </select>
+          </div>
+          
+          <div class="form-field full-width">
+            <label class="form-label">Location <span>*</span></label>
+            <input type="text" class="form-input" id="editLocation" required placeholder="Enter full address" />
+          </div>
+          
+          <div class="form-field full-width">
+            <label class="form-label">Description</label>
+            <textarea class="form-textarea" id="editDescription" placeholder="Describe the property..."></textarea>
+          </div>
+          
+          <div class="form-field full-width">
+            <label class="form-label">Image URL</label>
+            <input type="text" class="form-input" id="editImage" placeholder="https://example.com/image.jpg" />
+            <small style="color: var(--text-light); font-size: 13px;">Leave empty to use default image</small>
+          </div>
+          
+          <div class="form-field">
+            <label class="form-label">Owner ID (Optional)</label>
+            <input type="text" class="form-input" id="editOwnerId" />
+          </div>
+          
+          <div class="form-field">
+            <label class="form-label">User ID (Optional)</label>
+            <input type="text" class="form-input" id="editUserId" />
+          </div>
+        </div>
+        
+        <button type="submit" class="btn-submit" id="editSubmitBtn">
+          <i class="fas fa-save"></i> Save Changes
+          <div class="spinner"></div>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- View Property Modal -->
+<div class="modal" id="viewModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="modal-title" id="viewTitle">Property Details</h3>
+      <button class="modal-close" onclick="closeViewModal()">×</button>
+    </div>
+    <div class="modal-body" id="viewBody"></div>
+  </div>
+</div>
+
+<!-- Add Property Modal -->
+<div class="modal" id="addModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="modal-title">Add New Property</h3>
+      <button class="modal-close" onclick="closeAddModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <form id="addForm">
+        <div class="form-grid">
+          <div class="form-field full-width">
+            <label class="form-label">Property Title <span>*</span></label>
+            <input type="text" class="form-input" id="addTitle" required />
+          </div>
+          
+          <div class="form-field">
+            <label class="form-label">Price (₱) <span>*</span></label>
+            <input type="number" class="form-input" id="addPrice" required min="0" step="1000" />
+          </div>
+          
+          <div class="form-field">
+            <label class="form-label">Property Type <span>*</span></label>
+            <select class="form-select" id="addType" required>
+              <option value="">Select Type</option>
+              <option value="Condo">Condo</option>
+              <option value="House">House</option>
+              <option value="Lot">Lot</option>
+              <option value="Apartment">Apartment</option>
+              <option value="Villa">Villa</option>
+              <option value="Commercial">Commercial</option>
+            </select>
+          </div>
+          
+          <div class="form-field">
+            <label class="form-label">Bedrooms</label>
+            <input type="number" class="form-input" id="addBedrooms" min="0" />
+          </div>
+          
+          <div class="form-field">
+            <label class="form-label">Bathrooms</label>
+            <input type="number" class="form-input" id="addBathrooms" min="0" />
+          </div>
+          
+          <div class="form-field">
+            <label class="form-label">Square Footage</label>
+            <input type="text" class="form-input" id="addSquareFootage" placeholder="e.g., 1500 sq ft" />
+          </div>
+          
+          <div class="form-field">
+            <label class="form-label">Status <span>*</span></label>
+            <select class="form-select" id="addStatus" required>
+              <option value="active">Active</option>
+              <option value="pending">Pending</option>
+              <option value="featured">Featured</option>
+              <option value="sold">Sold</option>
+              <option value="rented">Rented</option>
+            </select>
+          </div>
+          
+          <div class="form-field full-width">
+            <label class="form-label">Location <span>*</span></label>
+            <input type="text" class="form-input" id="addLocation" required placeholder="Enter full address" />
+          </div>
+          
+          <div class="form-field full-width">
+            <label class="form-label">Description</label>
+            <textarea class="form-textarea" id="addDescription" placeholder="Describe the property..."></textarea>
+          </div>
+          
+          <div class="form-field full-width">
+            <label class="form-label">Image URL</label>
+            <input type="text" class="form-input" id="addImage" placeholder="https://example.com/image.jpg" />
+            <small style="color: var(--text-light); font-size: 13px;">Leave empty to use default image</small>
+          </div>
+          
+          <div class="form-field">
+            <label class="form-label">Owner ID (Optional)</label>
+            <input type="text" class="form-input" id="addOwnerId" />
+          </div>
+          
+          <div class="form-field">
+            <label class="form-label">User ID (Optional)</label>
+            <input type="text" class="form-input" id="addUserId" />
+          </div>
+        </div>
+        
+        <button type="submit" class="btn-submit" id="addSubmitBtn">
+          <i class="fas fa-plus"></i> Add Property
+          <div class="spinner"></div>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Firebase SDK v9 (modular) -->
+<script type="module">
+// Import Firebase modules
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+import { 
+  getFirestore, 
+  collection, 
+  getDocs, 
+  doc, 
+  getDoc,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  query,
+  orderBy,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
+
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCIfzneDzWVveG8p_0mywoA9D9F5AyzZX4",
+  authDomain: "bahai-1b76d.firebaseapp.com",
+  projectId: "bahai-1b76d",
+  storageBucket: "bahai-1b76d.firebasestorage.app",
+  messagingSenderId: "646878644941",
+  appId: "1:646878644941:web:5b4ccc3412250337587784",
+  measurementId: "G-PDW1PRZTM9"
+};
+
+// Global variables
+let app;
+let db;
+let firebaseInitialized = false;
+let allProperties = [];
+let currentEditId = null;
+
+// Toast notification function
+function showToast(message, type = 'info', duration = 3000) {
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  toast.innerHTML = `
+    ${type === 'success' ? '<i class="fas fa-check-circle" style="color: var(--success);"></i>' : 
+      type === 'error' ? '<i class="fas fa-exclamation-circle" style="color: var(--danger);"></i>' : 
+      '<i class="fas fa-info-circle" style="color: var(--info);"></i>'}
+    <span>${message}</span>
+  `;
+  
+  document.body.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateX(100px)';
+    setTimeout(() => {
+      document.body.removeChild(toast);
+    }, 300);
+  }, duration);
+}
+
+// Show/hide loading overlay
+function showLoading() {
+  document.getElementById('loadingOverlay').classList.add('show');
+}
+
+function hideLoading() {
+  document.getElementById('loadingOverlay').classList.remove('show');
+}
+
+// Function to check ALL possible image field names in database
+function findImageField(data) {
+  console.log('🔍 Searching for image in data:', data);
+  
+  // List of possible image field names (including variations)
+  const possibleFields = [
+    'image', 'imageUrl', 'img', 'photo', 'picture', 
+    'propertyImage', 'mainImage', 'thumbnail',
+    'imageURL', 'image_url', 'img_url',
+    'photos', 'images', 'propertyImages',
+    'property_image', 'property_picture'
+  ];
+  
+  // First, check for exact matches
+  for (const field of possibleFields) {
+    if (data[field] && 
+        typeof data[field] === 'string' && 
+        data[field].trim() !== '') {
+      console.log(`✅ Found image in field "${field}": ${data[field]}`);
+      return data[field];
+    }
+  }
+  
+  // Check for array of images
+  for (const field of possibleFields) {
+    if (Array.isArray(data[field]) && data[field].length > 0) {
+      console.log(`✅ Found image array in field "${field}": ${data[field][0]}`);
+      return data[field][0];
+    }
+  }
+  
+  // Check for nested objects
+  for (const field of possibleFields) {
+    if (data[field] && typeof data[field] === 'object') {
+      // Try to find url property in nested object
+      if (data[field].url) {
+        console.log(`✅ Found image in nested field "${field}.url": ${data[field].url}`);
+        return data[field].url;
+      }
+    }
+  }
+  
+  console.log('❌ No image field found in data');
+  return null;
+}
+
+// Get valid image URL with fallback
+function getValidImageUrl(data, propertyId = '') {
+  console.log('🖼️ Getting image URL for property:', propertyId);
+  
+  // First, try to find image from database
+  const foundImage = findImageField(data);
+  
+  if (foundImage && 
+      foundImage.startsWith('http') && 
+      !foundImage.includes('example.com')) {
+    console.log(`✅ Using database image: ${foundImage}`);
+    return foundImage;
+  }
+  
+  // If no valid image found, use consistent default based on property ID
+  const defaultImages = [
+    'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1560185127-6ed189bf02f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+  ];
+  
+  // Use property ID to get consistent default image
+  let index = 0;
+  if (propertyId) {
+    // Create a simple hash from property ID for consistent selection
+    const hash = propertyId.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    index = hash % defaultImages.length;
+  } else {
+    index = Math.floor(Math.random() * defaultImages.length);
+  }
+  
+  console.log(`⚠️ Using default image ${index + 1}/${defaultImages.length}`);
+  return defaultImages[index];
+}
+
+// Initialize Firebase
+async function initializeFirebase() {
+  try {
+    console.log('🔧 Initializing Firebase...');
+    app = initializeApp(firebaseConfig);
+    db = getFirestore(app);
+    firebaseInitialized = true;
+    
+    console.log('✅ Firebase initialized successfully');
+    
+    // Load properties immediately
+    await loadProperties();
+    
+  } catch (error) {
+    console.error('❌ Firebase initialization failed:', error);
+    showToast('Failed to connect to database. Please refresh the page.', 'error');
+    setDefaultValues();
+  }
+}
+
+// Load properties from Firestore
+async function loadProperties() {
+  try {
+    showLoading();
+    
+    const propertiesGrid = document.getElementById('propertiesGrid');
+    propertiesGrid.innerHTML = `
+      <div class="grid-loading">
+        <div class="loading-spinner"></div>
+        <div>Loading properties from database...</div>
+      </div>
+    `;
+    
+    const propertiesRef = collection(db, 'properties');
+    const q = query(propertiesRef, orderBy('createdAt', 'desc'));
+    const snapshot = await getDocs(q);
+    
+    allProperties = [];
+    let imageCount = 0;
+    
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      const propertyId = doc.id;
+      
+      console.log(`\n📄 Processing property: ${data.title || 'Untitled'} (ID: ${propertyId})`);
+      
+      // Get image URL from database
+      const imageUrl = getValidImageUrl(data, propertyId);
+      
+      if (imageUrl && !imageUrl.includes('unsplash.com')) {
+        imageCount++;
+        console.log(`✅ Using database image`);
+      } else {
+        console.log(`⚠️ Using default image`);
+      }
+      
+      allProperties.push({
+        id: propertyId,
+        title: data.title || 'Untitled Property',
+        pricing: data.pricing || data.price || 0,
+        propertyType: data.propertyType || 'Not specified',
+        bedrooms: data.bedrooms || 0,
+        bathrooms: data.bathrooms || 0,
+        squareFootage: data.squareFootage || data.squareFeet || 'N/A',
+        status: data.status || 'active',
+        location: data.location || 'Location not specified',
+        description: data.description || 'No description available',
+        image: imageUrl,
+        featured: data.featured || false,
+        ownerId: data.ownerId || null,
+        userId: data.userId || null,
+        createdAt: data.createdAt?.toDate?.() || new Date(),
+        updatedAt: data.updatedAt?.toDate?.() || new Date(),
+        // Store raw data for debugging
+        _rawData: data
+      });
+    });
+    
+    console.log(`\n📊 FINAL STATS:`);
+    console.log(`Total properties: ${allProperties.length}`);
+    
+    // Update statistics
+    updateStats();
+    
+    // Display properties
+    displayProperties(allProperties);
+    applyFilters(); // Apply any active filters
+    
+    hideLoading();
+    showToast(`✅ Successfully loaded ${allProperties.length} properties`, 'success');
+    
+  } catch (error) {
+    console.error('Error loading properties:', error);
+    hideLoading();
+    showToast('❌ Failed to load properties. Please check console.', 'error');
+    setDefaultValues();
+  }
+}
+
+// Set default values when Firebase fails
+function setDefaultValues() {
+  document.getElementById('totalProperties').textContent = '0';
+  document.getElementById('activeProperties').textContent = '0';
+  document.getElementById('featuredProperties').textContent = '0';
+  document.getElementById('soldProperties').textContent = '0';
+  
+  const propertiesGrid = document.getElementById('propertiesGrid');
+  propertiesGrid.innerHTML = `
+    <div class="empty-state">
+      <div class="empty-state-icon">❌</div>
+      <h3>Error Loading Properties</h3>
+      <p style="color: var(--danger); font-size: 14px; margin-bottom: 10px;">Unable to connect to database</p>
+      <p style="margin-bottom: 20px; font-size: 14px;">Check your internet connection and Firebase configuration.</p>
+      <button onclick="loadProperties()" class="btn-action btn-edit" style="background: linear-gradient(135deg, var(--secondary), #2563eb); color: white;">
+        <i class="fas fa-sync-alt"></i> Retry Loading
+      </button>
+    </div>
+  `;
+}
+
+function updateStats() {
+  const total = allProperties.length;
+  const active = allProperties.filter(p => p.status === 'active').length;
+  const featured = allProperties.filter(p => p.status === 'featured').length;
+  const sold = allProperties.filter(p => p.status === 'sold').length;
+  
+  document.getElementById('totalProperties').textContent = total;
+  document.getElementById('activeProperties').textContent = active;
+  document.getElementById('featuredProperties').textContent = featured;
+  document.getElementById('soldProperties').textContent = sold;
+}
+
+function displayProperties(properties) {
+  const grid = document.getElementById('propertiesGrid');
+  
+  if (properties.length === 0) {
+    grid.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-state-icon">🏢</div>
+        <h3>No Properties Found</h3>
+        <p>No properties match your search criteria or database is empty.</p>
+        <button onclick="openAddModal()" class="btn-action btn-edit" style="margin-top: 20px; background: linear-gradient(135deg, var(--success), #059669); color: white;">
+          <i class="fas fa-plus"></i> Add First Property
+        </button>
+      </div>
+    `;
+    return;
+  }
+  
+  grid.innerHTML = properties.map(property => {
+    const statusClass = property.status || 'active';
+    const statusText = property.status || 'active';
+    
+    // Format price with commas
+    const formattedPrice = new Intl.NumberFormat('en-PH', {
+      style: 'currency',
+      currency: 'PHP',
+      minimumFractionDigits: 0
+    }).format(property.pricing);
+    
+    // Format date
+    const date = new Date(property.createdAt);
+    const formattedDate = date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
+    
+    console.log(`🖼️ Displaying property "${property.title}" with image: ${property.image}`);
+    
+    return `
+      <div class="property-card" data-id="${property.id}">
+        <div class="property-image-container">
+          <img src="${property.image}" 
+               class="property-image"
+               alt="${property.title}" 
+               onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';" 
+               loading="lazy" />
+          <div style="position: absolute; bottom: 15px; right: 15px; background: rgba(0,0,0,0.8); color: white; padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 12px; letter-spacing: 0.5px;">
+            ${property.status || 'Active'}
+          </div>
+        </div>
+        <div class="property-content">
+          <div class="property-header">
+            <div style="flex: 1;">
+              <h3 class="property-title" title="${property.title}">${property.title.length > 40 ? property.title.substring(0, 40) + '...' : property.title}</h3>
+              <div class="property-location" title="${property.location}">
+                <i class="fas fa-map-marker-alt"></i> ${property.location.length > 35 ? property.location.substring(0, 35) + '...' : property.location}
+              </div>
+            </div>
+            <div class="property-price" title="${formattedPrice}">${formattedPrice}</div>
+          </div>
+          
+          <div class="property-details">
+            <div class="detail" title="${property.bedrooms} bedrooms">
+              <i class="fas fa-bed"></i> ${property.bedrooms || 0} Beds
+            </div>
+            <div class="detail" title="${property.bathrooms} bathrooms">
+              <i class="fas fa-bath"></i> ${property.bathrooms || 0} Baths
+            </div>
+            <div class="detail" title="${property.squareFootage}">
+              <i class="fas fa-vector-square"></i> ${property.squareFootage}
+            </div>
+            <div class="detail" title="${property.propertyType}">
+              <i class="fas fa-home"></i> ${property.propertyType}
+            </div>
+          </div>
+          
+          <div class="badge ${statusClass}" title="Status: ${statusText}">
+            <i class="fas fa-${statusText === 'active' ? 'check-circle' : statusText === 'featured' ? 'star' : statusText === 'sold' ? 'tag' : 'clock'}"></i>
+            ${statusText.charAt(0).toUpperCase() + statusText.slice(1)}
+          </div>
+          
+          <div class="property-meta">
+            <div class="property-date">
+              <i class="far fa-calendar-alt"></i> Added: ${formattedDate}
+            </div>
+            <div class="property-id" style="color: var(--text-light); font-size: 11px; font-family: monospace;">
+              ID: ${property.id.substring(0, 8)}...
+            </div>
+          </div>
+          
+          <div class="property-actions">
+            <button class="btn-action btn-view" onclick="viewProperty('${property.id}')" title="View Details">
+              <i class="fas fa-eye"></i> View
+            </button>
+            <button class="btn-action btn-edit" onclick="editProperty('${property.id}')" title="Edit Property">
+              <i class="fas fa-edit"></i> Edit
+            </button>
+            <button class="btn-action btn-delete" onclick="deleteProperty('${property.id}')" title="Delete Property">
+              <i class="fas fa-trash-alt"></i> Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// Filter functionality
+document.getElementById('searchInput').addEventListener('input', applyFilters);
+document.getElementById('statusFilter').addEventListener('change', applyFilters);
+document.getElementById('typeFilter').addEventListener('change', applyFilters);
+document.getElementById('sortFilter').addEventListener('change', applyFilters);
+
+function applyFilters() {
+  const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+  const statusFilter = document.getElementById('statusFilter').value;
+  const typeFilter = document.getElementById('typeFilter').value;
+  const sortFilter = document.getElementById('sortFilter').value;
+  
+  let filtered = allProperties.filter(property => {
+    const matchesSearch = !searchTerm ||
+      (property.title && property.title.toLowerCase().includes(searchTerm)) ||
+      (property.location && property.location.toLowerCase().includes(searchTerm)) ||
+      (property.description && property.description.toLowerCase().includes(searchTerm));
+    
+    const matchesStatus = !statusFilter || property.status === statusFilter;
+    const matchesType = !typeFilter || property.propertyType === typeFilter;
+    
+    return matchesSearch && matchesStatus && matchesType;
+  });
+  
+  // Apply sorting
+  switch(sortFilter) {
+    case 'newest':
+      filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      break;
+    case 'oldest':
+      filtered.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+      break;
+    case 'price-high':
+      filtered.sort((a, b) => b.pricing - a.pricing);
+      break;
+    case 'price-low':
+      filtered.sort((a, b) => a.pricing - b.pricing);
+      break;
+  }
+  
+  displayProperties(filtered);
+}
+
+// Modal functions
+function openEditModal() {
+  document.getElementById('editModal').classList.add('show');
+}
+
+function closeEditModal() {
+  document.getElementById('editModal').classList.remove('show');
+  document.getElementById('editForm').reset();
+  currentEditId = null;
+}
+
+function openAddModal() {
+  document.getElementById('addModal').classList.add('show');
+}
+
+function closeAddModal() {
+  document.getElementById('addModal').classList.remove('show');
+  document.getElementById('addForm').reset();
+}
+
+function openViewModal() {
+  document.getElementById('viewModal').classList.add('show');
+}
+
+function closeViewModal() {
+  document.getElementById('viewModal').classList.remove('show');
+}
+
+// Property CRUD operations
+async function viewProperty(propertyId) {
+  try {
+    showLoading();
+    const docRef = doc(db, 'properties', propertyId);
+    const docSnap = await getDoc(docRef);
+    
+    if (!docSnap.exists()) {
+      throw new Error('Property not found!');
+    }
+    
+    const property = { id: docSnap.id, ...docSnap.data() };
+    const createdAt = property.createdAt?.toDate?.() || new Date();
+    const updatedAt = property.updatedAt?.toDate?.() || new Date();
+    
+    document.getElementById('viewTitle').textContent = property.title || 'Property Details';
+    
+    const formattedPrice = new Intl.NumberFormat('en-PH', {
+      style: 'currency',
+      currency: 'PHP',
+      minimumFractionDigits: 0
+    }).format(property.pricing || property.price || 0);
+    
+    // Get image URL
+    const imageUrl = getValidImageUrl(property, propertyId);
+    
+    document.getElementById('viewBody').innerHTML = `
+      <div style="margin-bottom: 20px; position: relative;">
+        <img src="${imageUrl}" 
+             style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px;"
+             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80';"
+             alt="${property.title || 'Property Image'}" />
+        <div style="position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.8); color: white; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 14px;">
+          ${property.status || 'Active'}
+        </div>
+      </div>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+        <div>
+          <div style="margin-bottom: 15px;">
+            <div style="color: var(--text-light); font-size: 14px; margin-bottom: 5px;">Price</div>
+            <div style="font-size: 24px; font-weight: 800; color: var(--primary);">${formattedPrice}</div>
+          </div>
+          
+          <div style="margin-bottom: 15px;">
+            <div style="color: var(--text-light); font-size: 14px; margin-bottom: 5px;">Property Type</div>
+            <div style="font-weight: 700;"><i class="fas fa-home"></i> ${property.propertyType || 'Not specified'}</div>
+          </div>
+          
+          <div style="margin-bottom: 15px;">
+            <div style="color: var(--text-light); font-size: 14px; margin-bottom: 5px;">Status</div>
+            <div><span class="badge ${property.status || 'active'}">${property.status || 'active'}</span></div>
+          </div>
+        </div>
+        
+        <div>
+          <div style="margin-bottom: 15px;">
+            <div style="color: var(--text-light); font-size: 14px; margin-bottom: 5px;">Bedrooms</div>
+            <div style="font-weight: 700;"><i class="fas fa-bed"></i> ${property.bedrooms || 0}</div>
+          </div>
+          
+          <div style="margin-bottom: 15px;">
+            <div style="color: var(--text-light); font-size: 14px; margin-bottom: 5px;">Bathrooms</div>
+            <div style="font-weight: 700;"><i class="fas fa-bath"></i> ${property.bathrooms || 0}</div>
+          </div>
+          
+          <div style="margin-bottom: 15px;">
+            <div style="color: var(--text-light); font-size: 14px; margin-bottom: 5px;">Square Footage</div>
+            <div style="font-weight: 700;"><i class="fas fa-vector-square"></i> ${property.squareFootage || property.squareFeet || 'N/A'}</div>
+          </div>
+        </div>
+      </div>
+      
+      <div style="margin-bottom: 20px;">
+        <div style="color: var(--text-light); font-size: 14px; margin-bottom: 5px;">Location</div>
+        <div style="font-weight: 700;"><i class="fas fa-map-marker-alt"></i> ${property.location || 'Location not specified'}</div>
+      </div>
+      
+      <div style="margin-bottom: 20px;">
+        <div style="color: var(--text-light); font-size: 14px; margin-bottom: 5px;">Description</div>
+        <div style="line-height: 1.6; background: var(--bg-light); padding: 15px; border-radius: 10px; border: 1px solid var(--border); min-height: 100px;">
+          ${property.description || 'No description provided'}
+        </div>
+      </div>
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+        <div>
+          <div style="color: var(--text-light); font-size: 14px; margin-bottom: 5px;">Created Date</div>
+          <div style="font-weight: 700;"><i class="far fa-calendar-alt"></i> ${createdAt.toLocaleDateString()} ${createdAt.toLocaleTimeString()}</div>
+        </div>
+        <div>
+          <div style="color: var(--text-light); font-size: 14px; margin-bottom: 5px;">Last Updated</div>
+          <div style="font-weight: 700;"><i class="fas fa-history"></i> ${updatedAt.toLocaleDateString()} ${updatedAt.toLocaleTimeString()}</div>
+        </div>
+      </div>
+      
+      ${property.ownerId ? `
+      <div style="margin-bottom: 10px;">
+        <div style="color: var(--text-light); font-size: 14px; margin-bottom: 5px;">Owner ID</div>
+        <div style="font-weight: 700; font-family: monospace; background: var(--bg-light); padding: 5px 10px; border-radius: 6px; border: 1px solid var(--border);">
+          ${property.ownerId}
+        </div>
+      </div>
+      ` : ''}
+      
+      ${property.userId ? `
+      <div style="margin-bottom: 10px;">
+        <div style="color: var(--text-light); font-size: 14px; margin-bottom: 5px;">User ID</div>
+        <div style="font-weight: 700; font-family: monospace; background: var(--bg-light); padding: 5px 10px; border-radius: 6px; border: 1px solid var(--border);">
+          ${property.userId}
+        </div>
+      </div>
+      ` : ''}
+      
+      <div style="display: flex; gap: 10px; margin-top: 20px;">
+        <button class="btn-action btn-edit" onclick="editProperty('${property.id}'); closeViewModal();" style="flex: 1; background: linear-gradient(135deg, #fef3c7, #fbbf24); color: #92400e;">
+          <i class="fas fa-edit"></i> Edit Property
+        </button>
+        <button class="btn-action btn-delete" onclick="deleteProperty('${property.id}'); closeViewModal();" style="flex: 1; background: linear-gradient(135deg, var(--danger), #dc2626); color: white;">
+          <i class="fas fa-trash-alt"></i> Delete Property
+        </button>
+      </div>
+    `;
+    
+    hideLoading();
+    openViewModal();
+  } catch (error) {
+    hideLoading();
+    console.error('Error viewing property:', error);
+    showToast('❌ Error loading property details: ' + error.message, 'error');
+  }
+}
+
+async function editProperty(propertyId) {
+  try {
+    showLoading();
+    const docRef = doc(db, 'properties', propertyId);
+    const docSnap = await getDoc(docRef);
+    
+    if (!docSnap.exists()) {
+      throw new Error('Property not found!');
+    }
+    
+    const property = docSnap.data();
+    currentEditId = propertyId;
+    
+    // Find image from database
+    const foundImage = findImageField(property);
+    
+    document.getElementById('editId').value = propertyId;
+    document.getElementById('editTitle').value = property.title || '';
+    document.getElementById('editPrice').value = property.pricing || property.price || 0;
+    document.getElementById('editType').value = property.propertyType || '';
+    document.getElementById('editBedrooms').value = property.bedrooms || '';
+    document.getElementById('editBathrooms').value = property.bathrooms || '';
+    document.getElementById('editSquareFootage').value = property.squareFootage || property.squareFeet || '';
+    document.getElementById('editStatus').value = property.status || 'active';
+    document.getElementById('editLocation').value = property.location || '';
+    document.getElementById('editDescription').value = property.description || '';
+    document.getElementById('editImage').value = foundImage || property.image || '';
+    document.getElementById('editOwnerId').value = property.ownerId || '';
+    document.getElementById('editUserId').value = property.userId || '';
+    
+    hideLoading();
+    openEditModal();
+  } catch (error) {
+    hideLoading();
+    console.error('Error loading property for edit:', error);
+    showToast('❌ Error loading property: ' + error.message, 'error');
+  }
+}
+
+async function deleteProperty(propertyId) {
+  if (!confirm('⚠️ Are you sure you want to delete this property?\n\nThis action cannot be undone and will permanently remove the property from the database.')) {
+    return;
+  }
+  
+  try {
+    showLoading();
+    
+    // First, check if the property exists
+    const docRef = doc(db, 'properties', propertyId);
+    const docSnap = await getDoc(docRef);
+    
+    if (!docSnap.exists()) {
+      throw new Error('Property not found!');
+    }
+    
+    // Delete the property
+    await deleteDoc(docRef);
+    
+    // Remove from local array
+    allProperties = allProperties.filter(p => p.id !== propertyId);
+    
+    // Update display
+    updateStats();
+    displayProperties(allProperties);
+    applyFilters();
+    
+    hideLoading();
+    showToast('✅ Property deleted successfully!', 'success');
+  } catch (error) {
+    hideLoading();
+    console.error('Error deleting property:', error);
+    showToast('❌ Error deleting property: ' + error.message, 'error');
+  }
+}
+
+// Form submissions
+document.getElementById('editForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  
+  if (!currentEditId) return;
+  
+  const submitBtn = document.getElementById('editSubmitBtn');
+  submitBtn.classList.add('loading');
+  
+  try {
+    const imageUrl = document.getElementById('editImage').value.trim();
+    const validImageUrl = getValidImageUrl({ image: imageUrl }, currentEditId);
+    
+    const updatedProperty = {
+      title: document.getElementById('editTitle').value.trim(),
+      pricing: parseFloat(document.getElementById('editPrice').value) || 0,
+      propertyType: document.getElementById('editType').value,
+      bedrooms: parseInt(document.getElementById('editBedrooms').value) || 0,
+      bathrooms: parseInt(document.getElementById('editBathrooms').value) || 0,
+      squareFootage: document.getElementById('editSquareFootage').value.trim() || '',
+      status: document.getElementById('editStatus').value,
+      location: document.getElementById('editLocation').value.trim(),
+      description: document.getElementById('editDescription').value.trim() || '',
+      image: validImageUrl,
+      ownerId: document.getElementById('editOwnerId').value.trim() || null,
+      userId: document.getElementById('editUserId').value.trim() || null,
+      updatedAt: serverTimestamp()
+    };
+    
+    const docRef = doc(db, 'properties', currentEditId);
+    await updateDoc(docRef, updatedProperty);
+    
+    // Update the property in the local array
+    const index = allProperties.findIndex(p => p.id === currentEditId);
+    if (index !== -1) {
+      allProperties[index] = { 
+        ...allProperties[index], 
+        ...updatedProperty,
+        updatedAt: new Date() 
+      };
+    }
+    
+    // Update display
+    updateStats();
+    displayProperties(allProperties);
+    applyFilters();
+    
+    // Close modal
+    closeEditModal();
+    
+    showToast('✅ Property updated successfully!', 'success');
+  } catch (error) {
+    console.error('Error updating property:', error);
+    showToast('❌ Error updating property: ' + error.message, 'error');
+  } finally {
+    submitBtn.classList.remove('loading');
+  }
+});
+
+document.getElementById('addForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  
+  const submitBtn = document.getElementById('addSubmitBtn');
+  submitBtn.classList.add('loading');
+  
+  try {
+    const imageUrl = document.getElementById('addImage').value.trim();
+    const validImageUrl = getValidImageUrl({ image: imageUrl });
+    
+    const newProperty = {
+      title: document.getElementById('addTitle').value.trim(),
+      pricing: parseFloat(document.getElementById('addPrice').value) || 0,
+      propertyType: document.getElementById('addType').value,
+      bedrooms: parseInt(document.getElementById('addBedrooms').value) || 0,
+      bathrooms: parseInt(document.getElementById('addBathrooms').value) || 0,
+      squareFootage: document.getElementById('addSquareFootage').value.trim() || '',
+      status: document.getElementById('addStatus').value,
+      location: document.getElementById('addLocation').value.trim(),
+      description: document.getElementById('addDescription').value.trim() || '',
+      image: validImageUrl,
+      ownerId: document.getElementById('addOwnerId').value.trim() || null,
+      userId: document.getElementById('addUserId').value.trim() || null,
+      createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp()
+    };
+    
+    const docRef = await addDoc(collection(db, 'properties'), newProperty);
+    
+    // Add to local array with the new ID and current timestamp
+    const propertyWithId = {
+      id: docRef.id,
+      ...newProperty,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
+    allProperties.unshift(propertyWithId);
+    
+    // Update display
+    updateStats();
+    displayProperties(allProperties);
+    applyFilters();
+    
+    // Close modal
+    closeAddModal();
+    
+    showToast('✅ Property added successfully!', 'success');
+  } catch (error) {
+    console.error('Error adding property:', error);
+    showToast('❌ Error adding property: ' + error.message, 'error');
+  } finally {
+    submitBtn.classList.remove('loading');
+  }
+});
+
+// Refresh button
+document.getElementById('refreshBtn').addEventListener('click', function() {
+  this.classList.add('loading');
+  loadProperties().finally(() => {
+    this.classList.remove('loading');
+  });
+});
+
+// Mobile menu toggle
+document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+  document.getElementById('sidebar').classList.toggle('active');
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', function(event) {
+  const sidebar = document.getElementById('sidebar');
+  const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+  
+  if (window.innerWidth <= 1024 && 
+      sidebar.classList.contains('active') && 
+      !sidebar.contains(event.target) && 
+      !mobileMenuToggle.contains(event.target)) {
+    sidebar.classList.remove('active');
+  }
+});
+
+// Close modals with Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeEditModal();
+    closeViewModal();
+    closeAddModal();
+    
+    // Close mobile menu on mobile
+    if (window.innerWidth <= 1024) {
+      document.getElementById('sidebar').classList.remove('active');
+    }
+  }
+});
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('🚀 Properties management page loaded');
+  initializeFirebase();
+});
+
+// Auto-refresh every 5 minutes
+setInterval(() => {
+  if (firebaseInitialized) {
+    loadProperties();
+  }
+}, 5 * 60 * 1000); // 5 minutes
+
+// Export functions to global scope
+window.openAddModal = openAddModal;
+window.closeAddModal = closeAddModal;
+window.openEditModal = openEditModal;
+window.closeEditModal = closeEditModal;
+window.openViewModal = openViewModal;
+window.closeViewModal = closeViewModal;
+window.viewProperty = viewProperty;
+window.editProperty = editProperty;
+window.deleteProperty = deleteProperty;
+window.loadProperties = loadProperties;
+window.applyFilters = applyFilters;
+</script>
+</body>
+</html>

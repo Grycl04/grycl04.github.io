@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Property - BahAI Real Estate</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #0b2e52;
+      --primary-dark: #001F3F;
+      --primary-light: #002f3f;
+      --secondary: #1976d2;
+      --accent: #ff9800;
+      --text-dark: #1a202c;
+      --text-light: #718096;
+      --bg-light: #f8fafc;
+      --bg-white: #ffffff;
+      --border: #e2e8f0;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      color: var(--text-dark);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Main wrapper */
+    .container {
+      flex: 1;
+      margin-left: 280px;
+      padding: 30px;
+    }
+
+    /* Form Styles */
+    form { 
+      background: var(--bg-white); 
+      padding: 30px; 
+      border-radius: 16px; 
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    
+    form.disabled { 
+      opacity: 0.5; 
+      pointer-events: none; 
+      filter: blur(2px);
+    }
+    
+    form h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-top: 0;
+    }
+    
+    label { 
+      font-weight: 600; 
+      display: block; 
+      margin-top: 20px; 
+      color: var(--text-dark);
+      font-size: 14px;
+    }
+    
+    .required::after {
+      content: " *";
+      color: #dc2626;
+    }
+    
+    input, textarea, select { 
+      width: 100%; 
+      padding: 12px 16px; 
+      margin-top: 8px; 
+      border: 1px solid var(--border); 
+      border-radius: 8px; 
+      box-sizing: border-box;
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      background: var(--bg-white);
+    }
+    
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(11, 46, 82, 0.1);
+    }
+    
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+      line-height: 1.6;
+    }
+    
+    button { 
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white; 
+      padding: 16px 24px; 
+      border: none; 
+      border-radius: 12px; 
+      margin-top: 30px; 
+      cursor: pointer; 
+      width: 100%;
+      font-size: 16px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow);
+    }
+    
+    button:hover { 
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    }
+    
+    button:disabled { 
+      background: #94a3b8; 
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: var(--shadow);
+    }
+    
+    .button-group {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    
+    .button-group button {
+      margin-top: 0;
+    }
+    
+    .cancel-btn {
+      background: #6b7280 !important;
+    }
+    
+    .cancel-btn:hover {
+      background: #4b5563 !important;
+    }
+    
+    .delete-btn {
+      background: #dc2626 !important;
+    }
+    
+    .delete-btn:hover {
+      background: #b91c1c !important;
+    }
+
+    /* Messages */
+    .message { 
+      text-align: center; 
+      font-weight: 600; 
+      padding: 16px; 
+      border-radius: 12px; 
+      margin-bottom: 20px;
+      border: 1px solid;
+    }
+    
+    .message.success { 
+      background: #d1fae5; 
+      color: #065f46; 
+      border-color: #a7f3d0;
+    }
+    
+    .message.error { 
+      background: #fee2e2; 
+      color: #991b1b; 
+      border-color: #fecaca;
+    }
+    
+    .message.warning { 
+      background: #fef3c7; 
+      color: #92400e; 
+      border-color: #fde68a;
+    }
+    
+    .message.info { 
+      background: #dbeafe; 
+      color: #1e40af; 
+      border-color: #93c5fd;
+    }
+    
+    /* Image Preview */
+    .preview-container { 
+      display: flex; 
+      gap: 15px; 
+      flex-wrap: wrap; 
+      margin-top: 15px; 
+    }
+    
+    .preview-item {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    
+    .preview-item img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+    }
+    
+    .preview-item .remove-btn {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #dc2626;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      transition: all 0.3s ease;
+    }
+    
+    .preview-item .remove-btn:hover {
+      background: #b91c1c;
+      transform: scale(1.1);
+    }
+    
+    /* Video Preview */
+    .video-preview { 
+      margin-top: 15px; 
+      text-align: center; 
+    }
+    
+    .video-preview iframe { 
+      width: 100%; 
+      max-width: 100%; 
+      height: 315px; 
+      border-radius: 12px; 
+      border: none;
+      box-shadow: var(--shadow);
+    }
+    
+    /* Character Counters */
+    .char-count {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-top: 5px;
+      font-weight: 500;
+    }
+    
+    .char-count.error {
+      color: #dc3545;
+    }
+    
+    .char-count.success {
+      color: #28a745;
+    }
+    
+    /* Help Text */
+    .help-text {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-top: 5px;
+      font-style: italic;
+    }
+
+    /* Two Column Form Layout */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      margin-top: 20px;
+    }
+
+    .form-column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .form-section {
+      background: var(--bg-light);
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+
+    .form-section h3 {
+      color: var(--primary);
+      margin-bottom: 15px;
+      font-size: 18px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .form-section h3 i {
+      font-size: 20px;
+    }
+
+    /* Map Styles */
+    #mapPicker {
+      width: 100%;
+      height: 400px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      margin-top: 10px;
+      box-shadow: var(--shadow);
+    }
+    
+    .map-info {
+      background: #e3f2fd;
+      padding: 16px;
+      border-radius: 8px;
+      margin-top: 15px;
+      border-left: 4px solid #2196f3;
+    }
+    
+    .coordinates-display {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    
+    .coord-box {
+      background: var(--bg-light);
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+    
+    .coord-box label {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin: 0;
+      font-weight: 500;
+    }
+    
+    .coord-box span {
+      display: block;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-top: 8px;
+    }
+
+    /* Upload Progress */
+    .upload-progress {
+      background: #e3f2fd;
+      border: 2px solid #2196f3;
+      border-radius: 12px;
+      padding: 25px;
+      margin-top: 20px;
+      display: none;
+      box-shadow: var(--shadow);
+    }
+    
+    .upload-progress.active {
+      display: block;
+    }
+    
+    .upload-progress h3 {
+      margin-top: 0;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+    
+    .progress-bar {
+      width: 100%;
+      height: 30px;
+      background: #e0e0e0;
+      border-radius: 15px;
+      overflow: hidden;
+      margin-top: 15px;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #2196f3, #4caf50);
+      transition: width 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    /* Loading State */
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-light);
+    }
+
+    .loading-spinner {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid var(--primary);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Mobile Menu Toggle */
+    .mobile-menu-toggle {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 101;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      width: 40px;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu-toggle:hover {
+      background: var(--primary-dark);
+      transform: scale(1.05);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .container {
+        margin-left: 240px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        margin-left: 0;
+        padding: 20px;
+        padding-top: 80px;
+      }
+      
+      form {
+        padding: 20px;
+      }
+      
+      .coordinates-display {
+        grid-template-columns: 1fr;
+      }
+      
+      .mobile-menu-toggle {
+        display: flex;
+      }
+      
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .form-section {
+        padding: 15px;
+      }
+      
+      .button-group {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 15px;
+        padding-top: 70px;
+      }
+      
+      form {
+        padding: 15px;
+      }
+      
+      .preview-container {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Include Sidebar -->
+<div id="sidebar-container"></div>
+
+<!-- Mobile Menu Toggle -->
+<button class="mobile-menu-toggle" id="mobileMenuToggle">
+  <i class="bi bi-list"></i>
+</button>
+
+<div class="container">
+  <div id="messageBox" class="message" style="display: none;"></div>
+
+  <!-- Loading State -->
+  <div id="loadingState" class="loading">
+    <div class="loading-spinner"></div>
+    <p>Loading property details...</p>
+  </div>
+
+  <!-- Upload Progress -->
+  <div id="uploadProgress" class="upload-progress">
+    <h3>📤 Updating Property...</h3>
+    <p id="progressText">Preparing update...</p>
+    <div class="progress-bar">
+      <div id="progressFill" class="progress-fill" style="width: 0%;">0%</div>
+    </div>
+  </div>
+
+  <form id="propertyForm" style="display: none;">
+    <h2>Edit Property</h2>
+    
+    <div class="form-grid">
+      <!-- Left Column -->
+      <div class="form-column">
+        <!-- Basic Information Section -->
+        <div class="form-section">
+          <h3><i class="bi bi-info-circle"></i> Basic Information</h3>
+          
+          <label for="title" class="required">Property Title</label>
+          <input type="text" id="title" placeholder="Enter property title (e.g., 'Cozy 2BR Apartment in Makati')" required minlength="10" maxlength="100">
+          <div class="char-count" id="titleCount">0 / 10 characters minimum</div>
+
+          <label for="propertyType" class="required">Property Type</label>
+          <select id="propertyType" required>
+            <option value="">-- Select Property Type --</option>
+            <option value="apartment">Apartment</option>
+            <option value="house">House</option>
+            <option value="studio">Studio</option>
+            <option value="room">Room / Shared</option>
+            <option value="boarding_house">Boarding House</option>
+            <option value="bedspace">Bedspace</option>
+            <option value="condo">Condominium</option>
+            <option value="townhouse">Townhouse</option>
+          </select>
+
+          <label for="description" class="required">Description</label>
+          <textarea id="description" placeholder="Describe the property in detail: amenities, nearby places, features, etc. (minimum 50 characters)" rows="6" required minlength="50"></textarea>
+          <div class="char-count" id="descCount">0 / 50 characters minimum</div>
+        </div>
+
+        <!-- Property Features -->
+        <div class="form-section">
+          <h3><i class="bi bi-house-door"></i> Property Features</h3>
+          
+          <label for="bedrooms">Bedrooms</label>
+          <input type="number" id="bedrooms" placeholder="Number of bedrooms" min="0" max="20">
+          
+          <label for="bathrooms">Bathrooms</label>
+          <input type="number" id="bathrooms" placeholder="Number of bathrooms" min="0" max="20">
+          
+          <label for="squareFootage">Square Footage (sqm)</label>
+          <input type="number" id="squareFootage" placeholder="Property area in square meters" min="0">
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div class="form-column">
+        <!-- Pricing Section -->
+        <div class="form-section">
+          <h3><i class="bi bi-currency-dollar"></i> Pricing & Terms</h3>
+          
+          <label for="monthlyRent" class="required">Monthly Rent (₱)</label>
+          <input type="number" id="monthlyRent" placeholder="e.g., 15000" step="0.01" required min="1000">
+          <div class="help-text">Minimum: ₱1,000</div>
+
+          <label for="deposit">Deposit (₱)</label>
+          <input type="number" id="deposit" placeholder="Optional (e.g., 30000)" step="0.01" min="0">
+
+          <label for="minStay" class="required">Minimum Stay (months)</label>
+          <input type="number" id="minStay" placeholder="e.g., 6" value="1" min="1" max="24" required>
+          
+          <label for="status">Listing Status</label>
+          <select id="status">
+            <option value="active">Active</option>
+            <option value="pending">Pending</option>
+            <option value="rented">Rented</option>
+            <option value="inactive">Inactive</option>
+          </select>
+        </div>
+
+        <!-- Media Section -->
+        <div class="form-section">
+          <h3><i class="bi bi-images"></i> Media</h3>
+          
+          <label for="videoUrl">YouTube Video URL (Optional)</label>
+          <input type="url" id="videoUrl" placeholder="https://www.youtube.com/watch?v=example">
+          <div class="help-text">Add a video tour of your property (optional)</div>
+          <div class="video-preview" id="videoPreview"></div>
+
+          <label for="images">Update Property Images</label>
+          <input type="file" id="images" accept="image/*" multiple>
+          <div class="help-text">Add new images (max 10 total, 5MB per image). Existing images will be kept unless removed.</div>
+          <div class="preview-container" id="preview"></div>
+          <div class="help-text" id="existingImagesCount"></div>
+        </div>
+      </div>
+
+      <!-- Full Width Sections -->
+      <div class="full-width">
+        <!-- Location Section -->
+        <div class="form-section">
+          <h3><i class="bi bi-geo-alt"></i> Location Details</h3>
+          
+          <label for="locationSearch" class="required">📍 Property Location</label>
+          <input type="text" id="locationSearch" placeholder="Search address or click on map..." required>
+          <div class="help-text">💡 Type an address or click directly on the map to pin your property location</div>
+          
+          <div id="mapPicker"></div>
+          
+          <div class="map-info">
+            <strong>🎯 How to use:</strong>
+            <ul style="margin: 8px 0; padding-left: 20px; font-size: 0.9rem;">
+              <li>Type your address in the search box above</li>
+              <li>Or click anywhere on the map to set location</li>
+              <li>Drag the red marker to adjust position</li>
+              <li>Zoom in for precise placement</li>
+            </ul>
+          </div>
+
+          <div class="coordinates-display">
+            <div class="coord-box">
+              <label>Latitude</label>
+              <span id="latDisplay">Not set</span>
+            </div>
+            <div class="coord-box">
+              <label>Longitude</label>
+              <span id="lngDisplay">Not set</span>
+            </div>
+          </div>
+
+          <!-- Hidden fields for coordinates -->
+          <input type="hidden" id="latitude" name="latitude">
+          <input type="hidden" id="longitude" name="longitude">
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="full-width">
+        <div class="button-group">
+          <button type="submit" id="submitBtn">Update Property</button>
+          <button type="button" class="cancel-btn" onclick="goBack()">Cancel</button>
+          <button type="button" class="delete-btn" onclick="deleteProperty()">Delete Property</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Load Google Maps API with Places library -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwwAkIEixeUysaGrMb9BtTsMwz_C9Noxk&libraries=places" async defer></script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+  import { 
+    getFirestore, doc, getDoc, updateDoc, deleteDoc, serverTimestamp 
+  } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+  import { 
+    getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject 
+  } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-storage.js";
+
+  // Firebase Config
+  const firebaseConfig = {
+    apiKey: "AIzaSyCIfzneDzWVveG8p_0mywoA9D9F5AyzZX4",
+    authDomain: "bahai-1b76d.firebaseapp.com",
+    projectId: "bahai-1b76d",
+    storageBucket: "bahai-1b76d.firebasestorage.app",
+    messagingSenderId: "646878644941",
+    appId: "1:646878644941:web:5b4ccc3412250337587784"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+  const storage = getStorage(app);
+
+  // Get property ID from URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const propertyId = urlParams.get('id');
+
+  if (!propertyId) {
+    showMessage("❌ No property ID specified.", "error");
+    setTimeout(() => {
+      window.location.href = "landlord_listings.html";
+    }, 2000);
+  }
+
+  const form = document.getElementById("propertyForm");
+  const preview = document.getElementById("preview");
+  const messageBox = document.getElementById("messageBox");
+  const loadingState = document.getElementById("loadingState");
+  const videoUrlInput = document.getElementById("videoUrl");
+  const videoPreview = document.getElementById("videoPreview");
+  const submitBtn = document.getElementById("submitBtn");
+  const uploadProgress = document.getElementById("uploadProgress");
+  const progressText = document.getElementById("progressText");
+  const progressFill = document.getElementById("progressFill");
+  const existingImagesCount = document.getElementById("existingImagesCount");
+
+  let currentUser = null;
+  let currentProperty = null;
+  let map, marker, geocoder, autocomplete;
+  let selectedFiles = [];
+  let existingImages = [];
+  let imagesToDelete = [];
+
+  // Character counters
+  const titleInput = document.getElementById("title");
+  const descInput = document.getElementById("description");
+  const titleCount = document.getElementById("titleCount");
+  const descCount = document.getElementById("descCount");
+
+  titleInput.addEventListener("input", () => {
+    const len = titleInput.value.length;
+    titleCount.textContent = `${len} / 10 characters minimum`;
+    if (len < 10) {
+      titleCount.classList.add("error");
+      titleCount.classList.remove("success");
+    } else {
+      titleCount.classList.remove("error");
+      titleCount.classList.add("success");
+    }
+  });
+
+  descInput.addEventListener("input", () => {
+    const len = descInput.value.length;
+    descCount.textContent = `${len} / 50 characters minimum`;
+    if (len < 50) {
+      descCount.classList.add("error");
+      descCount.classList.remove("success");
+    } else {
+      descCount.classList.remove("error");
+      descCount.classList.add("success");
+    }
+  });
+
+  // Image Preview with Remove Button
+  document.getElementById("images").addEventListener("change", (e) => {
+    const newFiles = Array.from(e.target.files);
+    
+    if (selectedFiles.length + newFiles.length > 10) {
+      showMessage("⚠️ Maximum 10 images allowed in total.", "warning");
+      return;
+    }
+
+    selectedFiles = [...selectedFiles, ...newFiles];
+    updateImagePreview();
+  });
+
+  function updateImagePreview() {
+    preview.innerHTML = "";
+    
+    // Show existing images
+    existingImages.forEach((imageUrl, index) => {
+      const previewItem = document.createElement("div");
+      previewItem.classList.add("preview-item");
+      
+      const img = document.createElement("img");
+      img.src = imageUrl;
+      
+      const removeBtn = document.createElement("button");
+      removeBtn.classList.add("remove-btn");
+      removeBtn.innerHTML = "×";
+      removeBtn.type = "button";
+      removeBtn.onclick = () => {
+        imagesToDelete.push(imageUrl);
+        existingImages.splice(index, 1);
+        updateImagePreview();
+      };
+      
+      previewItem.appendChild(img);
+      previewItem.appendChild(removeBtn);
+      preview.appendChild(previewItem);
+    });
+
+    // Show new images
+    selectedFiles.forEach((file, index) => {
+      if (file.size > 5 * 1024 * 1024) {
+        showMessage("⚠️ Each image file should not exceed 5MB", "warning");
+        return;
+      }
+
+      const previewItem = document.createElement("div");
+      previewItem.classList.add("preview-item");
+      
+      const img = document.createElement("img");
+      img.src = URL.createObjectURL(file);
+      
+      const removeBtn = document.createElement("button");
+      removeBtn.classList.add("remove-btn");
+      removeBtn.innerHTML = "×";
+      removeBtn.type = "button";
+      removeBtn.onclick = () => {
+        selectedFiles.splice(index, 1);
+        updateImagePreview();
+        
+        // Update file input
+        const dataTransfer = new DataTransfer();
+        selectedFiles.forEach(f => dataTransfer.items.add(f));
+        document.getElementById("images").files = dataTransfer.files;
+      };
+      
+      previewItem.appendChild(img);
+      previewItem.appendChild(removeBtn);
+      preview.appendChild(previewItem);
+    });
+
+    // Update existing images count
+    const totalImages = existingImages.length + selectedFiles.length;
+    existingImagesCount.textContent = `${existingImages.length} existing images + ${selectedFiles.length} new images = ${totalImages} total`;
+  }
+
+  // Video Preview
+  videoUrlInput.addEventListener("input", () => {
+    const url = videoUrlInput.value.trim();
+    const match = url.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+    if (match) {
+      const videoId = match[1];
+      videoPreview.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>`;
+    } else {
+      videoPreview.innerHTML = "";
+    }
+  });
+
+  // ===== Initialize Google Map =====
+  window.initMapPicker = function() {
+    // Default center: Manila, Philippines
+    const defaultLocation = { lat: 14.5995, lng: 120.9842 };
+    
+    map = new google.maps.Map(document.getElementById("mapPicker"), {
+      center: defaultLocation,
+      zoom: 12,
+      mapTypeControl: true,
+      streetViewControl: true,
+      styles: [
+        {
+          featureType: "all",
+          elementType: "geometry",
+          stylers: [{ color: "#f5f5f5" }]
+        }
+      ]
+    });
+    
+    geocoder = new google.maps.Geocoder();
+    
+    // Initialize autocomplete
+    const input = document.getElementById("locationSearch");
+    autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.bindTo("bounds", map);
+    
+    // When user selects a place from autocomplete
+    autocomplete.addListener("place_changed", () => {
+      const place = autocomplete.getPlace();
+      if (place.geometry) {
+        const lat = place.geometry.location.lat();
+        const lng = place.geometry.location.lng();
+        
+        map.setCenter({ lat, lng });
+        map.setZoom(17);
+        placeMarker({ lat, lng });
+        
+        updateCoordinates(lat, lng);
+      }
+    });
+    
+    // Click on map to set location
+    map.addListener("click", (event) => {
+      const lat = event.latLng.lat();
+      const lng = event.latLng.lng();
+      
+      placeMarker({ lat, lng });
+      updateCoordinates(lat, lng);
+      
+      // Reverse geocode to get address
+      geocoder.geocode({ location: event.latLng }, (results, status) => {
+        if (status === "OK" && results[0]) {
+          document.getElementById("locationSearch").value = results[0].formatted_address;
+        }
+      });
+    });
+  };
+
+  // Place or update marker on map
+  function placeMarker(location) {
+    if (marker) {
+      marker.setMap(null);
+    }
+    
+    marker = new google.maps.Marker({
+      position: location,
+      map: map,
+      draggable: true,
+      animation: google.maps.Animation.DROP,
+      title: "Property Location",
+      icon: {
+        url: "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(`
+          <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#dc2626" d="M16 0C10.477 0 6 4.477 6 10c0 10 10 22 10 22s10-12 10-22c0-5.523-4.477-10-10-10zm0 15a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
+          </svg>
+        `),
+        scaledSize: new google.maps.Size(32, 32),
+        anchor: new google.maps.Point(16, 32)
+      }
+    });
+    
+    // Update when marker is dragged
+    marker.addListener("dragend", (event) => {
+      const lat = event.latLng.lat();
+      const lng = event.latLng.lng();
+      updateCoordinates(lat, lng);
+      
+      // Update address
+      geocoder.geocode({ location: event.latLng }, (results, status) => {
+        if (status === "OK" && results[0]) {
+          document.getElementById("locationSearch").value = results[0].formatted_address;
+        }
+      });
+    });
+  }
+
+  // Update coordinate displays and hidden fields
+  function updateCoordinates(lat, lng) {
+    document.getElementById("latitude").value = lat;
+    document.getElementById("longitude").value = lng;
+    document.getElementById("latDisplay").textContent = lat.toFixed(6);
+    document.getElementById("lngDisplay").textContent = lng.toFixed(6);
+  }
+
+  // Load map when Google Maps API is ready
+  window.addEventListener("load", () => {
+    if (window.google && window.google.maps) {
+      initMapPicker();
+    } else {
+      // Retry after a delay if API not loaded yet
+      setTimeout(() => {
+        if (window.google && window.google.maps) {
+          initMapPicker();
+        }
+      }, 1000);
+    }
+  });
+
+  // Load property data
+  async function loadPropertyData() {
+    if (!propertyId) return;
+
+    try {
+      const propertyDoc = await getDoc(doc(db, "properties", propertyId));
+      
+      if (!propertyDoc.exists()) {
+        showMessage("❌ Property not found.", "error");
+        setTimeout(() => {
+          window.location.href = "landlord_listings.html";
+        }, 2000);
+        return;
+      }
+
+      currentProperty = { id: propertyDoc.id, ...propertyDoc.data() };
+
+      // Check if current user owns this property
+      if (currentProperty.userId !== currentUser.uid) {
+        showMessage("❌ You don't have permission to edit this property.", "error");
+        setTimeout(() => {
+          window.location.href = "landlord_listings.html";
+        }, 2000);
+        return;
+      }
+
+      // Populate form fields
+      document.getElementById("title").value = currentProperty.title || "";
+      document.getElementById("propertyType").value = currentProperty.propertyType || "";
+      document.getElementById("description").value = currentProperty.description || "";
+      document.getElementById("monthlyRent").value = currentProperty.monthlyRent || currentProperty.pricing || "";
+      document.getElementById("deposit").value = currentProperty.deposit || "";
+      document.getElementById("minStay").value = currentProperty.minStay || 1;
+      document.getElementById("status").value = currentProperty.status || "active";
+      document.getElementById("bedrooms").value = currentProperty.bedrooms || "";
+      document.getElementById("bathrooms").value = currentProperty.bathrooms || "";
+      document.getElementById("squareFootage").value = currentProperty.squareFootage || "";
+      document.getElementById("videoUrl").value = currentProperty.videoUrl || "";
+
+      // Set location
+      if (currentProperty.location) {
+        document.getElementById("locationSearch").value = currentProperty.location;
+      }
+
+      // Set coordinates and map
+      if (currentProperty.latitude && currentProperty.longitude) {
+        updateCoordinates(currentProperty.latitude, currentProperty.longitude);
+        
+        if (map) {
+          map.setCenter({ lat: currentProperty.latitude, lng: currentProperty.longitude });
+          map.setZoom(17);
+          placeMarker({ lat: currentProperty.latitude, lng: currentProperty.longitude });
+        }
+      }
+
+      // Set existing images
+      existingImages = currentProperty.photos || currentProperty.imageUrls || [];
+      updateImagePreview();
+
+      // Trigger character counters
+      titleInput.dispatchEvent(new Event('input'));
+      descInput.dispatchEvent(new Event('input'));
+
+      // Show video preview if exists
+      if (currentProperty.videoUrl) {
+        videoUrlInput.dispatchEvent(new Event('input'));
+      }
+
+      // Hide loading, show form
+      loadingState.style.display = "none";
+      form.style.display = "block";
+
+    } catch (error) {
+      console.error("Error loading property:", error);
+      showMessage("❌ Error loading property details.", "error");
+    }
+  }
+
+  // Upload image to Firebase Storage
+  async function uploadImageToStorage(file, index) {
+    return new Promise((resolve, reject) => {
+      // Create unique filename with timestamp
+      const timestamp = Date.now();
+      const filename = `${timestamp}_${index}_${file.name}`;
+      const storageRef = ref(storage, `properties/${currentUser.uid}/${propertyId}/${filename}`);
+      
+      const uploadTask = uploadBytesResumable(storageRef, file);
+      
+      uploadTask.on('state_changed',
+        (snapshot) => {
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log(`Upload ${index + 1} is ${progress}% done`);
+        },
+        (error) => {
+          console.error("Upload error:", error);
+          reject(error);
+        },
+        async () => {
+          // Get download URL
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+          resolve(downloadURL);
+        }
+      );
+    });
+  }
+
+  // Delete images from storage
+  async function deleteImagesFromStorage(imageUrls) {
+    const deletePromises = imageUrls.map(async (imageUrl) => {
+      try {
+        // Extract the path from the download URL
+        const imageRef = ref(storage, imageUrl);
+        await deleteObject(imageRef);
+      } catch (error) {
+        console.error("Error deleting image:", error);
+        // Continue with other deletions even if one fails
+      }
+    });
+
+    await Promise.all(deletePromises);
+  }
+
+  // Validation function
+  function validateForm() {
+    const title = document.getElementById("title").value.trim();
+    const type = document.getElementById("propertyType").value;
+    const description = document.getElementById("description").value.trim();
+    const location = document.getElementById("locationSearch").value.trim();
+    const latitude = document.getElementById("latitude").value;
+    const longitude = document.getElementById("longitude").value;
+    const monthlyRent = parseFloat(document.getElementById("monthlyRent").value);
+
+    if (title.length < 10) {
+      showMessage("❌ Property title must be at least 10 characters.", "error");
+      return false;
+    }
+
+    if (!type) {
+      showMessage("❌ Please select a property type.", "error");
+      return false;
+    }
+
+    if (description.length < 50) {
+      showMessage("❌ Description must be at least 50 characters.", "error");
+      return false;
+    }
+
+    if (!location || location.length < 10) {
+      showMessage("❌ Please provide a complete location/address (minimum 10 characters).", "error");
+      return false;
+    }
+
+    if (!latitude || !longitude) {
+      showMessage("❌ Please select a location on the map.", "error");
+      window.scrollTo({ top: document.getElementById("mapPicker").offsetTop - 100, behavior: 'smooth' });
+      return false;
+    }
+
+    if (!monthlyRent || monthlyRent < 1000) {
+      showMessage("❌ Monthly rent must be at least ₱1,000.", "error");
+      return false;
+    }
+
+    if (existingImages.length + selectedFiles.length === 0) {
+      showMessage("❌ At least 1 property image is required.", "error");
+      return false;
+    }
+
+    return true;
+  }
+
+  // Form submission
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    
+    if (!currentUser || !currentProperty) {
+      showMessage("❌ Not authorized.", "error");
+      return;
+    }
+
+    if (!validateForm()) return;
+
+    const title = document.getElementById("title").value.trim();
+    const type = document.getElementById("propertyType").value;
+    const description = document.getElementById("description").value.trim();
+    const location = document.getElementById("locationSearch").value.trim();
+    const latitude = parseFloat(document.getElementById("latitude").value);
+    const longitude = parseFloat(document.getElementById("longitude").value);
+    const monthlyRent = parseFloat(document.getElementById("monthlyRent").value);
+    const deposit = parseFloat(document.getElementById("deposit").value) || 0;
+    const minStay = parseInt(document.getElementById("minStay").value);
+    const status = document.getElementById("status").value;
+    const videoUrl = document.getElementById("videoUrl").value.trim();
+    const bedrooms = document.getElementById("bedrooms").value ? parseInt(document.getElementById("bedrooms").value) : null;
+    const bathrooms = document.getElementById("bathrooms").value ? parseInt(document.getElementById("bathrooms").value) : null;
+    const squareFootage = document.getElementById("squareFootage").value || null;
+
+    try {
+      // Disable form and show progress
+      submitBtn.disabled = true;
+      form.classList.add("disabled");
+      uploadProgress.classList.add("active");
+      
+      // Step 1: Delete removed images
+      if (imagesToDelete.length > 0) {
+        progressText.textContent = "Removing deleted images...";
+        progressFill.style.width = "10%";
+        progressFill.textContent = "10%";
+
+        await deleteImagesFromStorage(imagesToDelete);
+      }
+
+      // Step 2: Upload new images
+      let newImageUrls = [];
+      if (selectedFiles.length > 0) {
+        progressText.textContent = `Uploading ${selectedFiles.length} new image(s)...`;
+        progressFill.style.width = "30%";
+        progressFill.textContent = "30%";
+
+        const totalFiles = selectedFiles.length;
+        
+        for (let i = 0; i < selectedFiles.length; i++) {
+          const file = selectedFiles[i];
+          progressText.textContent = `Uploading image ${i + 1} of ${totalFiles}...`;
+          
+          const downloadURL = await uploadImageToStorage(file, i);
+          newImageUrls.push(downloadURL);
+          
+          // Update progress
+          const uploadProgress = 30 + ((i + 1) / totalFiles) * 50;
+          progressFill.style.width = `${uploadProgress}%`;
+          progressFill.textContent = `${Math.round(uploadProgress)}%`;
+        }
+      }
+
+      // Step 3: Update property document
+      progressText.textContent = "Updating property details...";
+      progressFill.style.width = "90%";
+      progressFill.textContent = "90%";
+
+      const allImageUrls = [...existingImages, ...newImageUrls];
+
+      const updateData = {
+        title,
+        propertyType: type,
+        description,
+        location,
+        latitude,
+        longitude,
+        monthlyRent,
+        deposit,
+        minStay,
+        status,
+        videoUrl,
+        updatedAt: serverTimestamp(),
+        // Update both field names for compatibility
+        photos: allImageUrls,
+        imageUrls: allImageUrls,
+        pricing: monthlyRent
+      };
+
+      // Only include these fields if they have values
+      if (bedrooms !== null) updateData.bedrooms = bedrooms;
+      if (bathrooms !== null) updateData.bathrooms = bathrooms;
+      if (squareFootage !== null) updateData.squareFootage = squareFootage;
+
+      await updateDoc(doc(db, "properties", propertyId), updateData);
+
+      // Complete
+      progressFill.style.width = "100%";
+      progressFill.textContent = "100%";
+      progressText.textContent = "✅ Property updated successfully!";
+      
+      showMessage("✅ Property updated successfully! Redirecting...", "success");
+      
+      setTimeout(() => {
+        window.location.href = "landlord_listings.html";
+      }, 2000);
+
+    } catch (err) {
+      console.error("Error updating property:", err);
+      showMessage("❌ Failed to update property. Please try again.", "error");
+      submitBtn.disabled = false;
+      form.classList.remove("disabled");
+      uploadProgress.classList.remove("active");
+    }
+  });
+
+  // Delete property
+  window.deleteProperty = async function() {
+    if (!confirm('Are you sure you want to delete this property? This action cannot be undone.')) return;
+    
+    if (!currentUser || !currentProperty) return;
+
+    try {
+      await deleteDoc(doc(db, "properties", propertyId));
+      showMessage("✅ Property deleted successfully! Redirecting...", "success");
+      
+      setTimeout(() => {
+        window.location.href = "landlord_listings.html";
+      }, 2000);
+      
+    } catch (error) {
+      console.error("Error deleting property:", error);
+      showMessage("❌ Failed to delete property. Please try again.", "error");
+    }
+  };
+
+  // Go back
+  window.goBack = function() {
+    window.location.href = "landlord_listings.html";
+  };
+
+  function showMessage(text, type) {
+    messageBox.textContent = text;
+    messageBox.className = `message ${type}`;
+    messageBox.style.display = 'block';
+    
+    // Scroll to top to show message
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    setTimeout(() => {
+      messageBox.style.display = 'none';
+    }, 5000);
+  }
+
+  // Check authentication and load property
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+      showMessage("❌ Please log in first.", "error");
+      setTimeout(() => {
+        window.location.href = "../login.html";
+      }, 2000);
+      return;
+    }
+
+    currentUser = user;
+    await loadPropertyData();
+  });
+
+  // Load sidebar
+  fetch('sidebar.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('sidebar-container').innerHTML = html;
+      // Set active state for current page
+      const currentPage = window.location.pathname.split('/').pop();
+      const links = document.querySelectorAll('.sidebar-link');
+      links.forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+          link.classList.add('active');
+        }
+      });
+      
+      // Add mobile menu functionality
+      const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+      const sidebar = document.querySelector('.sidebar');
+      
+      if (mobileMenuToggle && sidebar) {
+        mobileMenuToggle.addEventListener('click', function() {
+          sidebar.classList.toggle('mobile-open');
+        });
+      }
+    })
+    .catch(error => console.error('Error loading sidebar:', error));
+
+</script>
+</body>
+</html>

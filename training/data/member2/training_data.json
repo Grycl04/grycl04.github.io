@@ -1,0 +1,552 @@
+{
+  "member_id": "member2",
+  "assigned_questions": [
+    "Question 2: Show me [type] under [price] with [bedroom/bath]",
+    "Question 4: Properties near [landmark/amenity]",
+    "Question 6: Find [ready to move in] properties for [needs] in [location]"
+  ],
+  "training_samples": [
+    {
+      "query": "show me houses with 2 baths",
+      "intent": "find_property_with_criteria",
+      "variations": [
+        "houses with 2 bathrooms",
+        "find houses having 2 baths",
+        "looking for homes with two bathrooms",
+        "2-bath houses for sale",
+        "properties with 2 bathrooms",
+        "show me 2 bath houses",
+        "need a house with two baths",
+        "homes featuring 2 bathrooms",
+        "2 bath residential properties",
+        "houses that have 2 baths"
+      ]
+    },
+    {
+      "query": "condos with 3 bathrooms",
+      "intent": "find_property_with_criteria",
+      "variations": [
+        "condominiums with 3 baths",
+        "find condos having 3 bathrooms",
+        "3-bath condo units",
+        "condo with three bathrooms",
+        "show me condos with 3 baths",
+        "need a condo with 3 bathrooms",
+        "condo units featuring 3 baths",
+        "3 bathroom condominium",
+        "condos that have 3 bathrooms",
+        "three-bath condos for sale"
+      ]
+    },
+    {
+      "query": "apartments with 1 bath",
+      "intent": "find_property_with_criteria",
+      "variations": [
+        "apartment units with 1 bathroom",
+        "1-bath apartments for rent",
+        "apartments having one bath",
+        "studio with 1 bathroom",
+        "show me apartments with single bath",
+        "need apartment with 1 bath only",
+        "apartments featuring 1 bathroom",
+        "one-bath apartment units",
+        "apartments that have 1 bath",
+        "1 bathroom apartment for lease"
+      ]
+    },
+    {
+      "query": "townhouses with 2.5 baths",
+      "intent": "find_property_with_criteria",
+      "variations": [
+        "townhomes with 2.5 bathrooms",
+        "find townhouses having two and a half baths",
+        "2.5 bath townhouse units",
+        "townhouse with 2.5 bathrooms",
+        "show me townhouses with 2.5 baths",
+        "need a townhome with 2.5 bathrooms",
+        "townhouses featuring 2.5 baths",
+        "two and a half bath townhouses",
+        "townhomes that have 2.5 bathrooms"
+      ]
+    },
+    {
+      "query": "houses with master bathroom",
+      "intent": "find_property_with_criteria",
+      "variations": [
+        "homes with master bath",
+        "properties with master bathroom suite",
+        "houses having master's bathroom",
+        "homes featuring master bath",
+        "show me houses with master bathroom",
+        "need a house with master bath",
+        "properties that have master bathroom",
+        "master bath houses for sale",
+        "homes with ensuite master bath"
+      ]
+    },
+    {
+      "query": "show me houses under 3M with 3 bedrooms",
+      "intent": "find_property_with_criteria",
+      "variations": [
+        "find houses below 3 million with 3 bedrooms",
+        "houses under 3m 3 bed",
+        "3 bedroom houses under 3 million",
+        "show me houses under 3M 3BR",
+        "house for sale under 3m with 3 bedrooms",
+        "i need a 3-bedroom house within 3 million budget",
+        "looking for 3BR houses less than 3M",
+        "any 3 bedroom houses under 3 million pesos?",
+        "3-bedroom homes under 3M",
+        "properties with 3 bedrooms under 3 million"
+      ]
+    },
+    {
+      "query": "condos with 1 bedroom",
+      "intent": "find_property_with_criteria",
+      "variations": [
+        "1-bedroom condominiums",
+        "condo units with single bedroom",
+        "studio type condos",
+        "one-bedroom condo for sale",
+        "show me condos with 1 bedroom",
+        "need a 1-bedroom condo unit",
+        "condos featuring 1 bedroom",
+        "single bedroom condominium",
+        "1BR condo units",
+        "condos that have one bedroom"
+      ]
+    },
+    {
+      "query": "apartments with 2 bedrooms and 1 bath",
+      "intent": "find_property_with_criteria",
+      "variations": [
+        "2-bedroom 1-bath apartments",
+        "apartment units with 2BR 1 bath",
+        "two bedroom one bath apartments",
+        "2BR 1 bath flat for rent",
+        "show me apartments with 2 bedrooms 1 bathroom",
+        "need apartment with 2 bedrooms and 1 bath",
+        "apartments featuring 2 bedrooms 1 bath",
+        "2 bedroom apartment with single bath",
+        "apartments that have 2BR 1BA",
+        "2-bed 1-bath apartment units"
+      ]
+    },
+    {
+      "query": "show me condos under 5M with 2 bathrooms",
+      "intent": "find_property_with_criteria",
+      "variations": [
+        "condo below 5m with 2 baths",
+        "2 bathroom condos under 5 million",
+        "condominium under 5m 2 bath",
+        "show me condos with 2 bathrooms below 5m",
+        "condo for sale under 5 million pesos",
+        "looking for 2-bath condos under 5M",
+        "condo units with 2 bathrooms within 5 million budget",
+        "need a condo with two baths under 5 million",
+        "affordable 2-bath condos under 5M",
+        "condos with 2 baths below 5 million"
+      ]
+    },
+    {
+      "query": "houses between 2M and 4M",
+      "intent": "find_property_with_criteria",
+      "variations": [
+        "homes priced 2M to 4M",
+        "houses from 2 million to 4 million",
+        "properties within 2-4 million range",
+        "show me houses 2M to 4M",
+        "houses costing 2-4 million",
+        "looking for homes between 2 and 4 million",
+        "properties priced between 2M and 4M",
+        "houses in the 2-4M price bracket",
+        "homes within 2-4 million budget",
+        "properties priced 2-4 million pesos"
+      ]
+    },
+    {
+      "query": "apartments under 15k per month",
+      "intent": "find_property_with_criteria",
+      "variations": [
+        "apartment units below 15k monthly",
+        "rental apartments under 15000",
+        "apartments for rent less than 15k",
+        "show me apartments under 15k monthly rent",
+        "affordable apartments under 15000",
+        "looking for apartments below 15k per month",
+        "rental units under 15k monthly",
+        "apartments with rent under 15000",
+        "cheap apartments below 15k",
+        "apartments renting for under 15k"
+      ]
+    },
+    {
+      "query": "houses under 10M with swimming pool",
+      "intent": "find_property_with_criteria",
+      "variations": [
+        "homes with pool under 10 million",
+        "houses below 10M with swimming pool",
+        "properties with pool under 10M",
+        "show me houses with swimming pool under 10M",
+        "house with pool for sale under 10 million",
+        "looking for pool houses under 10M",
+        "houses with swimming pool within 10 million budget",
+        "need a house with pool under 10 million",
+        "pool-equipped houses under 10M",
+        "homes featuring pool under 10 million"
+      ]
+    },
+    {
+      "query": "condos with parking space",
+      "intent": "find_property_with_criteria",
+      "variations": [
+        "condominiums with parking",
+        "condo units with car park",
+        "condos having parking slots",
+        "show me condos with parking",
+        "need a condo with parking space",
+        "condos featuring parking",
+        "condominium with car parking",
+        "condos that have parking",
+        "condo units with assigned parking",
+        "parking-inclusive condos"
+      ]
+    },
+    {
+      "query": "apartments with balcony",
+      "intent": "find_property_with_criteria",
+      "variations": [
+        "apartment units with veranda",
+        "flats with balcony",
+        "apartments having balcony",
+        "show me apartments with balcony",
+        "need an apartment with balcony",
+        "apartments featuring balcony",
+        "apartment with outdoor balcony",
+        "units that have balcony",
+        "apartments with private balcony",
+        "balcony apartments for rent"
+      ]
+    },
+    {
+      "query": "townhouses under 4M with 3 bedrooms and 2 baths",
+      "intent": "find_property_with_criteria",
+      "variations": [
+        "3 bedroom 2 bath townhouses below 4 million",
+        "townhouses under 4m 3 bed 2 bath",
+        "find townhouses less than 4M with 3 bedrooms 2 baths",
+        "3 bed 2 bath townhouse under 4M",
+        "townhouse units under 4 million 3 bedrooms",
+        "looking for 3BR 2 bath townhomes under 4M",
+        "townhouse with 3 bedrooms 2 bathrooms within 4 million",
+        "need a townhouse 3 bed 2 bath under 4 million",
+        "3-bedroom 2-bath townhouses under 4M",
+        "townhomes 3BR 2BA under 4 million"
+      ]
+    },
+    {
+      "query": "houses under 6M with 4 bedrooms and garden",
+      "intent": "find_property_with_criteria",
+      "variations": [
+        "4 bedroom houses with garden under 6 million",
+        "houses below 6M with 4 bedrooms and garden",
+        "homes with garden under 6M 4BR",
+        "4 bedroom properties with garden under 6 million",
+        "family houses with garden under 6M",
+        "looking for 4-bedroom houses with garden under 6M",
+        "houses with 4 bedrooms and garden within 6 million",
+        "need a 4BR house with garden under 6 million",
+        "4-bedroom garden homes under 6M",
+        "houses 4BR with garden below 6 million"
+      ]
+    },
+    {
+      "query": "condos under 1.5M studio type",
+      "intent": "find_property_with_criteria",
+      "variations": [
+        "studio condos below 1.5 million",
+        "condo units under 1.5M studio",
+        "studio type condominium under 1.5M",
+        "affordable studio condos under 1.5 million",
+        "condo studio units under 1.5M",
+        "looking for studio condos under 1.5M",
+        "studio type condo units within 1.5 million",
+        "need a studio condo below 1.5 million",
+        "studio unit condos under 1.5M",
+        "budget studio condos under 1.5 million"
+      ]
+    },
+    {
+      "query": "commercial spaces under 8M with parking",
+      "intent": "find_property_with_criteria",
+      "variations": [
+        "business spaces below 8M with parking",
+        "commercial properties under 8M with parking space",
+        "commercial units with parking under 8 million",
+        "show me commercial spaces with parking under 8M",
+        "commercial for sale under 8M with parking",
+        "looking for commercial spaces with parking under 8M",
+        "business units with parking within 8 million",
+        "need commercial space with parking under 8 million",
+        "commercial spaces with car park under 8M",
+        "business properties with parking below 8 million"
+      ]
+    },
+    {
+      "query": "properties near schools",
+      "intent": "find_near_landmark",
+      "variations": [
+        "houses close to schools",
+        "apartments near universities",
+        "properties around campuses",
+        "real estate near educational institutions",
+        "houses beside schools",
+        "looking for places near good schools",
+        "any properties in school districts?",
+        "homes within walking distance of schools",
+        "properties near elementary schools",
+        "homes close to colleges"
+      ]
+    },
+    {
+      "query": "properties near malls",
+      "intent": "find_near_landmark",
+      "variations": [
+        "houses near shopping malls",
+        "apartments close to malls",
+        "properties near sm batangas",
+        "real estate near robinsons",
+        "condos near shopping centers",
+        "looking for homes near mall areas",
+        "properties within mall proximity",
+        "houses walking distance to shopping centers",
+        "properties near ayala malls",
+        "homes close to shopping complexes"
+      ]
+    },
+    {
+      "query": "properties near hospitals",
+      "intent": "find_near_landmark",
+      "variations": [
+        "houses close to hospitals",
+        "apartments near medical centers",
+        "properties around hospitals",
+        "real estate near healthcare facilities",
+        "condos near clinics",
+        "looking for homes near hospitals",
+        "properties within medical district",
+        "houses close to medical services",
+        "properties near st. patrick hospital",
+        "homes close to medical centers"
+      ]
+    },
+    {
+      "query": "properties near batangas port",
+      "intent": "find_near_landmark",
+      "variations": [
+        "houses close to batangas port",
+        "apartments near the port",
+        "properties around batangas port area",
+        "real estate near port facilities",
+        "condos near batangas pier",
+        "looking for properties near port area",
+        "homes close to batangas pier",
+        "real estate near shipping port",
+        "properties near international port",
+        "homes close to ferry terminal"
+      ]
+    },
+    {
+      "query": "properties near taal volcano",
+      "intent": "find_near_landmark",
+      "variations": [
+        "houses close to taal volcano",
+        "apartments near taal lake",
+        "properties around taal volcano area",
+        "real estate with taal view",
+        "condos with volcano view",
+        "looking for properties with taal volcano view",
+        "homes near taal volcanic area",
+        "properties around taal lake",
+        "properties with taal lake view",
+        "homes near volcano tourist area"
+      ]
+    },
+    {
+      "query": "properties near beaches",
+      "intent": "find_near_landmark",
+      "variations": [
+        "houses close to beaches",
+        "apartments near the beach",
+        "properties around beach areas",
+        "real estate near shoreline",
+        "condos with beach access",
+        "looking for beachfront properties",
+        "homes near coastal areas",
+        "properties with beach proximity",
+        "properties near nasugbu beach",
+        "homes with beach views"
+      ]
+    },
+    {
+      "query": "properties near churches",
+      "intent": "find_near_landmark",
+      "variations": [
+        "houses close to churches",
+        "apartments near cathedrals",
+        "properties around church areas",
+        "real estate near religious institutions",
+        "condos near chapels",
+        "looking for homes near churches",
+        "properties close to religious centers",
+        "houses within church vicinity",
+        "properties near basilica",
+        "homes near parish churches"
+      ]
+    },
+    {
+      "query": "properties near business districts",
+      "intent": "find_near_landmark",
+      "variations": [
+        "houses close to business centers",
+        "apartments near commercial areas",
+        "properties around CBD",
+        "real estate near business hubs",
+        "condos near financial districts",
+        "looking for homes near business areas",
+        "properties within commercial zones",
+        "houses near office buildings",
+        "properties near lipa business district",
+        "homes close to commercial centers"
+      ]
+    },
+    {
+      "query": "find ready to move in properties for family in lipa city",
+      "intent": "find_ready_property",
+      "variations": [
+        "ready for occupancy houses for family in lipa",
+        "move in ready family homes lipa city",
+        "available now properties for family in lipa",
+        "immediate occupancy family houses lipa",
+        "ready houses for family lipa",
+        "need a family home ready to occupy in lipa",
+        "looking for available family houses in lipa city",
+        "family-ready homes available immediately in lipa",
+        "move-in ready family properties lipa",
+        "immediate move-in homes for family lipa"
+      ]
+    },
+    {
+      "query": "ready to move in apartments for students in batangas city",
+      "intent": "find_ready_property",
+      "variations": [
+        "move in ready apartments for students batangas",
+        "ready for occupancy student apartments batangas city",
+        "available now apartments near universities batangas",
+        "immediate move in student housing batangas",
+        "student apartments ready now batangas city",
+        "need student apartments available immediately in batangas",
+        "looking for ready student housing in batangas city",
+        "available student dorms in batangas",
+        "ready student apartments batangas city",
+        "immediate occupancy student flats batangas"
+      ]
+    },
+    {
+      "query": "ready to move in condos for professionals in tanauan city",
+      "intent": "find_ready_property",
+      "variations": [
+        "move in ready condos for professionals tanauan",
+        "ready for occupancy condominiums for professionals",
+        "available now condos for working people tanauan",
+        "immediate occupancy condo units for professionals",
+        "condos ready now for professionals tanauan city",
+        "looking for ready condos for professionals in tanauan",
+        "professional housing available now in tanauan city",
+        "condos for working individuals ready to move in",
+        "ready condos for professionals tanauan",
+        "immediate move-in condos for professionals"
+      ]
+    },
+    {
+      "query": "available now houses for couples in nasugbu",
+      "intent": "find_ready_property",
+      "variations": [
+        "ready to move in houses for couples nasugbu",
+        "move in ready homes for couples",
+        "immediate occupancy houses for couples nasugbu",
+        "ready houses for couples now nasugbu",
+        "houses available immediately for couples",
+        "looking for ready houses for couples in nasugbu",
+        "couple homes available now in nasugbu",
+        "houses for two ready to occupy in nasugbu",
+        "move-in ready couple homes nasugbu",
+        "immediate occupancy houses for couples"
+      ]
+    },
+    {
+      "query": "immediate occupancy commercial spaces in sto tomas city",
+      "intent": "find_ready_property",
+      "variations": [
+        "ready to move in commercial spaces sto tomas",
+        "available now commercial properties sto tomas city",
+        "move in ready commercial units sto tomas",
+        "commercial spaces ready now sto tomas",
+        "ready for occupancy business spaces sto tomas",
+        "looking for available commercial spaces in sto tomas",
+        "business spaces ready to occupy in sto tomas city",
+        "commercial units available immediately in sto tomas",
+        "move-in ready commercial sto tomas",
+        "immediate occupancy business properties sto tomas"
+      ]
+    },
+    {
+      "query": "ready to move in apartments with furniture",
+      "intent": "find_ready_property",
+      "variations": [
+        "move in ready furnished apartments",
+        "available now apartments with furniture",
+        "immediate occupancy furnished apartments",
+        "apartments ready now with furniture",
+        "ready for occupancy furnished units",
+        "looking for furnished apartments ready to move in",
+        "fully furnished apartments available now",
+        "furnished units ready for immediate occupancy",
+        "furnished apartments ready to move in",
+        "immediate move-in furnished apartments"
+      ]
+    },
+    {
+      "query": "move in ready properties this month",
+      "intent": "find_ready_property",
+      "variations": [
+        "properties ready for occupancy this month",
+        "available now for immediate move in",
+        "homes ready to move in immediately",
+        "properties available for occupancy now",
+        "ready to occupy properties this month",
+        "looking for properties ready this month",
+        "immediate occupancy available now",
+        "properties ready for move-in immediately",
+        "available properties for immediate occupancy",
+        "ready homes available now"
+      ]
+    }
+  ],
+  "response_templates": {
+    "find_property_with_criteria": "Here are properties matching your criteria: {property_list}",
+    "find_near_landmark": "📍 Properties near that location: {property_list}",
+    "find_ready_property": "✅ Ready to move in properties: {property_list}"
+  },
+  "metadata": {
+    "total_samples": 50,
+    "intent_distribution": {
+      "find_property_with_criteria": 25,
+      "find_near_landmark": 12,
+      "find_ready_property": 13
+    },
+    "created_date": "2024-01-29",
+    "version": "5.0",
+    "training_notes": "Enhanced training data with comprehensive bathroom-focused queries, added more variations for all criteria types, improved entity recognition coverage"
+  }
+}

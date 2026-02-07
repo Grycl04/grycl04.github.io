@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>User Management - BahAI Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* Copy all base styles from admin_dashboard.html */
+:root {
+  --primary: #0b2e52;
+  --primary-dark: #001F3F;
+  --primary-light: #1976d2;
+  --secondary: #3b82f6;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --text-dark: #1a202c;
+  --text-light: #718096;
+  --bg-light: #f8fafc;
+  --bg-white: #ffffff;
+  --border: #e2e8f0;
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+  --sidebar-width: 260px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  color: var(--text-dark);
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ==================== IMPROVED SIDEBAR STYLES ==================== */
+.sidebar {
+  width: var(--sidebar-width);
+  height: 100vh;
+  background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 25px 0;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+  overflow-y: auto;
+  z-index: 1000;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  padding: 0 25px 30px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: white;
+  text-decoration: none;
+  transition: var(--transition);
+  padding: 10px;
+  border-radius: 12px;
+}
+
+.logo:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.logo-icon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: var(--transition);
+}
+
+.logo:hover .logo-icon {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.logo-title {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 4px;
+  letter-spacing: -0.3px;
+  background: linear-gradient(135deg, #ffffff 0%, #e6f3ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.logo-subtitle {
+  font-size: 11px;
+  opacity: 0.9;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* Navigation */
+.sidebar-nav {
+  list-style: none;
+  padding: 0;
+  flex: 1;
+}
+
+.sidebar-nav li {
+  margin: 5px 15px;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  transition: var(--transition);
+  font-weight: 500;
+  font-size: 15px;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar-link::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: white;
+  transform: translateX(-10px);
+  transition: var(--transition);
+  border-radius: 0 4px 4px 0;
+}
+
+.sidebar-link:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+  transform: translateX(5px);
+}
+
+.sidebar-link:hover::before {
+  transform: translateX(0);
+}
+
+.sidebar-link.active {
+  background: rgba(255, 255, 255, 0.18);
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.sidebar-link.active::before {
+  transform: translateX(0);
+  background: linear-gradient(135deg, #ffffff 0%, #3b82f6 100%);
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+.sidebar-icon {
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+  font-size: 18px;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-link:hover .sidebar-icon {
+  transform: scale(1.1);
+}
+
+.sidebar-link.active .sidebar-icon {
+  transform: scale(1.1);
+}
+
+/* Logout button special styling */
+.sidebar-nav li:last-child .sidebar-link {
+  margin-top: 20px;
+  background: rgba(239, 68, 68, 0.15);
+  color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.sidebar-nav li:last-child .sidebar-link:hover {
+  background: rgba(239, 68, 68, 0.25);
+  color: white;
+  border-color: rgba(239, 68, 68, 0.5);
+}
+
+.sidebar-nav li:last-child .sidebar-link::before {
+  background: var(--danger);
+}
+
+/* Sidebar footer (optional - add version info or user info) */
+.sidebar-footer {
+  padding: 20px 25px 0;
+  margin-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+}
+
+.sidebar-footer a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.sidebar-footer a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+/* Main container */
+.container {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  padding: 30px;
+  transition: var(--transition);
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.header-left h1 {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+}
+
+.header-left p {
+  color: var(--text-light);
+  font-size: 16px;
+  max-width: 600px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.refresh-btn {
+  background: linear-gradient(135deg, var(--secondary), #2563eb);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: var(--transition);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+}
+
+.refresh-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.35);
+}
+
+.refresh-btn:active {
+  transform: translateY(0);
+}
+
+.refresh-btn i {
+  font-size: 16px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-bottom: 35px;
+}
+
+.stat-card {
+  background: white;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.stat-value {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 8px;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 15px;
+  color: var(--text-light);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Additional styles for user management */
+.search-filter-bar {
+  background: white;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  margin-bottom: 30px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  border: 1px solid var(--border);
+}
+
+.search-input {
+  flex: 1;
+  min-width: 280px;
+  padding: 14px 18px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  font-size: 15px;
+  transition: var(--transition);
+  background: var(--bg-light);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(11, 46, 82, 0.1);
+}
+
+.filter-select {
+  padding: 14px 18px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  font-size: 15px;
+  background: var(--bg-light);
+  cursor: pointer;
+  transition: var(--transition);
+  min-width: 160px;
+  color: var(--text-dark);
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(11, 46, 82, 0.1);
+}
+
+/* IMPROVED: Table container with max height and scroll */
+.table-container {
+  background: white;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  position: relative;
+}
+
+/* Improved table wrapper with fixed header and scrollable body */
+.table-wrapper {
+  max-height: 600px; /* Set maximum height for scrollable area */
+  overflow-y: auto;  /* Enable vertical scrolling */
+  overflow-x: auto;
+  position: relative;
+}
+
+/* Make the table header sticky */
+thead {
+  background: linear-gradient(135deg, var(--bg-light) 0%, #e9f2ff 100%);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+th {
+  padding: 20px;
+  text-align: left;
+  font-weight: 700;
+  color: var(--primary-dark);
+  font-size: 14px;
+  border-bottom: 2px solid var(--border);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+td {
+  padding: 20px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+/* Add zebra striping for better readability */
+tbody tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+tbody tr {
+  transition: var(--transition);
+  height: 70px; /* Fixed row height for consistent scrolling */
+}
+
+tbody tr:hover {
+  background: var(--bg-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.user-cell {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-avatar-small {
+  width: 45px;
+  height: 45px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.user-name-text {
+  font-weight: 700;
+  color: var(--text-dark);
+  font-size: 15px;
+}
+
+.user-email-text {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.badge.broker {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+  color: #1e40af;
+  border: 1px solid #93c5fd;
+}
+
+.badge.landlord {
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  color: #065f46;
+  border: 1px solid #6ee7b7;
+}
+
+.badge.buyer {
+  background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+  color: #4338ca;
+  border: 1px solid #a5b4fc;
+}
+
+.badge.agent {
+  background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+  color: #6b7280;
+  border: 1px solid #d1d5db;
+}
+
+.badge.user {
+  background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+  color: #6b7280;
+  border: 1px solid #d1d5db;
+}
+
+.badge.active {
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  color: #065f46;
+  border: 1px solid #6ee7b7;
+}
+
+.badge.inactive {
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+}
+
+.badge.pending {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  color: #92400e;
+  border: 1px solid #fbbf24;
+}
+
+.badge.verified {
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  color: #065f46;
+  border: 1px solid #6ee7b7;
+}
+
+/* Make action buttons more compact */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+.btn-icon {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  font-size: 14px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0; /* Prevent buttons from shrinking */
+}
+
+.btn-view {
+  background: linear-gradient(135deg, var(--secondary), #2563eb);
+  color: white;
+}
+
+.btn-view:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 12px rgba(59, 130, 246, 0.3);
+}
+
+.btn-delete {
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  color: var(--danger);
+}
+
+.btn-delete:hover {
+  background: linear-gradient(135deg, var(--danger), #dc2626);
+  color: white;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 12px rgba(239, 68, 68, 0.3);
+}
+
+/* Custom scrollbar styling */
+.table-wrapper::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+  background: var(--bg-light);
+  border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: var(--primary-light);
+  border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Alternative scrollbar for Firefox */
+.table-wrapper {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-light) var(--bg-light);
+}
+
+/* Add a subtle scroll indicator */
+.table-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.8));
+  pointer-events: none;
+  border-radius: 0 0 18px 18px;
+}
+
+/* NEW: Pagination controls */
+.pagination-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  background: white;
+  border-top: 1px solid var(--border);
+  border-radius: 0 0 18px 18px;
+}
+
+.pagination-info {
+  color: var(--text-light);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.pagination-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.pagination-btn {
+  padding: 10px 16px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-dark);
+  transition: var(--transition);
+  min-width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background: var(--bg-light);
+  border-color: var(--primary);
+}
+
+.pagination-btn.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal.show {
+  display: flex;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-content {
+  background: white;
+  border-radius: 24px;
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  padding: 30px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, var(--bg-light) 0%, #e9f2ff 100%);
+  border-radius: 24px 24px 0 0;
+}
+
+.modal-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+.modal-close {
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--text-light);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  transition: var(--transition);
+}
+
+.modal-close:hover {
+  background: var(--danger);
+  color: white;
+  transform: rotate(90deg);
+}
+
+.modal-body {
+  padding: 30px;
+}
+
+.info-grid {
+  display: grid;
+  gap: 25px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+
+.info-label {
+  color: var(--text-light);
+  font-weight: 600;
+  min-width: 140px;
+  font-size: 15px;
+}
+
+.info-value {
+  color: var(--text-dark);
+  font-weight: 600;
+  text-align: right;
+  flex: 1;
+  font-size: 15px;
+}
+
+.mobile-menu-toggle {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1001;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  border: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition);
+}
+
+.mobile-menu-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4000;
+  display: none;
+}
+
+.loading-overlay.show {
+  display: flex;
+  animation: fadeIn 0.3s ease;
+}
+
+.loading-spinner {
+  width: 70px;
+  height: 70px;
+  border: 4px solid rgba(11, 46, 82, 0.1);
+  border-top: 4px solid var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Improved loading spinner inside table */
+.table-loading {
+  text-align: center;
+  padding: 80px !important;
+}
+
+.table-loading .loading-spinner {
+  width: 50px;
+  height: 50px;
+  border-width: 4px;
+  margin: 0 auto 20px;
+}
+
+.table-loading div {
+  color: var(--text-light);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Toast notifications */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: white;
+  color: var(--text-dark);
+  padding: 16px 24px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 3000;
+  animation: slideInRight 0.3s ease;
+  border-left: 4px solid var(--primary);
+  max-width: 350px;
+}
+
+.toast.success {
+  border-left-color: var(--success);
+}
+
+.toast.error {
+  border-left-color: var(--danger);
+}
+
+.toast.info {
+  border-left-color: var(--secondary);
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    transform: translateX(-100%);
+    width: 300px;
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+  }
+
+  .container {
+    margin-left: 0;
+    padding: 25px;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .table-wrapper {
+    max-height: 500px; /* Smaller height on tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-right {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .search-filter-bar {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .search-input,
+  .filter-select {
+    min-width: 100%;
+    width: 100%;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .table-wrapper {
+    max-height: 400px;
+  }
+
+  th, td {
+    padding: 16px 12px;
+    font-size: 13px;
+  }
+
+  .info-row {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .info-label {
+    min-width: auto;
+  }
+
+  .info-value {
+    text-align: left;
+  }
+
+  .modal-content {
+    margin: 10px;
+  }
+  
+  .pagination-controls {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+  }
+  
+  .pagination-info {
+    order: 2;
+  }
+  
+  .pagination-buttons {
+    order: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 15px;
+  }
+
+  .stat-card {
+    padding: 20px;
+  }
+
+  .stat-value {
+    font-size: 32px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .btn-icon {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .table-wrapper {
+    max-height: 350px;
+  }
+  
+  th, td {
+    padding: 12px 8px;
+    font-size: 12px;
+  }
+  
+  .user-avatar-small {
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+  }
+  
+  .user-name-text {
+    font-size: 14px;
+  }
+  
+  .user-email-text {
+    font-size: 12px;
+  }
+  
+  .badge {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+  
+  .pagination-btn {
+    padding: 8px 12px;
+    font-size: 13px;
+    min-width: 35px;
+  }
+}
+</style>
+</head>
+
+<body>
+<button class="mobile-menu-toggle" id="mobileMenuToggle">
+  <i class="fas fa-bars"></i>
+</button>
+
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-spinner"></div>
+</div>
+
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="admin_dashboard.html" class="logo">
+      <div class="logo-icon">BA</div>
+      <div class="logo-text">
+        <div class="logo-title">BahAI</div>
+        <div class="logo-subtitle">Admin Dashboard</div>
+      </div>
+    </a>
+  </div>
+
+  <ul class="sidebar-nav">
+    <li><a href="admin_dashboard.html" class="sidebar-link"><span class="sidebar-icon"><i class="fas fa-chart-line"></i></span>Dashboard Overview</a></li>
+    <li><a href="admin_users.html" class="sidebar-link active"><span class="sidebar-icon"><i class="fas fa-users"></i></span>User Management</a></li>
+    <li><a href="admin_properties.html" class="sidebar-link"><span class="sidebar-icon"><i class="fas fa-building"></i></span>Property Listings</a></li>
+    <li><a href="admin_analytics.html" class="sidebar-link"><span class="sidebar-icon"><i class="fas fa-chart-bar"></i></span>Reports & Analytics</a></li>
+    <li><a href="admin_settings.html" class="sidebar-link"><span class="sidebar-icon"><i class="fas fa-cog"></i></span>Settings</a></li>
+    <li><a href="#" class="sidebar-link" onclick="logout()" id="logoutBtn"><span class="sidebar-icon"><i class="fas fa-sign-out-alt"></i></span>Logout</a></li>
+  </ul>
+
+  <div class="sidebar-footer">
+    <div style="margin-bottom: 8px; opacity: 0.7;"></div>
+    <div>© 2026 BahAI Admin</div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="dashboard-header">
+    <div class="header-left">
+      <h1>User Management</h1>
+      <p>Manage all users, view details, and manage accounts</p>
+    </div>
+    <div class="header-right">
+      <button class="refresh-btn" onclick="loadUsers()">
+        <i class="fas fa-sync-alt"></i> Refresh Users
+      </button>
+    </div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value" id="totalUsers">0</div>
+      <div class="stat-label">
+        <i class="fas fa-users" style="color: var(--primary-light);"></i>
+        Total Users
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="activeUsers">0</div>
+      <div class="stat-label">
+        <i class="fas fa-check-circle" style="color: var(--success);"></i>
+        Active Users
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="landlordUsers">0</div>
+      <div class="stat-label">
+        <i class="fas fa-home" style="color: var(--primary);"></i>
+        Landlord Users
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="brokerUsers">0</div>
+      <div class="stat-label">
+        <i class="fas fa-handshake" style="color: var(--secondary);"></i>
+        Broker Users
+      </div>
+    </div>
+  </div>
+
+  <div class="search-filter-bar">
+    <input type="text" class="search-input" id="searchInput" placeholder="🔍 Search by name, email, or phone..." />
+    <select class="filter-select" id="roleFilter">
+      <option value="">👥 All Roles</option>
+      <option value="landlord">🏠 Landlord</option>
+      <option value="buyer">👤 Buyer</option>
+      <option value="broker">🤝 Broker</option>
+      <option value="agent">👨‍💼 Agent</option>
+    </select>
+    <select class="filter-select" id="statusFilter">
+      <option value="">📊 All Status</option>
+      <option value="active">✅ Active</option>
+      <option value="inactive">❌ Inactive</option>
+      <option value="pending">⏳ Pending</option>
+    </select>
+  </div>
+
+  <div class="table-container">
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Role</th>
+            <th>Account Status</th>
+            <th>Phone</th>
+            <th>Joined Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="usersTableBody">
+          <tr class="table-loading">
+            <td colspan="6">
+              <div class="loading-spinner"></div>
+              <div>Loading users from database...</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <!-- Pagination Controls -->
+    <div class="pagination-controls">
+      <div class="pagination-info">
+        Showing <span id="showingCount">0</span> of <span id="totalCount">0</span> users
+      </div>
+      <div class="pagination-buttons">
+        <button class="pagination-btn" id="prevPage" onclick="changePage(-1)" disabled>
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <span class="pagination-btn active" id="currentPage">1</span>
+        <button class="pagination-btn" id="nextPage" onclick="changePage(1)" disabled>
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- User Details Modal -->
+<div class="modal" id="userModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 class="modal-title" id="modalTitle">User Details</h3>
+      <button class="modal-close" onclick="closeUserModal()">×</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- Firebase SDK (compatibility version) -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+
+<!-- Firebase SDK v9 (modular) -->
+<script type="module">
+// Import Firebase modules - NO AUTHENTICATION NEEDED
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+import { 
+  getFirestore, 
+  collection, 
+  getDocs, 
+  doc, 
+  getDoc,
+  deleteDoc
+} from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
+
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCIfzneDzWVveG8p_0mywoA9D9F5AyzZX4",
+  authDomain: "bahai-1b76d.firebaseapp.com",
+  projectId: "bahai-1b76d",
+  storageBucket: "bahai-1b76d.firebasestorage.app",
+  messagingSenderId: "646878644941",
+  appId: "1:646878644941:web:5b4ccc3412250337587784",
+  measurementId: "G-PDW1PRZTM9"
+};
+
+// Global variables
+let db;
+let allUsers = [];
+let currentFilteredUsers = [];
+let currentPage = 1;
+const usersPerPage = 15;
+
+// Toast notification function
+function showToast(message, type = 'info', duration = 3000) {
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  toast.innerHTML = `
+    ${type === 'success' ? '<i class="fas fa-check-circle" style="color: var(--success);"></i>' : 
+      type === 'error' ? '<i class="fas fa-exclamation-circle" style="color: var(--danger);"></i>' : 
+      '<i class="fas fa-info-circle" style="color: var(--secondary);"></i>'}
+    <span>${message}</span>
+  `;
+  
+  document.body.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateX(100px)';
+    setTimeout(() => {
+      document.body.removeChild(toast);
+    }, 300);
+  }, duration);
+}
+
+// Show/hide loading overlay
+function showLoading() {
+  document.getElementById('loadingOverlay').classList.add('show');
+}
+
+function hideLoading() {
+  document.getElementById('loadingOverlay').classList.remove('show');
+}
+
+// Update pagination info
+function updatePaginationInfo(total, showing) {
+  document.getElementById('showingCount').textContent = showing;
+  document.getElementById('totalCount').textContent = total;
+  document.getElementById('currentPage').textContent = currentPage;
+  
+  // Update button states
+  const prevBtn = document.getElementById('prevPage');
+  const nextBtn = document.getElementById('nextPage');
+  const totalPages = Math.ceil(total / usersPerPage);
+  
+  prevBtn.disabled = currentPage === 1;
+  nextBtn.disabled = currentPage >= totalPages;
+}
+
+// Change page function
+function changePage(direction) {
+  const totalPages = Math.ceil(currentFilteredUsers.length / usersPerPage);
+  const newPage = currentPage + direction;
+  
+  if (newPage < 1 || newPage > totalPages) return;
+  
+  currentPage = newPage;
+  displayFilteredUsers();
+}
+
+// Logout function
+function logout() {
+  if (confirm('⚠️ Are you sure you want to logout?')) {
+    localStorage.removeItem('adminLoggedIn');
+    localStorage.removeItem('adminEmail');
+    localStorage.removeItem('adminName');
+    
+    showToast('🔒 Logging out...', 'info');
+    
+    setTimeout(() => {
+      window.location.href = 'admin_login.html';
+    }, 1000);
+  }
+}
+
+// Initialize Firebase
+async function initializeFirebase() {
+  try {
+    console.log('🔧 Initializing Firebase...');
+    const app = initializeApp(firebaseConfig);
+    db = getFirestore(app);
+    
+    console.log('✅ Firebase initialized successfully');
+    
+    // Load users immediately (no authentication needed)
+    await loadUsers();
+    
+  } catch (error) {
+    console.error('❌ Firebase initialization failed:', error);
+    showToast('Failed to connect to database. Please refresh the page.', 'error');
+    setDefaultValues();
+  }
+}
+
+// Load users from Firestore
+async function loadUsers() {
+  try {
+    showLoading();
+    
+    const tbody = document.getElementById('usersTableBody');
+    tbody.innerHTML = `
+      <tr class="table-loading">
+        <td colspan="6">
+          <div class="loading-spinner"></div>
+          <div>Loading users from database...</div>
+        </td>
+      </tr>
+    `;
+    
+    allUsers = [];
+    currentPage = 1; // Reset to first page
+    
+    // Load ONLY from users collection (not brokers/agents)
+    const usersRef = collection(db, 'users');
+    const snapshot = await getDocs(usersRef);
+    
+    console.log(`📊 Loaded ${snapshot.size} users from 'users' collection`);
+    
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      allUsers.push({
+        id: doc.id,
+        collection: 'users',
+        name: data.name || data.displayName || data.fullName || 'No Name',
+        email: data.email || 'No Email',
+        phone: data.phone || data.phoneNumber || data.contactNumber || 'No Phone',
+        role: data.role || 'user',
+        status: data.status || data.accountStatus || 'active',
+        photoURL: data.photoURL || data.profilePicture || null,
+        createdAt: data.createdAt?.toDate?.() || new Date(),
+        address: data.address || 'No Address',
+        notes: data.notes || '',
+        verified: data.verified || false,
+        active: data.active !== false
+      });
+    });
+    
+    console.log(`✅ Total loaded ${allUsers.length} users from Firestore`);
+    
+    // Update statistics
+    updateStats();
+    
+    // Apply initial filters and display
+    applyFilters();
+    
+    hideLoading();
+    showToast(`Successfully loaded ${allUsers.length} users`, 'success');
+    
+  } catch (error) {
+    console.error('❌ Error loading users:', error);
+    hideLoading();
+    showToast('Failed to load users: ' + error.message, 'error');
+    setDefaultValues();
+  }
+}
+
+function setDefaultValues() {
+  document.getElementById('totalUsers').textContent = '0';
+  document.getElementById('activeUsers').textContent = '0';
+  document.getElementById('landlordUsers').textContent = '0';
+  document.getElementById('brokerUsers').textContent = '0';
+  
+  const tbody = document.getElementById('usersTableBody');
+  tbody.innerHTML = `
+    <tr>
+      <td colspan="6" style="text-align: center; padding: 40px;">
+        <div style="color: var(--danger); margin-bottom: 15px; font-weight: 600; font-size: 16px;">⚠️ Database Connection Error</div>
+        <div style="color: var(--text-light); font-size: 14px; margin-bottom: 20px;">Unable to connect to the database server</div>
+        <button onclick="loadUsers()" style="background: linear-gradient(135deg, var(--secondary), #2563eb); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">
+          <i class="fas fa-redo"></i> Retry Connection
+        </button>
+      </td>
+    </tr>
+  `;
+  
+  updatePaginationInfo(0, 0);
+}
+
+function updateStats() {
+  const total = allUsers.length;
+  const active = allUsers.filter(u => u.active !== false && u.status !== 'inactive').length;
+  const landlords = allUsers.filter(u => u.role.toLowerCase() === 'landlord').length;
+  const brokers = allUsers.filter(u => u.role.toLowerCase() === 'broker').length;
+  
+  document.getElementById('totalUsers').textContent = total;
+  document.getElementById('activeUsers').textContent = active;
+  document.getElementById('landlordUsers').textContent = landlords;
+  document.getElementById('brokerUsers').textContent = brokers;
+}
+
+// Display filtered users with pagination
+function displayFilteredUsers() {
+  const tbody = document.getElementById('usersTableBody');
+  
+  if (currentFilteredUsers.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="6" style="text-align: center; padding: 60px;">
+          <div style="font-size: 48px; color: var(--border); margin-bottom: 20px;">👤</div>
+          <div style="color: var(--text-dark); font-size: 18px; font-weight: 600; margin-bottom: 10px;">No Users Found</div>
+          <div style="color: var(--text-light); font-size: 14px; margin-bottom: 25px;">The database is empty or no users match your search criteria</div>
+          <button onclick="loadUsers()" style="background: linear-gradient(135deg, var(--secondary), #2563eb); color: white; border: none; padding: 12px 24px; border-radius: 10px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">
+            <i class="fas fa-sync-alt"></i> Refresh Database
+          </button>
+        </td>
+      </tr>
+    `;
+    
+    updatePaginationInfo(0, 0);
+    return;
+  }
+  
+  // Calculate pagination
+  const totalPages = Math.ceil(currentFilteredUsers.length / usersPerPage);
+  const startIndex = (currentPage - 1) * usersPerPage;
+  const endIndex = startIndex + usersPerPage;
+  const paginatedUsers = currentFilteredUsers.slice(startIndex, endIndex);
+  
+  // Sort users by creation date (newest first)
+  paginatedUsers.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  
+  tbody.innerHTML = paginatedUsers.map(user => {
+    const initials = user.name 
+      ? user.name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2)
+      : 'U';
+    
+    const formattedDate = user.createdAt ? user.createdAt.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    }) : 'N/A';
+    
+    // Determine status badge
+    const status = user.active === false ? 'inactive' : (user.status || 'active');
+    
+    // Convert role to lowercase for consistent badge classes
+    const roleLower = user.role ? user.role.toLowerCase() : 'user';
+    
+    return `
+      <tr>
+        <td>
+          <div class="user-cell">
+            <div class="user-avatar-small" style="${user.photoURL ? `background-image: url('${user.photoURL}'); background-size: cover; background-position: center;` : ''}">
+              ${user.photoURL ? '' : initials}
+            </div>
+            <div class="user-details">
+              <span class="user-name-text">${user.name}</span>
+              <span class="user-email-text">${user.email}</span>
+            </div>
+          </div>
+        </td>
+        <td><span class="badge ${roleLower}">${user.role}</span></td>
+        <td><span class="badge ${status}">${status}</span></td>
+        <td>${user.phone}</td>
+        <td>${formattedDate}</td>
+        <td>
+          <div class="action-buttons">
+            <button class="btn-icon btn-view" onclick="viewUser('${user.id}')" title="View Details">
+              <i class="fas fa-eye"></i>
+            </button>
+            <button class="btn-icon btn-delete" onclick="deleteUser('${user.id}')" title="Delete User">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+    `;
+  }).join('');
+  
+  // Update pagination info
+  const showing = Math.min(currentFilteredUsers.length - startIndex, usersPerPage);
+  updatePaginationInfo(currentFilteredUsers.length, showing);
+}
+
+// Filter functionality
+document.getElementById('searchInput').addEventListener('input', applyFilters);
+document.getElementById('roleFilter').addEventListener('change', applyFilters);
+document.getElementById('statusFilter').addEventListener('change', applyFilters);
+
+function applyFilters() {
+  const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+  const roleFilter = document.getElementById('roleFilter').value;
+  const statusFilter = document.getElementById('statusFilter').value;
+  
+  currentFilteredUsers = allUsers.filter(user => {
+    const matchesSearch = !searchTerm ||
+      (user.name && user.name.toLowerCase().includes(searchTerm)) ||
+      (user.email && user.email.toLowerCase().includes(searchTerm)) ||
+      (user.phone && user.phone.toLowerCase().includes(searchTerm));
+    
+    // Convert user role to lowercase for case-insensitive comparison
+    const userRoleLower = user.role ? user.role.toLowerCase() : '';
+    const matchesRole = !roleFilter || userRoleLower === roleFilter.toLowerCase();
+    
+    // Determine status for filtering
+    const userStatus = user.active === false ? 'inactive' : (user.status || 'active');
+    const matchesStatus = !statusFilter || userStatus === statusFilter;
+    
+    return matchesSearch && matchesRole && matchesStatus;
+  });
+  
+  // Reset to first page when filtering
+  currentPage = 1;
+  
+  // Display filtered users
+  displayFilteredUsers();
+}
+
+// View user details
+async function viewUser(userId) {
+  try {
+    showLoading();
+    
+    const userDoc = await getDoc(doc(db, 'users', userId));
+    
+    if (!userDoc.exists()) {
+      throw new Error('User not found');
+    }
+    
+    const user = { id: userDoc.id, ...userDoc.data() };
+    
+    document.getElementById('modalTitle').textContent = `👤 ${user.name || user.displayName || 'Unknown User'}`;
+    
+    const formattedDate = user.createdAt ? 
+      (user.createdAt.toDate ? user.createdAt.toDate().toLocaleString() : new Date(user.createdAt).toLocaleString()) : 
+      'N/A';
+    
+    const lastLoginDate = user.lastLogin ? 
+      (user.lastLogin.toDate ? user.lastLogin.toDate().toLocaleString() : new Date(user.lastLogin).toLocaleString()) : 
+      'Never';
+    
+    document.getElementById('modalBody').innerHTML = `
+      <div class="info-grid">
+        <div class="info-row">
+          <span class="info-label">Full Name:</span>
+          <span class="info-value">${user.name || user.displayName || user.fullName || 'Not specified'}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Email:</span>
+          <span class="info-value">${user.email || 'Not specified'}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Phone:</span>
+          <span class="info-value">${user.phone || user.phoneNumber || user.contactNumber || 'Not specified'}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Address:</span>
+          <span class="info-value">${user.address || 'Not specified'}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Role:</span>
+          <span class="info-value"><span class="badge ${user.role ? user.role.toLowerCase() : 'user'}">${user.role || 'user'}</span></span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Status:</span>
+          <span class="info-value"><span class="badge ${user.active === false ? 'inactive' : (user.status || 'active')}">${user.active === false ? 'inactive' : (user.status || 'active')}</span></span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Verified:</span>
+          <span class="info-value"><span class="badge ${user.verified ? 'verified' : 'not_submitted'}">${user.verified ? '✅ Yes' : '❌ No'}</span></span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Created Date:</span>
+          <span class="info-value">${formattedDate}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Last Login:</span>
+          <span class="info-value">${lastLoginDate}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">User ID:</span>
+          <span class="info-value" style="font-family: monospace; font-size: 12px; background: var(--bg-light); padding: 4px 8px; border-radius: 4px;">${user.id}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Collection:</span>
+          <span class="info-value"><span class="badge user" style="font-size: 11px;">users</span></span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Notes:</span>
+          <span class="info-value" style="background: var(--bg-light); padding: 12px; border-radius: 8px; font-style: italic;">${user.notes || 'No notes available'}</span>
+        </div>
+      </div>
+    `;
+    
+    document.getElementById('userModal').classList.add('show');
+    
+    hideLoading();
+    
+  } catch (error) {
+    hideLoading();
+    console.error('Error viewing user:', error);
+    showToast('Error loading user details: ' + error.message, 'error');
+  }
+}
+
+function closeUserModal() {
+  document.getElementById('userModal').classList.remove('show');
+}
+
+// Delete user
+async function deleteUser(userId) {
+  if (!confirm('⚠️ Are you sure you want to delete this user?\n\nThis action cannot be undone and will permanently remove the user from the database.')) {
+    return;
+  }
+  
+  try {
+    showLoading();
+    
+    // Delete from Firestore
+    await deleteDoc(doc(db, 'users', userId));
+    
+    // Remove user from local arrays
+    allUsers = allUsers.filter(u => u.id !== userId);
+    currentFilteredUsers = currentFilteredUsers.filter(u => u.id !== userId);
+    
+    // Update display
+    updateStats();
+    displayFilteredUsers();
+    
+    hideLoading();
+    
+    showToast('✅ User deleted successfully!', 'success');
+    
+  } catch (error) {
+    hideLoading();
+    console.error('Error deleting user:', error);
+    showToast('❌ Error deleting user: ' + error.message, 'error');
+  }
+}
+
+// Mobile menu toggle
+document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+  document.getElementById('sidebar').classList.toggle('active');
+});
+
+// Logout button functionality
+document.getElementById('logoutBtn').addEventListener('click', function(e) {
+  e.preventDefault();
+  logout();
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', function(event) {
+  const sidebar = document.getElementById('sidebar');
+  const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+  
+  if (window.innerWidth <= 1024 && 
+      sidebar.classList.contains('active') && 
+      !sidebar.contains(event.target) && 
+      !mobileMenuToggle.contains(event.target)) {
+    sidebar.classList.remove('active');
+  }
+});
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('🚀 User management page loaded');
+  initializeFirebase();
+});
+
+// Close modals with Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeUserModal();
+    
+    // Close mobile menu on mobile
+    if (window.innerWidth <= 1024) {
+      document.getElementById('sidebar').classList.remove('active');
+    }
+  }
+});
+
+// Auto-refresh user list every 5 minutes
+setInterval(() => {
+  loadUsers();
+}, 5 * 60 * 1000);
+
+// Export functions to global scope for buttons
+window.loadUsers = loadUsers;
+window.viewUser = viewUser;
+window.deleteUser = deleteUser;
+window.closeUserModal = closeUserModal;
+window.logout = logout;
+window.changePage = changePage;
+</script>
+</body>
+</html>

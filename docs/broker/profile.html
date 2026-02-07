@@ -1,0 +1,2085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>My Profile - BahAI Real Estate</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="../buyer/style.css">
+<style>
+    /* Broker Design Tokens - navy + gold (matches broker dashboard) */
+    :root {
+      --primary: #0b2e52;
+      --primary-gradient: linear-gradient(135deg, #0b2e52 0%, #1e3a5f 100%);
+      --primary-light: #1e3a5f;
+      --primary-dark: #071e38;
+      --secondary-gradient: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+      --accent-gradient: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+      --premium-gradient: linear-gradient(135deg, #0b2e52 0%, #1e3a5f 100%);
+      --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      --card-hover-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+      --border-radius: 16px;
+      --border-radius-sm: 12px;
+      --border-radius-lg: 24px;
+      --text-dark: #1a202c;
+      --text-light: #718096;
+      --bg-light: #f8fafc;
+      --bg-white: #ffffff;
+      --border: #e2e8f0;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --success: #10b981;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --premium: #0b2e52;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      color: var(--text-dark);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .container {
+      flex: 1;
+      margin-left: 280px;
+      padding: 30px;
+      transition: margin-left 0.3s ease;
+    }
+
+    .page-header {
+      margin-bottom: 30px;
+    }
+    .page-header h1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+    .page-header p {
+      color: var(--text-light);
+      font-size: 16px;
+    }
+
+    /* Profile Header - Broker Premium */
+    .profile-header {
+      background: var(--bg-white);
+      padding: 30px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--card-shadow);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      margin-bottom: 30px;
+      position: relative;
+      overflow: hidden;
+      border-top: 5px solid var(--premium);
+    }
+
+    .profile-badges {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .profile-badge {
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .badge-broker {
+      background: var(--premium-gradient);
+      color: white;
+    }
+
+    .badge-premium {
+      background: var(--accent-gradient);
+      color: white;
+    }
+
+    .badge-active {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+    }
+
+    .badge-verified {
+      background: var(--accent-gradient);
+      color: white;
+    }
+
+    .badge-featured {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      color: white;
+    }
+
+    .profile-main {
+      display: flex;
+      align-items: flex-start;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    @media (max-width: 768px) {
+      .profile-main {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+
+    .profile-photo {
+      width: 160px;
+      height: 160px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 4px solid var(--bg-white);
+      box-shadow: var(--shadow-lg);
+      flex-shrink: 0;
+      border-color: var(--premium);
+    }
+
+    .profile-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--premium-gradient);
+      color: white;
+      font-size: 60px;
+      font-weight: bold;
+    }
+
+    .profile-details {
+      flex: 1;
+    }
+
+    .profile-name {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 5px;
+    }
+
+    .profile-title {
+      font-size: 18px;
+      color: var(--premium);
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .profile-title i {
+      color: #d4af37;
+    }
+
+    .profile-location {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-light);
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+
+    .profile-location i {
+      color: #d4af37;
+    }
+
+    .profile-bio {
+      line-height: 1.6;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    /* Profile Stats - Broker Version */
+    .profile-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 1024px) {
+      .profile-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .profile-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .stat-card {
+      background: var(--bg-white);
+      padding: 20px;
+      border-radius: var(--border-radius-sm);
+      box-shadow: var(--card-shadow);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-top: 3px solid var(--premium);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--card-hover-shadow);
+    }
+
+    .stat-value {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--premium);
+      margin-bottom: 5px;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    /* Profile Actions - Broker Version */
+    .profile-actions {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      border: none;
+      font-family: inherit;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-primary {
+      background: var(--premium-gradient);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(11, 46, 82, 0.35);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--text-dark);
+      border: 2px solid #e5e7eb;
+    }
+
+    .btn-secondary:hover {
+      background: #f9fafb;
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .btn-success {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+    }
+
+    .btn-success:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--premium);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .btn-accent {
+      background: var(--accent-gradient);
+      color: white;
+    }
+
+    .btn-accent:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+    }
+
+    /* Profile Content Grid */
+    .profile-content {
+      display: grid;
+      grid-template-columns: 1fr 350px;
+      gap: 30px;
+    }
+
+    @media (max-width: 1024px) {
+      .profile-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Card Styles - Broker Version */
+    .profile-card {
+      background: var(--bg-white);
+      padding: 25px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--card-shadow);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      margin-bottom: 25px;
+      border-top: 3px solid var(--premium);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .section-header i {
+      font-size: 22px;
+      color: var(--premium);
+    }
+
+    .section-header h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    /* Tags Container - Broker Version */
+    .tags-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .tag {
+      background: var(--bg-light);
+      color: var(--text-dark);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+      border: 1px solid var(--border);
+    }
+
+    .tag-premium {
+      background: var(--premium-gradient);
+      color: white;
+      border: none;
+    }
+
+    .tag-featured {
+      background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
+      color: white;
+      border: none;
+    }
+
+    /* Contact List */
+    .contact-list {
+      list-style: none;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-item:last-child {
+      border-bottom: none;
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(139, 69, 19, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--premium);
+      font-size: 18px;
+    }
+
+    .contact-details {
+      flex: 1;
+    }
+
+    .contact-label {
+      font-size: 13px;
+      color: var(--text-light);
+      margin-bottom: 3px;
+    }
+
+    .contact-value {
+      font-weight: 500;
+      color: var(--text-dark);
+      word-break: break-all;
+    }
+
+    /* Social Links */
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      font-size: 18px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .social-link:hover {
+      transform: translateY(-3px);
+      color: white;
+    }
+
+    .social-facebook:hover { background: #1877F2; }
+    .social-twitter:hover { background: #1DA1F2; }
+    .social-linkedin:hover { background: #0077B5; }
+    .social-instagram:hover { background: #E4405F; }
+    .social-whatsapp:hover { background: #25D366; }
+
+    /* Properties Section */
+    .properties-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .properties-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 30px;
+      margin-top: 25px;
+    }
+
+    @media (max-width: 768px) {
+      .properties-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Property cards - same as broker dashboard / broker listings */
+    .listing-card-wrapper {
+      transition: all 0.3s ease;
+    }
+    .listing-card-wrapper:hover {
+      transform: translateY(-5px);
+    }
+    .listing-card {
+      background: white;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      height: 100%;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .listing-card:hover {
+      box-shadow: var(--card-hover-shadow);
+    }
+    .listing-card-image-container {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+    }
+    .listing-status-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      z-index: 2;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .listing-status-badge.status-active {
+      background: #10b981 !important;
+      color: white !important;
+    }
+    .listing-status-badge.status-pending {
+      background: var(--accent-gradient) !important;
+      color: white !important;
+    }
+    .listing-status-badge.status-sold {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+      color: white !important;
+    }
+    .listing-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .listing-card:hover .listing-image {
+      transform: scale(1.05);
+    }
+    .card-link-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .listing-content {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    .listing-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      gap: 12px;
+    }
+    .listing-header > div:first-child {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+    }
+    .listing-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      line-height: 1.35;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .listing-price {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      white-space: normal !important;
+      word-break: break-word;
+      text-align: right;
+      min-width: fit-content;
+      flex-shrink: 0;
+      max-width: 45%;
+    }
+    .listing-location {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .listing-details {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .detail {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    /* Loading State */
+    .loading-state {
+      text-align: center;
+      padding: 60px 20px;
+      background: var(--bg-white);
+      border-radius: var(--border-radius);
+      box-shadow: var(--card-shadow);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      margin-bottom: 25px;
+    }
+
+    .spinner {
+      border: 4px solid rgba(11, 46, 82, 0.2);
+      border-top: 4px solid #d4af37;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-light);
+    }
+
+    .empty-state-icon {
+      font-size: 64px;
+      margin-bottom: 20px;
+      opacity: 0.5;
+      color: var(--premium);
+    }
+
+    .empty-state h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: var(--text-dark);
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--premium-gradient);
+      color: white;
+      padding: 14px 24px;
+      border-radius: var(--border-radius-sm);
+      z-index: 10000;
+      font-weight: 600;
+      box-shadow: var(--card-hover-shadow);
+      animation: slideIn 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .toast-success {
+      background: var(--success);
+    }
+
+    .toast-error {
+      background: var(--danger);
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(-50%) translateY(100%); opacity: 0; }
+      to { transform: translateX(-50%) translateY(0); opacity: 1; }
+    }
+
+    @keyframes slideOut {
+      from { transform: translateX(-50%) translateY(0); opacity: 1; }
+      to { transform: translateX(-50%) translateY(100%); opacity: 0; }
+    }
+
+    /* Incomplete Profile Banner */
+    .incomplete-banner {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border: 1px solid rgba(139, 69, 19, 0.3);
+      border-radius: var(--border-radius-sm);
+      padding: 20px;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .incomplete-banner-content {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex: 1;
+    }
+
+    .incomplete-banner i {
+      color: var(--primary);
+      font-size: 24px;
+    }
+
+    .incomplete-banner p {
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    /* No Data Placeholder */
+    .no-data {
+      color: var(--text-light);
+      font-style: italic;
+      padding: 10px 0;
+    }
+
+    /* Filter Select */
+    .filter-select {
+      padding: 10px 16px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-white);
+      color: var(--text-dark);
+      cursor: pointer;
+      min-width: 200px;
+    }
+
+    .filter-select:focus {
+      outline: none;
+      border-color: var(--premium);
+      box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+    }
+
+    /* Mobile Menu Toggle */
+    .mobile-menu-toggle {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      background: var(--premium-gradient);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 1024px) {
+      .container {
+        margin-left: 0;
+        padding: 25px;
+      }
+      
+      .mobile-menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .page-header h1 {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+      
+      .page-header h1 {
+        font-size: 1.5rem;
+      }
+      
+      .profile-photo {
+        width: 120px;
+        height: 120px;
+      }
+      
+      .profile-name {
+        font-size: 24px;
+      }
+      
+      .profile-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+      
+      .action-btn {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .properties-header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .filter-select {
+        width: 100%;
+      }
+    }
+
+    /* Achievements Section - Broker Specific */
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .achievement-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 15px;
+      background: var(--bg-light);
+      border-radius: var(--border-radius-sm);
+      border: 1px solid var(--border);
+    }
+
+    .achievement-icon {
+      font-size: 24px;
+      color: var(--premium);
+      margin-bottom: 10px;
+    }
+
+    .achievement-text {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-dark);
+    }
+
+    /* Agent Management - For Brokers Only */
+    .agents-section {
+      margin-top: 30px;
+    }
+
+    .agents-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .agent-card {
+      background: var(--bg-white);
+      border-radius: var(--border-radius-sm);
+      padding: 20px;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .agent-photo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin: 0 auto 15px;
+      background: var(--premium-gradient);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: bold;
+    }
+
+    .agent-name {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .agent-role {
+      color: var(--text-light);
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+</style>
+</head>
+<body>
+<!-- Mobile Menu Toggle -->
+<button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+
+<!-- Include Sidebar -->
+<div id="sidebar-container"></div>
+
+<!-- Main Content - Broker Dashboard -->
+<div class="container">
+  <!-- Page Header -->
+  <div class="page-header" style="margin-bottom: 25px;">
+    <h1 id="pageTitle">My Profile</h1>
+    <p id="pageSubtitle">Manage your broker profile and listings</p>
+    <a href="broker_dashboard.html" id="backButton" class="action-btn btn-secondary" style="margin-top: 15px; display: inline-flex;">
+      <i class="fas fa-arrow-left"></i> Back to Dashboard
+    </a>
+  </div>
+
+  <!-- Incomplete Profile Banner (hidden by default) -->
+  <div id="incompleteBanner" class="incomplete-banner" style="display: none;">
+    <div class="incomplete-banner-content">
+      <i class="fas fa-exclamation-circle"></i>
+      <p>Your broker profile is incomplete. Complete your profile to attract more clients and agents.</p>
+    </div>
+    <a href="#" id="completeProfileLink" class="action-btn btn-primary">
+      <i class="fas fa-edit"></i> Complete Profile
+    </a>
+  </div>
+
+  <!-- Profile Content -->
+  <div id="profileContent" class="profile-content-section">
+    <!-- Profile Header -->
+    <div class="profile-header">
+      <div class="profile-badges" id="profileBadges">
+        <!-- Badges will be populated by JavaScript -->
+        <span class="profile-badge badge-broker">Broker</span>
+        <span class="profile-badge badge-active">Active</span>
+      </div>
+
+      <div class="profile-main">
+        <!-- Profile Photo -->
+        <div class="profile-photo" id="profilePhoto">
+          <div class="profile-photo-placeholder" id="profilePhotoPlaceholder">
+            <!-- Initial will be added by JavaScript -->
+          </div>
+        </div>
+
+        <!-- Profile Details -->
+        <div class="profile-details">
+          <h1 class="profile-name" id="brokerName">Loading...</h1>
+          <div class="profile-title" id="brokerTitle">
+            <i class="fas fa-crown"></i>
+            <span>Real Estate Broker</span>
+          </div>
+          <div class="profile-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span id="brokerLocation">Location not specified</span>
+            <span id="yearsExperience"></span>
+          </div>
+          
+          <div class="profile-bio" id="brokerBio">
+            <p class="no-data">No bio information provided. Add your professional bio to establish credibility.</p>
+          </div>
+
+          <!-- Profile Stats -->
+          <div class="profile-stats">
+            <div class="stat-card">
+              <div class="stat-value" id="propertiesCount">0</div>
+              <div class="stat-label">Properties</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="yearsExpCount">0</div>
+              <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="clientsCount">0</div>
+              <div class="stat-label">Clients Served</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="successRate">0%</div>
+              <div class="stat-label">Success Rate</div>
+            </div>
+          </div>
+
+          <!-- Profile Actions -->
+          <div class="profile-actions" id="profileActions">
+            <a href="#" class="action-btn btn-primary" id="contactBtn" style="display: none;">
+              <i class="fas fa-envelope"></i> Contact
+            </a>
+            <a href="#" class="action-btn btn-outline" id="whatsappBtn" style="display: none;">
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="#" class="action-btn btn-outline" id="callBtn" style="display: none;">
+              <i class="fas fa-phone"></i> Call Now
+            </a>
+            <!-- Edit Profile Button will be added here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile Content -->
+    <div class="profile-content">
+      <!-- Left Column -->
+      <div class="left-column">
+        <!-- About Section -->
+        <div class="profile-card">
+          <div class="section-header">
+            <i class="fas fa-user-tie"></i>
+            <h2>Professional Profile</h2>
+          </div>
+          <div class="about-content" id="brokerAbout">
+            <p class="no-data">Add your professional background and expertise here.</p>
+          </div>
+        </div>
+
+        <!-- Specializations Section -->
+        <div class="profile-card">
+          <div class="section-header">
+            <i class="fas fa-star"></i>
+            <h2>Specializations</h2>
+          </div>
+          
+          <div style="margin-bottom: 20px;">
+            <h3 style="margin-bottom: 10px; color: var(--text-dark); font-size: 16px; font-weight: 600;">Property Types</h3>
+            <div class="tags-container" id="propertyTypes">
+              <span class="tag no-data">Add property types you specialize in</span>
+            </div>
+          </div>
+          
+          <div style="margin-bottom: 20px;">
+            <h3 style="margin-bottom: 10px; color: var(--text-dark); font-size: 16px; font-weight: 600;">Services Offered</h3>
+            <div class="tags-container" id="servicesOffered">
+              <span class="tag no-data">Add services you provide</span>
+            </div>
+          </div>
+          
+          <div>
+            <h3 style="margin-bottom: 10px; color: var(--text-dark); font-size: 16px; font-weight: 600;">Service Areas</h3>
+            <div class="tags-container" id="serviceAreas">
+              <span class="tag no-data">Add areas you serve</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Properties Section -->
+        <div class="profile-card">
+          <div class="properties-header">
+            <div class="section-header" style="border-bottom: none; padding-bottom: 0; margin-bottom: 0;">
+              <i class="fas fa-home"></i>
+              <h2>My Properties</h2>
+            </div>
+            <div>
+              <select id="propertyFilter" class="filter-select">
+                <option value="all">All Properties</option>
+                <option value="available">Available</option>
+                <option value="sold">Sold</option>
+                <option value="rent">For Rent</option>
+                <option value="sale">For Sale</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="properties-grid" id="propertiesGrid">
+            <!-- Loading State -->
+            <div class="loading-state">
+              <div class="spinner"></div>
+              <p>Loading properties...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Achievements Section -->
+        <div class="profile-card">
+          <div class="section-header">
+            <i class="fas fa-trophy"></i>
+            <h2>Achievements & Awards</h2>
+          </div>
+          <div class="achievements-grid" id="achievements">
+            <div class="achievement-item">
+              <div class="achievement-icon">
+                <i class="fas fa-award"></i>
+              </div>
+              <div class="achievement-text">Top Performer</div>
+            </div>
+            <div class="achievement-item">
+              <div class="achievement-icon">
+                <i class="fas fa-star"></i>
+              </div>
+              <div class="achievement-text">5-Star Rated</div>
+            </div>
+            <div class="achievement-item">
+              <div class="achievement-icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <div class="achievement-text">Sales Leader</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div class="right-column">
+        <!-- Contact Information -->
+        <div class="profile-card">
+          <div class="section-header">
+            <i class="fas fa-address-card"></i>
+            <h2>Contact Information</h2>
+          </div>
+          <ul class="contact-list">
+            <li class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="contact-details">
+                <div class="contact-label">Email</div>
+                <div class="contact-value" id="contactEmail">Not provided</div>
+              </div>
+            </li>
+            <li class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="contact-details">
+                <div class="contact-label">Phone</div>
+                <div class="contact-value" id="contactPhone">Not provided</div>
+              </div>
+            </li>
+            <li class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="contact-details">
+                <div class="contact-label">Office Location</div>
+                <div class="contact-value" id="contactLocation">Not provided</div>
+              </div>
+            </li>
+            <li class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div class="contact-details">
+                <div class="contact-label">Office Hours</div>
+                <div class="contact-value" id="contactAvailability">Not specified</div>
+              </div>
+            </li>
+            <li class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-globe"></i>
+              </div>
+              <div class="contact-details">
+                <div class="contact-label">Website</div>
+                <a href="#" class="contact-value" id="contactWebsite" target="_blank" style="color: var(--premium); text-decoration: none; display: none;">Visit Website</a>
+                <span id="noWebsite" class="no-data">Not provided</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Professional Details -->
+        <div class="profile-card">
+          <div class="section-header">
+            <i class="fas fa-briefcase"></i>
+            <h2>Professional Details</h2>
+          </div>
+          <div class="professional-details">
+            <div style="margin-bottom: 15px;">
+              <div class="contact-label">Broker License Number</div>
+              <div class="contact-value" id="licenseNumber">Not provided</div>
+            </div>
+            <div style="margin-bottom: 15px;">
+              <div class="contact-label">Agency/Company</div>
+              <div class="contact-value" id="agencyName">Not specified</div>
+            </div>
+            <div style="margin-bottom: 15px;">
+              <div class="contact-label">Languages Spoken</div>
+              <div class="contact-value" id="languagesSpoken">Not specified</div>
+            </div>
+            <div>
+              <div class="contact-label">Broker Since</div>
+              <div class="contact-value" id="memberSince">N/A</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social Media -->
+        <div class="profile-card">
+          <div class="section-header">
+            <i class="fas fa-share-alt"></i>
+            <h2>Connect</h2>
+          </div>
+          <div class="social-links" id="socialLinks">
+            <p class="no-data" style="width: 100%; text-align: center;">No social media links available</p>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="profile-card">
+          <div class="section-header">
+            <i class="fas fa-bolt"></i>
+            <h2>Quick Actions</h2>
+          </div>
+          <div class="profile-actions" style="flex-direction: column; gap: 10px;">
+            <a href="add_property.html" class="action-btn btn-primary">
+              <i class="fas fa-plus"></i> Add New Property
+            </a>
+            <a href="broker_profile_setup.html" class="action-btn btn-outline">
+              <i class="fas fa-edit"></i> Edit Profile
+            </a>
+            <a href="list_agent.html" class="action-btn btn-secondary">
+              <i class="fas fa-users"></i> Manage Agents
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Sidebar Loader Script -->
+<script src="../sidebar-user.js"></script>
+<script>
+// Mobile menu functionality
+document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar) {
+        sidebar.style.transform = sidebar.style.transform === 'translateX(0px)' ? 
+            'translateX(-100%)' : 'translateX(0px)';
+    }
+});
+
+// Load sidebar
+fetch('sidebar.html')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to load sidebar: ' + response.status);
+        }
+        return response.text();
+    })
+    .then(html => {
+        document.getElementById('sidebar-container').innerHTML = html;
+        if (typeof window.updateSidebarUserProfile === 'function') window.updateSidebarUserProfile();
+        // Highlight active link
+        const links = document.querySelectorAll('.sidebar-link');
+        links.forEach(link => {
+            if (link.getAttribute('href') === 'profile.html') {
+                link.classList.add('active');
+            }
+        });
+        // Setup logout button
+        setupLogoutButton();
+    })
+    .catch(error => {
+        console.error('Error loading sidebar:', error);
+        document.getElementById('sidebar-container').innerHTML = 
+            '<div class="sidebar" style="padding: 20px; background: var(--bg-light); color: #ef4444;">' +
+            '<p>Unable to load navigation. Please refresh the page.</p>' +
+            '</div>';
+    });
+
+// Simple logout function
+function setupLogoutButton() {
+    const logoutBtn = document.getElementById("logoutBtn");
+    if (!logoutBtn) {
+        console.warn("Logout button not found, retrying...");
+        setTimeout(setupLogoutButton, 100);
+        return;
+    }
+
+    // Remove existing event listeners
+    const newLogoutBtn = logoutBtn.cloneNode(true);
+    logoutBtn.parentNode.replaceChild(newLogoutBtn, logoutBtn);
+
+    // Add new event listener
+    newLogoutBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (confirm("Are you sure you want to log out?")) {
+            if (typeof window.performLogout === 'function') {
+                window.performLogout();
+            } else {
+                window.location.href = "login.html";
+            }
+        }
+    });
+
+    console.log('Logout button initialized successfully');
+}
+
+// Toast notification function
+function showToast(message, type = 'info') {
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    toast.innerHTML = `
+        <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+        <span>${message}</span>
+    `;
+    
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
+}
+</script>
+
+<!-- Firebase -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+import { 
+  getAuth, 
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+import { 
+  getFirestore, 
+  doc, 
+  getDoc,
+  collection,
+  query,
+  where,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+// Firebase Configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCIfzneDzWVveG8p_0mywoA9D9F5AyzZX4",
+  authDomain: "bahai-1b76d.firebaseapp.com",
+  projectId: "bahai-1b76d",
+  storageBucket: "bahai-1b76d.firebasestorage.app",
+  messagingSenderId: "646878644941",
+  appId: "1:646878644941:web:5b4ccc3412250337587784"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+
+// Global variables
+let currentUser = null;
+let isOwnProfile = true; // Always true for profile.html (own profile)
+let currentProperties = [];
+let currentProfileId = null;
+let userType = 'broker'; // Default to broker for profile.html
+
+// ==================== PAGE INITIALIZATION ====================
+document.addEventListener('DOMContentLoaded', function() {
+  console.log("Broker Profile page loaded");
+  
+  // Check authentication status
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      currentUser = user;
+      console.log("User authenticated:", user.uid);
+      
+      // For profile.html, always load own profile
+      currentProfileId = user.uid;
+      isOwnProfile = true;
+      userType = 'broker';
+      
+      console.log("Loading own broker profile:", currentProfileId);
+      
+      // Update page title for own profile
+      updatePageTitle(true);
+      
+      // Load broker profile
+      await loadProfile(currentProfileId);
+      
+    } else {
+      console.log("No user authenticated - redirecting to login");
+      // Redirect to login for profile.html (requires authentication)
+      window.location.href = 'login.html?redirect=' + encodeURIComponent(window.location.pathname);
+      return;
+    }
+  });
+});
+
+// Update incomplete profile link
+function updateIncompleteProfileLink() {
+  const completeProfileLink = document.getElementById('completeProfileLink');
+  if (completeProfileLink) {
+    completeProfileLink.href = 'broker_profile_setup.html';
+  }
+}
+
+// Update back button
+function updateBackButton() {
+  const backButton = document.getElementById('backButton');
+  if (backButton) {
+    backButton.href = 'broker_dashboard.html';
+    console.log("Back button set to broker dashboard");
+  }
+}
+
+function updatePageTitle(isOwnProfile) {
+  const title = document.getElementById('pageTitle');
+  const subtitle = document.getElementById('pageSubtitle');
+  
+  if (isOwnProfile) {
+    title.textContent = 'My Broker Profile';
+    subtitle.textContent = 'Manage your broker profile, listings, and agents';
+  }
+}
+
+// ==================== PROFILE FUNCTIONS ====================
+async function loadProfile(profileId) {
+  try {
+    console.log("=== LOAD BROKER PROFILE ===");
+    console.log("Profile ID:", profileId);
+    console.log("Current User ID:", currentUser ? currentUser.uid : "Not logged in");
+    console.log("Is Own Profile:", isOwnProfile);
+    console.log("User Type:", userType);
+    console.log("==========================");
+    
+    showLoading();
+
+    // Load broker profile
+    const profileData = await loadBrokerProfile(profileId);
+
+    // Display profile
+    if (profileData && Object.keys(profileData).length > 0) {
+      console.log("Displaying broker profile data:", profileData);
+      displayProfile(profileData);
+
+      // Load broker's properties
+      await loadBrokerProperties(profileId);
+
+      // Check profile completeness
+      checkProfileCompleteness(profileData);
+
+      // Add edit profile button
+      addEditProfileButton(profileData);
+
+      hideLoading();
+      return profileData;
+
+    } else {
+      console.log("No broker profile data found");
+      hideLoading();
+
+      // Redirect to profile setup
+      showToast('No profile found. Please complete your broker profile setup.', 'error');
+
+      setTimeout(() => {
+        window.location.href = 'broker_profile_setup.html';
+      }, 2000);
+
+      return null;
+    }
+
+  } catch (error) {
+    console.error('Error loading broker profile:', error);
+    hideLoading();
+    showToast('Error loading profile. Please try again.', 'error');
+    displayEmptyProfile();
+    return null;
+  }
+}
+
+async function loadBrokerProfile(brokerId) {
+  let profileData = null;
+  
+  // Try brokers collection first
+  try {
+    const brokerDoc = await getDoc(doc(db, "brokers", brokerId));
+    if (brokerDoc.exists()) {
+      const data = brokerDoc.data();
+      console.log("Loaded from brokers collection:", data);
+      profileData = { ...data, id: brokerId, userType: 'broker' };
+      
+      // Update localStorage
+      localStorage.setItem(`profile_${brokerId}`, JSON.stringify(profileData));
+    }
+  } catch (error) {
+    console.log("Error loading from brokers:", error.message);
+  }
+  
+  // If still no data, try users collection
+  if (!profileData || Object.keys(profileData).length === 0) {
+    try {
+      const userDoc = await getDoc(doc(db, "users", brokerId));
+      if (userDoc.exists()) {
+        const data = userDoc.data();
+        console.log("Loaded from users collection:", data);
+        
+        // For profile.html, always treat as broker
+        profileData = { ...data, id: brokerId, userType: 'broker' };
+        
+        // Update localStorage
+        localStorage.setItem(`profile_${brokerId}`, JSON.stringify(profileData));
+      }
+    } catch (error) {
+      console.log("Error loading from users:", error.message);
+    }
+  }
+  
+  return profileData;
+}
+
+function displayProfile(profile) {
+  console.log("Displaying broker profile:", profile);
+  
+  // Extract data with fallbacks
+  const fullName = profile.fullName || profile.displayName || profile.name || 'Broker';
+  const title = profile.title || profile.role || profile.profession || 'Real Estate Broker';
+  const location = profile.location || profile.city || profile.address || 'Location not specified';
+  const email = profile.email || 'Not provided';
+  const phone = profile.phone || profile.phoneNumber || profile.contactNumber || 'Not provided';
+  const yearsExperience = profile.yearsExperience || profile.experienceYears || 0;
+  const bio = profile.bio || profile.description || profile.about || '';
+  const licenseNumber = profile.licenseNumber || profile.license || 'Not provided';
+  const agencyName = profile.agencyName || profile.company || profile.brokerage || 'Not specified';
+  const languages = profile.languages || profile.spokenLanguages || 'Not specified';
+  const availability = profile.availability || profile.officeHours || 'Not specified';
+  const website = profile.website || (profile.socialMedia && profile.socialMedia.website) || '';
+  // Photos
+  const photoURL = profile.photoURL || profile.profilePhoto || profile.profileImage || profile.imageURL || '';
+  
+  console.log('Photo URL:', photoURL);
+  
+  // Update basic info
+  document.getElementById('brokerName').textContent = fullName;
+  document.getElementById('brokerTitle').innerHTML = `<i class="fas fa-crown"></i><span>${title}</span>`;
+  document.getElementById('brokerLocation').textContent = location;
+  
+  // Years experience
+  if (yearsExperience > 0) {
+    document.getElementById('yearsExperience').textContent = ` • ${yearsExperience} years experience`;
+    document.getElementById('yearsExpCount').textContent = yearsExperience;
+  } else {
+    document.getElementById('yearsExpCount').textContent = '0';
+  }
+  
+  // Update bio
+  const bioElement = document.getElementById('brokerBio');
+  const aboutElement = document.getElementById('brokerAbout');
+  if (bio.trim()) {
+    bioElement.innerHTML = `<p>${bio}</p>`;
+    aboutElement.innerHTML = `<p>${bio.replace(/\n/g, '</p><p>')}</p>`;
+  } else {
+    bioElement.innerHTML = `<p class="no-data">Add your professional bio to establish credibility and attract clients.</p>`;
+    aboutElement.innerHTML = `<p class="no-data">Add your professional background and expertise here.</p>`;
+  }
+  
+  // Update contact info
+  document.getElementById('contactEmail').textContent = email;
+  document.getElementById('contactPhone').textContent = phone;
+  document.getElementById('contactLocation').textContent = location;
+  document.getElementById('contactAvailability').textContent = availability;
+  document.getElementById('licenseNumber').textContent = licenseNumber;
+  document.getElementById('agencyName').textContent = agencyName;
+  document.getElementById('languagesSpoken').textContent = languages;
+  
+  // Update specializations with broker-specific tags
+  updateTagsSection('propertyTypes', profile.propertyTypes, true);
+  updateTagsSection('servicesOffered', profile.servicesOffered, false);
+  updateTagsSection('serviceAreas', profile.serviceAreas, false);
+  
+  // Update photos
+  updateProfilePhoto(photoURL, fullName);
+  
+  // Update social links
+  updateSocialLinks(profile.socialMedia);
+  
+  // Update website
+  updateWebsiteLink(website);
+  
+  // Update member since
+  updateMemberSince(profile.createdAt || profile.joinedDate || profile.dateCreated);
+  
+  // Update stats
+  updateProfileStats(profile);
+  
+  // Update badges
+  updateProfileBadges(profile);
+  
+  // Setup quick actions
+  setupQuickActions();
+}
+
+function updateTagsSection(containerId, data, isPremium = false) {
+  const container = document.getElementById(containerId);
+  const items = ensureArray(data);
+  
+  if (items.length > 0) {
+    container.innerHTML = items
+      .map(item => `<span class="tag ${isPremium ? 'tag-premium' : ''}">${item}</span>`)
+      .join('');
+  } else {
+    if (isOwnProfile) {
+      let placeholderText = '';
+      if (containerId === 'propertyTypes') placeholderText = 'Add property types you specialize in';
+      else if (containerId === 'servicesOffered') placeholderText = 'Add services you provide';
+      else placeholderText = 'Add areas you serve';
+      
+      container.innerHTML = `<span class="tag" style="border-style: dashed; opacity: 0.7; cursor: pointer;" onclick="window.location.href='broker_profile_setup.html'">
+        <i class="fas fa-plus"></i> ${placeholderText}
+      </span>`;
+    } else {
+      container.innerHTML = '<span class="tag no-data">Not specified</span>';
+    }
+  }
+}
+
+function ensureArray(data) {
+  if (!data) return [];
+  if (Array.isArray(data)) return data;
+  if (typeof data === 'string') return data.split(',').map(item => item.trim());
+  return [String(data)];
+}
+
+function updateProfilePhoto(photoURL, fullName) {
+  console.log("Updating profile photo:", { photoURL, fullName });
+  
+  const profilePhotoContainer = document.getElementById('profilePhoto');
+  const placeholder = document.getElementById('profilePhotoPlaceholder');
+  
+  if (photoURL) {
+    // Create image
+    const img = document.createElement('img');
+    img.src = photoURL;
+    img.alt = fullName;
+    img.onerror = function() {
+      // On error, show placeholder with initial
+      this.style.display = 'none';
+      placeholder.textContent = fullName.charAt(0).toUpperCase();
+      placeholder.style.display = 'flex';
+    };
+    
+    // Clear container and add image
+    profilePhotoContainer.innerHTML = '';
+    profilePhotoContainer.appendChild(img);
+    
+    // Hide placeholder
+    placeholder.style.display = 'none';
+  } else {
+    // Show placeholder with initial
+    placeholder.textContent = fullName.charAt(0).toUpperCase();
+    placeholder.style.display = 'flex';
+    
+    // Remove any existing image
+    const existingImg = profilePhotoContainer.querySelector('img');
+    if (existingImg) {
+      existingImg.remove();
+    }
+  }
+}
+
+function updateSocialLinks(socialMedia) {
+  const container = document.getElementById('socialLinks');
+  container.innerHTML = '';
+  
+  if (!socialMedia) {
+    if (isOwnProfile) {
+      container.innerHTML = `
+        <p class="no-data" style="width: 100%; text-align: center; margin-bottom: 10px;">No social media links</p>
+        <a href="broker_profile_setup.html" class="action-btn btn-outline" style="display: inline-flex; padding: 8px 16px;">
+          <i class="fas fa-plus"></i> Add Social Links
+        </a>
+      `;
+    } else {
+      container.innerHTML = '<p class="no-data" style="width: 100%; text-align: center;">No social media links available</p>';
+    }
+    return;
+  }
+  
+  const platforms = [
+    { key: 'facebook', icon: 'fab fa-facebook-f', url: 'https://facebook.com/' },
+    { key: 'twitter', icon: 'fab fa-twitter', url: 'https://twitter.com/' },
+    { key: 'linkedin', icon: 'fab fa-linkedin-in', url: 'https://linkedin.com/in/' },
+    { key: 'instagram', icon: 'fab fa-instagram', url: 'https://instagram.com/' }
+  ];
+  
+  let hasLinks = false;
+  
+  platforms.forEach(platform => {
+    const username = socialMedia[platform.key];
+    if (username && username.trim()) {
+      hasLinks = true;
+      const link = document.createElement('a');
+      link.href = `${platform.url}${username.trim()}`;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.className = `social-link social-${platform.key}`;
+      link.innerHTML = `<i class="${platform.icon}"></i>`;
+      container.appendChild(link);
+    }
+  });
+  
+  // Add website if available
+  if (socialMedia.website && socialMedia.website.trim()) {
+    hasLinks = true;
+    const link = document.createElement('a');
+    link.href = socialMedia.website.startsWith('http') ? socialMedia.website : `https://${socialMedia.website}`;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.className = 'social-link';
+    link.innerHTML = '<i class="fas fa-globe"></i>';
+    link.title = 'Website';
+    container.appendChild(link);
+  }
+  
+  if (!hasLinks) {
+    if (isOwnProfile) {
+      container.innerHTML = `
+        <p class="no-data" style="width: 100%; text-align: center; margin-bottom: 10px;">No social media links</p>
+        <a href="broker_profile_setup.html" class="action-btn btn-outline" style="display: inline-flex; padding: 8px 16px;">
+          <i class="fas fa-plus"></i> Add Social Links
+        </a>
+      `;
+    } else {
+      container.innerHTML = '<p class="no-data" style="width: 100%; text-align: center;">No social media links available</p>';
+    }
+  }
+}
+
+function updateWebsiteLink(website) {
+  const websiteLink = document.getElementById('contactWebsite');
+  const noWebsite = document.getElementById('noWebsite');
+  
+  if (website && website.trim()) {
+    let url = website.trim();
+    if (!url.startsWith('http')) {
+      url = 'https://' + url;
+    }
+    websiteLink.href = url;
+    websiteLink.textContent = new URL(url).hostname.replace('www.', '');
+    websiteLink.style.display = 'inline';
+    noWebsite.style.display = 'none';
+  } else {
+    websiteLink.style.display = 'none';
+    noWebsite.style.display = 'inline';
+  }
+}
+
+function updateMemberSince(dateString) {
+  const element = document.getElementById('memberSince');
+  
+  if (dateString) {
+    try {
+      const date = new Date(dateString);
+      if (!isNaN(date.getTime())) {
+        element.textContent = date.toLocaleDateString('en-US', { 
+          year: 'numeric', 
+          month: 'long' 
+        });
+        return;
+      }
+    } catch (e) {
+      console.log("Error parsing date:", e);
+    }
+  }
+  
+  element.textContent = 'N/A';
+}
+
+function updateProfileStats(profile) {
+  // Properties count will be updated when properties load
+  document.getElementById('yearsExpCount').textContent = profile.yearsExperience || profile.experienceYears || 0;
+  document.getElementById('clientsCount').textContent = profile.clientsServed || profile.totalClients || profile.clients || '0';
+  document.getElementById('successRate').textContent = profile.successRate ? `${profile.successRate}%` : '0%';
+}
+
+function updateProfileBadges(profile) {
+  const badgesContainer = document.getElementById('profileBadges');
+  badgesContainer.innerHTML = '';
+  
+  // Add broker badge
+  badgesContainer.innerHTML += '<span class="profile-badge badge-broker">Broker</span>';
+  
+  // Add active badge
+  badgesContainer.innerHTML += '<span class="profile-badge badge-active">Active</span>';
+  
+  // Add verified badge if applicable
+  if (profile.verified || profile.isVerified) {
+    badgesContainer.innerHTML += '<span class="profile-badge badge-verified">Verified</span>';
+  }
+  
+  // Add premium badge for featured brokers
+  if (profile.premium || profile.featured) {
+    badgesContainer.innerHTML += '<span class="profile-badge badge-premium">Premium</span>';
+  }
+  
+  // Add years of experience badge if > 5 years
+  if ((profile.yearsExperience || 0) >= 5) {
+    badgesContainer.innerHTML += `<span class="profile-badge" style="background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%); color: white;">
+      ${profile.yearsExperience}+ Years
+    </span>`;
+  }
+}
+
+function addEditProfileButton(profile) {
+  const profileActions = document.getElementById('profileActions');
+  
+  if (!document.querySelector('.edit-profile-btn')) {
+    const editButton = document.createElement('a');
+    editButton.className = 'action-btn btn-accent edit-profile-btn';
+    editButton.innerHTML = '<i class="fas fa-edit"></i> Edit Profile';
+    editButton.href = 'broker_profile_setup.html';
+    
+    profileActions.appendChild(editButton);
+  }
+}
+
+function checkProfileCompleteness(profileData) {
+  const requiredFields = ['fullName', 'title', 'location', 'phone', 'bio', 'photoURL', 'licenseNumber', 'agencyName'];
+  const missingFields = requiredFields.filter(field => {
+    const value = profileData[field];
+    return !value || value === 'Not provided' || value === '' || value === 'Not specified';
+  });
+  
+  if (missingFields.length > 0) {
+    document.getElementById('incompleteBanner').style.display = 'flex';
+    document.getElementById('incompleteBanner').querySelector('p').textContent = 
+      `Your broker profile is ${Math.round((requiredFields.length - missingFields.length) / requiredFields.length * 100)}% complete. Complete all fields to maximize your visibility.`;
+  }
+}
+
+function setupQuickActions() {
+  // Already implemented in HTML
+}
+
+// ==================== PROPERTIES FUNCTIONS ====================
+async function loadBrokerProperties(brokerId) {
+  try {
+    console.log("Loading properties for broker:", brokerId);
+    
+    currentProperties = [];
+    
+    // Show properties where the userId matches the brokerId
+    const q = query(
+      collection(db, "properties"),
+      where("userId", "==", brokerId)
+    );
+    
+    try {
+      const snapshot = await getDocs(q);
+      snapshot.forEach(doc => {
+        currentProperties.push({ id: doc.id, ...doc.data() });
+      });
+    } catch (error) {
+      console.log("Query failed:", error.message);
+    }
+    
+    console.log(`Found ${currentProperties.length} properties uploaded by broker`);
+    
+    // Update properties count
+    document.getElementById('propertiesCount').textContent = currentProperties.length;
+    
+    // Display properties
+    if (currentProperties.length > 0) {
+      displayProperties(currentProperties);
+      setupPropertyFilter();
+    } else {
+      showNoPropertiesMessage();
+    }
+    
+  } catch (error) {
+    console.error('Error loading properties:', error);
+    showNoPropertiesMessage();
+  }
+}
+
+function displayProperties(properties) {
+  const grid = document.getElementById('propertiesGrid');
+  grid.innerHTML = '';
+  
+  if (properties.length === 0) {
+    showNoPropertiesMessage();
+    return;
+  }
+  
+  properties.forEach(property => {
+    const card = createPropertyCard(property);
+    grid.appendChild(card);
+  });
+}
+
+function createPropertyCard(property) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'listing-card-wrapper';
+  
+  const status = (property.status || 'active').toLowerCase();
+  const title = property.title || property.name || 'Untitled Property';
+  const location = property.address || property.location || property.city || 'Location not specified';
+  const bedrooms = property.bedrooms || property.bedroom || 0;
+  const bathrooms = property.bathrooms || property.bathroom || 0;
+  const area = property.floorArea || property.totalArea || property.squareFootage || property.area || 0;
+  const images = property.photos || property.images || property.imageUrls || [];
+  const imageUrl = images.length > 0 ? images[0] : '';
+  const listingType = property.type || property.listingType || 'sale';
+  
+  let priceText = 'Price on request';
+  if (listingType === 'sale') {
+    const price = property.salePrice || property.price || 0;
+    priceText = price > 0 ? `₱${parseFloat(price).toLocaleString()}` : 'Price on request';
+  } else if (listingType === 'lease' || listingType === 'rent') {
+    const price = property.annualRent || property.monthlyRent || property.price || 0;
+    const period = listingType === 'lease' ? '/year' : '/month';
+    priceText = price > 0 ? `₱${parseFloat(price).toLocaleString()}${period}` : 'Price on request';
+  } else {
+    const price = property.price || 0;
+    priceText = price > 0 ? `₱${parseFloat(price).toLocaleString()}` : 'Price on request';
+  }
+  
+  const statusLabel = status === 'active' ? 'Available' : status.charAt(0).toUpperCase() + status.slice(1);
+  const typeLabel = listingType === 'lease' ? 'Lease' : listingType === 'rent' ? 'Rent' : 'Sale';
+  const areaVal = area || 0;
+  const areaDisplay = typeof areaVal === 'number' && areaVal > 0 ? areaVal.toLocaleString() : (area || 'N/A');
+  const areaSuffix = typeof (property.floorArea || property.totalArea) === 'number' ? ' sqm' : '';
+  
+  wrapper.innerHTML = `
+    <div class="listing-card" data-listing-id="${property.id || ''}">
+      <a href="property_details.html?id=${property.id}" class="card-link-overlay" aria-label="View ${title}"></a>
+      <div class="listing-card-image-container">
+        <span class="listing-status-badge status-${status}">${statusLabel}</span>
+        ${imageUrl ? 
+          `<img src="${imageUrl}" alt="${title}" class="listing-image" onerror="this.src='https://via.placeholder.com/400x200/0b2e52/white?text=No+Image'">` : 
+          `<div style="width:100%;height:100%;background:var(--primary-gradient);display:flex;align-items:center;justify-content:center;color:white;">
+            <i class="fas fa-home fa-3x"></i>
+          </div>`
+        }
+      </div>
+      <div class="listing-content">
+        <div class="listing-header">
+          <div style="flex: 1; min-width: 0;">
+            <h3 class="listing-title">${title}</h3>
+          </div>
+          <div class="listing-price">${priceText}</div>
+        </div>
+        <div class="listing-location">
+          <i class="fas fa-map-marker-alt" style="flex-shrink: 0;"></i>
+          <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${location} · ${typeLabel}</span>
+        </div>
+        <div class="listing-details">
+          <div class="detail"><i class="fas fa-bed"></i> ${bedrooms} beds</div>
+          <div class="detail"><i class="fas fa-bath"></i> ${bathrooms} baths</div>
+          <div class="detail"><i class="fas fa-ruler-combined"></i> ${areaDisplay}${areaSuffix}</div>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  return wrapper;
+}
+
+function setupPropertyFilter() {
+  const filter = document.getElementById('propertyFilter');
+  
+  filter.addEventListener('change', function() {
+    const value = this.value;
+    let filtered = currentProperties;
+    
+    if (value === 'available') {
+      filtered = currentProperties.filter(p => (p.status || 'active') === 'available');
+    } else if (value === 'sold') {
+      filtered = currentProperties.filter(p => (p.status || 'active') === 'sold');
+    } else if (value === 'rent') {
+      filtered = currentProperties.filter(p => 
+        (p.type || p.listingType || '').toLowerCase() === 'rent' || 
+        (p.type || p.listingType || '').toLowerCase() === 'lease'
+      );
+    } else if (value === 'sale') {
+      filtered = currentProperties.filter(p => 
+        (p.type || p.listingType || '').toLowerCase() === 'sale'
+      );
+    }
+    
+    displayProperties(filtered);
+  });
+}
+
+function showNoPropertiesMessage() {
+  const grid = document.getElementById('propertiesGrid');
+  
+  grid.innerHTML = `
+    <div class="empty-state">
+      <div class="empty-state-icon">🏠</div>
+      <h3>No Properties Listed Yet</h3>
+      <p>You haven't listed any properties yet. Start by adding your first property!</p>
+      <a href="add_property.html" class="action-btn btn-primary" style="margin-top: 20px; display: inline-flex;">
+        <i class="fas fa-plus"></i> Add First Property
+      </a>
+    </div>
+  `;
+}
+
+// ==================== UTILITY FUNCTIONS ====================
+function displayEmptyProfile() {
+  document.getElementById('brokerName').textContent = 'Profile Not Found';
+  document.getElementById('brokerTitle').textContent = '';
+  document.getElementById('brokerBio').innerHTML = '<p class="no-data">Profile could not be loaded. Please try again or contact support.</p>';
+  document.getElementById('brokerAbout').innerHTML = '<p class="no-data">Profile could not be loaded. Please try again or contact support.</p>';
+}
+
+function showToast(message, type = 'info') {
+  const toast = document.createElement('div');
+  toast.className = `toast toast-${type}`;
+  toast.innerHTML = `
+    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+    <span>${message}</span>
+  `;
+  
+  document.body.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.style.animation = 'slideOut 0.3s ease';
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+}
+
+function showLoading() {
+  // Loading is handled by the loading state
+}
+
+function hideLoading() {
+  // Loading is handled by the loading state
+}
+
+// Make performLogout available globally
+window.performLogout = async function() {
+    try {
+        await signOut(auth);
+        window.location.href = "login.html";
+    } catch (error) {
+        console.error("Logout error:", error);
+        alert("Error logging out. Please try again.");
+    }
+};
+
+// Initialize incomplete profile link and back button
+updateIncompleteProfileLink();
+updateBackButton();
+</script>
+</body>
+</html>

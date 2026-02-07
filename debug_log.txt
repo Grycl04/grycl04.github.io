@@ -1,0 +1,84 @@
+[2025-12-13T19:57:22.790Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[2025-12-13T19:57:22.793Z] > authorizing via signed-in user (cadangangreycel4@gmail.com)
+[2025-12-13T19:57:22.794Z] [iam] checking project bahai-1b76d for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[2025-12-13T19:57:22.799Z] Checked if tokens are valid: true, expires at: 1765657904338
+[2025-12-13T19:57:22.800Z] Checked if tokens are valid: true, expires at: 1765657904338
+[2025-12-13T19:57:22.802Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/bahai-1b76d:testIamPermissions [none]
+[2025-12-13T19:57:22.802Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/bahai-1b76d:testIamPermissions x-goog-quota-user=projects/bahai-1b76d
+[2025-12-13T19:57:22.802Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/bahai-1b76d:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[2025-12-13T19:57:23.876Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/bahai-1b76d:testIamPermissions 200
+[2025-12-13T19:57:23.877Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/bahai-1b76d:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[2025-12-13T19:57:23.878Z] Checked if tokens are valid: true, expires at: 1765657904338
+[2025-12-13T19:57:23.878Z] Checked if tokens are valid: true, expires at: 1765657904338
+[2025-12-13T19:57:23.878Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/bahai-1b76d/serviceAccounts/bahai-1b76d@appspot.gserviceaccount.com:testIamPermissions [none]
+[2025-12-13T19:57:23.878Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/bahai-1b76d/serviceAccounts/bahai-1b76d@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[2025-12-13T19:57:24.986Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/bahai-1b76d/serviceAccounts/bahai-1b76d@appspot.gserviceaccount.com:testIamPermissions 200
+[2025-12-13T19:57:24.987Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/bahai-1b76d/serviceAccounts/bahai-1b76d@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+
+=== Deploying to 'bahai-1b76d'...
+
+i  deploying functions 
+[2025-12-13T19:57:24.991Z] Checked if tokens are valid: true, expires at: 1765657904338
+[2025-12-13T19:57:24.992Z] Checked if tokens are valid: true, expires at: 1765657904338
+[2025-12-13T19:57:24.992Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/bahai-1b76d [none]
+[2025-12-13T19:57:25.439Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/bahai-1b76d 200
+[2025-12-13T19:57:25.440Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/bahai-1b76d {"projectNumber":"646878644941","projectId":"bahai-1b76d","lifecycleState":"ACTIVE","name":"BahAI","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2025-10-11T12:40:19.366259Z"}
+i  functions: preparing codebase default for deployment 
+i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[2025-12-13T19:57:25.444Z] Checked if tokens are valid: true, expires at: 1765657904338
+[2025-12-13T19:57:25.444Z] Checked if tokens are valid: true, expires at: 1765657904338
+[2025-12-13T19:57:25.444Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/bahai-1b76d/adminSdkConfig [none]
+[2025-12-13T19:57:26.093Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/bahai-1b76d/adminSdkConfig 200
+[2025-12-13T19:57:26.094Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/bahai-1b76d/adminSdkConfig {"projectId":"bahai-1b76d","storageBucket":"bahai-1b76d.firebasestorage.app"}
+[2025-12-13T19:57:26.094Z] Checked if tokens are valid: true, expires at: 1765657904338
+[2025-12-13T19:57:26.094Z] Checked if tokens are valid: true, expires at: 1765657904338
+[2025-12-13T19:57:26.095Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/bahai-1b76d/configs [none]
+[2025-12-13T19:57:26.398Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/bahai-1b76d/configs 200
+[2025-12-13T19:57:26.399Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/bahai-1b76d/configs {"configs":[{"name":"projects/bahai-1b76d/configs/facepp"},{"name":"projects/bahai-1b76d/configs/gmail"}]}
+[2025-12-13T19:57:26.399Z] Checked if tokens are valid: true, expires at: 1765657904338
+[2025-12-13T19:57:26.399Z] Checked if tokens are valid: true, expires at: 1765657904338
+[2025-12-13T19:57:26.399Z] Checked if tokens are valid: true, expires at: 1765657904338
+[2025-12-13T19:57:26.400Z] Checked if tokens are valid: true, expires at: 1765657904338
+[2025-12-13T19:57:26.400Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/bahai-1b76d/configs/facepp/variables [none]
+[2025-12-13T19:57:26.401Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/bahai-1b76d/configs/gmail/variables [none]
+[2025-12-13T19:57:26.654Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/bahai-1b76d/configs/facepp/variables 200
+[2025-12-13T19:57:26.654Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/bahai-1b76d/configs/facepp/variables {"variables":[{"name":"projects/bahai-1b76d/configs/facepp/variables/secret","updateTime":"2025-11-07T22:11:15.723726190Z"},{"name":"projects/bahai-1b76d/configs/facepp/variables/key","updateTime":"2025-11-07T22:11:15.347871399Z"}]}
+[2025-12-13T19:57:26.655Z] Checked if tokens are valid: true, expires at: 1765657904338
+[2025-12-13T19:57:26.655Z] Checked if tokens are valid: true, expires at: 1765657904338
+[2025-12-13T19:57:26.655Z] Checked if tokens are valid: true, expires at: 1765657904338
+[2025-12-13T19:57:26.655Z] Checked if tokens are valid: true, expires at: 1765657904338
+[2025-12-13T19:57:26.655Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/bahai-1b76d/configs/facepp/variables/secret [none]
+[2025-12-13T19:57:26.656Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/bahai-1b76d/configs/facepp/variables/key [none]
+[2025-12-13T19:57:26.676Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/bahai-1b76d/configs/gmail/variables 200
+[2025-12-13T19:57:26.676Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/bahai-1b76d/configs/gmail/variables {"variables":[{"name":"projects/bahai-1b76d/configs/gmail/variables/pass","updateTime":"2025-10-17T16:43:38.273918426Z"},{"name":"projects/bahai-1b76d/configs/gmail/variables/user","updateTime":"2025-10-17T16:43:37.417921378Z"}]}
+[2025-12-13T19:57:26.676Z] Checked if tokens are valid: true, expires at: 1765657904338
+[2025-12-13T19:57:26.676Z] Checked if tokens are valid: true, expires at: 1765657904338
+[2025-12-13T19:57:26.677Z] Checked if tokens are valid: true, expires at: 1765657904338
+[2025-12-13T19:57:26.677Z] Checked if tokens are valid: true, expires at: 1765657904338
+[2025-12-13T19:57:26.677Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/bahai-1b76d/configs/gmail/variables/pass [none]
+[2025-12-13T19:57:26.678Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/bahai-1b76d/configs/gmail/variables/user [none]
+[2025-12-13T19:57:26.899Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/bahai-1b76d/configs/facepp/variables/secret 200
+[2025-12-13T19:57:26.899Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/bahai-1b76d/configs/facepp/variables/secret {"name":"projects/bahai-1b76d/configs/facepp/variables/secret","updateTime":"2025-11-07T22:11:15.723726190Z","text":"rq7cw-SGGi37Yda4z5U_Z6KaGccXZA0w"}
+[2025-12-13T19:57:26.943Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/bahai-1b76d/configs/facepp/variables/key 200
+[2025-12-13T19:57:26.943Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/bahai-1b76d/configs/facepp/variables/key {"name":"projects/bahai-1b76d/configs/facepp/variables/key","updateTime":"2025-11-07T22:11:15.347871399Z","text":"nwMEZVM-SXeV7Q6_tG9yNfQaVserEDGP"}
+[2025-12-13T19:57:26.954Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/bahai-1b76d/configs/gmail/variables/user 200
+[2025-12-13T19:57:26.955Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/bahai-1b76d/configs/gmail/variables/user {"name":"projects/bahai-1b76d/configs/gmail/variables/user","updateTime":"2025-10-17T16:43:37.417921378Z","text":"cadangangreycel4@gmail.com"}
+[2025-12-13T19:57:27.497Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/bahai-1b76d/configs/gmail/variables/pass 200
+[2025-12-13T19:57:27.498Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/bahai-1b76d/configs/gmail/variables/pass {"name":"projects/bahai-1b76d/configs/gmail/variables/pass","updateTime":"2025-10-17T16:43:38.273918426Z","text":"phbdqzlihegdufvj"}
+[2025-12-13T19:57:27.500Z] Customer code is not Node
+[2025-12-13T19:57:27.501Z] Validating python source
+[2025-12-13T19:57:27.501Z] Building python source
+i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[2025-12-13T19:57:27.502Z] Could not find functions.yaml. Must use http discovery
+[2025-12-13T19:57:27.517Z] Running command with virtualenv: command="C:\Capstone\BahAI_Firebase\functions\venv\Scripts\activate.bat", args=["","&&","python.exe","-c","\"import firebase_functions; import os; print(os.path.dirname(firebase_functions.__file__))\""]
+[2025-12-13T19:57:27.554Z] stderr: The system cannot find the path specified.
+
+[2025-12-13T19:57:27.648Z] Error: spawn "C:\Capstone\BahAI_Firebase\functions\venv\Scripts\activate.bat" ENOENT
+    at notFoundError (C:\Users\weeh lord\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\cross-spawn\lib\enoent.js:6:26)
+    at verifyENOENT (C:\Users\weeh lord\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\cross-spawn\lib\enoent.js:40:16)
+    at cp.emit (C:\Users\weeh lord\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\cross-spawn\lib\enoent.js:27:25)
+    at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+
+Error: An unexpected error has occurred.

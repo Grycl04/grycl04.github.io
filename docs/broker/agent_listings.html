@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>My Listings - BahAI Real Estate</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="../buyer/style.css">
+<style>
+    /* Same design tokens as buyer dashboard - navy + gold */
+    :root {
+        --primary-gradient: linear-gradient(135deg, #0b2e52 0%, #1e3a5f 100%);
+        --primary-light: #1e3a5f;
+        --primary-dark: #071e38;
+        --secondary-gradient: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+        --accent-gradient: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+        --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        --card-hover-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        --border-radius: 16px;
+        --border-radius-sm: 12px;
+        --border-radius-lg: 24px;
+        --text-dark: #1a202c;
+        --text-light: #718096;
+    }
+
+    /* Hero Section - same as broker dashboard */
+    .hero-section {
+        background: var(--primary-gradient);
+        color: white;
+        border-radius: var(--border-radius-lg);
+        padding: 50px 40px;
+        margin-bottom: 40px;
+        position: relative;
+        overflow: hidden;
+    }
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="white"/></svg>');
+        background-size: cover;
+        opacity: 0.1;
+    }
+    .hero-section h1 {
+        font-size: 2.8rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        line-height: 1.2;
+        max-width: 800px;
+        color: white;
+    }
+    .hero-section p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin-bottom: 20px;
+        color: rgba(255, 255, 255, 0.95);
+    }
+    .hero-stats {
+        display: flex;
+        gap: 30px;
+        margin-top: 30px;
+        flex-wrap: wrap;
+    }
+    .hero-stat-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .hero-stat-icon {
+        font-size: 1.5rem;
+        background: rgba(255,255,255,0.2);
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .hero-stat-value { font-size: 1.5rem; font-weight: 700; }
+    .hero-stat-label { font-size: 0.9rem; opacity: 0.8; }
+    .hero-actions { margin-top: 25px; display: flex; gap: 15px; flex-wrap: wrap; }
+
+    /* Section title - same as broker dashboard */
+    .section-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .section-title i { color: #d4af37; font-size: 1.3rem; }
+
+    /* Properties section & listings grid - same as broker dashboard */
+    .properties-section { margin-bottom: 40px; }
+    .listings-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 30px;
+        margin-top: 25px;
+    }
+    .listing-card-wrapper { transition: all 0.3s ease; }
+    .listing-card-wrapper:hover { transform: translateY(-5px); }
+    .listing-card {
+        background: white;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: var(--card-shadow);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        height: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+    .listing-card:hover { box-shadow: var(--card-hover-shadow); }
+    .listing-card-image-container {
+        position: relative;
+        height: 220px;
+        overflow: hidden;
+    }
+    .listing-status-badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        z-index: 2;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .listing-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    .listing-card:hover .listing-image { transform: scale(1.05); }
+    .listing-content {
+        padding: 20px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+    }
+    .listing-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 10px;
+        gap: 12px;
+    }
+    .listing-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        line-height: 1.35;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+    .listing-location {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--text-light);
+        font-size: 0.9rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .listing-price {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+        white-space: normal !important;
+        word-break: break-word;
+        text-align: right;
+        min-width: fit-content;
+        flex-shrink: 0;
+        max-width: 45%;
+    }
+    .listing-header > div:first-child { flex: 1; min-width: 0; overflow: hidden; }
+    .listing-details {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 14px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    .detail {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--text-light);
+        font-size: 0.9rem;
+    }
+    .listing-status {
+        display: none; /* Status now shown as badge on image */
+    }
+    .status-active, .listing-status.status-active,
+    .listing-status-badge.status-active {
+        background: #10b981 !important;
+        color: white !important;
+    }
+    .status-pending, .listing-status.status-pending,
+    .listing-status-badge.status-pending {
+        background: var(--accent-gradient) !important;
+        color: white !important;
+    }
+    .status-sold, .listing-status.status-sold,
+    .listing-status-badge.status-sold {
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+        color: white !important;
+    }
+    .card-link-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: calc(100% - 56px);
+        z-index: 1;
+        opacity: 0;
+        cursor: pointer;
+    }
+    .add-button {
+        background: var(--primary-gradient);
+        color: white;
+        border: none;
+        padding: 14px 28px;
+        border-radius: 12px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        white-space: nowrap;
+    }
+    .add-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(212, 175, 55, 0.35);
+    }
+    .empty-state {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 60px 20px;
+        background: white;
+        border-radius: var(--border-radius);
+        box-shadow: var(--card-shadow);
+        color: var(--text-light);
+    }
+    .empty-state-icon { font-size: 64px; margin-bottom: 20px; opacity: 0.5; }
+    .empty-state h3 { font-size: 20px; margin-bottom: 10px; color: var(--text-dark); }
+
+    /* Listing actions - same colors/fonts as dashboard buttons */
+    .listing-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: auto;
+        padding-top: 12px;
+        position: relative;
+        z-index: 10;
+    }
+    .action-btn {
+        flex: 1;
+        padding: 12px 16px;
+        border: none;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+    .edit-btn {
+        background: var(--primary-gradient);
+        color: white;
+    }
+    .edit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(11, 46, 82, 0.35);
+    }
+    .delete-btn {
+        background: white;
+        color: #dc2626;
+        border: 2px solid #fecaca;
+    }
+    .delete-btn:hover {
+        background: #dc2626;
+        color: white;
+        border-color: #dc2626;
+        transform: translateY(-2px);
+    }
+
+    /* Mobile Menu Toggle */
+    .mobile-menu-toggle {
+        display: none;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1001;
+        background: var(--primary-dark);
+        color: white;
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: var(--card-shadow);
+    }
+
+    .container {
+        flex: 1;
+        margin-left: 280px;
+        padding: 30px;
+        transition: margin-left 0.3s ease;
+    }
+
+    @media (max-width: 1024px) {
+        .container { margin-left: 0; padding: 25px; }
+        .hero-stats { gap: 20px; }
+        .mobile-menu-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+    @media (max-width: 768px) {
+        .container { padding: 20px; }
+        .listings-grid { grid-template-columns: 1fr; gap: 15px; }
+        .hero-section h1 { font-size: 1.8rem; }
+        .hero-section { padding: 30px 24px; }
+    }
+</style>
+</head>
+
+<body>
+<!-- Mobile Menu Toggle - same as broker dashboard -->
+<button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">☰</button>
+
+<!-- Include Sidebar -->
+<div id="sidebar-container"></div>
+
+<!-- Main - same layout as broker dashboard -->
+<div class="container">
+  <!-- Hero Section - same design as broker dashboard -->
+  <div class="hero-section">
+    <h1>My Listings</h1>
+    <p>Manage your property listings and track their performance</p>
+    <div class="hero-stats">
+      <div class="hero-stat-item">
+        <div class="hero-stat-icon"><i class="fas fa-check-circle"></i></div>
+        <div>
+          <div class="hero-stat-value" id="activeListings">0</div>
+          <div class="hero-stat-label">Available</div>
+        </div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="hero-stat-icon"><i class="fas fa-tag"></i></div>
+        <div>
+          <div class="hero-stat-value" id="soldListings">0</div>
+          <div class="hero-stat-label">Sold</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- My Listings Section - same design as broker dashboard -->
+  <div class="properties-section">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; flex-wrap: wrap; gap: 15px;">
+      <div>
+        <h2 class="section-title">
+          <i class="fas fa-building"></i>
+          Your Properties
+        </h2>
+        <p style="color: var(--text-light); margin-bottom: 0; font-size: 15px;" id="propertiesCount">
+          Your listed properties
+        </p>
+      </div>
+      <a href="agent_add_property.html" class="add-button" style="text-decoration: none;">
+        <i class="fas fa-plus"></i> Add New Property
+      </a>
+    </div>
+    <div class="listings-grid" id="listingsContainer">
+      <div class="empty-state">
+        <div class="empty-state-icon"><i class="fas fa-home"></i></div>
+        <h3>No Properties Listed</h3>
+        <p>You haven't added any properties yet. Start by creating your first listing!</p>
+        <a href="agent_add_property.html" class="add-button" style="margin-top: 20px; display: inline-flex;">
+          <i class="fas fa-plus"></i> Add Your First Property
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Sidebar Loader - same as broker dashboard, active link for My Listings -->
+<script src="../sidebar-user.js"></script>
+<script>
+document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+  const sidebar = document.querySelector('.sidebar');
+  if (sidebar) {
+    sidebar.style.transform = sidebar.style.transform === 'translateX(0px)' ?
+      'translateX(-100%)' : 'translateX(0px)';
+  }
+});
+
+// Load AGENT sidebar with fallback
+fetch('agent_sidebar.html')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Agent sidebar not found');
+    }
+    return response.text();
+  })
+  .then(html => {
+    document.getElementById('sidebar-container').innerHTML = html;
+    console.log('✅ Agent sidebar loaded successfully');
+    
+    // Set active state for current page
+    const links = document.querySelectorAll('.sidebar-link');
+    links.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === 'agent_listings.html') {
+        link.classList.add('active');
+      }
+    });
+    
+    setupLogoutButton();
+  })
+  .catch(error => {
+    console.error('❌ Error loading agent sidebar:', error);
+  });
+
+function setupLogoutButton() {
+  const logoutBtn = document.getElementById("logoutBtn");
+  if (!logoutBtn) { setTimeout(setupLogoutButton, 100); return; }
+  const newLogoutBtn = logoutBtn.cloneNode(true);
+  logoutBtn.parentNode.replaceChild(newLogoutBtn, logoutBtn);
+  newLogoutBtn.addEventListener("click", function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (confirm("Are you sure you want to log out?")) {
+      if (typeof window.performLogout === 'function') window.performLogout();
+      else window.location.href = "../auth/login.html";
+    }
+  });
+}
+</script>
+
+<!-- Firebase Script -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+import {
+  getAuth, onAuthStateChanged, signOut
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+import {
+  getFirestore, collection, query, where, getDocs, deleteDoc, doc, getDoc
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCIfzneDzWVveG8p_0mywoA9D9F5AyzZX4",
+  authDomain: "bahai-1b76d.firebaseapp.com",
+  projectId: "bahai-1b76d",
+  storageBucket: "bahai-1b76d.appspot.com",
+  messagingSenderId: "646878644941",
+  appId: "1:646878644941:web:5b4ccc3412250337587784"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+
+let currentListings = [];
+let currentAgent = null;
+
+async function loadAgentData(user) {
+  try {
+    console.log('👤 Loading agent data for UID:', user.uid);
+    
+    // First try to get from users collection
+    const userDoc = await getDoc(doc(db, "users", user.uid));
+    
+    if (userDoc.exists()) {
+      const userData = userDoc.data();
+      console.log('User data found:', userData);
+      
+      if (userData.userType === 'agent' || userData.role === 'agent') {
+        currentAgent = {
+          id: user.uid,
+          authUid: user.uid,
+          firstName: userData.firstName || userData.name?.split(' ')[0] || 'Agent',
+          lastName: userData.lastName || userData.name?.split(' ')[1] || '',
+          email: userData.email || user.email,
+          phone: userData.phone || '',
+          ...userData
+        };
+        console.log('✅ Agent data loaded from users collection');
+        return currentAgent;
+      }
+    }
+    
+    // Try agents collection
+    const agentQuery = query(
+      collection(db, "agents"),
+      where("authUid", "==", user.uid)
+    );
+    
+    const agentSnapshot = await getDocs(agentQuery);
+    
+    if (!agentSnapshot.empty) {
+      const agentDoc = agentSnapshot.docs[0];
+      currentAgent = {
+        id: agentDoc.id,
+        authUid: user.uid,
+        ...agentDoc.data()
+      };
+      console.log('✅ Agent data loaded from agents collection');
+    } else {
+      // Create minimal agent object
+      console.warn('⚠️ Creating minimal agent object from auth user');
+      currentAgent = {
+        id: user.uid,
+        authUid: user.uid,
+        firstName: user.displayName?.split(' ')[0] || 'Agent',
+        lastName: user.displayName?.split(' ')[1] || '',
+        email: user.email,
+        phone: ''
+      };
+    }
+    
+    return currentAgent;
+  } catch (error) {
+    console.error('❌ Error loading agent data:', error);
+    showNoAgentError();
+    return null;
+  }
+}
+
+async function loadListings(agent) {
+  if (!agent) return;
+
+  try {
+    console.log('🔍 Loading listings for agent:', agent);
+    
+    const currentUser = auth.currentUser;
+    if (!currentUser) {
+      console.error('No authenticated user found');
+      window.location.href = "../auth/login.html";
+      return;
+    }
+    
+    console.log('Current auth user UID:', currentUser.uid);
+    console.log('Agent ID:', agent.id);
+    console.log('Agent authUid:', agent.authUid);
+    
+    currentListings = [];
+    
+    const queryUid = agent.authUid || agent.id || currentUser.uid;
+    console.log('Querying with UID:', queryUid);
+    
+    const queries = [
+      query(collection(db, "properties"), where("agentId", "==", queryUid)),
+      query(collection(db, "properties"), where("userId", "==", queryUid)),
+      query(collection(db, "properties"), 
+        where("userType", "==", "agent"), 
+        where("userId", "==", queryUid)
+      )
+    ];
+    
+    for (let i = 0; i < queries.length; i++) {
+      try {
+        const querySnapshot = await getDocs(queries[i]);
+        console.log(`Query ${i} returned ${querySnapshot.size} results`);
+        
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          
+          if (!currentListings.find(l => l.id === doc.id)) {
+            currentListings.push({ 
+              id: doc.id, 
+              ...data,
+              type: data.type || data.listingType || 'sale'
+            });
+          }
+        });
+        
+        if (currentListings.length > 0 && i > 0) {
+          console.log(`Found listings with query ${i}, stopping further queries`);
+          break;
+        }
+      } catch (error) {
+        console.log(`Query ${i} failed:`, error.message);
+        continue;
+      }
+    }
+    
+    if (currentListings.length === 0) {
+      console.log('No results from structured queries, trying collection scan...');
+      try {
+        const allProperties = await getDocs(collection(db, "properties"));
+        allProperties.forEach((doc) => {
+          const data = doc.data();
+          if (data.userId === queryUid || 
+              data.agentId === queryUid ||
+              (data.userType === 'agent' && data.userId === queryUid)) {
+            currentListings.push({ 
+              id: doc.id, 
+              ...data,
+              type: data.type || data.listingType || 'sale'
+            });
+          }
+        });
+      } catch (error) {
+        console.log('Collection scan error:', error.message);
+      }
+    }
+    
+    console.log(`✅ Final loaded ${currentListings.length} listings for agent`);
+    
+    displayListings(currentListings);
+    updateStats(currentListings);
+   
+  } catch (error) {
+    console.error("❌ Error loading listings:", error);
+    displayErrorState("Failed to load your properties. Please try again.");
+  }
+}
+
+// Event delegation for click handling
+document.addEventListener('click', function(e) {
+  // Handle card overlay click (redirect to property details)
+  if (e.target.classList.contains('card-link-overlay') || e.target.closest('.card-link-overlay')) {
+    const card = e.target.closest('.listing-card');
+    const listingId = card ? card.getAttribute('data-listing-id') : null;
+    
+    if (listingId) {
+      window.location.href = `property_details.html?id=${listingId}`;
+    }
+  }
+  
+  // Handle delete button clicks
+  if (e.target.classList.contains('delete-btn') || e.target.closest('.delete-btn')) {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    const button = e.target.classList.contains('delete-btn') ? e.target : e.target.closest('.delete-btn');
+    const card = button.closest('.listing-card');
+    const listingId = card ? card.getAttribute('data-listing-id') : null;
+    
+    if (listingId) {
+      deleteListing(listingId, e);
+    }
+  }
+  
+  // Handle edit button clicks
+  if (e.target.classList.contains('edit-btn') || e.target.closest('.edit-btn')) {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    const button = e.target.classList.contains('edit-btn') ? e.target : e.target.closest('.edit-btn');
+    const card = button.closest('.listing-card');
+    const listingId = card ? card.getAttribute('data-listing-id') : null;
+    
+    if (listingId) {
+      editListing(listingId);
+    }
+  }
+});
+
+// Update your displayListings function
+function displayListings(listings) {
+  const container = document.getElementById('listingsContainer');
+ 
+  if (listings.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-state-icon"><i class="fas fa-home"></i></div>
+        <h3>No Properties Listed</h3>
+        <p>You haven't added any properties yet. Start by creating your first listing!</p>
+        <a href="agent_add_property.html" class="add-button" style="margin-top: 20px; display: inline-flex;">
+          <i class="fas fa-plus"></i> Add Your First Property
+        </a>
+      </div>
+    `;
+    const countEl = document.getElementById('propertiesCount');
+    if (countEl) countEl.textContent = 'No properties listed yet';
+    return;
+  }
+
+  const imageUrl = (listing) => listing.photos && listing.photos.length > 0
+    ? listing.photos[0]
+    : 'https://via.placeholder.com/400x200/0b2e52/white?text=No+Image';
+
+  container.innerHTML = listings.map(listing => {
+    let priceLabel = '';
+    if (listing.type === 'sale') {
+      priceLabel = '₱' + (listing.salePrice || 0).toLocaleString();
+    } else if (listing.type === 'lease') {
+      priceLabel = '₱' + (listing.annualRent || 0).toLocaleString() + '/year';
+    } else {
+      priceLabel = '₱' + (listing.price || listing.pricing || listing.monthlyRent || 0).toLocaleString() + (listing.type === 'rent' ? '/month' : '');
+    }
+    const location = listing.address || listing.location || 'Location not specified';
+    const area = listing.floorArea || listing.totalArea || listing.squareFootage || 'N/A';
+    const typeLabel = listing.type === 'lease' ? 'Lease' : (listing.type === 'sale' ? 'Sale' : 'Rent');
+    const status = (listing.status || 'active').toLowerCase();
+
+    const statusLabel = status === 'active' ? 'Available' : status.charAt(0).toUpperCase() + status.slice(1);
+    return `
+    <div class="listing-card-wrapper">
+      <div class="listing-card" data-listing-id="${listing.id}">
+        <a href="property_details.html?id=${listing.id}" class="card-link-overlay" aria-label="View ${listing.title}"></a>
+        <div class="listing-card-image-container">
+          <span class="listing-status-badge status-${status}">${statusLabel}</span>
+          <img src="${imageUrl(listing)}" alt="${listing.title}" class="listing-image">
+        </div>
+        <div class="listing-content">
+          <div class="listing-header">
+            <div style="flex: 1; min-width: 0;">
+              <h3 class="listing-title">${listing.title || 'Untitled Property'}</h3>
+            </div>
+            <div class="listing-price">${priceLabel}</div>
+          </div>
+          <div class="listing-location">
+            <i class="fas fa-map-marker-alt" style="flex-shrink: 0;"></i>
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${location} · ${typeLabel}</span>
+          </div>
+          <div class="listing-details">
+            <div class="detail"><i class="fas fa-bed"></i> ${listing.bedrooms || 0} beds</div>
+            <div class="detail"><i class="fas fa-bath"></i> ${listing.bathrooms || 0} baths</div>
+            <div class="detail"><i class="fas fa-ruler-combined"></i> ${area} ${typeof (listing.floorArea || listing.totalArea) === 'number' ? 'sqm' : ''}</div>
+          </div>
+          <div class="listing-actions">
+            <button class="action-btn edit-btn"><i class="fas fa-edit"></i> Edit</button>
+            <button class="action-btn delete-btn"><i class="fas fa-trash-alt"></i> Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  }).join('');
+}
+
+function updatePropertiesCount(count) {
+  const countEl = document.getElementById('propertiesCount');
+  if (countEl) countEl.textContent = `${count} propert${count === 1 ? 'y' : 'ies'} listed`;
+}
+
+function updateStats(listings) {
+  const total = listings.length;
+  const available = listings.filter(l => {
+    const status = (l.status || '').toLowerCase();
+    return status === 'available' || status === 'active';
+  }).length;
+  const sold = listings.filter(l => (l.status || '').toLowerCase() === 'sold').length;
+
+  document.getElementById('activeListings').textContent = available;
+  document.getElementById('soldListings').textContent = sold;
+  updatePropertiesCount(total);
+}
+
+// Global functions for buttons
+function editListing(id) {
+  // Redirect to edit page with the listing ID
+  window.location.href = `edit_property.html?id=${id}`;
+}
+
+async function deleteListing(id, event) {
+  if (event) {
+    event.stopPropagation();
+    event.preventDefault();
+  }
+  
+  if (!confirm('Are you sure you want to delete this listing? This action cannot be undone.')) {
+    return;
+  }
+ 
+  // Show loading state
+  const deleteBtn = event ? (event.target.classList.contains('delete-btn') ? event.target : event.target.closest('.delete-btn')) : null;
+  if (deleteBtn) {
+    const originalText = deleteBtn.innerHTML;
+    deleteBtn.innerHTML = '⏳ Deleting...';
+    deleteBtn.disabled = true;
+  }
+ 
+  try {
+    await deleteDoc(doc(db, "properties", id));
+    
+    // Remove from local array
+    currentListings = currentListings.filter(listing => listing.id !== id);
+    
+    // Update UI
+    displayListings(currentListings);
+    updateStats(currentListings);
+    
+    // Show success message
+    console.log('Listing deleted successfully');
+    
+  } catch (error) {
+    console.error("Error deleting listing:", error);
+    
+    // Show error to user
+    alert('Error deleting listing: ' + error.message);
+    
+    // Reset button state
+    if (deleteBtn) {
+      deleteBtn.innerHTML = '<i class="fas fa-trash-alt"></i> Delete';
+      deleteBtn.disabled = false;
+    }
+  }
+}
+
+function displayErrorState(message) {
+  const container = document.getElementById('listingsContainer');
+  container.innerHTML = `
+    <div class="empty-state">
+      <div class="empty-state-icon">⚠️</div>
+      <h3>Error Loading Properties</h3>
+      <p>${message}</p>
+      <button onclick="window.location.reload()" class="add-button" style="margin-top: 20px;">
+        🔄 Try Again
+      </button>
+    </div>
+  `;
+}
+
+function showNoAgentError() {
+  const container = document.getElementById('listingsContainer');
+  container.innerHTML = `
+    <div class="empty-state">
+      <div class="empty-state-icon">👤</div>
+      <h3>Agent Profile Required</h3>
+      <p>Please complete your agent profile setup to manage properties.</p>
+      <a href="profile_agent.html" class="add-button" style="margin-top: 20px; display: inline-flex;">
+        👤 Complete Profile
+      </a>
+    </div>
+  `;
+}
+
+// Load agent profile for sidebar (agents collection first, then users)
+async function loadAgentProfile(user) {
+  try {
+    const agentDoc = await getDoc(doc(db, "agents", user.uid));
+    if (agentDoc.exists()) {
+      const d = agentDoc.data();
+      const sidebarData = {
+        fullName: d.fullName || d.name || d.displayName,
+        displayName: d.fullName || d.name || d.displayName,
+        email: user.email || d.email,
+        role: d.userType || d.role || 'agent'
+      };
+      if (typeof window.updateSidebarUserProfile === 'function') {
+        window.updateSidebarUserProfile(sidebarData);
+      }
+      return;
+    }
+    const userDoc = await getDoc(doc(db, "users", user.uid));
+    if (userDoc.exists()) {
+      const d = userDoc.data();
+      const sidebarData = {
+        fullName: d.fullName || d.name || d.displayName,
+        displayName: d.fullName || d.name || d.displayName,
+        email: user.email || d.email,
+        role: d.userType || d.role || 'agent'
+      };
+      if (typeof window.updateSidebarUserProfile === 'function') {
+        window.updateSidebarUserProfile(sidebarData);
+      }
+      return;
+    }
+    if (typeof window.updateSidebarUserProfile === 'function') {
+      window.updateSidebarUserProfile({
+        fullName: user.displayName,
+        displayName: user.displayName,
+        email: user.email,
+        role: 'agent'
+      });
+    }
+  } catch (e) {
+    console.warn('Could not load agent profile:', e);
+    if (user && typeof window.updateSidebarUserProfile === 'function') {
+      window.updateSidebarUserProfile({
+        fullName: user.displayName,
+        email: user.email,
+        role: 'agent'
+      });
+    }
+  }
+}
+
+// Require login and load listings
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    window.location.href = "../auth/login.html";
+  } else {
+    console.log('👤 Agent authenticated:', user.email, 'UID:', user.uid);
+    loadAgentProfile(user);
+    const agent = await loadAgentData(user);
+    if (agent) {
+      await loadListings(agent);
+    }
+  }
+});
+
+window.performLogout = async function() {
+  try {
+    await signOut(auth);
+    localStorage.removeItem('userData');
+    sessionStorage.removeItem('userData');
+    window.location.href = "../auth/login.html";
+  } catch (e) {
+    console.error('Logout error:', e);
+    window.location.href = "../auth/login.html";
+  }
+};
+</script>
+</body>
+</html>

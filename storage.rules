@@ -1,0 +1,20 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // KYC documents - only the user can upload their own documents
+    match /kyc/{userId}/{allPaths=**} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Property images - authenticated users can upload
+    match /properties/{allPaths=**} {
+      allow read: if true; // Anyone can view property images
+      allow write: if request.auth != null;
+    }
+    
+    // Default: deny all
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

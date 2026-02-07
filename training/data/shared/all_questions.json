@@ -1,0 +1,128 @@
+  {
+    "question_templates": {
+      "question_1": {
+        "template": "Find [property_type] in [location]",
+        "example": "find apartments in batangas city",
+        "entity_slots": ["property_type", "location"],
+        "response_template": "I found {count} {property_type} properties in {location}.",
+        "variation_techniques": [
+          "Change verb: find → look for → search for → show me",
+          "Change property type: apartment → condo → house → villa",
+          "Change location: Batangas City → Lipa City → Tanauan City",
+          "Add filler words: Can you please... → I need to... → Please help me...",
+          "Add question mark: find apartments? → looking for houses?"
+        ]
+      },
+      
+      "question_2": {
+        "template": "Show me [property_type] under [price] with [bedrooms]",
+        "example": "show me houses under 3M with 3 bedrooms",
+        "entity_slots": ["property_type", "price", "bedrooms"],
+        "response_template": "Here are {property_type} properties under {price} with {bedrooms} bedrooms:"
+      },
+      
+      "question_3": {
+        "template": "Find properties for [need] needs in [location]",
+        "example": "find properties for family needs in lipa",
+        "entity_slots": ["need", "location"],
+        "response_template": "Properties suitable for {need} in {location}:"
+      },
+      
+      "question_4": {
+        "template": "Properties near [landmark]",
+        "example": "properties near schools",
+        "entity_slots": ["landmark"],
+        "response_template": "Here are properties near {landmark}:"
+      },
+      
+      "question_5": {
+        "template": "Show me [feature] with [price_quality]",
+        "example": "show me pool with good price",
+        "entity_slots": ["feature", "price_quality"],
+        "response_template": "Properties with {feature} at {price_quality}:"
+      },
+      
+      "question_6": {
+        "template": "Find [ready_status] properties for [need] in [location]",
+        "example": "find ready to move in properties for family in tanauan",
+        "entity_slots": ["ready_status", "need", "location"],
+        "response_template": "Ready to move in properties for {need} in {location}:"
+      },
+      
+      "question_7": {
+        "template": "Properties that accept [financing_type]",
+        "example": "properties that accept bank financing",
+        "entity_slots": ["financing_type"],
+        "response_template": "Properties accepting {financing_type}. Required documents: {documents}"
+      },
+      
+      "question_8": {
+        "template": "[process_type] for [property_type]",
+        "example": "steps for buying a house",
+        "entity_slots": ["process_type", "property_type"],
+        "response_template": "For {property_type}: {process_type}: {details}"
+      },
+      
+      "question_9": {
+        "template": "Tell me about [location]",
+        "example": "tell me about batangas city",
+        "entity_slots": ["location"],
+        "response_template": "About {location}: {description}. Average rent: {rent}. Features: {features}"
+      },
+      
+      "question_10": {
+        "template": "What properties match my [need]",
+        "example": "what properties match my family needs",
+        "entity_slots": ["need"],
+        "response_template": "Based on your {need}, here are matching properties:"
+      }
+    },
+    
+    "entity_definitions": {
+      "property_type": {
+        "values": ["apartment", "condo", "house", "villa", "townhouse", "bungalow", "duplex", "lot", "land", "commercial space"],
+        "synonyms": {
+          "apartment": ["flat", "unit", "condo", "condominium"],
+          "house": ["home", "residence", "dwelling", "bungalow", "villa"]
+        }
+      },
+      
+      "location": {
+        "values": ["Batangas City", "Lipa City", "Tanauan City", "Bauan", "Balayan", "Nasugbu", "San Juan", "Taal"],
+        "aliases": {
+          "Batangas City": ["Batangas", "Bat City"],
+          "Lipa City": ["Lipa", "Lip City"]
+        }
+      },
+      
+      "price": {
+        "patterns": ["\\d+[kKmM]?", "under \\d+", "below \\d+", "less than \\d+"],
+        "examples": ["3M", "2 million", "500k", "15k", "under 3M", "below 2 million"]
+      },
+      
+      "bedrooms": {
+        "patterns": ["\\d+ bedroom", "\\d+ bed", "studio"],
+        "examples": ["3 bedrooms", "2 bed", "studio", "1 bedroom"]
+      },
+      
+      "landmark": {
+        "categories": ["school", "hospital", "mall", "church", "beach", "market"],
+        "examples": {
+          "school": ["school", "university", "college", "campus"],
+          "mall": ["mall", "shopping center", "supermarket"]
+        }
+      },
+      
+      "feature": {
+        "values": ["pool", "garden", "parking", "elevator", "security", "wifi", "aircon", "furnished"]
+      },
+      
+      "financing_type": {
+        "values": ["bank financing", "pag-ibig", "in-house financing", "cash", "installment"]
+      },
+      
+      "need": {
+        "values": ["family", "single", "couple", "students", "professionals", "retirees", "business"]
+      }
+    }
+  }

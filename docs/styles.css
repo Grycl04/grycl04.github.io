@@ -1,0 +1,239 @@
+/* ===== Reset & Base ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url("images/background_signup.png") no-repeat center center/cover;
+  position: relative;
+}
+
+/* Dark overlay for background */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 20, 40, 0.55);
+
+  /* WebKit first for Safari support */
+  -webkit-backdrop-filter: blur(2px);
+
+  /* Standard property */
+  backdrop-filter: blur(2px);
+}
+
+/* Gradient text */
+.logo h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #0077b6, #0096c7, #00b4d8);
+
+  /* WebKit first for Safari support */
+  -webkit-background-clip: text;
+
+  /* Standard property */
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent; /* Safari */
+  color: transparent; /* fallback for others */
+}
+
+
+/* Gradient text */
+.logo h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #0077b6, #0096c7, #00b4d8);
+
+  /* Standard property */
+  background-clip: text;
+
+  /* Safari / WebKit support */
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent; /* Safari */
+  color: transparent; /* Fallback for others */
+}
+
+
+/* ===== Containers ===== */
+.signup-container,
+.login-container {
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  width: 100%;
+  max-width: 500px; /* use smaller width for login if needed */
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.login-container {
+  max-width: 420px;
+}
+
+/* ===== Logo ===== */
+.logo {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.logo h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #0077b6, #0096c7, #00b4d8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* ===== Headings & Subtitles ===== */
+h2 {
+  text-align: center;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.subtitle {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* ===== Form ===== */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  color: #333;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border: 1px solid #0077b6;
+  box-shadow: 0 0 5px rgba(0, 119, 182, 0.3);
+}
+
+/* ===== Checkbox ===== */
+.checkbox {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+  font-size: 0.85rem;
+  color: #333;
+}
+
+.checkbox input {
+  margin-right: 0.5rem;
+}
+
+.checkbox a {
+  color: #0077b6;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.checkbox a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Buttons ===== */
+.btn {
+  width: 100%;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 0.8rem;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #0077b6, #00b4d8);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, #005f8a, #0096c7);
+}
+
+.btn-google {
+  background: #fff;
+  border: 1px solid #ccc;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-google:hover {
+  background: #f1f1f1;
+}
+
+.btn-google img {
+  height: 18px;
+  margin-right: 8px;
+}
+
+/* ===== Links ===== */
+.login-link,
+.signup-link,
+.extra-links {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.extra-links {
+  text-align: right;
+  font-size: 0.85rem;
+  margin-bottom: 0.8rem;
+}
+
+.login-link a,
+.signup-link a,
+.extra-links a {
+  color: #0077b6;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.login-link a:hover,
+.signup-link a:hover,
+.extra-links a:hover {
+  text-decoration: underline;
+}

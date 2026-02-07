@@ -1,0 +1,2305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Setup Agent Profile - BahAI Real Estate</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    :root {
+      --primary: #0b2e52;
+      --primary-dark: #001F3F;
+      --primary-light: #002f3f;
+      --secondary: #1976d2;
+      --accent: #ff9800;
+      --success: #10b981;
+      --danger: #ef4444;
+      --text-dark: #1a202c;
+      --text-light: #718096;
+      --bg-light: #f8fafc;
+      --bg-white: #ffffff;
+      --border: #e2e8f0;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      color: var(--text-dark);
+      min-height: 100vh;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px;
+      padding-top: 100px;
+    }
+
+    /* Fixed Top Navigation - Updated to match profile.html */
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: var(--bg-white);
+      box-shadow: var(--shadow);
+      z-index: 1000;
+      padding: 20px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--primary);
+    }
+
+    .nav-brand {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .nav-brand i {
+      font-size: 32px;
+      color: var(--primary);
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .nav-btn {
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: none;
+      font-family: inherit;
+      font-size: 15px;
+    }
+
+    .nav-btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+    }
+
+    .nav-btn-primary:hover {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .nav-btn-secondary {
+      background: var(--bg-light);
+      color: var(--text-dark);
+      border: 1px solid var(--border);
+    }
+
+    .nav-btn-secondary:hover {
+      background: var(--border);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    /* Back Button - Updated to match profile.html */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow);
+      text-decoration: none;
+      margin-bottom: 30px;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    }
+
+    /* Setup Container - Updated to match profile.html cards */
+    .setup-container {
+      background: var(--bg-white);
+      border-radius: 16px;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .setup-header {
+      padding: 40px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      text-align: center;
+    }
+
+    .setup-header h1 {
+      font-size: 32px;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+
+    .setup-header p {
+      opacity: 0.9;
+      font-size: 16px;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .setup-progress {
+      padding: 25px 40px;
+      background: var(--bg-light);
+      border-bottom: 2px solid var(--border);
+    }
+
+    .progress-steps {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .progress-steps::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--border);
+      z-index: 1;
+    }
+
+    .step {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .step-circle {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--bg-white);
+      border: 3px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: var(--text-light);
+      transition: all 0.3s ease;
+      font-size: 18px;
+    }
+
+    .step.active .step-circle {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-color: var(--primary);
+      color: white;
+      transform: scale(1.1);
+      box-shadow: var(--shadow);
+    }
+
+    .step.completed .step-circle {
+      background: var(--success);
+      border-color: var(--success);
+      color: white;
+    }
+
+    .step-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .step.active .step-label {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .step.completed .step-label {
+      color: var(--success);
+    }
+
+    /* Form Container - Updated to match profile.html */
+    .setup-form {
+      padding: 40px;
+    }
+
+    .form-section {
+      margin-bottom: 50px;
+      background: var(--bg-white);
+      padding: 30px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .section-header i {
+      font-size: 28px;
+      color: var(--primary);
+      width: 50px;
+      height: 50px;
+      background: var(--bg-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .section-header h2 {
+      font-size: 24px;
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    @media (max-width: 768px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: var(--text-dark);
+      font-size: 15px;
+    }
+
+    .required::after {
+      content: " *";
+      color: var(--danger);
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      background: var(--bg-white);
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(11, 46, 82, 0.1);
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    .form-help {
+      margin-top: 8px;
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.4;
+    }
+
+    /* Photo Upload - Updated to match profile.html */
+    .photo-upload-section {
+      margin-top: 30px;
+      margin-bottom: 40px;
+    }
+
+    .photo-upload-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .photo-upload-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .photo-preview {
+      width: 200px;
+      height: 200px;
+      border-radius: 16px;
+      background: var(--bg-light);
+      border: 3px dashed var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow);
+    }
+
+    .photo-preview:hover {
+      border-color: var(--primary);
+      background: #f0f7ff;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .photo-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 13px;
+    }
+
+    .photo-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      color: var(--text-light);
+      padding: 20px;
+    }
+
+    .photo-placeholder i {
+      font-size: 48px;
+      color: var(--primary);
+    }
+
+    .upload-btn {
+      padding: 12px 24px;
+      background: var(--bg-light);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: var(--text-dark);
+    }
+
+    .upload-btn:hover {
+      background: var(--border);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    /* Tags Input - Updated to match profile.html */
+    .tags-input-container {
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 15px;
+      min-height: 60px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      background: var(--bg-white);
+    }
+
+    .tags-input {
+      border: none;
+      outline: none;
+      flex: 1;
+      min-width: 120px;
+      padding: 8px;
+      font-size: 16px;
+      background: transparent;
+    }
+
+    .tag {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+    }
+
+    .tag-remove {
+      cursor: pointer;
+      opacity: 0.8;
+      font-size: 16px;
+      line-height: 1;
+      padding: 2px;
+    }
+
+    .tag-remove:hover {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+
+    /* Social Media Inputs */
+    .social-input-group {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .social-prefix {
+      background: var(--bg-light);
+      padding: 14px 18px;
+      border: 2px solid var(--border);
+      border-radius: 10px 0 0 10px;
+      color: var(--text-light);
+      white-space: nowrap;
+      font-weight: 500;
+      border-right: none;
+    }
+
+    .social-input {
+      border-radius: 0 10px 10px 0 !important;
+      border-left: none;
+    }
+
+    /* Checkbox Group - Updated to match profile.html */
+    .checkbox-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: var(--bg-light);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .checkbox-item:hover {
+      background: var(--border);
+      border-color: var(--primary);
+    }
+
+    .checkbox-item input {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    /* Form Actions - Updated to match profile.html buttons */
+    .form-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 40px;
+      margin-top: 40px;
+      border-top: 2px solid var(--border);
+    }
+
+    .btn {
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+      font-family: inherit;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-secondary {
+      background: var(--bg-light);
+      color: var(--text-dark);
+      border: 2px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--border);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .btn-success {
+      background: var(--success);
+      color: white;
+    }
+
+    .btn-success:hover {
+      background: #0da271;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+
+    /* Toast Notification - Updated to match profile.html */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 12px;
+      z-index: 10000;
+      font-weight: 500;
+      box-shadow: var(--shadow-lg);
+      animation: slideIn 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+    }
+
+    .toast-success {
+      background: var(--success);
+    }
+
+    .toast-error {
+      background: var(--danger);
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(-50%) translateY(100%); opacity: 0; }
+      to { transform: translateX(-50%) translateY(0); opacity: 1; }
+    }
+
+    @keyframes slideOut {
+      from { transform: translateX(-50%) translateY(0); opacity: 1; }
+      to { transform: translateX(-50%) translateY(100%); opacity: 0; }
+    }
+
+    /* Loading Overlay - Updated */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.95);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      backdrop-filter: blur(5px);
+    }
+
+    .spinner {
+      border: 4px solid var(--bg-light);
+      border-top: 4px solid var(--primary);
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+      margin-bottom: 25px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Success State - Updated to match profile.html */
+    .success-state {
+      text-align: center;
+      padding: 80px 40px;
+      background: var(--bg-white);
+    }
+
+    .success-icon {
+      font-size: 80px;
+      color: var(--success);
+      margin-bottom: 30px;
+    }
+
+    .success-state h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: var(--text-dark);
+      font-weight: 700;
+    }
+
+    .success-state p {
+      color: var(--text-light);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+      font-size: 18px;
+    }
+
+    /* Preview Card - Updated */
+    .preview-card {
+      background: var(--bg-light);
+      border-radius: 12px;
+      padding: 25px;
+      border: 2px solid var(--border);
+      margin-top: 25px;
+      box-shadow: var(--shadow);
+    }
+
+    .preview-header {
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: var(--text-dark);
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .preview-header i {
+      color: var(--primary);
+    }
+
+    .preview-content {
+      color: var(--text-dark);
+      font-size: 16px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    /* Broker Selection - Updated */
+    .broker-selection {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .broker-card {
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: var(--bg-white);
+    }
+
+    .broker-card:hover {
+      border-color: var(--primary);
+      background: #f0f7ff;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .broker-card.selected {
+      border-color: var(--primary);
+      background: #e8f4fc;
+      box-shadow: var(--shadow);
+    }
+
+    .broker-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: white;
+      font-weight: bold;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .broker-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .broker-info {
+      flex: 1;
+    }
+
+    .broker-name {
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+      font-size: 20px;
+    }
+
+    .broker-details {
+      font-size: 15px;
+      color: var(--text-light);
+      line-height: 1.5;
+    }
+
+    .no-brokers {
+      text-align: center;
+      padding: 60px 40px;
+      color: var(--text-light);
+      background: var(--bg-light);
+      border-radius: 12px;
+      border: 2px dashed var(--border);
+    }
+
+    .no-brokers i {
+      font-size: 64px;
+      margin-bottom: 25px;
+      color: var(--border);
+    }
+
+    .no-brokers h3 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: var(--text-dark);
+    }
+
+    /* Error States */
+    .error-message {
+      color: var(--danger);
+      font-size: 14px;
+      margin-top: 8px;
+      display: none;
+      font-weight: 500;
+    }
+
+    input.error, select.error, textarea.error {
+      border-color: var(--danger);
+    }
+
+    input.error:focus, select.error:focus, textarea.error:focus {
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .container {
+        padding: 25px;
+        padding-top: 90px;
+      }
+      
+      .setup-header {
+        padding: 30px;
+      }
+      
+      .setup-header h1 {
+        font-size: 28px;
+      }
+      
+      .setup-form {
+        padding: 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+        padding-top: 80px;
+      }
+      
+      .top-nav {
+        padding: 15px 20px;
+      }
+      
+      .nav-brand {
+        font-size: 24px;
+      }
+      
+      .nav-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+      }
+      
+      .setup-header h1 {
+        font-size: 24px;
+      }
+      
+      .setup-header p {
+        font-size: 15px;
+      }
+      
+      .progress-steps {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+      }
+      
+      .progress-steps::before {
+        display: none;
+      }
+      
+      .step {
+        flex-direction: row;
+        gap: 20px;
+      }
+      
+      .step-circle {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+      }
+      
+      .form-actions {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .form-actions .btn {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .photo-upload-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .photo-preview {
+        width: 150px;
+        height: 150px;
+      }
+      
+      .broker-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+      }
+      
+      .broker-avatar {
+        width: 70px;
+        height: 70px;
+        font-size: 24px;
+      }
+      
+      .success-state {
+        padding: 40px 20px;
+      }
+      
+      .success-state h2 {
+        font-size: 24px;
+      }
+    }
+</style>
+</head>
+<body>
+<!-- Fixed Top Navigation -->
+<nav class="top-nav">
+  <a href="index.html" class="nav-brand">
+    <i class="fas fa-home"></i>
+    <span>BahAI Real Estate</span>
+  </a>
+  <div class="nav-actions">
+    <a href="agent_dashboard.html" class="nav-btn nav-btn-secondary">
+      <i class="fas fa-tachometer-alt"></i> Dashboard
+    </a>
+    <a href="profile.html" class="nav-btn nav-btn-primary" id="viewProfileNavBtn">
+      <i class="fas fa-user"></i> View Profile
+    </a>
+  </div>
+</nav>
+
+<!-- Main Container -->
+<div class="container">
+  <!-- Back Button -->
+  <a href="agent_dashboard.html" class="back-btn">
+    <i class="fas fa-arrow-left"></i> Back to Dashboard
+  </a>
+
+  <!-- Setup Container -->
+  <div class="setup-container">
+    <!-- Header -->
+    <div class="setup-header">
+      <h1>Setup Your Agent Profile</h1>
+      <p>Complete your agent profile to start working with brokers and listing properties. A complete profile helps brokers trust and select you.</p>
+    </div>
+
+    <!-- Progress Steps -->
+    <div class="setup-progress">
+      <div class="progress-steps">
+        <div class="step active" id="step1">
+          <div class="step-circle">1</div>
+          <div class="step-label">Basic Info</div>
+        </div>
+        <div class="step" id="step2">
+          <div class="step-circle">2</div>
+          <div class="step-label">Broker & Professional</div>
+        </div>
+        <div class="step" id="step3">
+          <div class="step-circle">3</div>
+          <div class="step-label">Specializations</div>
+        </div>
+        <div class="step" id="step4">
+          <div class="step-circle">4</div>
+          <div class="step-label">Contact & Social</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <div class="setup-form" id="setupForm">
+      <!-- Step 1: Basic Information -->
+      <div class="form-section" id="step1Section">
+        <div class="section-header">
+          <i class="fas fa-user"></i>
+          <h2>Basic Information</h2>
+        </div>
+
+        <div class="photo-upload-section">
+          <label>Profile Photos <span class="required">*</span></label>
+          <div class="photo-upload-container">
+            <div class="photo-upload-item">
+              <div class="photo-preview" id="profilePhotoPreview" onclick="document.getElementById('profilePhotoInput').click()">
+                <div class="photo-placeholder">
+                  <i class="fas fa-user"></i>
+                  <span>Profile Photo</span>
+                </div>
+              </div>
+              <input type="file" id="profilePhotoInput" accept="image/*" onchange="previewImage(event, 'profilePhotoPreview')">
+              <button class="upload-btn" onclick="document.getElementById('profilePhotoInput').click()">Upload Photo</button>
+            </div>
+            <div class="photo-upload-item">
+              <div class="photo-preview" id="coverPhotoPreview" onclick="document.getElementById('coverPhotoInput').click()">
+                <div class="photo-placeholder">
+                  <i class="fas fa-image"></i>
+                  <span>Cover Photo</span>
+                </div>
+              </div>
+              <input type="file" id="coverPhotoInput" accept="image/*" onchange="previewImage(event, 'coverPhotoPreview')">
+              <button class="upload-btn" onclick="document.getElementById('coverPhotoInput').click()">Upload Cover</button>
+            </div>
+          </div>
+          <div class="form-help">Profile photo is required. Recommended: Profile photo (400x400px), Cover photo (1200x400px). Max file size: 5MB</div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="fullName" class="required">Full Name</label>
+            <input type="text" id="fullName" placeholder="Enter your full name" required>
+            <div class="error-message" id="fullNameError">Full name is required</div>
+          </div>
+          <div class="form-group">
+            <label for="title" class="required">Professional Title</label>
+            <input type="text" id="title" placeholder="e.g., Real Estate Agent" required>
+            <div class="error-message" id="titleError">Title is required</div>
+          </div>
+          <div class="form-group">
+            <label for="location" class="required">Location</label>
+            <input type="text" id="location" placeholder="e.g., Manila, Philippines" required>
+            <div class="error-message" id="locationError">Location is required</div>
+          </div>
+          <div class="form-group">
+            <label for="email" class="required">Email Address</label>
+            <input type="email" id="email" placeholder="your.email@example.com" required>
+            <div class="error-message" id="emailError">Valid email is required</div>
+          </div>
+          <div class="form-group">
+            <label for="phone" class="required">Phone Number</label>
+            <input type="tel" id="phone" placeholder="+63 912 345 6789" required>
+            <div class="error-message" id="phoneError">Phone number is required</div>
+          </div>
+          <div class="form-group">
+            <label for="yearsExperience">Years of Experience</label>
+            <input type="number" id="yearsExperience" placeholder="2" min="0" max="50">
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Broker & Professional Details -->
+      <div class="form-section" id="step2Section" style="display: none;">
+        <div class="section-header">
+          <i class="fas fa-handshake"></i>
+          <h2>Broker & Professional Details</h2>
+        </div>
+
+        <div class="form-group">
+          <label for="brokerSelection">Select Your Broker <span class="required">*</span></label>
+          <div class="broker-selection" id="brokerSelection">
+            <div class="no-brokers" id="noBrokersMessage">
+              <i class="fas fa-users"></i>
+              <h3>Loading Brokers...</h3>
+              <p>Please wait while we load available brokers.</p>
+            </div>
+          </div>
+          <div class="error-message" id="brokerError">Please select a broker</div>
+          <div class="form-help">You can only work under one broker at a time. Choose carefully.</div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="agentId">Agent ID (Optional)</label>
+            <input type="text" id="agentId" placeholder="e.g., AGT-2024-001">
+            <div class="form-help">Your internal agent ID if assigned by broker</div>
+          </div>
+          <div class="form-group">
+            <label for="languages">Languages Spoken</label>
+            <input type="text" id="languages" placeholder="English, Filipino">
+            <div class="form-help">Separate languages with commas</div>
+          </div>
+          <div class="form-group">
+            <label for="availability">Availability</label>
+            <input type="text" id="availability" placeholder="Mon-Fri: 9AM-6PM, Sat: 10AM-4PM">
+          </div>
+          <div class="form-group">
+            <label for="workingHours">Preferred Working Hours</label>
+            <select id="workingHours">
+              <option value="">Select preference</option>
+              <option value="flexible">Flexible Hours</option>
+              <option value="standard_9_6">Standard (9AM-6PM)</option>
+              <option value="weekends">Weekends Only</option>
+              <option value="evenings">Evenings Only</option>
+              <option value="full_time">Full-Time</option>
+              <option value="part_time">Part-Time</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="bio">Professional Bio</label>
+          <textarea id="bio" placeholder="Tell brokers about your experience, skills, and what makes you a great agent..."></textarea>
+          <div class="form-help">Highlight your strengths and why brokers should work with you</div>
+        </div>
+
+        <div class="preview-card">
+          <div class="preview-header">
+            <i class="fas fa-eye"></i>
+            <span>Bio Preview:</span>
+          </div>
+          <div class="preview-content" id="bioPreview">Your bio will appear here...</div>
+        </div>
+      </div>
+
+      <!-- Step 3: Specializations -->
+      <div class="form-section" id="step3Section" style="display: none;">
+        <div class="section-header">
+          <i class="fas fa-star"></i>
+          <h2>Specializations</h2>
+        </div>
+
+        <div class="form-group">
+          <label for="propertyTypesInput">Property Types</label>
+          <div class="tags-input-container" id="propertyTypesContainer">
+            <input type="text" id="propertyTypesInput" class="tags-input" placeholder="Type and press Enter...">
+          </div>
+          <div class="form-help">Add property types you specialize in (e.g., Residential, Condominium, Townhouse, Apartment)</div>
+        </div>
+
+        <div class="form-group">
+          <label for="serviceAreasInput">Service Areas</label>
+          <div class="tags-input-container" id="serviceAreasContainer">
+            <input type="text" id="serviceAreasInput" class="tags-input" placeholder="Type and press Enter...">
+          </div>
+          <div class="form-help">Add cities or areas where you can provide services</div>
+        </div>
+
+        <div class="form-group">
+          <label>Agent Skills & Services</label>
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input type="checkbox" id="skillShowings" value="Property Showings">
+              <label for="skillShowings">Property Showings</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="skillNegotiation" value="Negotiation">
+              <label for="skillNegotiation">Negotiation</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="skillListing" value="Listing Creation">
+              <label for="skillListing">Listing Creation</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="skillMarketing" value="Marketing & Advertising">
+              <label for="skillMarketing">Marketing & Advertising</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="skillNetworking" value="Networking">
+              <label for="skillNetworking">Networking</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="skillLeads" value="Lead Generation">
+              <label for="skillLeads">Lead Generation</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="skillClientMgmt" value="Client Management">
+              <label for="skillClientMgmt">Client Management</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="skillClosing" value="Deal Closing">
+              <label for="skillClosing">Deal Closing</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="skillOpenHouses" value="Open Houses">
+              <label for="skillOpenHouses">Open Houses</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="skillPhotography" value="Property Photography">
+              <label for="skillPhotography">Property Photography</label>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Step 4: Contact & Social Media -->
+      <div class="form-section" id="step4Section" style="display: none;">
+        <div class="section-header">
+          <i class="fas fa-share-alt"></i>
+          <h2>Contact & Social Media</h2>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="website">Website/Portfolio</label>
+            <input type="url" id="website" placeholder="https://yourportfolio.com">
+          </div>
+          <div class="form-group">
+            <label for="facebook">Facebook</label>
+            <div class="social-input-group">
+              <span class="social-prefix">facebook.com/</span>
+              <input type="text" id="facebook" class="social-input" placeholder="yourusername">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="instagram">Instagram</label>
+            <div class="social-input-group">
+              <span class="social-prefix">instagram.com/</span>
+              <input type="text" id="instagram" class="social-input" placeholder="yourusername">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="linkedin">LinkedIn</label>
+            <div class="social-input-group">
+              <span class="social-prefix">linkedin.com/in/</span>
+              <input type="text" id="linkedin" class="social-input" placeholder="yourusername">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="whatsapp">WhatsApp Number</label>
+            <input type="tel" id="whatsapp" placeholder="+63 912 345 6789">
+          </div>
+          <div class="form-group">
+            <label for="viber">Viber Number</label>
+            <input type="tel" id="viber" placeholder="+63 912 345 6789">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Contact Preferences</label>
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input type="checkbox" id="prefEmail" checked>
+              <label for="prefEmail">Email</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="prefPhone" checked>
+              <label for="prefPhone">Phone Calls</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="prefWhatsApp" checked>
+              <label for="prefWhatsApp">WhatsApp</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="prefViber">
+              <label for="prefViber">Viber</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="prefSMS">
+              <label for="prefSMS">SMS/Text</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="prefVideoCall">
+              <label for="prefVideoCall">Video Calls</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="form-actions">
+        <button class="btn btn-secondary" id="prevBtn" onclick="prevStep()" style="display: none;">
+          <i class="fas fa-arrow-left"></i> Previous
+        </button>
+        <div style="margin-left: auto; display: flex; gap: 15px;">
+          <button class="btn btn-secondary" onclick="saveAsDraft()">
+            <i class="far fa-save"></i> Save Draft
+          </button>
+          <button class="btn btn-primary" id="nextBtn" onclick="nextStep()">
+            Next <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success State (Hidden by default) -->
+    <div id="successState" class="success-state" style="display: none;">
+      <div class="success-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h2>Agent Profile Setup Complete!</h2>
+      <p>Your agent profile has been successfully saved. Brokers can now see your profile and invite you to work with them.</p>
+      <div style="display: flex; gap: 15px; justify-content: center; margin-top: 30px; flex-wrap: wrap;">
+        <a href="agent_dashboard.html" class="btn btn-secondary">
+          <i class="fas fa-tachometer-alt"></i> Go to Dashboard
+        </a>
+        <a href="profile.html" class="btn btn-primary" id="viewProfileSuccessBtn">
+          <i class="fas fa-eye"></i> View Profile
+        </a>
+        <button class="btn btn-success" onclick="connectWithBrokers()">
+          <i class="fas fa-handshake"></i> Connect with Brokers
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Firebase SDK -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+import { 
+  getAuth, 
+  onAuthStateChanged,
+  signOut 
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+import { 
+  getFirestore, 
+  doc, 
+  setDoc,
+  getDoc,
+  collection,
+  query,
+  where,
+  getDocs,
+  serverTimestamp 
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+import { 
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-storage.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCIfzneDzWVveG8p_0mywoA9D9F5AyzZX4",
+  authDomain: "bahai-1b76d.firebaseapp.com",
+  projectId: "bahai-1b76d",
+  storageBucket: "bahai-1b76d.firebasestorage.app",
+  messagingSenderId: "646878644941",
+  appId: "1:646878644941:web:5b4ccc3412250337587784"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+const storage = getStorage(app);
+
+let currentUser = null;
+let currentStep = 1;
+let profileData = {
+  propertyTypes: [],
+  serviceAreas: [],
+  agentSkills: [],
+  socialMedia: {},
+  contactPreferences: {}
+};
+let selectedBroker = null;
+let availableBrokers = [];
+let profilePhotoFile = null;
+let coverPhotoFile = null;
+
+// ==================== INITIALIZATION ====================
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('Initializing agent profile setup...');
+  
+  // Setup bio preview
+  const bioInput = document.getElementById('bio');
+  const bioPreview = document.getElementById('bioPreview');
+  
+  if (bioInput && bioPreview) {
+    bioInput.addEventListener('input', function() {
+      bioPreview.textContent = bioInput.value || 'Your bio will appear here...';
+    });
+  }
+
+  // Setup tags input
+  setupTagsInput('propertyTypesInput', 'propertyTypesContainer', profileData.propertyTypes);
+  setupTagsInput('serviceAreasInput', 'serviceAreasContainer', profileData.serviceAreas);
+
+  // Check authentication state
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      currentUser = user;
+      console.log('User authenticated:', user.uid);
+      
+      // Update profile button
+      const viewProfileNavBtn = document.getElementById('viewProfileNavBtn');
+      if (viewProfileNavBtn) {
+        viewProfileNavBtn.href = `profile.html?id=${user.uid}`;
+      }
+      
+      // Load existing profile data
+      await loadExistingProfile();
+      
+    } else {
+      console.log('No user authenticated, redirecting to login...');
+      // Redirect to login
+      window.location.href = 'login.html?redirect=agent_profile.html';
+    }
+  });
+});
+
+// ==================== FORM VALIDATION ====================
+function validateStep(step) {
+  clearErrors();
+  
+  switch(step) {
+    case 1:
+      return validateStep1();
+    case 2:
+      return validateStep2();
+    case 3:
+      return validateStep3();
+    case 4:
+      return validateStep4();
+    default:
+      return true;
+  }
+}
+
+function validateStep1() {
+  let isValid = true;
+  
+  // Required fields
+  const requiredFields = [
+    { id: 'fullName', errorId: 'fullNameError', message: 'Full name is required' },
+    { id: 'title', errorId: 'titleError', message: 'Professional title is required' },
+    { id: 'location', errorId: 'locationError', message: 'Location is required' },
+    { id: 'email', errorId: 'emailError', message: 'Valid email is required' },
+    { id: 'phone', errorId: 'phoneError', message: 'Phone number is required' }
+  ];
+  
+  requiredFields.forEach(field => {
+    const element = document.getElementById(field.id);
+    const errorElement = document.getElementById(field.errorId);
+    
+    if (!element.value.trim()) {
+      showError(element, errorElement, field.message);
+      isValid = false;
+    } else if (field.id === 'email') {
+      if (!isValidEmail(element.value.trim())) {
+        showError(element, errorElement, 'Please enter a valid email address');
+        isValid = false;
+      }
+    }
+  });
+  
+  // Check profile photo
+  const profilePhotoImg = document.getElementById('profilePhotoPreview').querySelector('img');
+  if (!profilePhotoImg && !profilePhotoFile) {
+    showToast('Profile photo is required', 'error');
+    isValid = false;
+  }
+  
+  return isValid;
+}
+
+function validateStep2() {
+  if (!selectedBroker) {
+    document.getElementById('brokerError').classList.add('show');
+    showToast('Please select a broker', 'error');
+    return false;
+  }
+  return true;
+}
+
+function validateStep3() {
+  return true; // All fields optional
+}
+
+function validateStep4() {
+  return true; // All fields optional
+}
+
+function isValidEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
+}
+
+function showError(element, errorElement, message) {
+  element.classList.add('error');
+  errorElement.textContent = message;
+  errorElement.classList.add('show');
+}
+
+function clearErrors() {
+  // Clear all error states
+  document.querySelectorAll('.error-message').forEach(el => {
+    el.classList.remove('show');
+  });
+  document.querySelectorAll('.error').forEach(el => {
+    el.classList.remove('error');
+  });
+}
+
+// ==================== TAGS MANAGEMENT ====================
+function setupTagsInput(inputId, containerId, tagsArray) {
+  const input = document.getElementById(inputId);
+  const container = document.getElementById(containerId);
+  
+  if (!input || !container) return;
+  
+  input.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter' && input.value.trim()) {
+      e.preventDefault();
+      addTag(input.value.trim(), tagsArray, containerId);
+      input.value = '';
+    }
+  });
+  
+  input.addEventListener('blur', function() {
+    if (input.value.trim()) {
+      addTag(input.value.trim(), tagsArray, containerId);
+      input.value = '';
+    }
+  });
+}
+
+function addTag(tag, tagsArray, containerId) {
+  if (!tagsArray.includes(tag)) {
+    tagsArray.push(tag);
+    updateTagsDisplay(containerId, tagsArray);
+  }
+}
+
+function updateTagsDisplay(containerId, tagsArray) {
+  const container = document.getElementById(containerId);
+  const tagsHTML = tagsArray.map(tag => `
+    <span class="tag">
+      ${tag.replace(/'/g, '&apos;')}
+      <span class="tag-remove" onclick="removeTag('${containerId}', '${tag.replace(/'/g, "\\'")}')">&times;</span>
+    </span>
+  `).join('');
+  
+  const input = container.querySelector('.tags-input');
+  container.innerHTML = tagsHTML + input.outerHTML;
+  
+  // Re-attach event listeners
+  const newInput = container.querySelector('.tags-input');
+  if (newInput) {
+    newInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter' && newInput.value.trim()) {
+        e.preventDefault();
+        addTag(newInput.value.trim(), tagsArray, containerId);
+        newInput.value = '';
+      }
+    });
+  }
+}
+
+window.removeTag = function(containerId, tagToRemove) {
+  let tagsArray;
+  if (containerId === 'propertyTypesContainer') {
+    tagsArray = profileData.propertyTypes;
+  } else {
+    tagsArray = profileData.serviceAreas;
+  }
+  
+  const index = tagsArray.indexOf(tagToRemove);
+  if (index > -1) {
+    tagsArray.splice(index, 1);
+    updateTagsDisplay(containerId, tagsArray);
+  }
+}
+
+// ==================== IMAGE HANDLING ====================
+window.previewImage = function(event, previewId) {
+  const input = event.target;
+  const preview = document.getElementById(previewId);
+  
+  if (input.files && input.files[0]) {
+    const file = input.files[0];
+    
+    // Validate file size (5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      showToast('File size must be less than 5MB', 'error');
+      input.value = '';
+      resetPhotoPreview(previewId);
+      return;
+    }
+    
+    // Validate file type
+    const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+    if (!validTypes.includes(file.type)) {
+      showToast('File must be an image (JPEG, PNG, GIF, WebP)', 'error');
+      input.value = '';
+      resetPhotoPreview(previewId);
+      return;
+    }
+    
+    const reader = new FileReader();
+    
+    reader.onload = function(e) {
+      preview.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+      
+      // Store the file for later upload
+      if (previewId === 'profilePhotoPreview') {
+        profilePhotoFile = file;
+      } else if (previewId === 'coverPhotoPreview') {
+        coverPhotoFile = file;
+      }
+    };
+    
+    reader.onerror = function() {
+      showToast('Error reading file', 'error');
+      resetPhotoPreview(previewId);
+    };
+    
+    reader.readAsDataURL(file);
+  }
+};
+
+function resetPhotoPreview(previewId) {
+  const preview = document.getElementById(previewId);
+  const type = previewId.includes('profile') ? 'Profile' : 'Cover';
+  preview.innerHTML = `
+    <div class="photo-placeholder">
+      <i class="fas fa-${previewId.includes('profile') ? 'user' : 'image'}"></i>
+      <span>${type} Photo</span>
+    </div>
+  `;
+}
+
+// ==================== BROKER MANAGEMENT ====================
+async function loadBrokers() {
+  try {
+    console.log('Loading brokers...');
+    
+    const brokersQuery = query(collection(db, "users"), where("userType", "==", "broker"));
+    const brokersSnapshot = await getDocs(brokersQuery);
+    
+    availableBrokers = [];
+    brokersSnapshot.forEach(doc => {
+      const brokerData = doc.data();
+      if (brokerData.isProfileComplete !== false && brokerData.fullName) {
+        availableBrokers.push({
+          id: doc.id,
+          ...brokerData
+        });
+      }
+    });
+    
+    console.log(`Found ${availableBrokers.length} brokers`);
+    displayBrokers();
+    
+  } catch (error) {
+    console.error('Error loading brokers:', error);
+    
+    const brokerSelection = document.getElementById('brokerSelection');
+    brokerSelection.innerHTML = `
+      <div class="no-brokers">
+        <i class="fas fa-exclamation-circle"></i>
+        <h3>Error Loading Brokers</h3>
+        <p>Could not load broker list. Please try again.</p>
+        <button class="btn btn-secondary" onclick="loadBrokers()" style="margin-top: 15px;">
+          <i class="fas fa-sync-alt"></i> Try Again
+        </button>
+      </div>
+    `;
+  }
+}
+
+function displayBrokers() {
+  const brokerSelection = document.getElementById('brokerSelection');
+  
+  if (availableBrokers.length === 0) {
+    brokerSelection.innerHTML = `
+      <div class="no-brokers">
+        <i class="fas fa-users"></i>
+        <h3>No Brokers Available</h3>
+        <p>Please contact support or ask a broker to invite you to their team.</p>
+        <button class="btn btn-secondary" onclick="loadBrokers()" style="margin-top: 15px;">
+          <i class="fas fa-sync-alt"></i> Refresh List
+        </button>
+      </div>
+    `;
+    return;
+  }
+  
+  const brokersHTML = availableBrokers.map(broker => {
+    const initials = broker.fullName ? broker.fullName.split(' ').map(n => n[0]).join('').toUpperCase() : 'BR';
+    const isSelected = selectedBroker?.id === broker.id ? 'selected' : '';
+    
+    return `
+      <div class="broker-card ${isSelected}" onclick="selectBroker('${broker.id}')">
+        <div class="broker-avatar">
+          ${broker.photoURL ? `<img src="${broker.photoURL}" alt="${broker.fullName}">` : initials}
+        </div>
+        <div class="broker-info">
+          <div class="broker-name">${broker.fullName || 'Broker'}</div>
+          <div class="broker-details">
+            ${broker.title || 'Real Estate Broker'} • ${broker.location || 'Location not specified'}
+            ${broker.company ? `<br>${broker.company}` : ''}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  brokerSelection.innerHTML = brokersHTML;
+}
+
+window.selectBroker = function(brokerId) {
+  selectedBroker = availableBrokers.find(b => b.id === brokerId);
+  displayBrokers();
+  document.getElementById('brokerError').classList.remove('show');
+}
+
+// ==================== DATA LOADING ====================
+async function loadExistingProfile() {
+  try {
+    console.log('Loading existing profile...');
+    
+    // Try to load from users collection first
+    const userDoc = await getDoc(doc(db, "users", currentUser.uid));
+    
+    if (userDoc.exists()) {
+      const data = userDoc.data();
+      console.log('Loaded profile data:', data);
+      
+      if (data.userType === 'agent' || data.isProfileComplete) {
+        populateFormFields(data);
+        
+        // If brokerId exists, try to select it
+        if (data.brokerId) {
+          selectedBroker = { id: data.brokerId, ...(data.brokerData || {}) };
+        }
+        
+        showToast('Loaded existing profile', 'success');
+        return;
+      }
+    }
+    
+    // If no existing profile, pre-fill with auth data
+    if (currentUser.email) {
+      document.getElementById('email').value = currentUser.email;
+    }
+    if (currentUser.displayName) {
+      document.getElementById('fullName').value = currentUser.displayName;
+    }
+    
+  } catch (error) {
+    console.error('Error loading profile:', error);
+    showToast('Error loading profile data', 'error');
+  }
+}
+
+function populateFormFields(data) {
+  // Basic info
+  document.getElementById('fullName').value = data.fullName || data.displayName || '';
+  document.getElementById('title').value = data.title || 'Real Estate Agent';
+  document.getElementById('location').value = data.location || '';
+  document.getElementById('email').value = data.email || currentUser.email || '';
+  document.getElementById('phone').value = data.phone || '';
+  document.getElementById('yearsExperience').value = data.yearsExperience || 0;
+  
+  // Professional details
+  document.getElementById('agentId').value = data.agentId || '';
+  document.getElementById('languages').value = data.languages || '';
+  document.getElementById('availability').value = data.availability || '';
+  document.getElementById('workingHours').value = data.workingHours || '';
+  document.getElementById('bio').value = data.bio || '';
+  // Specializations
+  if (data.propertyTypes && Array.isArray(data.propertyTypes)) {
+    profileData.propertyTypes = data.propertyTypes;
+    updateTagsDisplay('propertyTypesContainer', profileData.propertyTypes);
+  }
+  
+  if (data.serviceAreas && Array.isArray(data.serviceAreas)) {
+    profileData.serviceAreas = data.serviceAreas;
+    updateTagsDisplay('serviceAreasContainer', profileData.serviceAreas);
+  }
+  
+  // Agent skills
+  if (data.agentSkills || data.skills) {
+    const skills = Array.isArray(data.agentSkills) ? data.agentSkills : 
+                  Array.isArray(data.skills) ? data.skills : [];
+    skills.forEach(skill => {
+      const checkbox = document.querySelector(`input[value="${skill}"]`);
+      if (checkbox) checkbox.checked = true;
+    });
+  }
+  
+  // Social media
+  document.getElementById('website').value = data.website || (data.socialMedia?.website || '');
+  document.getElementById('facebook').value = data.socialMedia?.facebook || '';
+  document.getElementById('instagram').value = data.socialMedia?.instagram || '';
+  document.getElementById('linkedin').value = data.socialMedia?.linkedin || '';
+  document.getElementById('whatsapp').value = data.socialMedia?.whatsapp || '';
+  document.getElementById('viber').value = data.socialMedia?.viber || '';
+  
+  // Contact preferences
+  if (data.contactPreferences) {
+    document.getElementById('prefEmail').checked = data.contactPreferences.email !== false;
+    document.getElementById('prefPhone').checked = data.contactPreferences.phone !== false;
+    document.getElementById('prefWhatsApp').checked = data.contactPreferences.whatsapp === true;
+    document.getElementById('prefViber').checked = data.contactPreferences.viber === true;
+    document.getElementById('prefSMS').checked = data.contactPreferences.sms === true;
+    document.getElementById('prefVideoCall').checked = data.contactPreferences.videoCall === true;
+  }
+  
+  // Photos
+  if (data.photoURL) {
+    document.getElementById('profilePhotoPreview').innerHTML = `<img src="${data.photoURL}" alt="Profile">`;
+  }
+  if (data.coverPhotoURL) {
+    document.getElementById('coverPhotoPreview').innerHTML = `<img src="${data.coverPhotoURL}" alt="Cover">`;
+  }
+}
+
+// ==================== STEP NAVIGATION ====================
+function saveStepData(step) {
+  switch(step) {
+    case 1:
+      profileData.fullName = document.getElementById('fullName').value.trim();
+      profileData.title = document.getElementById('title').value.trim();
+      profileData.location = document.getElementById('location').value.trim();
+      profileData.email = document.getElementById('email').value.trim();
+      profileData.phone = document.getElementById('phone').value.trim();
+      profileData.yearsExperience = parseInt(document.getElementById('yearsExperience').value) || 0;
+      break;
+      
+    case 2:
+      profileData.agentId = document.getElementById('agentId').value.trim();
+      profileData.languages = document.getElementById('languages').value.trim();
+      profileData.availability = document.getElementById('availability').value.trim();
+      profileData.workingHours = document.getElementById('workingHours').value;
+      profileData.bio = document.getElementById('bio').value.trim();
+      break;
+      
+    case 3:
+      // Agent skills
+      profileData.agentSkills = [];
+      const skillCheckboxes = document.querySelectorAll('#step3Section .checkbox-group input[type="checkbox"]:checked');
+      skillCheckboxes.forEach(checkbox => {
+        profileData.agentSkills.push(checkbox.value);
+      });
+      break;
+      
+    case 4:
+      profileData.socialMedia = {
+        website: document.getElementById('website').value.trim(),
+        facebook: document.getElementById('facebook').value.trim(),
+        instagram: document.getElementById('instagram').value.trim(),
+        linkedin: document.getElementById('linkedin').value.trim(),
+        whatsapp: document.getElementById('whatsapp').value.trim(),
+        viber: document.getElementById('viber').value.trim()
+      };
+      
+      profileData.contactPreferences = {
+        email: document.getElementById('prefEmail').checked,
+        phone: document.getElementById('prefPhone').checked,
+        whatsapp: document.getElementById('prefWhatsApp').checked,
+        viber: document.getElementById('prefViber').checked,
+        sms: document.getElementById('prefSMS').checked,
+        videoCall: document.getElementById('prefVideoCall').checked
+      };
+      break;
+  }
+}
+
+window.nextStep = async function() {
+  if (!validateStep(currentStep)) {
+    return;
+  }
+  
+  // Save current step data
+  saveStepData(currentStep);
+  
+  // Hide current step
+  document.getElementById(`step${currentStep}Section`).style.display = 'none';
+  document.getElementById(`step${currentStep}`).classList.remove('active');
+  document.getElementById(`step${currentStep}`).classList.add('completed');
+  
+  currentStep++;
+  
+  // Load brokers when moving to step 2
+  if (currentStep === 2) {
+    await loadBrokers();
+  }
+  
+  if (currentStep > 4) {
+    // Final step - submit form
+    await submitProfile();
+    return;
+  }
+  
+  // Show next step
+  document.getElementById(`step${currentStep}Section`).style.display = 'block';
+  document.getElementById(`step${currentStep}`).classList.add('active');
+  
+  // Update buttons
+  document.getElementById('prevBtn').style.display = 'flex';
+  
+  if (currentStep === 4) {
+    document.getElementById('nextBtn').innerHTML = 'Complete Setup <i class="fas fa-check"></i>';
+    document.getElementById('nextBtn').onclick = function() {
+      if (validateStep(currentStep)) {
+        submitProfile();
+      }
+    };
+  } else {
+    document.getElementById('nextBtn').innerHTML = 'Next <i class="fas fa-arrow-right"></i>';
+    document.getElementById('nextBtn').onclick = nextStep;
+  }
+}
+
+window.prevStep = function() {
+  // Hide current step
+  document.getElementById(`step${currentStep}Section`).style.display = 'none';
+  document.getElementById(`step${currentStep}`).classList.remove('active');
+  
+  currentStep--;
+  
+  // Show previous step
+  document.getElementById(`step${currentStep}Section`).style.display = 'block';
+  document.getElementById(`step${currentStep}`).classList.add('active');
+  
+  // Update buttons
+  if (currentStep === 1) {
+    document.getElementById('prevBtn').style.display = 'none';
+  }
+  
+  document.getElementById('nextBtn').innerHTML = 'Next <i class="fas fa-arrow-right"></i>';
+  document.getElementById('nextBtn').onclick = nextStep;
+}
+
+// ==================== PROFILE SUBMISSION ====================
+async function uploadPhoto(file, type) {
+  try {
+    if (!file) return null;
+    
+    // Create a unique filename
+    const timestamp = Date.now();
+    const fileExtension = file.name.split('.').pop().toLowerCase();
+    const filename = `${type}_${timestamp}.${fileExtension}`;
+    
+    // Create storage reference
+    const storageRef = ref(storage, `agents/${currentUser.uid}/${filename}`);
+    
+    // Upload file
+    const snapshot = await uploadBytes(storageRef, file);
+    
+    // Get download URL
+    const downloadURL = await getDownloadURL(snapshot.ref);
+    
+    return downloadURL;
+  } catch (error) {
+    console.error('Error uploading photo:', error);
+    throw error;
+  }
+}
+
+// ==================== PROFILE SUBMISSION ====================
+async function submitProfile() {
+  try {
+    console.log('Submitting profile...');
+    showLoading('Saving your profile...');
+    
+    // Save all step data
+    for (let i = 1; i <= 4; i++) {
+      saveStepData(i);
+    }
+    
+    // Upload photos
+    let profilePhotoURL = '';
+    let coverPhotoURL = '';
+    
+    // Upload profile photo
+    if (profilePhotoFile) {
+      showLoading('Uploading profile photo...');
+      try {
+        profilePhotoURL = await uploadPhoto(profilePhotoFile, 'profile');
+        console.log('Profile photo URL:', profilePhotoURL);
+      } catch (uploadError) {
+        console.error('Profile photo upload failed:', uploadError);
+        // Continue without photo
+      }
+    }
+    
+    // Upload cover photo (optional)
+    if (coverPhotoFile) {
+      showLoading('Uploading cover photo...');
+      try {
+        coverPhotoURL = await uploadPhoto(coverPhotoFile, 'cover');
+        console.log('Cover photo URL:', coverPhotoURL);
+      } catch (uploadError) {
+        console.error('Cover photo upload failed:', uploadError);
+        // Continue without cover photo
+      }
+    }
+    
+    // Prepare complete profile data - ensure no undefined values
+    const agentData = {
+      // Basic info
+      fullName: profileData.fullName || '',
+      displayName: profileData.fullName || '',
+      title: profileData.title || '',
+      location: profileData.location || '',
+      email: profileData.email || currentUser.email || '',
+      phone: profileData.phone || '',
+      yearsExperience: profileData.yearsExperience || 0,
+      
+      // Professional details
+      agentId: profileData.agentId || '',
+      languages: profileData.languages || '',
+      availability: profileData.availability || '',
+      workingHours: profileData.workingHours || '',
+      bio: profileData.bio || '',
+      
+      // Specializations
+      propertyTypes: profileData.propertyTypes || [],
+      serviceAreas: profileData.serviceAreas || [],
+      agentSkills: profileData.agentSkills || [],
+      
+      // Social & contact
+      socialMedia: profileData.socialMedia || {},
+      contactPreferences: profileData.contactPreferences || {},
+      website: profileData.socialMedia?.website || '',
+      
+      // Metadata
+      userId: currentUser.uid,
+      userType: 'agent',
+      userRole: 'agent',
+      isProfileComplete: true,
+      profileCompleted: true,
+      isActive: true,
+      status: 'available',
+      lastUpdated: new Date().toISOString(),
+      updatedAt: serverTimestamp(),
+    };
+    
+    // Add photos if available
+    if (profilePhotoURL) {
+      agentData.photoURL = profilePhotoURL;
+      agentData.profilePhoto = profilePhotoURL;
+    }
+    if (coverPhotoURL) {
+      agentData.coverPhotoURL = coverPhotoURL;
+      agentData.coverPhoto = coverPhotoURL;
+    }
+    
+    // Add broker information if selected
+    if (selectedBroker && selectedBroker.id) {
+      // Prepare broker data ensuring no undefined values
+      const brokerData = {
+        id: selectedBroker.id || '',
+        name: selectedBroker.fullName || '',
+        company: selectedBroker.company || '',
+        title: selectedBroker.title || '',
+        location: selectedBroker.location || ''
+      };
+      
+      // Remove empty fields from brokerData
+      Object.keys(brokerData).forEach(key => {
+        if (brokerData[key] === '') {
+          delete brokerData[key];
+        }
+      });
+      
+      agentData.brokerId = selectedBroker.id || '';
+      agentData.brokerName = selectedBroker.fullName || '';
+      agentData.brokerCompany = selectedBroker.company || '';
+      agentData.brokerData = brokerData;
+    } else {
+      // Set default empty values for broker fields
+      agentData.brokerId = '';
+      agentData.brokerName = '';
+      agentData.brokerCompany = '';
+      agentData.brokerData = {};
+    }
+    
+    // Add creation date if new profile
+    if (!profileData.createdAt) {
+      agentData.createdAt = new Date().toISOString();
+      agentData.joinedDate = new Date().toISOString();
+      agentData.createdAtTimestamp = serverTimestamp();
+    }
+    
+    // Remove any undefined values from the agentData object
+    Object.keys(agentData).forEach(key => {
+      if (agentData[key] === undefined) {
+        delete agentData[key];
+      }
+    });
+    
+    console.log('Saving agent data to Firestore:', agentData);
+    
+    try {
+      // Save to users collection (primary)
+      await setDoc(doc(db, "users", currentUser.uid), agentData, { merge: true });
+      console.log('✅ Saved to users collection');
+      
+      // Also save to agents collection for compatibility
+      await setDoc(doc(db, "agents", currentUser.uid), agentData, { merge: true });
+      console.log('✅ Saved to agents collection');
+      
+      // If broker is selected, add to broker's agents subcollection
+      if (selectedBroker && selectedBroker.id) {
+        try {
+          const brokerAgentRef = doc(db, "brokers", selectedBroker.id, "agents", currentUser.uid);
+          const agentForBroker = {
+            ...agentData,
+            addedAt: new Date().toISOString(),
+            status: 'pending'
+          };
+          
+          // Remove undefined values from agentForBroker
+          Object.keys(agentForBroker).forEach(key => {
+            if (agentForBroker[key] === undefined) {
+              delete agentForBroker[key];
+            }
+          });
+          
+          await setDoc(brokerAgentRef, agentForBroker, { merge: true });
+          console.log('Added to broker agents subcollection');
+        } catch (brokerError) {
+          console.warn('Could not add to broker agents subcollection:', brokerError);
+          // Continue even if this fails
+        }
+      }
+      
+      hideLoading();
+      
+      // Show success state
+      document.getElementById('setupForm').style.display = 'none';
+      document.getElementById('successState').style.display = 'block';
+      
+      // Update success button
+      const viewProfileSuccessBtn = document.getElementById('viewProfileSuccessBtn');
+      if (viewProfileSuccessBtn) {
+        viewProfileSuccessBtn.href = `profile.html?id=${currentUser.uid}`;
+      }
+      
+      showToast('Profile saved successfully!', 'success');
+      
+      // Store in localStorage for immediate access
+      localStorage.setItem(`agent_${currentUser.uid}`, JSON.stringify(agentData));
+      
+    } catch (firestoreError) {
+      console.error('Firestore error:', firestoreError);
+      hideLoading();
+      
+      // Try saving to localStorage as fallback
+      try {
+        localStorage.setItem(`agent_${currentUser.uid}_backup`, JSON.stringify(agentData));
+        console.log('Saved to localStorage as backup');
+        
+        // Still show success but with warning
+        document.getElementById('setupForm').style.display = 'none';
+        document.getElementById('successState').style.display = 'block';
+        
+        const viewProfileSuccessBtn = document.getElementById('viewProfileSuccessBtn');
+        if (viewProfileSuccessBtn) {
+          viewProfileSuccessBtn.href = `profile.html?id=${currentUser.uid}`;
+        }
+        
+        showToast('Profile saved locally (offline mode)', 'success');
+        
+      } catch (localStorageError) {
+        console.error('LocalStorage error:', localStorageError);
+        showToast('Error saving profile. Please try again.', 'error');
+      }
+    }
+    
+  } catch (error) {
+    console.error('Error in submitProfile:', error);
+    hideLoading();
+    
+    let errorMessage = 'Error saving profile. Please try again.';
+    
+    if (error.code) {
+      switch(error.code) {
+        case 'permission-denied':
+          errorMessage = 'Permission denied. Please check if you are logged in.';
+          break;
+        case 'unavailable':
+          errorMessage = 'Network unavailable. Please check your internet connection.';
+          break;
+        case 'storage/unauthorized':
+          errorMessage = 'Storage permission error. Please contact support.';
+          break;
+        default:
+          errorMessage = `Error: ${error.message || error.code}`;
+      }
+    } else if (error.message) {
+      errorMessage = `Error: ${error.message}`;
+    }
+    
+    showToast(errorMessage, 'error');
+    
+    // Re-enable submit button
+    const nextBtn = document.getElementById('nextBtn');
+    if (nextBtn) {
+      nextBtn.disabled = false;
+      nextBtn.innerHTML = 'Complete Setup <i class="fas fa-check"></i>';
+    }
+  }
+}
+
+// ==================== UTILITY FUNCTIONS ====================
+window.saveAsDraft = function() {
+  // Save current data
+  for (let i = 1; i <= currentStep; i++) {
+    saveStepData(i);
+  }
+  
+  const draftData = {
+    ...profileData,
+    selectedBroker: selectedBroker,
+    isDraft: true,
+    lastSaved: new Date().toISOString(),
+    userId: currentUser.uid
+  };
+  
+  localStorage.setItem('agentProfileDraft', JSON.stringify(draftData));
+  showToast('Draft saved locally', 'success');
+};
+
+window.connectWithBrokers = function() {
+  window.location.href = 'agent_brokers.html';
+};
+
+function showToast(message, type = 'info') {
+  // Remove existing toast
+  const existingToast = document.querySelector('.toast');
+  if (existingToast) {
+    existingToast.remove();
+  }
+  
+  const toast = document.createElement('div');
+  toast.className = `toast toast-${type}`;
+  toast.innerHTML = `
+    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+    <span>${message}</span>
+  `;
+  
+  document.body.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.style.animation = 'slideOut 0.3s ease';
+    setTimeout(() => {
+      if (toast.parentNode) {
+        toast.parentNode.removeChild(toast);
+      }
+    }, 300);
+  }, 3000);
+}
+
+function showLoading(message = 'Loading...') {
+  let overlay = document.getElementById('loadingOverlay');
+  
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.id = 'loadingOverlay';
+    overlay.className = 'loading-overlay';
+    document.body.appendChild(overlay);
+  }
+  
+  overlay.innerHTML = `
+    <div class="spinner"></div>
+    <p style="font-size: 18px; font-weight: 600; color: var(--text-dark);">${message}</p>
+  `;
+  overlay.style.display = 'flex';
+}
+
+function hideLoading() {
+  const overlay = document.getElementById('loadingOverlay');
+  if (overlay) {
+    overlay.style.display = 'none';
+  }
+}
+
+// Make performLogout available globally (for compatibility with sidebar)
+window.performLogout = async function() {
+  try {
+    await signOut(auth);
+    window.location.href = "login.html";
+  } catch (error) {
+    console.error("Logout error:", error);
+    alert("Error logging out. Please try again.");
+  }
+};
+</script>
+</body>
+</html>

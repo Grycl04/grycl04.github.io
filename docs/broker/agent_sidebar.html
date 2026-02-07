@@ -1,0 +1,1073 @@
+<!-- sidebar.html -->
+<div class="sidebar">
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <div class="sidebar-content">
+    <!-- Logo Section -->
+    <div class="logo-section">
+      <div class="logo">
+        <div class="logo-icon">
+          <img src="../images/logo_bahai_nobg.png" alt="BahAI Real Estate" />
+        </div>
+        <div class="logo-text">
+          <h1>BahAI</h1>
+          <p>Real Estate Platform</p>
+        </div>
+      </div>
+      <div class="user-profile">
+        <div class="user-avatar" id="userAvatar">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="user-info">
+          <div class="user-name" id="userName">Loading...</div>
+          <div class="user-role" id="userRole">Agent</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <nav class="sidebar-nav">
+      <div class="nav-title">Navigation</div>
+      <ul>
+        <li>
+          <a href="agent_dashboard.html" class="sidebar-link">
+            <div class="nav-icon">
+              <i class="fas fa-home"></i>
+            </div>
+            <span class="nav-text">Dashboard</span>
+            <div class="nav-badge" id="dashboardBadge"></div>
+          </a>
+        </li>
+        <li>
+          <a href="agent_listings.html" class="sidebar-link">
+            <div class="nav-icon">
+              <i class="fas fa-list"></i>
+            </div>
+            <span class="nav-text">My Listings</span>
+            <div class="nav-badge" id="listingsBadge"></div>
+          </a>
+        </li>
+        <li>
+          <a href="agent_add_property.html" class="sidebar-link">
+            <div class="nav-icon">
+              <i class="fas fa-plus-circle"></i>
+            </div>
+            <span class="nav-text">Add Property</span>
+          </a>
+        </li>
+        <li>
+          <a href="agent_inquiries.html" class="sidebar-link">
+            <div class="nav-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <span class="nav-text">Inquiries</span>
+            <div class="nav-badge" id="inquiriesBadge"></div>
+          </a>
+        </li>
+        <li>
+          <a href="profile_agent.html" class="sidebar-link">
+            <div class="nav-icon">
+              <i class="fas fa-user"></i>
+            </div>
+            <span class="nav-text">Profile</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Quick Stats - clickable navigation -->
+    <div class="sidebar-stats">
+      <div class="stats-title">Quick Stats</div>
+      <div class="stats-grid">
+        <a href="agent_listings.html" class="stat-item stat-link" title="My Listings">
+          <div class="stat-icon">
+            <i class="fas fa-building"></i>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value" id="totalListingsStat">0</div>
+            <div class="stat-label">Listings</div>
+          </div>
+        </a>
+        <a href="agent_inquiries.html" class="stat-item stat-link" title="Inquiries">
+          <div class="stat-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value" id="totalInquiriesStat">0</div>
+            <div class="stat-label">Inquiries</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Bottom Section -->
+    <div class="sidebar-footer">
+      <div class="ai-status">
+        <div class="ai-status-icon">
+          <i class="fas fa-robot"></i>
+        </div>
+        <div class="ai-status-text">
+          <div class="ai-status-title">AI Assistant</div>
+          <div class="ai-status-subtitle">Active</div>
+        </div>
+      </div>
+      <button id="logoutBtn" class="logout-btn">
+        <div class="logout-icon">
+          <i class="fas fa-sign-out-alt"></i>
+        </div>
+        <span class="logout-text">Log Out</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+:root {
+  --sidebar-bg: linear-gradient(180deg, #0b2e52 0%, #071e38 100%);
+  --sidebar-accent: #d4af37;
+  --sidebar-accent-dark: #b8860b;
+  --sidebar-text-light: rgba(255, 255, 255, 0.95);
+  --sidebar-text-muted: rgba(255, 255, 255, 0.75);
+  --sidebar-border: rgba(212, 175, 55, 0.15);
+  --sidebar-hover: rgba(212, 175, 55, 0.12);
+  --sidebar-active: rgba(212, 175, 55, 0.22);
+}
+
+/* Font Family */
+.sidebar {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.sidebar {
+  width: 280px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 999;
+}
+
+.sidebar-content {
+  width: 100%;
+  height: 100%;
+  background: var(--sidebar-bg);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 5px 0 30px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.sidebar-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+/* Logo Section */
+.logo-section {
+  padding: 30px 25px 20px;
+  border-bottom: 1px solid var(--sidebar-border);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.logo-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.logo-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.logo-text h1 {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0;
+  color: var(--sidebar-text-light);
+  letter-spacing: -0.5px;
+}
+
+.logo-text p {
+  font-size: 12px;
+  color: var(--sidebar-text-muted);
+  margin: 4px 0 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* User Profile */
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid var(--sidebar-border);
+  transition: all 0.3s ease;
+}
+
+.user-profile:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.user-avatar {
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #0b2e52;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-name {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--sidebar-text-light);
+  margin-bottom: 2px;
+}
+
+.user-role {
+  font-size: 12px;
+  color: var(--sidebar-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+.user-role::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: #d4af37;
+  border-radius: 50%;
+}
+
+/* Navigation Menu */
+.sidebar-nav {
+  padding: 20px 15px;
+}
+
+.nav-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--sidebar-text-muted);
+  margin-bottom: 15px;
+  padding: 0 10px;
+  font-weight: 600;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar-nav li {
+  margin: 4px 0;
+}
+
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+  text-decoration: none;
+  color: var(--sidebar-text-muted);
+  transition: all 0.3s ease;
+  position: relative;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+.sidebar-nav a:hover {
+  background: var(--sidebar-hover);
+  color: var(--sidebar-text-light);
+  transform: translateX(5px);
+}
+
+.sidebar-nav a.active {
+  background: var(--sidebar-active);
+  color: var(--sidebar-text-light);
+  font-weight: 600;
+}
+
+.sidebar-nav a.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 20px;
+  background: linear-gradient(to bottom, #d4af37, #b8860b);
+  border-radius: 0 4px 4px 0;
+}
+
+.nav-icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.sidebar-nav a:hover .nav-icon {
+  background: rgba(212, 175, 55, 0.2);
+}
+
+.sidebar-nav a.active .nav-icon {
+  background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+  color: #0b2e52;
+}
+
+.nav-text {
+  flex: 1;
+  font-size: 14px;
+}
+
+.nav-badge {
+  background: #ef4444;
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+  min-width: 20px;
+  text-align: center;
+  display: none;
+}
+
+.nav-badge:not(:empty) {
+  display: block;
+}
+
+/* Stats Section */
+.sidebar-stats {
+  padding: 20px 25px;
+  margin: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid var(--sidebar-border);
+}
+
+.stats-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--sidebar-text-muted);
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stat-link {
+  text-decoration: none;
+  color: inherit;
+  padding: 8px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.stat-link:hover {
+  background: var(--sidebar-hover);
+  transform: translateY(-2px);
+}
+
+.stat-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(212, 175, 55, 0.15);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #d4af37;
+}
+
+.stat-info {
+  flex: 1;
+}
+
+.stat-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--sidebar-text-light);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--sidebar-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+/* Sidebar Footer */
+.sidebar-footer {
+  padding: 25px;
+  border-top: 1px solid var(--sidebar-border);
+  margin-top: auto;
+}
+
+.ai-status {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: rgba(212, 175, 55, 0.1);
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  transition: all 0.3s ease;
+}
+
+.ai-status:hover {
+  background: rgba(212, 175, 55, 0.15);
+  transform: translateY(-2px);
+}
+
+.ai-status-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #0b2e52;
+}
+
+.ai-status-text {
+  flex: 1;
+}
+
+.ai-status-title {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--sidebar-text-light);
+  margin-bottom: 2px;
+}
+
+.ai-status-subtitle {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+}
+
+/* Logout Button */
+.logout-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+  background: rgba(239, 68, 68, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+}
+
+.logout-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: white;
+  transform: translateX(5px);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.logout-icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(239, 68, 68, 0.2);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover .logout-icon {
+  background: rgba(239, 68, 68, 0.3);
+}
+
+.logout-text {
+  flex: 1;
+  font-weight: 500;
+}
+
+/* Mobile Responsive */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 260px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  
+  .sidebar.active {
+    transform: translateX(0);
+  }
+  
+  .sidebar-overlay {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .sidebar.active + .sidebar-overlay {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.logo-section,
+.sidebar-nav,
+.sidebar-stats,
+.sidebar-footer {
+  animation: fadeIn 0.5s ease;
+}
+
+.sidebar-nav li:nth-child(1) { animation-delay: 0.1s; }
+.sidebar-nav li:nth-child(2) { animation-delay: 0.2s; }
+.sidebar-nav li:nth-child(3) { animation-delay: 0.3s; }
+.sidebar-nav li:nth-child(4) { animation-delay: 0.4s; }
+.sidebar-nav li:nth-child(5) { animation-delay: 0.5s; }
+
+/* Pulse Animation */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.ai-status:hover .ai-status-icon {
+  animation: pulse 1.5s infinite;
+}
+</style>
+
+<script>
+// Import Firebase modules if not already imported
+async function initializeSidebar() {
+  // Wait for Firebase globals
+  if (!window.firebaseApp || !window.firebaseAuth || !window.firebaseDB) {
+    console.log('Firebase not available yet, waiting...');
+    setTimeout(initializeSidebar, 100);
+    return;
+  }
+
+  try {
+    // Import Firebase modules
+    const { getAuth, onAuthStateChanged } = await import("https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js");
+    const { getFirestore, getDoc, doc, collection, query, where, getDocs } = await import("https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js");
+    
+    // Get the Firebase app instance from the main page
+    const app = window.firebaseApp;
+    if (!app) {
+      console.error('Firebase app not found');
+      return;
+    }
+    
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    
+    // Load user info from Firebase
+    async function loadUserInfo() {
+      try {
+        const currentUser = auth.currentUser;
+        if (!currentUser) {
+          console.log('No user logged in');
+          return;
+        }
+        
+        const userNameEl = document.getElementById('userName');
+        const userRoleEl = document.getElementById('userRole');
+        const userAvatarEl = document.getElementById('userAvatar');
+        
+        // Default values
+        let userName = currentUser.displayName || currentUser.email || 'User';
+        let userRole = 'Agent';
+        
+        // Try agents collection first (agent profile), then users
+        try {
+          const agentDoc = await getDoc(doc(db, "agents", currentUser.uid));
+          if (agentDoc.exists()) {
+            const agentData = agentDoc.data();
+            userName = agentData.fullName || agentData.name || agentData.displayName || agentData.email || userName;
+            userRole = agentData.userType || agentData.role || userRole;
+          } else {
+            const userDoc = await getDoc(doc(db, "users", currentUser.uid));
+            if (userDoc.exists()) {
+              const userData = userDoc.data();
+              userName = userData.fullName || userData.name || userData.displayName || userData.email || userName;
+              userRole = userData.userType || userData.role || userRole;
+            }
+          }
+        } catch (error) {
+          console.log('Could not load user from Firestore:', error);
+        }
+        
+        if (userNameEl) {
+          userNameEl.textContent = userName;
+        }
+        
+        if (userRoleEl) {
+          const roleMap = {
+            'landlord': 'Property Owner',
+            'broker': 'Licensed Broker',
+            'seller': 'Property Seller',
+            'admin': 'Administrator',
+            'agent': 'Property Agent',
+            'user': 'Buyer'
+          };
+          userRoleEl.textContent = roleMap[userRole] || 'Property Agent';
+        }
+        
+        if (userAvatarEl) {
+          const initials = userName.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2) || 'U';
+          userAvatarEl.innerHTML = `<span style="font-weight: 600;">${initials}</span>`;
+        }
+        
+      } catch (error) {
+        console.error('Error loading user info:', error);
+      }
+    }
+    
+    // Load stats from Firebase
+    async function loadStats() {
+      try {
+        const currentUser = auth.currentUser;
+        if (!currentUser) {
+          console.log('No user logged in for stats');
+          return;
+        }
+        
+        // Get agent's listings count
+        try {
+          const propertiesRef = collection(db, 'properties');
+          const listingsQuery = query(propertiesRef, where('userId', '==', currentUser.uid));
+          const listingsSnapshot = await getDocs(listingsQuery);
+          const listingsCount = listingsSnapshot.size;
+          
+          const listingsBadge = document.getElementById('listingsBadge');
+          const listingsStat = document.getElementById('totalListingsStat');
+          
+          if (listingsBadge) {
+            if (listingsCount > 0) {
+              listingsBadge.textContent = listingsCount;
+            } else {
+              listingsBadge.textContent = '';
+            }
+          }
+          
+          if (listingsStat) {
+            listingsStat.textContent = listingsCount;
+          }
+          
+        } catch (error) {
+          console.log('Could not load listings:', error);
+        }
+        
+        // Get inquiries count (you would need to implement this based on your inquiries structure)
+        try {
+          // Example: if you have an inquiries collection
+          // const inquiriesRef = collection(db, 'inquiries');
+          // const inquiriesQuery = query(inquiriesRef, where('agentId', '==', currentUser.uid));
+          // const inquiriesSnapshot = await getDocs(inquiriesQuery);
+          // const inquiriesCount = inquiriesSnapshot.size;
+          
+          const inquiriesStat = document.getElementById('totalInquiriesStat');
+          if (inquiriesStat) {
+            inquiriesStat.textContent = '0'; // Update when inquiries structure is implemented
+          }
+        } catch (error) {
+          console.log('Could not load inquiries:', error);
+        }
+        
+      } catch (error) {
+        console.error('Error loading stats:', error);
+      }
+    }
+    
+    // Initialize when auth state changes
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        await loadUserInfo();
+        await loadStats();
+      } else {
+        // User is signed out
+        console.log('User signed out');
+      }
+    });
+    
+    // Initialize now if user is already logged in
+    if (auth.currentUser) {
+      await loadUserInfo();
+      await loadStats();
+    }
+    
+    // Highlight current page
+    function highlightCurrentPage() {
+      const currentPath = window.location.pathname.split('/').pop() || 'agent_dashboard.html';
+      const links = document.querySelectorAll('.sidebar-link');
+      
+      links.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === currentPath) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+    
+    highlightCurrentPage();
+    
+    // Refresh stats periodically
+    setInterval(loadStats, 60000); // Every 60 seconds
+    
+  } catch (error) {
+    console.error('Error initializing sidebar:', error);
+    // Fallback to localStorage method
+    loadUserInfoFallback();
+    loadStatsFallback();
+  }
+}
+
+// Fallback functions if Firebase fails
+function loadUserInfoFallback() {
+  try {
+    const userData = JSON.parse(localStorage.getItem('userData')) || 
+                    JSON.parse(sessionStorage.getItem('userData'));
+    
+    if (userData) {
+      const userNameEl = document.getElementById('userName');
+      const userRoleEl = document.getElementById('userRole');
+      const userAvatarEl = document.getElementById('userAvatar');
+      
+      if (userNameEl) {
+        userNameEl.textContent = userData.fullName || userData.name || userData.displayName || userData.email || 'User';
+      }
+      
+      if (userRoleEl) {
+        const roleMap = {
+          'landlord': 'Property Owner',
+          'broker': 'Licensed Broker',
+          'seller': 'Property Seller',
+          'admin': 'Administrator',
+          'agent': 'Property Agent',
+          'user': 'Buyer'
+        };
+        const role = userData.userType || userData.role;
+        userRoleEl.textContent = roleMap[role] || 'Property Agent';
+      }
+      
+      const nameForInitials = userData.fullName || userData.name || userData.displayName || userData.email || 'U';
+      if (userAvatarEl && nameForInitials) {
+        const initials = nameForInitials.split(' ').map(n => n ? n[0] : '').join('').toUpperCase().substring(0, 2) || 'U';
+        userAvatarEl.innerHTML = `<span style="font-weight: 600;">${initials}</span>`;
+      }
+    }
+  } catch (error) {
+    console.log('Fallback: Could not load user info:', error);
+  }
+}
+
+function loadStatsFallback() {
+  try {
+    // Fallback stats loading
+    const listingsStat = document.getElementById('totalListingsStat');
+    const inquiriesStat = document.getElementById('totalInquiriesStat');
+    
+    if (listingsStat) {
+      listingsStat.textContent = '0';
+    }
+    
+    if (inquiriesStat) {
+      inquiriesStat.textContent = '0';
+    }
+    
+  } catch (error) {
+    console.log('Fallback: Could not load stats:', error);
+  }
+}
+
+// Initialize sidebar when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  // Start initialization
+  initializeSidebar();
+  
+  // Mobile menu functionality
+  const overlay = document.getElementById('sidebarOverlay');
+  if (overlay) {
+    overlay.addEventListener('click', function() {
+      const sidebar = document.querySelector('.sidebar');
+      sidebar.classList.remove('active');
+    });
+  }
+  
+  // Close sidebar on link click (mobile)
+  document.addEventListener('click', function(e) {
+    if (window.innerWidth <= 768) {
+      if (e.target.closest('.sidebar-link')) {
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar) {
+          sidebar.classList.remove('active');
+        }
+      }
+    }
+  });
+  
+  // Make stats updater available globally
+  window.updateSidebarStats = async function() {
+    // Try to reload stats if Firebase is available
+    if (typeof window.firebase !== 'undefined') {
+      try {
+        // Re-import modules if needed
+        const { getAuth } = await import("https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js");
+        const { getFirestore, collection, query, where, getDocs } = await import("https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js");
+        
+        const app = window.firebaseApp;
+        if (app) {
+          const auth = getAuth(app);
+          const db = getFirestore(app);
+          const currentUser = auth.currentUser;
+          
+          if (currentUser) {
+            const propertiesRef = collection(db, 'properties');
+            const listingsQuery = query(propertiesRef, where('userId', '==', currentUser.uid));
+            const listingsSnapshot = await getDocs(listingsQuery);
+            const listingsCount = listingsSnapshot.size;
+            
+            const listingsBadge = document.getElementById('listingsBadge');
+            const listingsStat = document.getElementById('totalListingsStat');
+            
+            if (listingsBadge) {
+              if (listingsCount > 0) {
+                listingsBadge.textContent = listingsCount;
+              } else {
+                listingsBadge.textContent = '';
+              }
+            }
+            
+            if (listingsStat) {
+              listingsStat.textContent = listingsCount;
+            }
+          }
+        }
+      } catch (error) {
+        console.log('Could not update stats via Firebase:', error);
+        // Fallback to localStorage
+        loadStatsFallback();
+      }
+    } else {
+      loadStatsFallback();
+    }
+  };
+  
+  // Make user profile updater available globally
+  window.updateSidebarUserProfile = async function() {
+    if (typeof window.firebase !== 'undefined') {
+      try {
+        const { getAuth } = await import("https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js");
+        const { getFirestore, getDoc, doc } = await import("https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js");
+        
+        const app = window.firebaseApp;
+        if (app) {
+          const auth = getAuth(app);
+          const db = getFirestore(app);
+          const currentUser = auth.currentUser;
+          
+          if (currentUser) {
+            const userNameEl = document.getElementById('userName');
+            const userRoleEl = document.getElementById('userRole');
+            const userAvatarEl = document.getElementById('userAvatar');
+            
+            let userName = currentUser.displayName || currentUser.email || 'User';
+            let userRole = 'Agent';
+            
+            try {
+              const agentDoc = await getDoc(doc(db, "agents", currentUser.uid));
+              if (agentDoc.exists()) {
+                const agentData = agentDoc.data();
+                userName = agentData.fullName || agentData.name || agentData.displayName || agentData.email || userName;
+                userRole = agentData.userType || agentData.role || userRole;
+              } else {
+                const userDoc = await getDoc(doc(db, "users", currentUser.uid));
+                if (userDoc.exists()) {
+                  const userData = userDoc.data();
+                  userName = userData.fullName || userData.name || userData.displayName || userData.email || userName;
+                  userRole = userData.userType || userData.role || userRole;
+                }
+              }
+            } catch (error) {
+              console.log('Could not load user from Firestore:', error);
+            }
+            
+            if (userNameEl) {
+              userNameEl.textContent = userName;
+            }
+            
+            if (userRoleEl) {
+              const roleMap = {
+                'landlord': 'Property Owner',
+                'broker': 'Licensed Broker',
+                'seller': 'Property Seller',
+                'admin': 'Administrator',
+                'agent': 'Property Agent',
+                'user': 'Buyer'
+              };
+              userRoleEl.textContent = roleMap[userRole] || 'Property Agent';
+            }
+            
+            if (userAvatarEl) {
+              const initials = userName.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2) || 'U';
+              userAvatarEl.innerHTML = `<span style="font-weight: 600;">${initials}</span>`;
+            }
+          }
+        }
+      } catch (error) {
+        console.log('Could not update user profile:', error);
+        loadUserInfoFallback();
+      }
+    } else {
+      loadUserInfoFallback();
+    }
+  };
+});
+
+// Export initialization function for main pages to call
+window.initializeSidebar = initializeSidebar;
+
+// Setup logout button
+function setupLogoutButton() {
+  const logoutBtn = document.getElementById('logoutBtn');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', async function() {
+      try {
+        // Import Firebase auth
+        const { getAuth, signOut } = await import("https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js");
+        const app = window.firebaseApp;
+        if (app) {
+          const auth = getAuth(app);
+          await signOut(auth);
+          // Clear local storage
+          localStorage.clear();
+          sessionStorage.clear();
+          // Redirect to login
+          window.location.href = '../auth/login.html';
+        }
+      } catch (error) {
+        console.error('Error signing out:', error);
+        // Fallback: redirect anyway
+        localStorage.clear();
+        sessionStorage.clear();
+        window.location.href = '../auth/login.html';
+      }
+    });
+  }
+}
+
+// Call setup logout when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', setupLogoutButton);
+} else {
+  setupLogoutButton();
+}
+</script>

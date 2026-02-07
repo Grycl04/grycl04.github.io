@@ -1,0 +1,592 @@
+{
+  "additional_samples": [
+    {
+      "text": "hi",
+      "intent": "greeting"
+    },
+    {
+      "text": "hello",
+      "intent": "greeting"
+    },
+    {
+      "text": "hey",
+      "intent": "greeting"
+    },
+    {
+      "text": "find apartments in batangas city",
+      "intent": "find_property"
+    },
+    {
+      "text": "find apartment in batangas city",
+      "intent": "find_property"
+    },
+    {
+      "text": "find apartments in batangas",
+      "intent": "find_property"
+    },
+    {
+      "text": "search apartments in batangas city",
+      "intent": "find_property"
+    },
+    {
+      "text": "look for apartments in batangas city",
+      "intent": "find_property"
+    },
+    {
+      "text": "show me apartments in batangas city",
+      "intent": "find_property"
+    },
+    {
+      "text": "tell me about batangas city apartments",
+      "intent": "location_info"
+    },
+    {
+      "text": "information about apartments in batangas",
+      "intent": "location_info"
+    },
+    {
+      "text": "what is batangas city like for apartments",
+      "intent": "location_info"
+    },
+    {
+      "text": "find house in lipa",
+      "intent": "find_property"
+    },
+    {
+      "text": "search house in lipa city",
+      "intent": "find_property"
+    },
+    {
+      "text": "look for house in lipa",
+      "intent": "find_property"
+    },
+    {
+      "text": "show me houses in lipa city",
+      "intent": "find_property"
+    },
+    {
+      "text": "tell me about lipa city houses",
+      "intent": "location_info"
+    },
+    {
+      "text": "what is lipa city like for houses",
+      "intent": "location_info"
+    },
+    {
+      "text": "information about houses in lipa",
+      "intent": "location_info"
+    },
+    {
+      "text": "find apartments in the city",
+      "intent": "find_property"
+    },
+    {
+      "text": "search for properties in that city",
+      "intent": "find_property"
+    },
+    {
+      "text": "looking for houses in the city",
+      "intent": "find_property"
+    },
+    {
+      "text": "search property nasugbu",
+      "intent": "find_property"
+    },
+    {
+      "text": "condo living in tanauan",
+      "intent": "find_property"
+    },
+    {
+      "text": "find apartments",
+      "intent": "find_property"
+    },
+    {
+      "text": "show me houses",
+      "intent": "find_property"
+    },
+    {
+      "text": "look for condos",
+      "intent": "find_property"
+    },
+    {
+      "text": "search for properties",
+      "intent": "find_property"
+    },
+    {
+      "text": "i need a house",
+      "intent": "find_property"
+    },
+    {
+      "text": "show me available properties",
+      "intent": "find_property"
+    },
+    {
+      "text": "find beachfront properties",
+      "intent": "find_property"
+    },
+    {
+      "text": "what apartments do you have",
+      "intent": "find_property"
+    },
+    {
+      "text": "what houses are available",
+      "intent": "find_property"
+    },
+    {
+      "text": "show me all condos",
+      "intent": "find_property"
+    },
+    {
+      "text": "do you have any apartments",
+      "intent": "find_property"
+    },
+    {
+      "text": "any houses for sale",
+      "intent": "find_property"
+    },
+    {
+      "text": "any condos for rent",
+      "intent": "find_property"
+    },
+    {
+      "text": "properties for rent",
+      "intent": "find_property"
+    },
+    {
+      "text": "properties for sale",
+      "intent": "find_property"
+    },
+    {
+      "text": "show me house in nasugbu",
+      "intent": "find_property"
+    },
+    {
+      "text": "show me houses in nasugbu",
+      "intent": "find_property"
+    },
+    {
+      "text": "show me properties in nasugbu",
+      "intent": "find_property"
+    },
+    {
+      "text": "show me apartments in batangas city",
+      "intent": "find_property"
+    },
+    {
+      "text": "show me condos in lipa city",
+      "intent": "find_property"
+    },
+    {
+      "text": "show me beachfront properties in nasugbu",
+      "intent": "find_property"
+    },
+    {
+      "text": "show me what's available in nasugbu",
+      "intent": "find_property"
+    },
+    {
+      "text": "show me options in nasugbu",
+      "intent": "find_property"
+    },
+    {
+      "text": "show me listings in nasugbu",
+      "intent": "find_property"
+    },
+    {
+      "text": "find apartments in batangas city",
+      "intent": "find_property"
+    },
+    {
+      "text": "find house in nasugbu",
+      "intent": "find_property"
+    },
+    {
+      "text": "find condos in lipa city",
+      "intent": "find_property"
+    },
+    {
+      "text": "find townhouses in sto. tomas",
+      "intent": "find_property"
+    },
+    {
+      "text": "find commercial spaces in batangas city",
+      "intent": "find_property"
+    },
+    {
+      "text": "find beachfront properties in nasugbu",
+      "intent": "find_property"
+    },
+    {
+      "text": "find resort properties in nasugbu",
+      "intent": "find_property"
+    },
+    {
+      "text": "find agricultural land in nasugbu",
+      "intent": "find_property"
+    },
+    {
+      "text": "find apartments in nasugbu",
+      "intent": "find_property"
+    },
+    {
+      "text": "look for apartments in batangas city",
+      "intent": "find_property"
+    },
+    {
+      "text": "search for apartments in batangas",
+      "intent": "find_property"
+    },
+    {
+      "text": "i need apartments in batangas city",
+      "intent": "find_property"
+    },
+    {
+      "text": "show me houses in batangas city",
+      "intent": "find_property"
+    },
+    {
+      "text": "show me condos in tanauan city",
+      "intent": "find_property"
+    },
+    {
+      "text": "i'm looking for a house in lipa",
+      "intent": "find_property"
+    },
+    {
+      "text": "can you find apartments in batangas city",
+      "intent": "find_property"
+    },
+    {
+      "text": "please locate apartments in batangas",
+      "intent": "find_property"
+    },
+    {
+      "text": "tell me about batangas city",
+      "intent": "location_info"
+    },
+    {
+      "text": "what is batangas city like",
+      "intent": "location_info"
+    },
+    {
+      "text": "describe batangas city",
+      "intent": "location_info"
+    },
+    {
+      "text": "living in batangas city",
+      "intent": "location_info"
+    },
+    {
+      "text": "about batangas city",
+      "intent": "location_info"
+    },
+    {
+      "text": "information about batangas city",
+      "intent": "location_info"
+    },
+    {
+      "text": "what's it like in batangas city",
+      "intent": "location_info"
+    },
+    {
+      "text": "batangas city lifestyle",
+      "intent": "location_info"
+    },
+    {
+      "text": "how is life in batangas city",
+      "intent": "location_info"
+    },
+    {
+      "text": "properties that accept bank financing",
+      "intent": "financing"
+    },
+    {
+      "text": "houses that accept bank loans",
+      "intent": "financing"
+    },
+    {
+      "text": "how to get bank financing",
+      "intent": "financing"
+    },
+    {
+      "text": "bank financing requirements",
+      "intent": "financing"
+    },
+    {
+      "text": "pag-ibig financing requirements",
+      "intent": "financing"
+    },
+    {
+      "text": "properties with in-house financing",
+      "intent": "financing"
+    },
+    {
+      "text": "properties that accept cash payment",
+      "intent": "financing"
+    },
+    {
+      "text": "properties that accept installment payment",
+      "intent": "financing"
+    },
+    {
+      "text": "what documents are needed for bank financing",
+      "intent": "financing"
+    },
+    {
+      "text": "ready to move in properties",
+      "intent": "find_ready_property"
+    },
+    {
+      "text": "available now properties",
+      "intent": "find_ready_property"
+    },
+    {
+      "text": "immediate occupancy houses",
+      "intent": "find_ready_property"
+    },
+    {
+      "text": "move in ready condos",
+      "intent": "find_ready_property"
+    },
+    {
+      "text": "ready for occupancy apartments",
+      "intent": "find_ready_property"
+    },
+    {
+      "text": "ready to occupy units",
+      "intent": "find_ready_property"
+    },
+    {
+      "text": "properties available immediately",
+      "intent": "find_ready_property"
+    },
+    {
+      "text": "find ready to move in properties",
+      "intent": "find_ready_property"
+    },
+    {
+      "text": "steps for buying",
+      "intent": "process_info"
+    },
+    {
+      "text": "how to buy a property",
+      "intent": "process_info"
+    },
+    {
+      "text": "property purchase process",
+      "intent": "process_info"
+    },
+    {
+      "text": "timeline for buying a house",
+      "intent": "process_info"
+    },
+    {
+      "text": "requirements for property purchase",
+      "intent": "process_info"
+    },
+    {
+      "text": "steps for buying a condo",
+      "intent": "process_info"
+    },
+    {
+      "text": "how to get a mortgage",
+      "intent": "process_info"
+    },
+    {
+      "text": "process for renting",
+      "intent": "process_info"
+    },
+    {
+      "text": "properties with swimming pool",
+      "intent": "find_with_feature"
+    },
+    {
+      "text": "houses with garden",
+      "intent": "find_with_feature"
+    },
+    {
+      "text": "apartments with parking",
+      "intent": "find_with_feature"
+    },
+    {
+      "text": "condos with security",
+      "intent": "find_with_feature"
+    },
+    {
+      "text": "properties with wifi",
+      "intent": "find_with_feature"
+    },
+    {
+      "text": "find properties with swimming pool",
+      "intent": "find_with_feature"
+    },
+    {
+      "text": "show me houses with garden",
+      "intent": "find_with_feature"
+    },
+    {
+      "text": "look for apartments with parking",
+      "intent": "find_with_feature"
+    },
+    {
+      "text": "properties near schools",
+      "intent": "find_near_landmark"
+    },
+    {
+      "text": "houses near malls",
+      "intent": "find_near_landmark"
+    },
+    {
+      "text": "apartments near hospitals",
+      "intent": "find_near_landmark"
+    },
+    {
+      "text": "condos near beaches",
+      "intent": "find_near_landmark"
+    },
+    {
+      "text": "properties near churches",
+      "intent": "find_near_landmark"
+    },
+    {
+      "text": "find properties near schools",
+      "intent": "find_near_landmark"
+    },
+    {
+      "text": "show me houses near malls",
+      "intent": "find_near_landmark"
+    },
+    {
+      "text": "look for apartments near hospitals",
+      "intent": "find_near_landmark"
+    },
+    {
+      "text": "tell me about lipa city",
+      "intent": "location_info"
+    },
+    {
+      "text": "what is lipa city like",
+      "intent": "location_info"
+    },
+    {
+      "text": "describe tanauan city",
+      "intent": "location_info"
+    },
+    {
+      "text": "information about nasugbu",
+      "intent": "location_info"
+    },
+    {
+      "text": "living in san juan",
+      "intent": "location_info"
+    },
+    {
+      "text": "tell me about calatagan",
+      "intent": "location_info"
+    },
+    {
+      "text": "what's it like to live in taal",
+      "intent": "location_info"
+    },
+    {
+      "text": "describe mabini batangas",
+      "intent": "location_info"
+    },
+    {
+      "text": "information about sto. tomas city",
+      "intent": "location_info"
+    },
+    {
+      "text": "i want to find a house in batangas",
+      "intent": "find_property"
+    },
+    {
+      "text": "i want to know about batangas city",
+      "intent": "location_info"
+    },
+    {
+      "text": "search properties in nasugbu",
+      "intent": "find_property"
+    },
+    {
+      "text": "give me information about nasugbu",
+      "intent": "location_info"
+    },
+    {
+      "text": "show me available properties in lipa",
+      "intent": "find_property"
+    },
+    {
+      "text": "tell me about living in lipa",
+      "intent": "location_info"
+    },
+    {
+      "text": "properties for family needs in lipa",
+      "intent": "find_property_for_need"
+    },
+    {
+      "text": "houses for big family",
+      "intent": "find_property_for_need"
+    },
+    {
+      "text": "apartments for students in batangas city",
+      "intent": "find_property_for_need"
+    },
+    {
+      "text": "condos for professionals",
+      "intent": "find_property_for_need"
+    },
+    {
+      "text": "properties for retirees",
+      "intent": "find_property_for_need"
+    },
+    {
+      "text": "match properties to my budget",
+      "intent": "match_needs"
+    },
+    {
+      "text": "recommend properties for me",
+      "intent": "match_needs"
+    },
+    {
+      "text": "find suitable properties",
+      "intent": "match_needs"
+    },
+    {
+      "text": "what properties match my needs",
+      "intent": "match_needs"
+    },
+    {
+      "text": "houses under 3M with 3 bedrooms",
+      "intent": "find_property_with_criteria"
+    },
+    {
+      "text": "apartments under 15000 pesos",
+      "intent": "find_property_with_criteria"
+    },
+    {
+      "text": "condos with 2 bedrooms and 2 bathrooms",
+      "intent": "find_property_with_criteria"
+    },
+    {
+      "text": "properties under 10M with swimming pool",
+      "intent": "find_property_with_criteria"
+    },
+    {
+      "text": "find tell me about batangas city",
+      "intent": "find_property"
+    },
+    {
+      "text": "search information about lipa",
+      "intent": "find_property"
+    },
+    {
+      "text": "about finding houses",
+      "intent": "location_info"
+    },
+    {
+      "text": "information on searching properties",
+      "intent": "location_info"
+    }
+  ]
+}

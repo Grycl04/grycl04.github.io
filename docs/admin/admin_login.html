@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Admin Login - BahAI Real Estate</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --primary: #0b2e52;
+  --primary-dark: #001F3F;
+  --primary-light: #1976d2;
+  --success: #10b981;
+  --danger: #ef4444;
+  --text-dark: #1a202c;
+  --text-light: #718096;
+  --bg-light: #f8fafc;
+  --border: #e2e8f0;
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+  --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  background-attachment: fixed;
+}
+
+.login-container {
+  background: white;
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 420px;
+  overflow: hidden;
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.login-header {
+  background: var(--gradient-primary);
+  color: white;
+  padding: 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" opacity="0.1"><polygon points="0,100 100,0 100,100" fill="white"/></svg>');
+  background-size: cover;
+}
+
+.logo-large {
+  width: 80px;
+  height: 80px;
+  background: white;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 32px;
+  color: var(--primary);
+  margin: 0 auto 20px;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.login-header h1 {
+  font-size: 28px;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.login-header p {
+  opacity: 0.9;
+  font-size: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+.login-body {
+  padding: 40px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-label i {
+  color: var(--primary);
+}
+
+.form-input {
+  width: 100%;
+  padding: 14px 16px 14px 44px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  font-size: 15px;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+  background-color: white;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(11, 46, 82, 0.1);
+}
+
+.form-input.error {
+  border-color: var(--danger);
+}
+
+.form-icon {
+  position: absolute;
+  left: 16px;
+  top: 42px;
+  color: var(--text-light);
+  font-size: 18px;
+}
+
+.error-message {
+  color: var(--danger);
+  font-size: 13px;
+  margin-top: 8px;
+  display: none;
+  padding-left: 8px;
+  border-left: 3px solid var(--danger);
+}
+
+.error-message.show {
+  display: block;
+  animation: slideIn 0.3s ease;
+}
+
+.success-message {
+  color: var(--success);
+  font-size: 13px;
+  margin-top: 8px;
+  display: none;
+  padding: 10px;
+  background-color: rgba(16, 185, 129, 0.1);
+  border-radius: 8px;
+  border-left: 3px solid var(--success);
+}
+
+.success-message.show {
+  display: block;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.btn-login {
+  width: 100%;
+  padding: 16px;
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-login::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-login:hover::before {
+  left: 100%;
+}
+
+.btn-login:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-login:active {
+  transform: translateY(0);
+}
+
+.btn-login:disabled {
+  background: var(--text-light);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-login.loading {
+  background: var(--text-light);
+}
+
+.spinner {
+  display: none;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+}
+
+.btn-login.loading .spinner {
+  display: block;
+}
+
+.btn-login.loading .btn-text {
+  display: none;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.login-footer {
+  text-align: center;
+  padding: 20px;
+  background: var(--bg-light);
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.password-toggle {
+  position: absolute;
+  right: 16px;
+  top: 42px;
+  background: none;
+  border: none;
+  color: var(--text-light);
+  cursor: pointer;
+  font-size: 18px;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.password-toggle:hover {
+  color: var(--primary);
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    max-width: 100%;
+  }
+
+  .login-header {
+    padding: 30px 20px;
+  }
+
+  .login-body {
+    padding: 30px 20px;
+  }
+  
+  .logo-large {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+  
+  .login-header h1 {
+    font-size: 24px;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="login-container">
+  <div class="login-header">
+    <div class="logo-large">BA</div>
+    <h1>Admin Login</h1>
+    <p>BahAI Real Estate Admin Dashboard</p>
+  </div>
+
+  <div class="login-body">
+    <form id="loginForm">
+      <div class="form-group">
+        <label class="form-label"><i class="fas fa-envelope"></i> Email Address</label>
+        <div class="form-icon">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <input 
+          type="email" 
+          class="form-input" 
+          id="emailInput" 
+          placeholder="Enter admin email"
+          required
+          autocomplete="username"
+          autofocus
+        />
+        <div class="error-message" id="emailError">Please enter a valid email address</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label"><i class="fas fa-lock"></i> Password</label>
+        <div class="form-icon">
+          <i class="fas fa-lock"></i>
+        </div>
+        <input 
+          type="password" 
+          class="form-input" 
+          id="passwordInput" 
+          placeholder="Enter password"
+          required
+          autocomplete="current-password"
+        />
+        <button type="button" class="password-toggle" id="passwordToggle">
+          <i class="fas fa-eye"></i>
+        </button>
+        <div class="error-message" id="passwordError">Password must be at least 6 characters</div>
+      </div>
+
+      <div class="error-message" id="loginError"></div>
+      <div class="success-message" id="loginSuccess"></div>
+
+      <button type="submit" class="btn-login" id="loginBtn">
+        <div class="spinner"></div>
+        <span class="btn-text">
+          <i class="fas fa-sign-in-alt"></i> Sign In
+        </span>
+      </button>
+    </form>
+  </div>
+
+  <div class="login-footer">
+    <p><i class="fas fa-shield-alt"></i> Secure Admin Access</p>
+    <p>© 2026 BahAI Real Estate. All rights reserved.</p>
+  </div>
+</div>
+
+<!-- Firebase SDK v9 (modular) -->
+<script type="module">
+// Import Firebase modules
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+import { 
+  getAuth, 
+  signInWithEmailAndPassword 
+} from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+import { 
+  getFirestore, 
+  collection,
+  query,
+  where,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
+
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCIfzneDzWVveG8p_0mywoA9D9F5AyzZX4",
+  authDomain: "bahai-1b76d.firebaseapp.com",
+  projectId: "bahai-1b76d",
+  storageBucket: "bahai-1b76d.firebasestorage.app",
+  messagingSenderId: "646878644941",
+  appId: "1:646878644941:web:5b4ccc3412250337587784",
+  measurementId: "G-PDW1PRZTM9"
+};
+
+// Firebase app and services
+let app;
+let auth;
+let db;
+let firebaseInitialized = false;
+
+// Default admin credentials
+const DEFAULT_ADMIN_EMAIL = "admin@bahai.com";
+const DEFAULT_ADMIN_PASSWORD = "admin123";
+
+// DOM elements
+const loginForm = document.getElementById('loginForm');
+const emailInput = document.getElementById('emailInput');
+const passwordInput = document.getElementById('passwordInput');
+const loginBtn = document.getElementById('loginBtn');
+const loginError = document.getElementById('loginError');
+const loginSuccess = document.getElementById('loginSuccess');
+const passwordToggle = document.getElementById('passwordToggle');
+
+// Initialize Firebase
+async function initializeFirebase() {
+  try {
+    app = initializeApp(firebaseConfig);
+    auth = getAuth(app);
+    db = getFirestore(app);
+    firebaseInitialized = true;
+    
+    console.log('✅ Firebase initialized successfully');
+    
+  } catch (error) {
+    console.error('❌ Firebase initialization failed:', error);
+    showErrorMessage('Unable to connect to authentication service. Please try again.');
+  }
+}
+
+// Check if user is admin
+async function checkAdminStatus(email) {
+  if (!firebaseInitialized || !db) return false;
+  
+  try {
+    const adminsQuery = query(
+      collection(db, "admins"),
+      where("email", "==", email)
+    );
+    
+    const querySnapshot = await getDocs(adminsQuery);
+    
+    if (!querySnapshot.empty) {
+      const adminData = querySnapshot.docs[0].data();
+      console.log('✅ Admin verified in Firestore');
+      localStorage.setItem('adminData', JSON.stringify(adminData));
+      localStorage.setItem('adminId', querySnapshot.docs[0].id);
+      return true;
+    }
+    
+    // For development, allow default admin
+    if (email === DEFAULT_ADMIN_EMAIL) {
+      const tempAdminData = {
+        email: DEFAULT_ADMIN_EMAIL,
+        displayName: "Administrator",
+        role: "admin",
+        createdAt: new Date().toISOString()
+      };
+      
+      localStorage.setItem('adminData', JSON.stringify(tempAdminData));
+      return true;
+    }
+    
+    return false;
+    
+  } catch (error) {
+    console.error('Error checking admin status:', error);
+    
+    // For development, allow default admin
+    if (email === DEFAULT_ADMIN_EMAIL) {
+      const tempAdminData = {
+        email: DEFAULT_ADMIN_EMAIL,
+        displayName: "Administrator",
+        role: "admin"
+      };
+      
+      localStorage.setItem('adminData', JSON.stringify(tempAdminData));
+      return true;
+    }
+    
+    return false;
+  }
+}
+
+// Handle form submission
+loginForm.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  
+  const email = emailInput.value.trim();
+  const password = passwordInput.value;
+  
+  // Reset messages
+  hideAllMessages();
+  
+  // Validate inputs
+  if (!validateInputs(email, password)) return;
+  
+  // Disable login button and show loading
+  loginBtn.disabled = true;
+  loginBtn.classList.add('loading');
+  
+  try {
+    if (firebaseInitialized) {
+      // Use Firebase authentication
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      
+      console.log('✅ Firebase login successful');
+      
+      // Check if user is in admins collection
+      const isAdmin = await checkAdminStatus(email);
+      
+      if (isAdmin) {
+        // Store session data
+        localStorage.setItem('adminLoggedIn', 'true');
+        localStorage.setItem('adminEmail', email);
+        localStorage.setItem('authTime', new Date().getTime().toString());
+        
+        // Show success and redirect
+        showSuccessMessage('Login successful! Redirecting...');
+        
+        setTimeout(() => {
+          window.location.href = 'admin_dashboard.html';
+        }, 1000);
+      } else {
+        // User is not an admin
+        showErrorMessage('Access denied. Administrator credentials required.');
+        loginBtn.disabled = false;
+        loginBtn.classList.remove('loading');
+      }
+    } else {
+      // Fallback to local authentication
+      useLocalAuthentication(email, password);
+    }
+  } catch (error) {
+    console.error('Login error:', error);
+    
+    // Handle specific Firebase errors
+    let errorMessage = 'Login failed. Please check your credentials.';
+    let fallbackToLocal = false;
+    
+    switch(error.code) {
+      case 'auth/user-not-found':
+        if (email === DEFAULT_ADMIN_EMAIL) {
+          fallbackToLocal = true;
+        } else {
+          errorMessage = 'No account found with this email.';
+        }
+        break;
+      case 'auth/wrong-password':
+        errorMessage = 'Incorrect password.';
+        break;
+      case 'auth/invalid-email':
+        errorMessage = 'Invalid email address.';
+        break;
+      case 'auth/invalid-credential':
+        errorMessage = 'Invalid email or password.';
+        break;
+      case 'auth/network-request-failed':
+        errorMessage = 'Network error. Please check your connection.';
+        fallbackToLocal = true;
+        break;
+      default:
+        fallbackToLocal = true;
+    }
+    
+    if (fallbackToLocal) {
+      useLocalAuthentication(email, password);
+    } else {
+      showErrorMessage(errorMessage);
+      loginBtn.disabled = false;
+      loginBtn.classList.remove('loading');
+    }
+  }
+});
+
+// Local authentication fallback
+function useLocalAuthentication(email, password) {
+  setTimeout(() => {
+    // Check against default credentials
+    if (email === DEFAULT_ADMIN_EMAIL && password === DEFAULT_ADMIN_PASSWORD) {
+      // Store session data
+      localStorage.setItem('adminLoggedIn', 'true');
+      localStorage.setItem('adminEmail', email);
+      localStorage.setItem('authTime', new Date().getTime().toString());
+      localStorage.setItem('adminData', JSON.stringify({
+        email: email,
+        displayName: "Administrator",
+        role: "admin"
+      }));
+      
+      showSuccessMessage('Login successful! Redirecting...');
+      
+      setTimeout(() => {
+        window.location.href = 'admin_dashboard.html';
+      }, 1000);
+    } else {
+      showErrorMessage('Invalid email or password.');
+      loginBtn.disabled = false;
+      loginBtn.classList.remove('loading');
+    }
+  }, 800);
+}
+
+// Utility functions
+function validateInputs(email, password) {
+  let isValid = true;
+  
+  // Email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!email || !emailRegex.test(email)) {
+    document.getElementById('emailError').textContent = 'Please enter a valid email address';
+    document.getElementById('emailError').classList.add('show');
+    emailInput.classList.add('error');
+    isValid = false;
+  }
+  
+  // Password validation
+  if (!password || password.length < 6) {
+    document.getElementById('passwordError').textContent = 'Password must be at least 6 characters';
+    document.getElementById('passwordError').classList.add('show');
+    passwordInput.classList.add('error');
+    isValid = false;
+  }
+  
+  return isValid;
+}
+
+function hideAllMessages() {
+  loginError.classList.remove('show');
+  loginSuccess.classList.remove('show');
+  document.getElementById('emailError').classList.remove('show');
+  document.getElementById('passwordError').classList.remove('show');
+  emailInput.classList.remove('error');
+  passwordInput.classList.remove('error');
+}
+
+function showErrorMessage(message) {
+  loginError.textContent = message;
+  loginError.classList.add('show');
+}
+
+function showSuccessMessage(message) {
+  loginSuccess.textContent = message;
+  loginSuccess.classList.add('show');
+}
+
+// Password toggle functionality
+passwordToggle.addEventListener('click', function() {
+  const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+  passwordInput.setAttribute('type', type);
+  this.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+});
+
+// Enter key support
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && !loginBtn.disabled) {
+    loginForm.dispatchEvent(new Event('submit'));
+  }
+});
+
+// Initialize on page load
+window.addEventListener('DOMContentLoaded', function() {
+  // Focus on email field
+  emailInput.focus();
+  
+  // Initialize Firebase
+  initializeFirebase();
+});
+</script>
+</body>
+</html>

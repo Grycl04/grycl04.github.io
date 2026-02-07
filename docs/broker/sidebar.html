@@ -1,0 +1,357 @@
+<!-- sidebar.html -->
+<div class="sidebar">
+  <div class="sidebar-content">
+    <!-- Logo Section - matches buyer sidebar -->
+    <div class="logo-section">
+      <div class="logo">
+        <div class="logo-icon">
+          <img src="../images/logo_bahai_nobg.png" alt="BahAI Real Estate" />
+        </div>
+        <div class="logo-text">
+          <h1>BahAI</h1>
+          <p>Real Estate Platform</p>
+        </div>
+      </div>
+      <div class="user-profile">
+        <div class="user-avatar" id="userAvatar">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="user-info">
+          <div class="user-name" id="userName">Loading...</div>
+          <div class="user-role" id="userRole">Broker</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <nav class="sidebar-nav">
+      <div class="nav-title">Navigation</div>
+      <ul>
+        <li><a href="broker_dashboard.html" class="sidebar-link"><div class="nav-icon"><i class="fas fa-home"></i></div><span class="nav-text">Dashboard</span></a></li>
+        <li><a href="broker_listings.html" class="sidebar-link"><div class="nav-icon"><i class="fas fa-list"></i></div><span class="nav-text">My Listings</span></a></li>
+        <li><a href="add_property.html" class="sidebar-link"><div class="nav-icon"><i class="fas fa-plus"></i></div><span class="nav-text">Add Property</span></a></li>
+        <li><a href="list_agent.html" class="sidebar-link"><div class="nav-icon"><i class="fas fa-users"></i></div><span class="nav-text">Agents</span></a></li>
+        <li><a href="inquiries.html" class="sidebar-link"><div class="nav-icon"><i class="fas fa-comments"></i></div><span class="nav-text">Inquiries</span></a></li>
+        <li><a href="schedule_management.html" class="sidebar-link"><div class="nav-icon"><i class="fas fa-calendar-alt"></i></div><span class="nav-text">Schedule</span></a></li>
+        <li><a href="profile.html" class="sidebar-link"><div class="nav-icon"><i class="fas fa-user"></i></div><span class="nav-text">Profile</span></a></li>
+      </ul>
+    </nav>
+
+    <!-- Bottom Section - Logout -->
+    <div class="sidebar-footer">
+      <button id="logoutBtn" class="logout-btn">
+        <div class="logout-icon">
+          <i class="fas fa-sign-out-alt"></i>
+        </div>
+        <span class="logout-text">Log Out</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+:root {
+  --sidebar-bg: linear-gradient(180deg, #0b2e52 0%, #071e38 100%);
+  --sidebar-accent: #d4af37;
+  --sidebar-accent-dark: #b8860b;
+  --sidebar-text-light: rgba(255, 255, 255, 0.95);
+  --sidebar-text-muted: rgba(255, 255, 255, 0.75);
+  --sidebar-border: rgba(212, 175, 55, 0.15);
+  --sidebar-hover: rgba(212, 175, 55, 0.12);
+  --sidebar-active: rgba(212, 175, 55, 0.22);
+}
+
+.sidebar {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  width: 280px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.sidebar-content {
+  width: 100%;
+  height: 100%;
+  background: var(--sidebar-bg);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 5px 0 30px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+}
+
+/* Logo Section - matches buyer */
+.logo-section {
+  padding: 30px 25px 20px;
+  border-bottom: 1px solid var(--sidebar-border);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+/* User Profile - matches buyer */
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid var(--sidebar-border);
+  transition: all 0.3s ease;
+}
+
+.user-profile:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.user-avatar {
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #0b2e52;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-name {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--sidebar-text-light);
+  margin-bottom: 2px;
+}
+
+.user-role {
+  font-size: 12px;
+  color: var(--sidebar-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+.user-role::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: #d4af37;
+  border-radius: 50%;
+}
+
+.logo-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.logo-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.logo-text h1 {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0;
+  color: var(--sidebar-text-light);
+  letter-spacing: -0.5px;
+}
+
+.logo-text p {
+  font-size: 12px;
+  color: var(--sidebar-text-muted);
+  margin: 4px 0 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Navigation - matches buyer */
+.sidebar-nav {
+  padding: 20px 15px;
+}
+
+.nav-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--sidebar-text-muted);
+  margin-bottom: 15px;
+  padding: 0 10px;
+  font-weight: 600;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar-nav li {
+  margin: 4px 0;
+}
+
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+  text-decoration: none;
+  color: var(--sidebar-text-muted);
+  transition: all 0.3s ease;
+  position: relative;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+.sidebar-nav a:hover {
+  background: var(--sidebar-hover);
+  color: var(--sidebar-text-light);
+  transform: translateX(5px);
+}
+
+.sidebar-nav a.active {
+  background: var(--sidebar-active);
+  color: var(--sidebar-text-light);
+  font-weight: 600;
+}
+
+.sidebar-nav a.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 20px;
+  background: linear-gradient(to bottom, var(--sidebar-accent), var(--sidebar-accent-dark));
+  border-radius: 0 4px 4px 0;
+}
+
+.nav-icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  font-size: 16px;
+  color: var(--sidebar-accent);
+  transition: all 0.3s ease;
+}
+
+.sidebar-nav a:hover .nav-icon {
+  background: rgba(212, 175, 55, 0.2);
+}
+
+.sidebar-nav a.active .nav-icon {
+  background: linear-gradient(135deg, var(--sidebar-accent) 0%, var(--sidebar-accent-dark) 100%);
+  color: #0b2e52;
+}
+
+.nav-text {
+  flex: 1;
+  font-size: 14px;
+}
+
+/* Sidebar Footer - Logout */
+.sidebar-footer {
+  padding: 25px;
+  border-top: 1px solid var(--sidebar-border);
+  margin-top: auto;
+}
+
+.logout-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 14px 20px;
+  background: rgba(239, 68, 68, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+}
+
+.logout-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: white;
+  transform: translateX(5px);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.logout-icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(239, 68, 68, 0.2);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover .logout-icon {
+  background: rgba(239, 68, 68, 0.3);
+}
+
+.logout-text {
+  flex: 1;
+  font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+  .sidebar { width: 240px; }
+}
+
+@media (max-width: 768px) {
+  .sidebar { transform: translateX(-100%); }
+}
+</style>
+
+<script>
+(function() {
+  try {
+    var userData = JSON.parse(localStorage.getItem('userData') || 'null') || JSON.parse(sessionStorage.getItem('userData') || 'null');
+    if (userData) {
+      var userNameEl = document.getElementById('userName');
+      var userRoleEl = document.getElementById('userRole');
+      var userAvatarEl = document.getElementById('userAvatar');
+      if (userNameEl) userNameEl.textContent = userData.fullName || userData.email || 'User';
+      if (userRoleEl) userRoleEl.textContent = userData.role === 'agent' ? 'Agent' : 'Licensed Broker';
+      if (userAvatarEl && userData.fullName) {
+        var initials = userData.fullName.split(' ').map(function(n) { return n[0]; }).join('').toUpperCase().substring(0, 2);
+        userAvatarEl.innerHTML = '<span style="font-weight: 600;">' + initials + '</span>';
+      }
+    }
+  } catch (e) {}
+})();
+</script>

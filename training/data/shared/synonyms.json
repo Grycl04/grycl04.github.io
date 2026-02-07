@@ -1,0 +1,58 @@
+{
+  "phrases": {
+    "property_search": [
+      "I'm looking for properties",
+      "Show me available units",
+      "Find me a place to live",
+      "Search for real estate",
+      "Help me find a property"
+    ],
+    "price_inquiry": [
+      "How much does it cost?",
+      "What's the price range?",
+      "Tell me about pricing",
+      "What are the rates?",
+      "How expensive is it?"
+    ],
+    "location_specific": [
+      "In Batangas City",
+      "Around Lipa area",
+      "Near the beach",
+      "Close to schools",
+      "In a quiet neighborhood"
+    ],
+    "feature_requests": [
+      "With parking space",
+      "Must have a pool",
+      "Needs to be furnished",
+      "Should be near transport",
+      "With good security"
+    ],
+    "process_questions": [
+      "How do I apply?",
+      "What are the requirements?",
+      "What's the process?",
+      "How long does it take?",
+      "What documents do I need?"
+    ]
+  },
+  
+  "slang_informal": {
+    "property": ["place", "pad", "crib", "digs", "home", "spot", "joint"],
+    "cheap": ["dirt cheap", "steal", "bargain", "good deal", "value", "affordable"],
+    "expensive": ["pricey", "costly", "high-end", "luxe", "posh", "fancy"],
+    "good": ["awesome", "great", "solid", "decent", "nice", "cool"],
+    "bad": ["lousy", "terrible", "awful", "no good", "poor", "weak"],
+    "quickly": ["ASAP", "pronto", "right now", "stat", "fast", "quick"]
+  },
+  
+  "tagalog_mix": {
+    "property": ["bahay", "lupa", "property", "tirahan", "pamayanan"],
+    "rent": ["upa", "renta", "arkila", "paupahan"],
+    "buy": ["bili", "bumili", "bilhin", "pagkakitaan"],
+    "sell": ["benta", "ipagbili", "ibenta", "pagbebenta"],
+    "how_much": ["magkano", "ilan ang halaga", "ano ang presyo", "gaano kamahal"],
+    "where": ["saan", "nasaang lugar", "saang area", "saang barangay"],
+    "beautiful": ["maganda", "magandang lugar", "kaaya-aya", "malinis"]
+  }
+}

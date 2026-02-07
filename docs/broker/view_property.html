@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Property</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .photos {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .photos img {
+            width: 180px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .back-btn {
+            padding: 10px 15px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .details p {
+            margin: 6px 0;
+            font-size: 16px;
+        }
+
+        .title {
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .status {
+            font-weight: bold;
+            padding: 6px 10px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        .pending { background-color: #ff9800; color: #fff; }
+        .approved { background-color: #4caf50; color: #fff; }
+        .sold { background-color: #ef4444 !important; color: #fff !important; }
+        .rejected { background-color: #f44336; color: #fff; }
+    </style>
+</head>
+<body>
+
+    <a href="broker_listings.html" class="back-btn">⬅ Back to Listings</a>
+
+    <h1 class="title" id="propTitle">Loading...</h1>
+
+    <div class="photos" id="photoContainer"></div>
+
+    <div class="details" id="detailsContainer"></div>
+
+    <!-- Firebase -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCIfzneDzWVveG8p_0mywoA9D9F5AyzZX4",
+            authDomain: "bahai-1b76d.firebaseapp.com",
+            projectId: "bahai-1b76d",
+            storageBucket: "bahai-1b76d.appspot.com",
+            messagingSenderId: "646878644941",
+            appId: "1:646878644941:web:5b4ccc3412250337587784"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // GET PROPERTY ID FROM URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const propertyId = urlParams.get("id");
+
+        async function loadProperty() {
+            const ref = doc(db, "properties", propertyId);
+            const snap = await getDoc(ref);
+
+            if (!snap.exists()) {
+                document.getElementById("propTitle").innerText = "Property Not Found";
+                return;
+            }
+
+            const data = snap.data();
+
+            document.getElementById("propTitle").innerText = data.title || "Untitled Property";
+
+            // LOAD PHOTOS
+            const photoContainer = document.getElementById("photoContainer");
+            if (data.photos && data.photos.length > 0) {
+                data.photos.forEach(photo => {
+                    const img = document.createElement("img");
+                    img.src = photo;
+                    photoContainer.appendChild(img);
+                });
+            } else {
+                photoContainer.innerHTML = "<p>No photos available.</p>";
+            }
+
+            // DETAILS
+            const detailsHTML = `
+                <p><strong>Location:</strong> ${data.location}</p>
+                <p><strong>Pricing:</strong> ${data.pricing}</p>
+                <p><strong>Property Type:</strong> ${data.propertyType}</p>
+                <p><strong>Bedrooms:</strong> ${data.bedrooms}</p>
+                <p><strong>Bathrooms:</strong> ${data.bathrooms}</p>
+                <p><strong>Square Footage:</strong> ${data.squareFootage} sq ft</p>
+                <p><strong>Amenities:</strong> ${data.amenities ? data.amenities.join(", ") : "N/A"}</p>
+                <p><strong>Description:</strong> ${data.description}</p>
+                <p><strong>Status:</strong> 
+                    <span class="status ${data.status}">${data.status.toUpperCase()}</span>
+                </p>
+            `;
+            document.getElementById("detailsContainer").innerHTML = detailsHTML;
+        }
+
+        loadProperty();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1538 @@
+{
+  "member_id": "member3",
+  "assigned_questions": [
+    "Question 3: Find properties for [family/space] needs in [location]",
+    "Question 5: Show me [property feature/amenity] with [good price]",
+    "Question 8: Steps, costs, timeline for [property type]",
+    "Question 10: What properties match my [lifestyle/budget] needs?"
+  ],
+  "training_samples": [
+    {
+      "query": "find properties for family of 4 in batangas city",
+      "intent": "find_property_for_need",
+      "entities": {
+        "need": "family",
+        "family_size": 4,
+        "location": "Batangas City"
+      },
+      "variations": [
+        "spacious houses for family of 4 in batangas city",
+        "family sized properties for 4 people batangas",
+        "homes for 4 person family in batangas",
+        "properties for family with 4 members batangas city",
+        "big family homes for 4 in batangas",
+        "houses for family of 4 batangas",
+        "family-sized properties for 4 people in batangas city",
+        "properties suitable for family of 4 in batangas",
+        "homes with space for 4 people in batangas",
+        "family of 4 suitable houses batangas",
+        "bahay para sa pamilyang 4 sa batangas city",
+        "may bahay ba for family of 4 sa batangas",
+        "looking for house for family of 4 in batangas city",
+        "family-sized properties for 4 people batangas",
+        "homes for 4-member family in batangas",
+        "family-ready houses for 4 people batangas city",
+        "spacious properties for 4 person family",
+        "homes with bedrooms for family of 4",
+        "family-appropriate houses for 4 members batangas",
+        "properties with space for family of 4",
+        "find properties for family of 4 in batangas city",
+        "find houses for family of 4 in batangas",
+        "show me properties for family of 4 in batangas",
+        "looking for homes for family of 4 in batangas city",
+        "need properties for family of 4 in batangas",
+        "search properties for family of 4 in batangas",
+        "properties for family of four in batangas city",
+        "homes for 4-person family in batangas",
+        "family of four properties in batangas city",
+        "find apartments for family of 4 in batangas"
+      ],
+      "response_template": "Properties suitable for family of {family_size} in {location}. Recommended: 2-3 bedrooms for comfort.",
+      "family_size_guide": {
+        "1-2": "1-2 bedrooms recommended",
+        "3-4": "2-3 bedrooms recommended",
+        "5-6": "3-4 bedrooms recommended",
+        "7+": "4+ bedrooms recommended"
+      }
+    },
+    {
+      "query": "spacious house for big family in lipa city",
+      "intent": "find_property_for_need",
+      "entities": {
+        "need": "family",
+        "space_requirement": "spacious",
+        "family_type": "big family",
+        "location": "Lipa City"
+      },
+      "variations": [
+        "large homes for big family in lipa",
+        "big family houses with space lipa city",
+        "spacious properties for large family lipa",
+        "homes suitable for big family in lipa",
+        "houses for big family with rooms lipa city",
+        "malaking bahay para sa malaking pamilya sa lipa",
+        "may spacious house ba for big family sa lipa",
+        "looking for big family home in lipa",
+        "big family-ready houses lipa city",
+        "roomy homes for big family lipa",
+        "properties para sa malaking pamilya sa lipa",
+        "expansive houses for large families lipa",
+        "big homes for big families in lipa city",
+        "spacious family residences lipa",
+        "houses with ample space for big family",
+        "big family-appropriate houses lipa",
+        "properties with multiple rooms for big family",
+        "large family homes with space lipa city",
+        "spacious units for big families lipa",
+        "big family houses with bedrooms lipa",
+        "find spacious house for big family in lipa city",
+        "find properties for big family in lipa",
+        "show me spacious homes for big family in lipa",
+        "looking for large house for big family in lipa city",
+        "need big family home in lipa",
+        "search spacious properties for big family in lipa",
+        "big family houses in lipa city",
+        "properties for large family in lipa",
+        "spacious family homes in lipa",
+        "find big family residence in lipa city"
+      ],
+      "response_template": "{space_requirement} properties for {family_type} in {location}. Look for 4+ bedrooms and open floor plans.",
+      "big_family_features": [
+        "4+ bedrooms",
+        "multiple bathrooms",
+        "large living areas",
+        "dining space",
+        "storage areas",
+        "backyard/garden"
+      ]
+    },
+    {
+      "query": "3 bedroom house for family of 5 in nasugbu",
+      "intent": "find_property_for_need",
+      "entities": {
+        "need": "family",
+        "family_size": 5,
+        "bedrooms": 3,
+        "property_type": "house",
+        "location": "Nasugbu"
+      },
+      "variations": [
+        "house with 3 bedrooms for family of 5 nasugbu",
+        "3 bedroom home for 5 person family nasugbu",
+        "properties with 3 rooms for family of 5",
+        "3br house for family with 5 members nasugbu",
+        "three bedroom house for family of five nasugbu",
+        "may 3 bedroom house ba for family of 5 sa nasugbu",
+        "looking for 3 bedroom house for 5 people nasugbu",
+        "family of 5 ready 3 bedroom houses",
+        "3 kwarto na bahay para sa pamilyang 5 nasugbu",
+        "bahay na may 3 kwarto para sa 5 tao nasugbu",
+        "properties with 3 bedrooms for 5-member family",
+        "3 bedroom homes suitable for family of 5",
+        "houses featuring 3 bedrooms for 5 people",
+        "3 bedroom residences for family nasugbu",
+        "family homes with 3 bedrooms nasugbu city",
+        "3 bedroom appropriate for family of 5",
+        "properties having 3 bedrooms for 5 persons",
+        "3 bedroom equipped houses for family",
+        "3 bedroom family houses nasugbu",
+        "3 room homes for 5 people nasugbu",
+        "find 3 bedroom house for family of 5 in nasugbu",
+        "find properties for family of 5 in nasugbu",
+        "show me 3 bedroom homes for family of 5 in nasugbu",
+        "looking for house for family of 5 in nasugbu",
+        "need 3 bedroom for family of 5 in nasugbu",
+        "search houses for family of 5 in nasugbu",
+        "family of five homes in nasugbu",
+        "3 bedroom properties for 5 people in nasugbu",
+        "homes for 5-member family in nasugbu",
+        "find family house in nasugbu for 5"
+      ],
+      "response_template": "{bedrooms} bedroom {property_type} for family of {family_size} in {location}. {bedroom_suggestion}",
+      "bedroom_suggestion": "For family of 5, 3 bedrooms work if shared rooms or additional space available."
+    },
+    {
+      "query": "properties with space for 6 people in tanauan",
+      "intent": "find_property_for_need",
+      "entities": {
+        "need": "family",
+        "family_size": 6,
+        "space_requirement": "space",
+        "location": "Tanauan City"
+      },
+      "variations": [
+        "homes for 6 people in tanauan city",
+        "properties suitable for 6 persons tanauan",
+        "houses with room for 6 people tanauan",
+        "accommodation for 6 members in tanauan",
+        "may property ba na kasya 6 tao sa tanauan",
+        "looking for property for 6 people tanauan",
+        "6-person ready properties tanauan city",
+        "properties na pwedeng tirahan ng 6 tao",
+        "bahay para sa 6 na tao sa tanauan",
+        "properties accommodating 6 people tanauan",
+        "homes that can fit 6 persons tanauan city",
+        "properties with capacity for 6",
+        "houses big enough for 6 people",
+        "6-member family properties tanauan",
+        "properties for group of 6 tanauan",
+        "space for 6 individuals tanauan city",
+        "properties that can house 6 people",
+        "homes with enough rooms for 6",
+        "properties for 6-person household",
+        "accommodations for six people tanauan",
+        "find properties with space for 6 people in tanauan",
+        "find homes for 6 people in tanauan",
+        "show me properties for 6 persons in tanauan",
+        "looking for space for 6 in tanauan",
+        "need property for 6 people in tanauan",
+        "search homes for 6 in tanauan",
+        "properties for 6-member family in tanauan",
+        "homes accommodating 6 in tanauan",
+        "family of six properties in tanauan",
+        "find large home for 6 in tanauan"
+      ],
+      "response_template": "Properties with space for {family_size} people in {location}. Recommended: 3-4 bedrooms minimum.",
+      "capacity_requirements": "For 6 people, minimum 3 bedrooms with potential for shared rooms or additional sleeping areas."
+    },
+    {
+      "query": "small family home in bauan",
+      "intent": "find_property_for_need",
+      "entities": {
+        "need": "family",
+        "family_type": "small family",
+        "location": "Bauan"
+      },
+      "variations": [
+        "houses for small family in bauan",
+        "properties for small family bauan",
+        "homes suitable for small family bauan",
+        "small family houses in bauan city",
+        "may bahay ba for small family sa bauan",
+        "looking for small family home bauan",
+        "small family-ready properties bauan",
+        "houses para sa maliit na pamilya bauan",
+        "properties for young family bauan",
+        "starter homes for family bauan",
+        "small family appropriate houses bauan",
+        "compact homes for family bauan city",
+        "cozy houses for small family bauan",
+        "properties for newly formed family",
+        "homes for family with 1-2 children",
+        "small family residences bauan",
+        "affordable family homes bauan",
+        "properties for small household bauan",
+        "houses for compact family bauan",
+        "small family living properties bauan",
+        "find small family home in bauan",
+        "find properties for small family in bauan",
+        "show me small family homes in bauan",
+        "looking for small family house in bauan",
+        "need home for small family in bauan",
+        "search small family properties in bauan",
+        "properties for young family in bauan",
+        "starter family homes in bauan",
+        "compact family homes in bauan",
+        "find cozy home for small family in bauan"
+      ],
+      "response_template": "{family_type} homes in {location}. Perfect for couples or families with 1-2 children.",
+      "small_family_features": [
+        "2-3 bedrooms",
+        "cozy living spaces",
+        "efficient layout",
+        "low maintenance",
+        "affordable"
+      ]
+    },
+    {
+      "query": "apartment with 2 bedrooms for family of 3",
+      "intent": "find_property_for_need",
+      "entities": {
+        "need": "family",
+        "family_size": 3,
+        "bedrooms": 2,
+        "property_type": "apartment"
+      },
+      "variations": [
+        "2 bedroom apartment for 3 people",
+        "apartment with 2 rooms for family of 3",
+        "2br apartment for 3 person family",
+        "two bedroom apartment for family of three",
+        "apartment na may 2 kwarto para sa 3 tao",
+        "may 2 bedroom apartment ba for family of 3",
+        "looking for 2 bedroom apartment for 3",
+        "family of 3 ready 2 bedroom apartments",
+        "2 bedroom units for 3 people",
+        "apartments with 2 bedrooms suitable for 3",
+        "2 bedroom condo for family of 3",
+        "2 room apartment for 3-member family",
+        "apartment featuring 2 bedrooms for family",
+        "2 bedroom housing for 3 persons",
+        "apartments having 2 bedrooms for family",
+        "2 bedroom equipped apartments for 3",
+        "2 bedroom family apartments",
+        "2 room homes for 3 people",
+        "apartments with 2 rooms for 3",
+        "2 bedroom accommodations for family",
+        "find apartment with 2 bedrooms for family of 3",
+        "find properties for family of 3",
+        "show me 2 bedroom apartments for 3 people",
+        "looking for apartment for family of 3",
+        "need 2 bedroom for family of 3",
+        "search apartments for 3-person family",
+        "properties for family of three",
+        "2 bedroom homes for 3 people",
+        "family of three apartments",
+        "find home for family of 3"
+      ],
+      "response_template": "{bedrooms} bedroom {property_type} for family of {family_size}. Perfect size: parents' room + children's room.",
+      "layout_suggestion": "2 bedrooms ideal for family of 3: master bedroom + children's room or home office."
+    },
+    {
+      "query": "properties for couples",
+      "intent": "find_property_for_need",
+      "entities": {
+        "need": "family",
+        "family_type": "couple"
+      },
+      "variations": [
+        "find properties for couples",
+        "show me properties for couples",
+        "looking for properties for couples",
+        "houses for couples",
+        "apartments for couples",
+        "condos for couples",
+        "homes for couples",
+        "properties suitable for couples",
+        "couple-friendly properties",
+        "properties for two people",
+        "find properties for couple",
+        "show me properties for couple",
+        "looking for properties for couple",
+        "houses for couple",
+        "apartments for couple",
+        "condos for couple",
+        "homes for couple",
+        "properties suitable for couple",
+        "couple-friendly properties",
+        "properties for two people"
+      ],
+      "response_template": "Properties for couples. Perfect for newlyweds or young professionals looking for 1-2 bedroom homes.",
+      "small_family_features": [
+        "1-2 bedrooms",
+        "cozy living spaces",
+        "efficient layout",
+        "low maintenance",
+        "affordable"
+      ]
+    },
+    {
+      "query": "find properties for family of 3 in lipa city",
+      "intent": "find_property_for_need",
+      "entities": {
+        "need": "family",
+        "family_size": 3,
+        "bedrooms": 3,
+        "exact_bedrooms": 3,
+        "location": "Lipa City"
+      },
+      "variations": [
+        "find houses for family of 3 in lipa",
+        "show me properties for family of three in lipa city",
+        "looking for homes for family of 3 in lipa",
+        "need properties for family of 3 in lipa city",
+        "search properties for family of 3 in lipa",
+        "homes for family of 3 in lipa city",
+        "apartments for family of 3 in lipa",
+        "condos for family of three in lipa city",
+        "family of three properties in lipa",
+        "properties suitable for family of 3 in lipa",
+        "houses with space for family of 3 in lipa city",
+        "find 3-person family homes in lipa",
+        "show me family-sized properties in lipa for 3",
+        "looking for family house in lipa for 3 people",
+        "need home for 3-member family in lipa city",
+        "search for family properties in lipa for 3",
+        "properties accommodating family of 3 in lipa",
+        "homes for three people in lipa city",
+        "find residence for family of 3 in lipa",
+        "family-ready properties in lipa for 3"
+      ],
+      "response_template": "Properties suitable for family of {family_size} in {location}. Recommended: 2-3 bedrooms for comfort. Found {count} properties.",
+      "family_size_guide": {
+        "1-2": "1-2 bedrooms recommended",
+        "3-4": "2-3 bedrooms recommended",
+        "5-6": "3-4 bedrooms recommended",
+        "7+": "4+ bedrooms recommended"
+      }
+    },
+    {
+      "query": "find properties for family of 2 in nasugbu",
+      "intent": "find_property_for_need",
+      "entities": {
+        "need": "family",
+        "family_size": 2,
+        "location": "Nasugbu"
+      },
+      "variations": [
+        "find homes for family of 2 in nasugbu",
+        "show me properties for couple in nasugbu",
+        "looking for houses for family of 2 in nasugbu",
+        "need properties for two people in nasugbu",
+        "search properties for couple in nasugbu city",
+        "homes for family of 2 in nasugbu",
+        "apartments for couple in nasugbu",
+        "condos for two people in nasugbu",
+        "couple properties in nasugbu",
+        "properties suitable for family of 2 in nasugbu",
+        "find couple homes in nasugbu",
+        "show me properties for 2-person family in nasugbu",
+        "looking for home for couple in nasugbu city",
+        "need residence for family of 2 in nasugbu",
+        "search for couple properties in nasugbu",
+        "properties for two-member family in nasugbu",
+        "homes for two people in nasugbu city",
+        "find apartment for couple in nasugbu",
+        "couple-friendly properties in nasugbu"
+      ],
+      "response_template": "Properties for family of {family_size} in {location}. Perfect for couples or small families.",
+      "family_size_guide": {
+        "1-2": "1-2 bedrooms recommended",
+        "3-4": "2-3 bedrooms recommended",
+        "5-6": "3-4 bedrooms recommended",
+        "7+": "4+ bedrooms recommended"
+      }
+    },
+    {
+      "query": "properties for students in batangas city",
+      "intent": "find_property_for_need",
+      "entities": {
+        "need": "students",
+        "location": "Batangas City"
+      },
+      "variations": [
+        "find properties for students in batangas city",
+        "show me student accommodations in batangas",
+        "looking for housing for students in batangas city",
+        "need properties for college students in batangas",
+        "search student properties in batangas",
+        "homes for students in batangas city",
+        "apartments for students in batangas",
+        "condos for students in batangas city",
+        "student-friendly properties in batangas",
+        "properties suitable for students in batangas",
+        "find student housing in batangas",
+        "show me student rentals in batangas city",
+        "looking for accommodation for students in batangas",
+        "need residence for students in batangas city",
+        "search for student-friendly properties in batangas",
+        "properties for university students in batangas",
+        "homes near universities in batangas city",
+        "find apartment for students in batangas",
+        "student-ready properties in batangas"
+      ],
+      "response_template": "Properties for {need} in {location}. Look for affordable options near educational institutions.",
+      "student_features": [
+        "Affordable pricing",
+        "Near schools/universities",
+        "Furnished options",
+        "Shared accommodations",
+        "Study areas",
+        "Internet access"
+      ]
+    },
+    {
+      "query": "properties for professionals in lipa city",
+      "intent": "find_property_for_need",
+      "entities": {
+        "need": "professionals",
+        "location": "Lipa City"
+      },
+      "variations": [
+        "find properties for professionals in lipa city",
+        "show me professional accommodations in lipa",
+        "looking for housing for working professionals in lipa city",
+        "need properties for professionals in lipa",
+        "search professional properties in lipa",
+        "homes for professionals in lipa city",
+        "apartments for professionals in lipa",
+        "condos for working people in lipa city",
+        "professional-friendly properties in lipa",
+        "properties suitable for professionals in lipa",
+        "find professional housing in lipa",
+        "show me executive rentals in lipa city",
+        "looking for accommodation for professionals in lipa",
+        "need residence for professionals in lipa city",
+        "search for professional-friendly properties in lipa",
+        "properties for working individuals in lipa",
+        "homes near business districts in lipa city",
+        "find apartment for professionals in lipa",
+        "professional-ready properties in lipa"
+      ],
+      "response_template": "Properties for {need} in {location}. Look for convenient locations and modern amenities.",
+      "professional_features": [
+        "Modern design",
+        "Convenient location",
+        "Parking space",
+        "Security features",
+        "Home office potential",
+        "Proximity to business areas"
+      ]
+    },
+    {
+      "query": "show me pool with good price",
+      "intent": "find_with_feature",
+      "entities": {
+        "feature": "pool",
+        "price_quality": "good price"
+      },
+      "variations": [
+        "properties with swimming pool affordable",
+        "houses with pool reasonable price",
+        "apartments with pool good value",
+        "pool properties at fair price",
+        "houses featuring pool affordable",
+        "properties having pool good price",
+        "pool included properties reasonable",
+        "houses with swimming pool cheap",
+        "properties with pool budget-friendly",
+        "pool amenity properties affordable",
+        "may property ba with pool na mura",
+        "looking for pool house good price",
+        "affordable homes with pool",
+        "pool-equipped properties good value",
+        "properties with pool at reasonable rate",
+        "budget-friendly pool houses",
+        "value for money properties with pool",
+        "economical pool properties",
+        "pool homes with good pricing",
+        "properties featuring pool affordable price"
+      ],
+      "response_template": "Properties with {feature} at {price_quality}:",
+      "price_quality_terms": [
+        "good price",
+        "reasonable",
+        "affordable",
+        "cheap",
+        "budget-friendly",
+        "fair price",
+        "value for money",
+        "economical"
+      ]
+    },
+    {
+      "query": "houses with garden at reasonable cost",
+      "intent": "find_with_feature",
+      "entities": {
+        "feature": "garden",
+        "price_quality": "reasonable cost"
+      },
+      "variations": [
+        "properties with garden affordable",
+        "homes with backyard reasonable price",
+        "houses featuring garden good value",
+        "garden properties at fair cost",
+        "properties with green space affordable",
+        "houses having garden reasonable",
+        "garden included properties good price",
+        "homes with garden cheap",
+        "properties with garden budget-friendly",
+        "garden amenity properties reasonable",
+        "may bahay ba with garden na reasonable price",
+        "looking for garden house affordable",
+        "affordable homes with garden",
+        "garden-equipped properties good value",
+        "properties with garden at reasonable rate",
+        "budget-friendly garden houses",
+        "value for money properties with garden",
+        "economical garden properties",
+        "garden homes with good pricing",
+        "properties featuring garden reasonable cost"
+      ],
+      "response_template": "Properties with {feature} at {price_quality}:"
+    },
+    {
+      "query": "apartments with parking cheap",
+      "intent": "find_with_feature",
+      "entities": {
+        "property_type": "apartment",
+        "feature": "parking",
+        "price_quality": "cheap"
+      },
+      "variations": [
+        "cheap apartments with parking space",
+        "affordable apartments with parking",
+        "apartments with parking budget-friendly",
+        "parking included apartments cheap",
+        "apartments featuring parking affordable",
+        "units with parking space inexpensive",
+        "apartments having parking low cost",
+        "cheap units with parking",
+        "budget apartments with parking",
+        "affordable units with parking space",
+        "may apartment ba with parking na mura",
+        "looking for cheap apartment with parking",
+        "inexpensive apartments with parking",
+        "apartments with parking at low price",
+        "economical apartments with parking",
+        "low-cost apartments with parking space",
+        "value apartments with parking",
+        "apartments with parking affordable rate",
+        "cheap rentals with parking",
+        "budget-friendly apartments with parking"
+      ],
+      "response_template": "{property_type} with {feature} at {price_quality}:"
+    },
+    {
+      "query": "condos with security good value",
+      "intent": "find_with_feature",
+      "entities": {
+        "property_type": "condo",
+        "feature": "security",
+        "price_quality": "good value"
+      },
+      "variations": [
+        "condominiums with security affordable",
+        "condos with 24/7 security good price",
+        "secure condos good value",
+        "condos with security features reasonable",
+        "condos having security budget-friendly",
+        "security-equipped condos affordable",
+        "condos with guard cheap",
+        "secure condominium units good value",
+        "condos with CCTV and security reasonable",
+        "condos featuring security good price",
+        "may condo ba with security na good value",
+        "looking for secure condo affordable",
+        "value for money condos with security",
+        "condos with security at reasonable rate",
+        "affordable secure condos",
+        "budget-friendly condos with security",
+        "economical condos with security features",
+        "condos with good security cheap",
+        "secure units good value",
+        "condos with comprehensive security affordable"
+      ],
+      "response_template": "{property_type} with {feature} at {price_quality}:"
+    },
+    {
+      "query": "commercial spaces with elevator reasonable",
+      "intent": "find_with_feature",
+      "entities": {
+        "property_type": "commercial",
+        "feature": "elevator",
+        "price_quality": "reasonable"
+      },
+      "variations": [
+        "business spaces with elevator affordable",
+        "commercial properties with elevator good price",
+        "elevator-equipped commercial spaces reasonable",
+        "commercial units with elevator cheap",
+        "properties with elevator access budget-friendly",
+        "commercial having elevator affordable",
+        "spaces with elevator good value",
+        "commercial buildings with elevator reasonable",
+        "office spaces with elevator cheap",
+        "retail spaces with elevator affordable",
+        "may commercial space ba with elevator na reasonable",
+        "looking for elevator commercial space affordable",
+        "value commercial spaces with elevator",
+        "commercial properties with elevator at fair price",
+        "affordable elevator commercial spaces",
+        "budget-friendly commercial with elevator",
+        "economical commercial spaces with elevator",
+        "commercial units with elevator good value",
+        "reasonable price commercial with elevator",
+        "commercial spaces featuring elevator affordable"
+      ],
+      "response_template": "{property_type} spaces with {feature} at {price_quality}:"
+    },
+    {
+      "query": "houses near beach affordable",
+      "intent": "find_with_feature",
+      "entities": {
+        "feature": "beach proximity",
+        "price_quality": "affordable"
+      },
+      "variations": [
+        "beachfront houses cheap",
+        "properties near beach reasonable price",
+        "houses close to beach affordable",
+        "beach proximity properties good value",
+        "houses with beach access cheap",
+        "properties near shoreline affordable",
+        "beach houses budget-friendly",
+        "houses near sea reasonable",
+        "beachfront properties affordable",
+        "coastal houses cheap",
+        "may bahay ba malapit sa beach na affordable",
+        "looking for beach house cheap",
+        "affordable properties near beach",
+        "beach-close houses good value",
+        "houses near beach at reasonable rate",
+        "budget-friendly beach houses",
+        "value for money beach properties",
+        "economical houses near beach",
+        "cheap beachfront homes",
+        "affordable coastal properties"
+      ],
+      "response_template": "Properties with {feature} at {price_quality}:"
+    },
+    {
+      "query": "furnished apartments good price",
+      "intent": "find_with_feature",
+      "entities": {
+        "property_type": "apartment",
+        "feature": "furnished",
+        "price_quality": "good price"
+      },
+      "variations": [
+        "fully furnished apartments affordable",
+        "furnished units reasonable price",
+        "apartments with furniture cheap",
+        "furnished apartments good value",
+        "apartments with complete furniture affordable",
+        "furnished units budget-friendly",
+        "apartments having furniture reasonable",
+        "fully equipped apartments cheap",
+        "furnished apartments with good price",
+        "apartments with furnishings affordable",
+        "may apartment ba furnished na mura",
+        "looking for furnished apartment affordable",
+        "value furnished apartments",
+        "furnished apartments at reasonable rate",
+        "affordable furnished units",
+        "budget-friendly furnished apartments",
+        "economical furnished apartments",
+        "cheap furnished rentals",
+        "good price furnished apartments",
+        "furnished apartments reasonable cost"
+      ],
+      "response_template": "{property_type} with {feature} at {price_quality}:"
+    },
+    {
+      "query": "properties with wifi included cheap",
+      "intent": "find_with_feature",
+      "entities": {
+        "feature": "wifi",
+        "price_quality": "cheap"
+      },
+      "variations": [
+        "houses with free wifi affordable",
+        "properties with internet included reasonable",
+        "wifi-equipped properties cheap",
+        "homes with wifi good value",
+        "properties featuring wifi affordable",
+        "wifi included houses budget-friendly",
+        "properties with internet cheap",
+        "homes having wifi reasonable",
+        "wifi-ready properties affordable",
+        "properties with internet connection cheap",
+        "may property ba with wifi na mura",
+        "looking for wifi included property affordable",
+        "value properties with wifi",
+        "properties with wifi at reasonable rate",
+        "affordable wifi properties",
+        "budget-friendly homes with wifi",
+        "economical properties with wifi",
+        "cheap rentals with wifi",
+        "wifi included properties good price",
+        "properties featuring internet cheap"
+      ],
+      "response_template": "Properties with {feature} at {price_quality}:"
+    },
+    {
+      "query": "steps for buying a house",
+      "intent": "process_info",
+      "entities": {
+        "process_type": "steps",
+        "property_type": "house"
+      },
+      "variations": [
+        "process of buying a house",
+        "how to buy a house steps",
+        "house purchase procedure",
+        "steps to acquire a house",
+        "buying house process details",
+        "house buying steps explained",
+        "procedure for purchasing house",
+        "steps involved in buying house",
+        "home purchase process steps",
+        "acquiring a house process",
+        "paano bumili ng bahay step by step",
+        "processo ng pagbili ng bahay",
+        "mga hakbang sa pagbili ng bahay",
+        "procedure for house acquisition",
+        "steps for residential property purchase",
+        "how to purchase a home step by step",
+        "buying process for houses",
+        "property buying procedure for houses",
+        "step-by-step house purchase",
+        "home acquisition process steps"
+      ],
+      "response_template": "For {property_type}: Steps: {steps}, Costs: {costs}, Timeline: {timeline}",
+      "process_data": {
+        "steps": [
+          "1. Property search and selection",
+          "2. Due diligence and verification",
+          "3. Offer and negotiation",
+          "4. Financing approval and documents",
+          "5. Payment and transfer",
+          "6. Registration and titling"
+        ],
+        "costs": [
+          "Downpayment: 20-30%",
+          "Processing fees: ₱50,000-₱150,000",
+          "Transfer taxes: 1-3% of property value",
+          "Notarial fees: ₱10,000-₱30,000",
+          "Registration fees: ₱25,000-₱50,000"
+        ],
+        "timeline": "30-90 days depending on financing"
+      }
+    },
+    {
+      "query": "costs for buying a condo",
+      "intent": "process_info",
+      "entities": {
+        "process_type": "costs",
+        "property_type": "condo"
+      },
+      "variations": [
+        "expenses for buying a condominium",
+        "condo purchase costs",
+        "how much to buy a condo",
+        "condominium buying expenses",
+        "costs involved in condo purchase",
+        "condo acquisition costs",
+        "buying condo total cost",
+        "condo purchasing expenses",
+        "cost breakdown for condo purchase",
+        "condo buying financial requirements",
+        "magkano ang gastos sa pagbili ng condo",
+        "mga gastos sa condo purchase",
+        "total cost for buying condominium",
+        "condo purchase cost estimation",
+        "financial requirements for condo",
+        "condo buying fees and charges",
+        "costs for condominium acquisition",
+        "condo purchase financial breakdown",
+        "expenses involved in condo buying",
+        "condo acquisition cost breakdown"
+      ],
+      "response_template": "For {property_type}: Steps: {steps}, Costs: {costs}, Timeline: {timeline}",
+      "process_data": {
+        "steps": [
+          "1. Unit selection and reservation",
+          "2. Loan application (if applicable)",
+          "3. Payment of downpayment",
+          "4. Signing of contracts",
+          "5. Turnover process",
+          "6. Association membership"
+        ],
+        "costs": [
+          "Downpayment: 20-30%",
+          "Reservation fee: ₱20,000-₱50,000",
+          "Processing fees: ₱40,000-₱80,000",
+          "Transfer taxes: 1-3%",
+          "Association dues: ₱2,000-₱8,000/month",
+          "Move-in fee: ₱5,000-₱15,000"
+        ],
+        "timeline": "30-60 days for ready for occupancy, 6-36 months for pre-selling"
+      }
+    },
+    {
+      "query": "timeline for renting an apartment",
+      "intent": "process_info",
+      "entities": {
+        "process_type": "timeline",
+        "property_type": "apartment"
+      },
+      "variations": [
+        "apartment rental process time",
+        "how long to rent an apartment",
+        "apartment leasing timeline",
+        "timeframe for renting apartment",
+        "apartment rental duration process",
+        "rental process timeline apartment",
+        "how fast can I rent an apartment",
+        "apartment rental procedure time",
+        "timeline for apartment lease",
+        "apartment renting schedule",
+        "gaano katagal mag-rent ng apartment",
+        "timeline ng apartment rental",
+        "process duration for renting apartment",
+        "apartment rental time required",
+        "rental application timeline apartment",
+        "apartment lease process duration",
+        "time needed for apartment rental",
+        "apartment renting process timeline",
+        "schedule for apartment rental process",
+        "apartment rental time frame"
+      ],
+      "response_template": "For {property_type}: Steps: {steps}, Costs: {costs}, Timeline: {timeline}",
+      "process_data": {
+        "steps": [
+          "1. Property viewing",
+          "2. Application submission",
+          "3. Background check",
+          "4. Contract signing",
+          "5. Payment of deposits",
+          "6. Move-in inspection"
+        ],
+        "costs": [
+          "Security deposit: 1-2 months rent",
+          "Advance payment: 1 month rent",
+          "Processing fee: ₱2,000-₱5,000",
+          "Association fee (if applicable)",
+          "Utility deposits: ₱2,000-₱5,000"
+        ],
+        "timeline": "3-7 days for processing, immediate to 30 days for move-in"
+      }
+    },
+    {
+      "query": "requirements for commercial space lease",
+      "intent": "process_info",
+      "entities": {
+        "process_type": "requirements",
+        "property_type": "commercial"
+      },
+      "variations": [
+        "documents for leasing commercial space",
+        "commercial lease requirements",
+        "needed papers for commercial rental",
+        "commercial space leasing documents",
+        "requirements for business space lease",
+        "commercial rental prerequisites",
+        "documents needed for commercial lease",
+        "commercial space lease paperwork",
+        "requirements for renting commercial property",
+        "commercial leasing document requirements",
+        "mga requirements sa commercial space lease",
+        "documents para sa commercial rental",
+        "commercial lease application requirements",
+        "needed for commercial space rental",
+        "commercial property lease prerequisites",
+        "documents for business space lease",
+        "commercial leasing requirements list",
+        "papers needed for commercial lease",
+        "commercial rental document checklist",
+        "requirements checklist commercial lease"
+      ],
+      "response_template": "For {property_type}: Steps: {steps}, Costs: {costs}, Timeline: {timeline}",
+      "process_data": {
+        "steps": [
+          "1. Business registration verification",
+          "2. Financial capacity assessment",
+          "3. Business plan review",
+          "4. Contract negotiation",
+          "5. Security deposit payment",
+          "6. Business permit coordination"
+        ],
+        "costs": [
+          "Security deposit: 2-3 months rent",
+          "Advance payment: 1-2 months rent",
+          "Processing fee: ₱10,000-₱25,000",
+          "Legal fees: ₱20,000-₱50,000",
+          "Business permit fees: ₱5,000-₱15,000"
+        ],
+        "timeline": "7-30 days depending on business type and location"
+      }
+    },
+    {
+      "query": "process for lot purchase",
+      "intent": "process_info",
+      "entities": {
+        "process_type": "process",
+        "property_type": "lot"
+      },
+      "variations": [
+        "how to buy a lot step by step",
+        "lot acquisition process",
+        "land purchase procedure",
+        "steps for buying land",
+        "lot buying process details",
+        "land acquisition procedure",
+        "process for purchasing lot",
+        "lot purchase step by step",
+        "buying land process explanation",
+        "lot acquisition step guide",
+        "paano bumili ng lote step by step",
+        "processo ng pagbili ng lupa",
+        "mga hakbang sa pagbili ng lote",
+        "land purchase process guide",
+        "lot buying procedure details",
+        "process for land acquisition",
+        "step-by-step lot purchase",
+        "lot acquisition process guide",
+        "land buying procedure steps",
+        "process guide for lot purchase"
+      ],
+      "response_template": "For {property_type}: Steps: {steps}, Costs: {costs}, Timeline: {timeline}",
+      "process_data": {
+        "steps": [
+          "1. Lot verification and survey",
+          "2. Title investigation",
+          "3. Zoning check",
+          "4. Price negotiation",
+          "5. Payment arrangement",
+          "6. Transfer of title",
+          "7. Tax declaration update"
+        ],
+        "costs": [
+          "Downpayment: 20-30%",
+          "Processing fees: ₱40,000-₱100,000",
+          "Transfer taxes: 1-3%",
+          "Survey fees: ₱10,000-₱30,000",
+          "Registration fees: ₱20,000-₱50,000",
+          "Notarial fees: ₱10,000-₱25,000"
+        ],
+        "timeline": "30-60 days for clean titles, 3-6 months for problematic titles"
+      }
+    },
+    {
+      "query": "timeline and costs for townhouse",
+      "intent": "process_info",
+      "entities": {
+        "process_type": "timeline and costs",
+        "property_type": "townhouse"
+      },
+      "variations": [
+        "townhouse purchase timeline and expenses",
+        "costs and timeline for townhouse",
+        "townhouse buying time and cost",
+        "townhouse acquisition timeline costs",
+        "time and money for townhouse purchase",
+        "townhouse process duration and cost",
+        "townhouse buying schedule and expenses",
+        "townhouse purchase time frame cost",
+        "timeline and financials for townhouse",
+        "townhouse acquisition time and cost",
+        "timeline at costs para sa townhouse",
+        "oras at gastos sa pagbili ng townhouse",
+        "townhouse purchase duration and cost",
+        "time required and cost for townhouse",
+        "townhouse buying timeline expenses",
+        "townhouse acquisition schedule cost",
+        "process time and cost townhouse",
+        "townhouse purchase timeframe expenses",
+        "duration and costs for townhouse",
+        "townhouse buying process time cost"
+      ],
+      "response_template": "For {property_type}: Steps: {steps}, Costs: {costs}, Timeline: {timeline}",
+      "process_data": {
+        "steps": [
+          "1. Unit selection and reservation",
+          "2. Financing application",
+          "3. Contract to sell signing",
+          "4. Construction monitoring (if pre-selling)",
+          "5. Turnover inspection",
+          "6. Title transfer"
+        ],
+        "costs": [
+          "Downpayment: 20-30%",
+          "Reservation fee: ₱20,000-₱50,000",
+          "Processing fees: ₱50,000-₱100,000",
+          "Transfer taxes: 1-3%",
+          "Association dues: ₱1,500-₱4,000/month"
+        ],
+        "timeline": "30-60 days for ready for occupancy, 12-36 months for pre-selling"
+      }
+    },
+    {
+      "query": "documents for house and lot purchase",
+      "intent": "process_info",
+      "entities": {
+        "process_type": "documents",
+        "property_type": "house and lot"
+      },
+      "variations": [
+        "papers needed for house and lot",
+        "house and lot purchase documents",
+        "required documents for house with lot",
+        "house and lot buying paperwork",
+        "documents for residential property purchase",
+        "house with lot acquisition documents",
+        "papers for house and lot purchase",
+        "document requirements house and lot",
+        "house and lot purchase requirements",
+        "documents checklist for house lot",
+        "mga documents para sa house and lot",
+        "papers needed sa pagbili ng bahay at lote",
+        "house and lot buying document list",
+        "required papers for house with lot",
+        "document checklist house and lot",
+        "house and lot purchase paperwork",
+        "documents for complete property purchase",
+        "house with lot document requirements",
+        "papers for residential property acquisition",
+        "house and lot buying documents needed"
+      ],
+      "response_template": "For {property_type}: Steps: {steps}, Costs: {costs}, Timeline: {timeline}",
+      "process_data": {
+        "steps": [
+          "1. Document preparation",
+          "2. Title verification",
+          "3. Tax clearance",
+          "4. Deed of sale preparation",
+          "5. Payment processing",
+          "6. Title transfer registration"
+        ],
+        "costs": [
+          "Downpayment: 20-30%",
+          "Documentary stamps: ₱15-₱30 per ₱200",
+          "Transfer tax: 1-3%",
+          "Registration fees: ₱25,000-₱60,000",
+          "Notarial fees: ₱15,000-₱30,000"
+        ],
+        "timeline": "30-90 days depending on document completeness"
+      }
+    },
+    {
+      "query": "steps costs timeline for duplex",
+      "intent": "process_info",
+      "entities": {
+        "process_type": "steps costs timeline",
+        "property_type": "duplex"
+      },
+      "variations": [
+        "duplex purchase process costs timeline",
+        "how to buy duplex steps costs time",
+        "duplex acquisition steps expenses duration",
+        "duplex buying process steps costs timeline",
+        "steps costs and timeline for duplex purchase",
+        "duplex purchase procedure costs time",
+        "duplex buying steps costs schedule",
+        "process costs timeline duplex acquisition",
+        "duplex purchase steps costs duration",
+        "buying duplex steps expenses timeline",
+        "mga hakbang gastos timeline para sa duplex",
+        "paano bumili ng duplex steps costs time",
+        "duplex purchase process steps costs time",
+        "steps costs timeline for duplex property",
+        "duplex acquisition process costs timeline",
+        "buying duplex procedure costs duration",
+        "duplex purchase steps costs time required",
+        "process steps costs timeline duplex",
+        "duplex buying steps costs time frame",
+        "duplex acquisition steps costs timeline"
+      ],
+      "response_template": "For {property_type}: Steps: {steps}, Costs: {costs}, Timeline: {timeline}",
+      "process_data": {
+        "steps": [
+          "1. Property inspection",
+          "2. Title investigation",
+          "3. Financing arrangement",
+          "4. Contract negotiation",
+          "5. Payment processing",
+          "6. Title transfer",
+          "7. Utilities transfer"
+        ],
+        "costs": [
+          "Downpayment: 20-30%",
+          "Processing fees: ₱60,000-₱120,000",
+          "Transfer taxes: 1-3%",
+          "Registration fees: ₱30,000-₱70,000",
+          "Notarial fees: ₱20,000-₱40,000"
+        ],
+        "timeline": "30-60 days for existing properties, 12-24 months for construction"
+      }
+    },
+    {
+      "query": "what properties match my family lifestyle needs",
+      "intent": "match_needs",
+      "entities": {
+        "need": "family lifestyle"
+      },
+      "variations": [
+        "properties suitable for my family lifestyle",
+        "match properties to my lifestyle family",
+        "homes for my family lifestyle",
+        "properties fitting family lifestyle",
+        "match my family lifestyle properties",
+        "homes matching family lifestyle needs",
+        "properties for our family lifestyle",
+        "family lifestyle matching properties",
+        "homes for our lifestyle family",
+        "properties that suit family lifestyle",
+        "anong properties ang bagay sa family lifestyle ko",
+        "properties na match sa family lifestyle",
+        "homes appropriate for family lifestyle",
+        "properties compatible with family living",
+        "family lifestyle appropriate properties",
+        "homes suited for family lifestyle",
+        "properties matching family living style",
+        "family lifestyle suitable properties",
+        "homes fitting family lifestyle needs",
+        "properties aligned with family lifestyle"
+      ],
+      "response_template": "Based on your {need}, here are matching properties:",
+      "lifestyle_types": [
+        "family lifestyle",
+        "single lifestyle",
+        "professional lifestyle",
+        "retiree lifestyle",
+        "student lifestyle",
+        "couple lifestyle",
+        "business lifestyle",
+        "investor lifestyle"
+      ]
+    },
+    {
+      "query": "match properties to my budget as single professional",
+      "intent": "match_needs",
+      "entities": {
+        "need": "budget",
+        "lifestyle": "single professional"
+      },
+      "variations": [
+        "properties fitting my budget as single professional",
+        "match homes to my budget single working",
+        "properties for my budget single professional",
+        "budget-appropriate properties for single professional",
+        "match properties to my financial capacity single",
+        "homes matching my budget as professional",
+        "properties suitable for single professional budget",
+        "budget-friendly properties for single worker",
+        "properties within my budget single professional",
+        "match real estate to my budget single",
+        "anong properties ang match sa budget ko as single professional",
+        "properties na bagay sa budget ng single professional",
+        "homes appropriate for single professional budget",
+        "properties compatible with single professional finances",
+        "budget-matching properties for single professional",
+        "homes suited for single professional budget",
+        "properties matching single professional financial capacity",
+        "budget-suitable properties for single worker",
+        "homes fitting single professional budget",
+        "properties aligned with single professional budget"
+      ],
+      "response_template": "Based on your {need} and {lifestyle}, here are matching properties:"
+    },
+    {
+      "query": "properties matching my retirement lifestyle needs",
+      "intent": "match_needs",
+      "entities": {
+        "need": "retirement lifestyle"
+      },
+      "variations": [
+        "homes suitable for my retirement lifestyle",
+        "match properties to retirement lifestyle",
+        "properties for retirement living needs",
+        "retirement lifestyle appropriate properties",
+        "match homes to my retirement needs",
+        "properties fitting retirement lifestyle",
+        "homes matching retirement lifestyle",
+        "properties for senior lifestyle needs",
+        "retirement living suitable properties",
+        "match real estate to retirement lifestyle",
+        "anong properties ang match sa retirement lifestyle ko",
+        "properties na bagay sa retirement lifestyle",
+        "homes appropriate for retirement living",
+        "properties compatible with retirement lifestyle",
+        "retirement lifestyle matching properties",
+        "homes suited for retirement lifestyle",
+        "properties matching senior living needs",
+        "retirement-suitable properties",
+        "homes fitting retirement lifestyle needs",
+        "properties aligned with retirement lifestyle"
+      ],
+      "response_template": "Based on your {need}, here are matching properties:"
+    },
+    {
+      "query": "what matches my budget and space needs for home business",
+      "intent": "match_needs",
+      "entities": {
+        "need": "budget and space",
+        "lifestyle": "home business"
+      },
+      "variations": [
+        "properties fitting my budget and space for business",
+        "match homes to budget space business needs",
+        "properties for budget space home business",
+        "budget space appropriate properties for business",
+        "match properties to my budget and space requirements",
+        "homes matching budget space business needs",
+        "properties suitable for home business budget space",
+        "budget-space friendly properties for business",
+        "properties within my budget and space for business",
+        "match real estate to budget space business",
+        "anong properties ang match sa budget at space ko for business",
+        "properties na bagay sa budget at space para sa home business",
+        "homes appropriate for home business budget space",
+        "properties compatible with business budget space needs",
+        "budget-space matching properties for business",
+        "homes suited for home business budget space",
+        "properties matching business budget space requirements",
+        "budget-space suitable properties for home business",
+        "homes fitting home business budget space needs",
+        "properties aligned with business budget space"
+      ],
+      "response_template": "Based on your {need} for {lifestyle}, here are matching properties:"
+    },
+    {
+      "query": "match properties to my student budget near universities",
+      "intent": "match_needs",
+      "entities": {
+        "need": "student budget",
+        "landmark": "universities"
+      },
+      "variations": [
+        "properties fitting student budget near schools",
+        "match homes to student budget near universities",
+        "properties for student budget near campuses",
+        "student budget appropriate properties near schools",
+        "match properties to student financial capacity near schools",
+        "homes matching student budget near universities",
+        "properties suitable for student budget near campuses",
+        "student budget friendly properties near schools",
+        "properties within student budget near universities",
+        "match real estate to student budget near campuses",
+        "anong properties ang match sa student budget malapit sa universities",
+        "properties na bagay sa budget ng estudyante malapit sa schools",
+        "homes appropriate for student budget near universities",
+        "properties compatible with student budget near campuses",
+        "student budget matching properties near schools",
+        "homes suited for student budget near universities",
+        "properties matching student budget near campuses",
+        "student budget suitable properties near schools",
+        "homes fitting student budget near universities",
+        "properties aligned with student budget near campuses"
+      ],
+      "response_template": "Based on your {need} near {landmark}, here are matching properties:"
+    },
+    {
+      "query": "properties matching my active lifestyle with amenities",
+      "intent": "match_needs",
+      "entities": {
+        "need": "active lifestyle",
+        "feature": "amenities"
+      },
+      "variations": [
+        "homes suitable for active lifestyle with facilities",
+        "match properties to active lifestyle with amenities",
+        "properties for active living with amenities",
+        "active lifestyle appropriate properties with facilities",
+        "match homes to active lifestyle amenity needs",
+        "properties fitting active lifestyle with amenities",
+        "homes matching active lifestyle with facilities",
+        "properties for active people with amenities",
+        "active living suitable properties with facilities",
+        "match real estate to active lifestyle amenities",
+        "anong properties ang match sa active lifestyle na may amenities",
+        "properties na bagay sa active lifestyle na may facilities",
+        "homes appropriate for active lifestyle with amenities",
+        "properties compatible with active lifestyle facilities",
+        "active lifestyle matching properties with amenities",
+        "homes suited for active lifestyle with facilities",
+        "properties matching active living amenity needs",
+        "active lifestyle suitable properties with amenities",
+        "homes fitting active lifestyle with facilities",
+        "properties aligned with active lifestyle amenities"
+      ],
+      "response_template": "Based on your {need} with {feature}, here are matching properties:"
+    },
+    {
+      "query": "what matches my minimalist lifestyle and budget",
+      "intent": "match_needs",
+      "entities": {
+        "need": "minimalist lifestyle",
+        "feature": "budget"
+      },
+      "variations": [
+        "properties fitting minimalist lifestyle and budget",
+        "match homes to minimalist lifestyle budget",
+        "properties for minimalist living within budget",
+        "minimalist lifestyle appropriate properties affordable",
+        "match properties to minimalist needs and budget",
+        "homes matching minimalist lifestyle budget",
+        "properties suitable for minimalist lifestyle affordable",
+        "minimalist budget friendly properties",
+        "properties within budget for minimalist lifestyle",
+        "match real estate to minimalist lifestyle budget",
+        "anong properties ang match sa minimalist lifestyle at budget",
+        "properties na bagay sa minimalist lifestyle at budget",
+        "homes appropriate for minimalist lifestyle budget",
+        "properties compatible with minimalist lifestyle affordable",
+        "minimalist lifestyle matching properties budget",
+        "homes suited for minimalist lifestyle affordable",
+        "properties matching minimalist living budget needs",
+        "minimalist lifestyle suitable properties affordable",
+        "homes fitting minimalist lifestyle budget",
+        "properties aligned with minimalist lifestyle budget"
+      ],
+      "response_template": "Based on your {need} and {feature}, here are matching properties:"
+    },
+    {
+      "query": "match properties to my work from home setup needs",
+      "intent": "match_needs",
+      "entities": {
+        "need": "work from home setup"
+      },
+      "variations": [
+        "properties fitting work from home setup",
+        "match homes to work from home needs",
+        "properties for remote work setup",
+        "work from home appropriate properties",
+        "match properties to remote work requirements",
+        "homes matching work from home setup",
+        "properties suitable for remote work needs",
+        "work from home friendly properties",
+        "properties for telecommuting setup",
+        "match real estate to work from home needs",
+        "anong properties ang match sa work from home setup ko",
+        "properties na bagay sa work from home setup",
+        "homes appropriate for remote work setup",
+        "properties compatible with work from home requirements",
+        "work from home matching properties",
+        "homes suited for telecommuting setup",
+        "properties matching remote work setup needs",
+        "work from home suitable properties",
+        "homes fitting work from home requirements",
+        "properties aligned with remote work setup"
+      ],
+      "response_template": "Based on your {need}, here are matching properties:"
+    }
+  ],
+  "entity_dictionary": {
+    "family_size_categories": [
+      "single",
+      "couple",
+      "small family (1-2 children)",
+      "medium family (3-4 members)",
+      "large family (5-6 members)",
+      "big family (7+ members)",
+      "multi-generational family"
+    ],
+    "space_requirements": [
+      "compact",
+      "cozy",
+      "spacious",
+      "roomy",
+      "expansive",
+      "large",
+      "ample space",
+      "multiple rooms"
+    ],
+    "bedroom_recommendations": {
+      "single": "studio or 1 bedroom",
+      "couple": "1-2 bedrooms",
+      "small_family": "2-3 bedrooms",
+      "medium_family": "3-4 bedrooms",
+      "large_family": "4-5 bedrooms",
+      "big_family": "5+ bedrooms"
+    },
+    "family_features": [
+      "child-friendly",
+      "safe neighborhood",
+      "near schools",
+      "play area",
+      "backyard",
+      "parking space",
+      "family room",
+      "storage space",
+      "quiet area",
+      "community amenities"
+    ],
+    "process_terms": [
+      "steps",
+      "costs",
+      "timeline",
+      "requirements",
+      "documents",
+      "procedures",
+      "process",
+      "stages",
+      "phases",
+      "duration",
+      "expenses",
+      "fees",
+      "charges",
+      "paperwork",
+      "legal requirements"
+    ],
+    "property_process_types": [
+      "buying",
+      "renting",
+      "leasing",
+      "selling",
+      "investing",
+      "developing",
+      "renovating",
+      "transferring",
+      "inheriting",
+      "mortgaging",
+      "refinancing",
+      "subleasing",
+      "commercial leasing",
+      "residential purchase",
+      "land acquisition"
+    ],
+    "budget_ranges": [
+      "below 1M",
+      "1M-2M",
+      "2M-3M",
+      "3M-5M",
+      "5M-8M",
+      "8M-12M",
+      "12M-20M",
+      "20M+",
+      "below 10k monthly",
+      "10k-20k monthly",
+      "20k-30k monthly",
+      "30k-50k monthly",
+      "50k-80k monthly",
+      "80k+ monthly"
+    ],
+    "locations": [
+      "Batangas City",
+      "Lipa City",
+      "Tanauan City",
+      "Bauan",
+      "Balayan",
+      "Nasugbu",
+      "San Juan",
+      "Taal",
+      "Calatagan",
+      "Mabini",
+      "Rosario",
+      "Sto. Tomas City",
+      "Malvar",
+      "Ibaan",
+      "Tuy",
+      "Lian",
+      "Taysan",
+      "San Luis",
+      "Padre Garcia",
+      "Laurel",
+      "Agoncillo",
+      "San Pascual",
+      "Cuenca",
+      "Alitagtag",
+      "Santo Tomas",
+      "Lobo",
+      "San Nicolas",
+      "Mataasnakahoy",
+      "Talisay",
+      "La Paz",
+      "Lemery"
+    ]
+  },
+  "response_templates": {
+    "find_property_for_need": "🏠 Properties for {need} in {location}: {property_list}. Recommended: {bedroom_recommendations}",
+    "find_with_feature": "✅ Properties with {feature} at {price_quality}: {property_list}",
+    "process_info": "📋 For {property_type}: • Steps: {steps} • Costs: {costs} • Timeline: {timeline}",
+    "match_needs": "🎯 Properties matching your {need}: {property_list}. Lifestyle considerations: {lifestyle_notes}"
+  },
+  "metadata": {
+    "total_samples": 34,
+    "intent_distribution": {
+      "find_property_for_need": 10,
+      "find_with_feature": 8,
+      "process_info": 8,
+      "match_needs": 8
+    },
+    "created_date": "2024-01-22",
+    "version": "3.2",
+    "training_notes": "Updated training data for member3 with focus on Question 3: Family/size/space needs. Added critical variations with 'find' + 'for family' + location patterns to fix classification issues. Enhanced family size, bedroom recommendations, and space requirements."
+  }
+}

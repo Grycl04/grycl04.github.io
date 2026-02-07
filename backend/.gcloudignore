@@ -1,0 +1,76 @@
+﻿# This file specifies files that are *not* uploaded to Google Cloud
+# for the AI Chatbot backend
+.gcloudignore
+
+# Python
+__pycache__/
+*.py[cod]
+*.class
+*.so
+.Python
+venv/
+env/
+.venv/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+
+# Local configs
+.env
+.env.local
+
+# Test files
+test_*.py
+*_test.py
+test_setup.py  # Exclude test setup file
+
+# Training files (optional - exclude if you don't want them deployed)
+train_nlu.py   # Training script - not needed for production
+
+# Temporary files
+tmp/
+temp/
+
+# Local backups
+*.backup
+*.bak
+
+# Exclude large datasets if needed (optional)
+# Uncomment if you want to exclude:
+# data/
+# models/

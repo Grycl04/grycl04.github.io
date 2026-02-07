@@ -1,0 +1,3324 @@
+{
+  "batangas_locations": {
+    "Batangas City": {
+      "barangays": [
+        "Barangay 1", "Barangay 2", "Barangay 3", "Barangay 4", "Barangay 5",
+        "Barangay 6", "Barangay 7", "Barangay 8", "Barangay 9", "Barangay 10",
+        "Barangay 11", "Barangay 12", "Barangay 13", "Barangay 14", "Barangay 15",
+        "Barangay 16", "Barangay 17", "Barangay 18", "Barangay 19", "Barangay 20",
+        "Barangay 21", "Barangay 22", "Barangay 23", "Barangay 24", "Alangilan",
+        "Balagtas", "Balete", "Banaba Center", "Banaba Ibaba", "Banaba Kanluran",
+        "Banaba Silangan", "Bilogo", "Bolbok", "Bukal", "Calicanto", "Catandala",
+        "Concepcion", "Conde Itaas", "Conde Labak", "Cuta", "Dalig", "Dela Paz",
+        "Dela Paz Pulot Aplaya", "Dela Paz Pulot Itaas", "Domoclay", "Dumantay", "Gulod Itaas",
+        "Gulod Labac", "Haligue Kanluran", "Haligue Silangan", "Ilijan", "Kumba", "Kumintang Ibaba",
+        "Kumintang Ilaya", "Libjo", "Liponpon, Verde Island", "Maapas", "Mabacong (Matoco)",
+        "Mahabang Dahilig", "Mahabang Parang", "Mahacot Kanluran", "Mahacot Silangan", "Malalim",
+        "Malibayo", "Malitam", "Maruclap", "Pagkilatan", "Paharang Kanluran", "Paharang Silangan",
+        "Pallocan Kanluran", "Pallocan Silangan", "Pinamucan", "Pinamucan Ibaba",
+        "Pinamucan Silangan", "Sampaga", "San Agapito, Isla Verde", "San Agustin Kanluran, Isla Verde",
+        "San Agustin Silangan, Isla Verde", "San Andres, Isla Verde", "San Antonio, Isla Verde",
+        "San Isidro", "San Jose Sico", "San Miguel", "San Pedro", "Santa Clara",
+        "Santa Rita Aplaya", "Santa Rita Karsada", "Santo Domingo", "Santo Niño", "Simlong",
+        "Sirang Lupa", "Sorosoro Ibaba", "Sorosoro Ilaya", "Sorosoro Karsada",
+        "Tabangao Aplaya (Tabangao Proper)", "Tabangao Ambulong", "Tabangao Dao",
+        "Talahib Pandayan", "Talahib Payapa", "Talumpok Kanluran", "Talumpok Silangan",
+        "Tinga Itaas", "Tinga Labak", "Tulo", "Wawa"
+      ],
+      "landmarks": [
+        "SM City Batangas", "Robinsons Place Batangas", "Batangas Port",
+        "Batangas City Hall", "Plaza Mabini", "Batangas Cathedral",
+        "Batangas Medical Center", "Batangas State University - Main Campus", "Batangas State University - Alangilan Campus",
+        "WalterMart Batangas City", "Pallocan West Public Market", "Golden Country Homes",
+        "Diversion Road (Gov. Antonio Carpio Road)", "Kumintang Road", "Bauan–Batangas National Road"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱8,000–₱15,000",
+          "boarding_house": "₱3,500–₱6,000",
+          "condo": "₱12,000–₱25,000",
+          "room": "₱3,000–₱8,000",
+          "townhouse": "₱15,000–₱30,000",
+          "house": "₱15,000–₱30,000",
+          "dormitory": "₱3,000–₱6,000"
+        },
+        "commercial": {
+          "office_unit": "₱15,000–₱35,000",
+          "retail_space": "₱12,000–₱28,000",
+          "food_stall": "₱5,000–₱12,000",
+          "shop": "₱10,000–₱25,000",
+          "showroom": "₱20,000–₱50,000"
+        },
+        "industrial": {
+          "warehouse": "₱18,000–₱50,000",
+          "storage_unit": "₱7,000–₱18,000",
+          "factory": "₱35,000–₱100,000",
+          "workshop": "₱12,000–₱35,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱50,000–₱130,000",
+          "retail_space_lease": "₱35,000–₱100,000",
+          "building_lease": "₱100,000–₱300,000",
+          "commercial_unit": "₱22,000–₱70,000",
+          "showroom_lease": "₱70,000–₱180,000",
+          "warehouse_lease": "₱55,000–₱160,000"
+        },
+        "land": {
+          "commercial_lot": "₱45–₱140 per sqm",
+          "agricultural_land": "₱15–₱35 per sqm",
+          "development_land": "₱55–₱180 per sqm",
+          "industrial_lot": "₱65–₱160 per sqm",
+          "residential_lot": "₱30–₱75 per sqm",
+          "vacant_lot": "₱25–₱65 per sqm"
+        },
+        "special": {
+          "resort_property": "₱70,000–₱250,000",
+          "event_venue": "₱45,000–₱180,000",
+          "parking_area": "₱8,000–₱35,000",
+          "school_property": "₱90,000–₱350,000",
+          "hospitality": "₱60,000–₱220,000",
+          "sports_facility": "₱55,000–₱160,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱2.5M–₱6M",
+          "townhouse": "₱2M–₱4.5M",
+          "bungalow": "₱3M–₱7M",
+          "duplex": "₱3.5M–₱8M",
+          "village_lot": "₱6,000–₱15,000 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱10M–₱50M",
+          "office_space": "₱4M–₱15M",
+          "retail_space": "₱5M–₱20M",
+          "warehouse": "₱8M–₱40M",
+          "showroom": "₱12M–₱60M"
+        },
+        "land": {
+          "residential_lot": "₱5,000–₱12,000 per sqm",
+          "commercial_lot": "₱10,000–₱30,000 per sqm",
+          "agricultural_land": "₱1,500–₱4,000 per sqm",
+          "industrial_lot": "₱8,000–₱20,000 per sqm",
+          "beachfront": "₱15,000–₱40,000 per sqm"
+        },
+        "condo": {
+          "condo_unit": "₱3M–₱7M",
+          "penthouse": "₱8M–₱20M",
+          "studio": "₱2.5M–₱4M",
+          "loft": "₱4M–₱9M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall"
+      ],
+      "lifestyle_description": "Highly urbanized provincial capital with a major seaport, state universities, hospitals, and active commercial zones. Ideal for students, port workers, professionals, and small businesses with easy access to transport and nearby municipalities."
+    },
+    
+    "Lipa City": {
+      "barangays": [
+        "Adya", "Anilao", "Antipolo del Norte", "Antipolo del Sur",
+        "Bagong Pook", "Balintawak", "Banay-banay", "Bolbok",
+        "Bugtong na Pulo", "Bulacnin", "Bulaklakan", "Calamias",
+        "Cumba", "Dagatan", "Duhatan", "Fernando Air Base",
+        "Halang", "Inosluban", "Kayumanggi", "Latag",
+        "Lodlod", "Lumbang", "Mabini", "Malagonlong",
+        "Malitlit", "Marauoy", "Mataas na Lupa", "Munting Pulo",
+        "Pagolingin Bata", "Pagolingin East", "Pagolingin West",
+        "Pangao", "Pinagkawitan", "Pinagtongulan", "Plaridel",
+        "Poblacion Barangay 1", "Poblacion Barangay 2", "Poblacion Barangay 3",
+        "Poblacion Barangay 4", "Poblacion Barangay 5", "Poblacion Barangay 6",
+        "Poblacion Barangay 7", "Poblacion Barangay 8", "Poblacion Barangay 9",
+        "Poblacion Barangay 10", "Poblacion Barangay 11",
+        "Pusil", "Quezon", "Rizal", "Sabang",
+        "Sampaguita", "San Benito", "San Carlos",
+        "San Celestino", "San Francisco", "San Guillermo",
+        "San Jose", "San Lucas", "San Salvador",
+        "San Sebastian", "Santo Niño", "Santo Toribio",
+        "Talisay", "Tangob", "Tanguay",
+        "Tibig", "Tipacan"
+      ],
+      "landmarks": [
+        "SM City Lipa", "Robinsons Place Lipa", "The Outlets at Lipa",
+        "Lipa City Hall", "Lipa Cathedral", "San Sebastian Cathedral",
+        "De La Salle Lipa", "University of Batangas Lipa", "STI College Lipa",
+        "AMA Computer College Lipa", "Metro Lipa Medical Center", "Mary Mediatrix Medical Center",
+        "Fernando Air Base", "Lipa Commercial District", "President Jose P. Laurel Highway"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱7,000–₱14,000",
+          "boarding_house": "₱3,500–₱6,000",
+          "condo": "₱10,000–₱22,000",
+          "room": "₱3,000–₱7,000",
+          "townhouse": "₱12,000–₱22,000",
+          "house": "₱12,000–₱25,000",
+          "dormitory": "₱3,000–₱5,500"
+        },
+        "commercial": {
+          "office_unit": "₱12,000–₱30,000",
+          "retail_space": "₱15,000–₱35,000",
+          "food_stall": "₱5,000–₱12,000",
+          "shop": "₱10,000–₱25,000",
+          "showroom": "₱20,000–₱60,000"
+        },
+        "industrial": {
+          "warehouse": "₱18,000–₱50,000",
+          "storage_unit": "₱7,000–₱18,000",
+          "factory": "₱35,000–₱100,000",
+          "workshop": "₱12,000–₱35,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱50,000–₱130,000",
+          "retail_space_lease": "₱35,000–₱100,000",
+          "building_lease": "₱100,000–₱300,000",
+          "commercial_unit": "₱22,000–₱70,000",
+          "showroom_lease": "₱70,000–₱180,000",
+          "warehouse_lease": "₱55,000–₱160,000"
+        },
+        "land": {
+          "commercial_lot": "₱45–₱140 per sqm",
+          "agricultural_land": "₱15–₱35 per sqm",
+          "development_land": "₱55–₱180 per sqm",
+          "industrial_lot": "₱65–₱160 per sqm",
+          "residential_lot": "₱30–₱75 per sqm",
+          "vacant_lot": "₱25–₱65 per sqm"
+        },
+        "special": {
+          "resort_property": "₱70,000–₱250,000",
+          "event_venue": "₱45,000–₱180,000",
+          "parking_area": "₱8,000–₱35,000",
+          "school_property": "₱90,000–₱350,000",
+          "hospitality": "₱60,000–₱220,000",
+          "sports_facility": "₱55,000–₱160,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱2.5M–₱6M",
+          "townhouse": "₱2M–₱4.5M",
+          "bungalow": "₱3M–₱7M",
+          "duplex": "₱3.5M–₱8M",
+          "village_lot": "₱6,000–₱15,000 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱10M–₱50M",
+          "office_space": "₱4M–₱15M",
+          "retail_space": "₱5M–₱20M",
+          "warehouse": "₱8M–₱40M",
+          "showroom": "₱12M–₱60M"
+        },
+        "land": {
+          "residential_lot": "₱5,000–₱12,000 per sqm",
+          "commercial_lot": "₱10,000–₱30,000 per sqm",
+          "agricultural_land": "₱1,500–₱4,000 per sqm",
+          "industrial_lot": "₱8,000–₱20,000 per sqm",
+          "beachfront": "₱15,000–₱40,000 per sqm"
+        },
+        "condo": {
+          "condo_unit": "₱3M–₱7M",
+          "penthouse": "₱8M–₱20M",
+          "studio": "₱2.5M–₱4M",
+          "loft": "₱4M–₱9M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall"
+      ],
+      "lifestyle_description": "Education hub with cool climate, known as coffee capital of the Philippines. Features numerous universities, medical centers, and shopping malls. Ideal for students, professionals, and families seeking urban amenities with suburban feel."
+    },
+
+    "Tanauan City": {
+      "barangays": [
+        "Altura Bata", "Altura Matanda", "Altura South", "Ambulong",
+        "Bañadero", "Bagbag", "Bagumbayan", "Balele",
+        "Banjo East", "Banjo West", "Bilog-bilog", "Boot",
+        "Cale", "Darasa", "Gonzales", "Hidalgo",
+        "Janopol Occidental", "Janopol Oriental", "Laurel", "Luyos",
+        "Mabini", "Malaking Pulo", "Maria Paz", "Maugat",
+        "Montaña (Ik-ik)", "Natatas", "Pagaspas", "Pantay Matanda",
+        "Pantay Bata", "Poblacion Barangay 1", "Poblacion Barangay 2",
+        "Poblacion Barangay 3", "Poblacion Barangay 4", "Poblacion Barangay 5",
+        "Poblacion Barangay 6", "Sala", "San Jose", "Sambat",
+        "Santor", "Sulpoc", "Suplang", "Tinurik",
+        "Trapiche", "Wawa"
+      ],
+      "landmarks": [
+        "Tanauan City Hall", "Tanauan Public Market", "Tanauan People's Park",
+        "Saint John the Evangelist Parish Church (Tanauan Church)", "Apolinario Mabini Shrine", "Mabini Shrine Museum",
+        "Jose P. Laurel Memorial Library", "Old Tanauan Church Ruins", "Napayong Island",
+        "Sabang River Ecopark", "Taal Lake Viewpoints", "Mount Makiling Scenic Views",
+        "Tanauan City Zentrum Commercial District", "Laurel Park", "Tanauan City Plaza"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱6,000–₱12,000",
+          "boarding_house": "₱3,000–₱6,000",
+          "condo": "₱8,000–₱18,000",
+          "room": "₱2,500–₱5,500",
+          "townhouse": "₱10,000–₱20,000",
+          "house": "₱10,000–₱20,000",
+          "dormitory": "₱3,000–₱5,500"
+        },
+        "commercial": {
+          "office_unit": "₱12,000–₱30,000",
+          "retail_space": "₱15,000–₱35,000",
+          "food_stall": "₱5,000–₱12,000",
+          "shop": "₱10,000–₱25,000",
+          "showroom": "₱20,000–₱60,000"
+        },
+        "industrial": {
+          "warehouse": "₱18,000–₱50,000",
+          "storage_unit": "₱7,000–₱18,000",
+          "factory": "₱35,000–₱100,000",
+          "workshop": "₱12,000–₱35,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱50,000–₱130,000",
+          "retail_space_lease": "₱35,000–₱100,000",
+          "building_lease": "₱100,000–₱300,000",
+          "commercial_unit": "₱22,000–₱70,000",
+          "showroom_lease": "₱70,000–₱180,000",
+          "warehouse_lease": "₱55,000–₱160,000"
+        },
+        "land": {
+          "commercial_lot": "₱45–₱140 per sqm",
+          "agricultural_land": "₱15–₱35 per sqm",
+          "development_land": "₱55–₱180 per sqm",
+          "industrial_lot": "₱65–₱160 per sqm",
+          "residential_lot": "₱30–₱75 per sqm",
+          "vacant_lot": "₱25–₱65 per sqm"
+        },
+        "special": {
+          "resort_property": "₱70,000–₱250,000",
+          "event_venue": "₱45,000–₱180,000",
+          "parking_area": "₱8,000–₱35,000",
+          "school_property": "₱90,000–₱350,000",
+          "hospitality": "₱60,000–₱220,000",
+          "sports_facility": "₱55,000–₱160,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱2.5M–₱6M",
+          "townhouse": "₱2M–₱4.5M",
+          "bungalow": "₱3M–₱7M",
+          "duplex": "₱3.5M–₱8M",
+          "village_lot": "₱6,000–₱15,000 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱10M–₱50M",
+          "office_space": "₱4M–₱15M",
+          "retail_space": "₱5M–₱20M",
+          "warehouse": "₱8M–₱40M",
+          "showroom": "₱12M–₱60M"
+        },
+        "land": {
+          "residential_lot": "₱5,000–₱12,000 per sqm",
+          "commercial_lot": "₱10,000–₱30,000 per sqm",
+          "agricultural_land": "₱1,500–₱4,000 per sqm",
+          "industrial_lot": "₱8,000–₱20,000 per sqm",
+          "beachfront": "₱15,000–₱40,000 per sqm"
+        },
+        "condo": {
+          "condo_unit": "₱3M–₱7M",
+          "penthouse": "₱8M–₱20M",
+          "studio": "₱2.5M–₱4M",
+          "loft": "₱4M–₱9M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall"
+      ],
+      "lifestyle_description": "A thriving city blending commerce, education, and history. Ideal for students, professionals, and businesses, with strong transport links and access to natural attractions and historical sites."
+    },
+
+    "Sto. Tomas City": {
+      "barangays": [
+        "As-Is", "Bagong Sikat", "Balibago", "Banaba",
+        "Bayanihan", "Bo. 1 (Pob.)", "Bo. 2 (Pob.)", "Bo. 3 (Pob.)",
+        "Bo. 4 (Pob.)", "Bo. 5 (Pob.)", "Bo. 6 (Pob.)", "Bo. 7 (Pob.)",
+        "Bo. 8 (Pob.)", "Bo. 9 (Pob.)", "Bo. 10 (Pob.)", "Bo. 11 (Pob.)",
+        "Bo. 12 (Pob.)", "Bo. 13 (Pob.)", "Bo. 14 (Pob.)", "Bo. 15 (Pob.)",
+        "Bo. 16 (Pob.)", "Bo. 17 (Pob.)", "Bo. 18 (Pob.)", "Bo. 19 (Pob.)",
+        "Bo. 20 (Pob.)", "Cale", "Del Remedio", "Libjo",
+        "Mabini", "Mt. View Park", "Poblacion", "San Agustin",
+        "San Isidro", "San Martin de Porres", "San Miguel", "San Rafael",
+        "San Vicente", "Santo Domingo", "Santo Tomas Proper", "Santo Niño",
+        "Sulucan", "Tarug"
+      ],
+      "landmarks": [
+        "First Philippine Industrial Park (FPIP)", "SM City Sto. Tomas",
+        "Sto. Tomas City Hall", "Sto. Tomas Public Market", "Mt. Manabu",
+        "Palanan Integrated Transport Terminal", "DA-Bureau of Fisheries and Aquatic Resources",
+        "Sto. Tomas Gym and Sports Complex", "Sto. Tomas Boulevard"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱7,000–₱13,000",
+          "boarding_house": "₱3,500–₱6,500",
+          "condo": "₱9,000–₱18,000",
+          "room": "₱3,000–₱7,000",
+          "townhouse": "₱11,000–₱20,000",
+          "house": "₱12,000–₱22,000",
+          "dormitory": "₱3,000–₱5,500"
+        },
+        "commercial": {
+          "office_unit": "₱12,000–₱30,000",
+          "retail_space": "₱15,000–₱35,000",
+          "food_stall": "₱5,000–₱12,000",
+          "shop": "₱10,000–₱25,000",
+          "showroom": "₱20,000–₱60,000"
+        },
+        "industrial": {
+          "warehouse": "₱18,000–₱50,000",
+          "storage_unit": "₱7,000–₱18,000",
+          "factory": "₱35,000–₱100,000",
+          "workshop": "₱12,000–₱35,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱50,000–₱130,000",
+          "retail_space_lease": "₱35,000–₱100,000",
+          "building_lease": "₱100,000–₱300,000",
+          "commercial_unit": "₱22,000–₱70,000",
+          "showroom_lease": "₱70,000–₱180,000",
+          "warehouse_lease": "₱55,000–₱160,000"
+        },
+        "land": {
+          "commercial_lot": "₱45–₱140 per sqm",
+          "agricultural_land": "₱15–₱35 per sqm",
+          "development_land": "₱55–₱180 per sqm",
+          "industrial_lot": "₱65–₱160 per sqm",
+          "residential_lot": "₱30–₱75 per sqm",
+          "vacant_lot": "₱25–₱65 per sqm"
+        },
+        "special": {
+          "resort_property": "₱70,000–₱250,000",
+          "event_venue": "₱45,000–₱180,000",
+          "parking_area": "₱8,000–₱35,000",
+          "school_property": "₱90,000–₱350,000",
+          "hospitality": "₱60,000–₱220,000",
+          "sports_facility": "₱55,000–₱160,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱2.5M–₱6M",
+          "townhouse": "₱2M–₱4.5M",
+          "bungalow": "₱3M–₱7M",
+          "duplex": "₱3.5M–₱8M",
+          "village_lot": "₱6,000–₱15,000 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱10M–₱50M",
+          "office_space": "₱4M–₱15M",
+          "retail_space": "₱5M–₱20M",
+          "warehouse": "₱8M–₱40M",
+          "showroom": "₱12M–₱60M"
+        },
+        "land": {
+          "residential_lot": "₱5,000–₱12,000 per sqm",
+          "commercial_lot": "₱10,000–₱30,000 per sqm",
+          "agricultural_land": "₱1,500–₱4,000 per sqm",
+          "industrial_lot": "₱8,000–₱20,000 per sqm",
+          "beachfront": "₱15,000–₱40,000 per sqm"
+        },
+        "condo": {
+          "condo_unit": "₱3M–₱7M",
+          "penthouse": "₱8M–₱20M",
+          "studio": "₱2.5M–₱4M",
+          "loft": "₱4M–₱9M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall"
+      ],
+      "lifestyle_description": "Growing industrial and residential city strategically located near Laguna and Cavite. Ideal for factory workers, commuters, and families with access to malls, transport hubs, and work centers."
+    },
+
+    "Bauan": {
+      "barangays": [
+        "Alagao", "Aplaya", "As-Is", "Bagong Silang",
+        "Baguilawa", "Balayong", "Barangay I (Pob.)", "Barangay II (Pob.)",
+        "Barangay III (Pob.)", "Barangay IV (Pob.)", "Bolo", "Colvo",
+        "Cupang", "Durungao", "Gulibay", "Inicbulan",
+        "Locloc", "Magalang-galang", "Malindig", "Manalupong",
+        "Manghinao Proper", "Manghinao Uno", "New Danglayan", "Orense",
+        "Pitugo", "Rizal", "Sampaguita", "San Agustin",
+        "San Andres Proper", "San Andres Uno", "San Diego", "San Miguel",
+        "San Pablo", "San Pedro", "San Roque", "San Teodoro",
+        "San Vicente", "Santa Maria", "Santa Rita", "Santo Domingo",
+        "Sinala", "Talahib", "Tequillo"
+      ],
+      "landmarks": [
+        "Bauan Public Market", "Bauan Church (St. Mary of the Assumption Parish Church)",
+        "Bauan Port", "Petron Refinery", "Bauan Town Plaza",
+        "Lakeside areas near Taal Lake", "Local diving spots", "Heritage houses"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱6,000–₱12,000",
+          "boarding_house": "₱3,000–₱5,500",
+          "condo": "₱8,000–₱16,000",
+          "room": "₱2,500–₱5,000",
+          "townhouse": "₱10,000–₱18,000",
+          "house": "₱10,000–₱20,000",
+          "dormitory": "₱3,000–₱5,000"
+        },
+        "commercial": {
+          "office_unit": "₱10,000–₱25,000",
+          "retail_space": "₱12,000–₱30,000",
+          "food_stall": "₱4,000–₱10,000",
+          "shop": "₱8,000–₱22,000",
+          "showroom": "₱18,000–₱45,000"
+        },
+        "industrial": {
+          "warehouse": "₱15,000–₱45,000",
+          "storage_unit": "₱6,000–₱16,000",
+          "factory": "₱30,000–₱90,000",
+          "workshop": "₱10,000–₱30,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱45,000–₱120,000",
+          "retail_space_lease": "₱30,000–₱90,000",
+          "building_lease": "₱90,000–₱280,000",
+          "commercial_unit": "₱20,000–₱65,000",
+          "showroom_lease": "₱65,000–₱170,000",
+          "warehouse_lease": "₱50,000–₱150,000"
+        },
+        "land": {
+          "commercial_lot": "₱40–₱130 per sqm",
+          "agricultural_land": "₱15–₱35 per sqm",
+          "development_land": "₱50–₱170 per sqm",
+          "industrial_lot": "₱60–₱155 per sqm",
+          "residential_lot": "₱30–₱70 per sqm",
+          "vacant_lot": "₱25–₱60 per sqm"
+        },
+        "special": {
+          "resort_property": "₱65,000–₱230,000",
+          "event_venue": "₱40,000–₱160,000",
+          "parking_area": "₱8,000–₱30,000",
+          "school_property": "₱80,000–₱320,000",
+          "hospitality": "₱55,000–₱200,000",
+          "sports_facility": "₱50,000–₱150,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱2.2M–₱5.5M",
+          "townhouse": "₱1.8M–₱4M",
+          "bungalow": "₱2.7M–₱6M",
+          "duplex": "₱3.0M–₱7M",
+          "village_lot": "₱5,000–₱14,000 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱8M–₱45M",
+          "office_space": "₱3.5M–₱12M",
+          "retail_space": "₱4.5M–₱18M",
+          "warehouse": "₱7M–₱35M",
+          "showroom": "₱10M–₱50M"
+        },
+        "land": {
+          "residential_lot": "₱4,000–₱11,000 per sqm",
+          "commercial_lot": "₱9,000–₱28,000 per sqm",
+          "agricultural_land": "₱1,500–₱3,500 per sqm",
+          "industrial_lot": "₱7,000–₱18,000 per sqm",
+          "beachfront": "₱12,000–₱36,000 per sqm"
+        },
+        "condo": {
+          "condo_unit": "₱2.5M–₱6.5M",
+          "penthouse": "₱7M–₱18M",
+          "studio": "₱2.2M–₱3.8M",
+          "loft": "₱3M–₱7.5M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall"
+      ],
+      "lifestyle_description": "Coastal municipality with industrial zones (petroleum refinery) and port facilities. Mix of industrial, residential, and commercial areas with access to Taal Lake and local beaches."
+    },
+
+    "San Juan": {
+      "barangays": [
+        "Abung", "Balagbag", "Barualte", "Bataan", "Buhay Na Sapa",
+        "Bulsa", "Calicanto", "Calitcalit", "Calubcub I", "Calubcub II",
+        "Catmon", "Coloconto", "Escribano", "Hugom", "Imelda",
+        "Janaojanao", "Laiya-Aplaya", "Laiya-Ibabao", "Libato", "Lipahan",
+        "Mabalanoy", "Maraykit", "Muzon", "Nagsaulay", "Palahanan I",
+        "Palahanan II", "Palingowak", "Pinagbayanan", "Poctol", "Pulangbato",
+        "Putingbuhangin", "Quipot", "Sampiro", "Sapangan", "Sico I",
+        "Sico II", "Subukin", "Talahiban I", "Talahiban II", "Ticalan",
+        "Tipaz"
+      ],
+      "landmarks": [
+        "Laiya Beach", "San Juan Nepomuceno Parish Church", "Mount Daguldol",
+        "Mangrove Forest (Brgy. Poctol)", "Pinagbayanan Ruins",
+        "Old Municipal Building", "San Juan People's Plaza",
+        "Malaking River Viewpoints", "Poctol Scenic Nature Park",
+        "Historic Ancestral Houses (Casa Louela, Maralit House, Mercado House)"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱7,000–₱14,000",
+          "boarding_house": "₱3,500–₱7,000",
+          "condo": "₱9,000–₱18,000",
+          "room": "₱3,000–₱7,000",
+          "townhouse": "₱10,000–₱20,000",
+          "house": "₱10,000–₱25,000",
+          "dormitory": "₱3,000–₱5,500"
+        },
+        "commercial": {
+          "office_unit": "₱12,000–₱30,000",
+          "retail_space": "₱15,000–₱35,000",
+          "food_stall": "₱5,000–₱15,000",
+          "shop": "₱10,000–₱30,000",
+          "showroom": "₱20,000–₱60,000"
+        },
+        "industrial": {
+          "warehouse": "₱18,000–₱48,000",
+          "storage_unit": "₱7,000–₱18,000",
+          "factory": "₱30,000–₱90,000",
+          "workshop": "₱12,000–₱30,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱50,000–₱130,000",
+          "retail_space_lease": "₱35,000–₱100,000",
+          "building_lease": "₱100,000–₱300,000",
+          "commercial_unit": "₱22,000–₱70,000",
+          "showroom_lease": "₱70,000–₱180,000",
+          "warehouse_lease": "₱55,000–₱160,000"
+        },
+        "land": {
+          "commercial_lot": "₱45–₱140 per sqm",
+          "agricultural_land": "₱15–₱35 per sqm",
+          "development_land": "₱55–₱180 per sqm",
+          "industrial_lot": "₱65–₱160 per sqm",
+          "residential_lot": "₱30–₱75 per sqm",
+          "vacant_lot": "₱25–₱65 per sqm"
+        },
+        "special": {
+          "resort_property": "₱70,000–₱250,000",
+          "event_venue": "₱45,000–₱180,000",
+          "parking_area": "₱8,000–₱35,000",
+          "school_property": "₱90,000–₱350,000",
+          "hospitality": "₱60,000–₱220,000",
+          "sports_facility": "₱55,000–₱160,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱2.5M–₱6M",
+          "townhouse": "₱2M–₱4.5M",
+          "bungalow": "₱3M–₱7M",
+          "duplex": "₱3.5M–₱8M",
+          "village_lot": "₱6,000–₱15,000 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱10M–₱50M",
+          "office_space": "₱4M–₱15M",
+          "retail_space": "₱5M–₱20M",
+          "warehouse": "₱8M–₱40M",
+          "showroom": "₱12M–₱60M"
+        },
+        "land": {
+          "residential_lot": "₱5,000–₱12,000 per sqm",
+          "commercial_lot": "₱10,000–₱30,000 per sqm",
+          "agricultural_land": "₱1,500–₱4,000 per sqm",
+          "industrial_lot": "₱8,000–₱20,000 per sqm",
+          "beachfront": "₱15,000–₱40,000 per sqm"
+        },
+        "condo": {
+          "condo_unit": "₱3M–₱7M",
+          "penthouse": "₱8M–₱20M",
+          "studio": "₱2.5M–₱4M",
+          "loft": "₱4M–₱9M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall", "beachfront_property", "resort_property"
+      ],
+      "lifestyle_description": "A coastal tourism and cultural heritage hub of Batangas, known for world-class beaches like Laiya Beach, hiking at Mount Daguldol, mangrove forest areas, historic churches, and ancestral houses attracting both local and international visitors."
+    },
+
+    "Mabini": {
+      "barangays": [
+        "Anilao East", "Anilao Proper", "Bagalangit", "Bulacan",
+        "Calamias", "Estrella", "Gasang", "Laurel",
+        "Ligaya", "Mainaga", "Mainit", "Majuben",
+        "Malimatoc I", "Malimatoc II", "Nag-Iba", "Pilahan",
+        "Poblacion", "Pulang Lupa", "Pulong Anahao", "Pulong Balibaguhan",
+        "Pulong Niogan", "Saguing", "Sampaguita", "San Francisco",
+        "San Jose", "San Juan", "San Teodoro", "Santa Ana",
+        "Santa Mesa", "Santo Niño", "Santo Tomas", "Solo",
+        "Talaga East", "Talaga Proper"
+      ],
+      "landmarks": [
+        "Anilao Diving Sites (Twin Rocks, Cathedral Rock, Secret Bay, Mainit Point)",
+        "Mt. Gulugod Baboy Hiking Trails", "Anilao Light (Lighthouse)",
+        "Matuod Beach", "Snorkeling Reefs (Maricaban, Sepok Point)",
+        "Kumba Falls (local natural site)", "San Francisco de Paula Parish Church",
+        "Balayan Bay and Batangas Bay Viewpoints"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱7,000–₱14,000",
+          "boarding_house": "₱3,500–₱7,000",
+          "condo": "₱9,000–₱18,000",
+          "room": "₱3,000–₱6,000",
+          "townhouse": "₱10,000–₱22,000",
+          "house": "₱12,000–₱26,000",
+          "dormitory": "₱3,000–₱5,500"
+        },
+        "commercial": {
+          "office_unit": "₱12,000–₱28,000",
+          "retail_space": "₱15,000–₱35,000",
+          "food_stall": "₱5,000–₱12,000",
+          "shop": "₱10,000–₱30,000",
+          "showroom": "₱20,000–₱60,000"
+        },
+        "industrial": {
+          "warehouse": "₱18,000–₱48,000",
+          "storage_unit": "₱7,000–₱16,000",
+          "factory": "₱30,000–₱90,000",
+          "workshop": "₱12,000–₱30,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱50,000–₱130,000",
+          "retail_space_lease": "₱35,000–₱100,000",
+          "building_lease": "₱100,000–₱300,000",
+          "commercial_unit": "₱22,000–₱70,000",
+          "showroom_lease": "₱70,000–₱180,000",
+          "warehouse_lease": "₱55,000–₱160,000"
+        },
+        "land": {
+          "commercial_lot": "₱45–₱140 per sqm",
+          "agricultural_land": "₱15–₱35 per sqm",
+          "development_land": "₱55–₱180 per sqm",
+          "industrial_lot": "₱65–₱160 per sqm",
+          "residential_lot": "₱30–₱75 per sqm",
+          "vacant_lot": "₱25–₱65 per sqm"
+        },
+        "special": {
+          "resort_property": "₱70,000–₱250,000",
+          "event_venue": "₱45,000–₱180,000",
+          "parking_area": "₱8,000–₱35,000",
+          "school_property": "₱90,000–₱350,000",
+          "hospitality": "₱60,000–₱220,000",
+          "sports_facility": "₱55,000–₱160,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱2.5M–₱6M",
+          "townhouse": "₱2M–₱4.5M",
+          "bungalow": "₱3M–₱7M",
+          "duplex": "₱3.5M–₱8M",
+          "village_lot": "₱6,000–₱15,000 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱10M–₱50M",
+          "office_space": "₱4M–₱15M",
+          "retail_space": "₱5M–₱20M",
+          "warehouse": "₱8M–₱40M",
+          "showroom": "₱12M–₱60M"
+        },
+        "land": {
+          "residential_lot": "₱5,000–₱12,000 per sqm",
+          "commercial_lot": "₱10,000–₱30,000 per sqm",
+          "agricultural_land": "₱1,500–₱4,000 per sqm",
+          "industrial_lot": "₱8,000–₱20,000 per sqm",
+          "beachfront": "₱15,000–₱40,000 per sqm"
+        },
+        "condo": {
+          "condo_unit": "₱3M–₱7M",
+          "penthouse": "₱8M–₱20M",
+          "studio": "₱2.5M–₱4M",
+          "loft": "₱4M–₱9M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall"
+      ],
+      "lifestyle_description": "Coastal tourism destination known as the diving capital of the Philippines, combining marine adventure, beaches, hiking (e.g., Mt. Gulugod Baboy), and resort living with relaxed small-town character."
+    },
+
+    "Rosario": {
+      "barangays": [
+        "Alupay", "Antipolo", "Bagong Pook", "Balibago", "Barangay A (Pob.)",
+        "Barangay B (Pob.)", "Barangay C (Pob.)", "Barangay D (Pob.)", "Barangay E (Pob.)",
+        "Bayawang", "Baybayin", "Bulihan", "Cahigam", "Calantas",
+        "Colongan", "Itlugan", "Leviste (Tubahan)", "Lumbangan", "Maalas-As",
+        "Mabato", "Mabunga", "Macalamcam A", "Macalamcam B", "Malaya",
+        "Maligaya", "Marilag", "Masaya", "Matamis", "Mavalor",
+        "Mayuro", "Namuco", "Namunga", "Natu", "Nasi",
+        "Palakpak", "Pinagsibaan", "Putingkahoy", "Quilib", "Salao",
+        "San Carlos", "San Ignacio", "San Isidro", "San Jose", "San Roque",
+        "Santa Cruz", "Timbugan", "Tiquiwan", "Tulos"
+      ],
+      "landmarks": [
+        "Our Lady of the Rosary Parish Church", "Tombol Hill Grotto & Statue of the Risen Christ",
+        "Batangas Racing Circuit", "Rosario Town Plaza", "Sinukmani Festival Grounds",
+        "Rosario Cultural & Sports Complex", "SM Hypermarket Rosario", "Puregold Rosario",
+        "Liwasan ng Pag-ibig Park", "Munting Buhangin Beach (nearby recreational area)",
+        "Villa Crisanta Garden Resort", "Barcelona Garden Resort"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱6,000–₱11,000",
+          "boarding_house": "₱3,000–₱5,500",
+          "condo": "₱8,000–₱16,000",
+          "room": "₱2,500–₱6,000",
+          "townhouse": "₱10,000–₱18,000",
+          "house": "₱8,000–₱15,000",
+          "dormitory": "₱3,000–₱5,000"
+        },
+        "commercial": {
+          "office_unit": "₱10,000–₱28,000",
+          "retail_space": "₱12,000–₱32,000",
+          "food_stall": "₱4,000–₱12,000",
+          "shop": "₱8,000–₱25,000",
+          "showroom": "₱18,000–₱50,000"
+        },
+        "industrial": {
+          "warehouse": "₱15,000–₱45,000",
+          "storage_unit": "₱6,000–₱16,000",
+          "factory": "₱30,000–₱90,000",
+          "workshop": "₱10,000–₱30,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱45,000–₱120,000",
+          "retail_space_lease": "₱30,000–₱90,000",
+          "building_lease": "₱90,000–₱280,000",
+          "commercial_unit": "₱20,000–₱65,000",
+          "showroom_lease": "₱65,000–₱170,000",
+          "warehouse_lease": "₱50,000–₱150,000"
+        },
+        "land": {
+          "commercial_lot": "₱40–₱130 per sqm",
+          "agricultural_land": "₱15–₱35 per sqm",
+          "development_land": "₱50–₱170 per sqm",
+          "industrial_lot": "₱60–₱155 per sqm",
+          "residential_lot": "₱30–₱70 per sqm",
+          "vacant_lot": "₱25–₱60 per sqm"
+        },
+        "special": {
+          "resort_property": "₱65,000–₱230,000",
+          "event_venue": "₱40,000–₱160,000",
+          "parking_area": "₱8,000–₱30,000",
+          "school_property": "₱80,000–₱320,000",
+          "hospitality": "₱55,000–₱200,000",
+          "sports_facility": "₱50,000–₱150,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱2.2M–₱5.5M",
+          "townhouse": "₱1.8M–₱4M",
+          "bungalow": "₱2.7M–₱6M",
+          "duplex": "₱3.0M–₱7M",
+          "village_lot": "₱5,000–₱14,000 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱8M–₱45M",
+          "office_space": "₱3.5M–₱12M",
+          "retail_space": "₱4.5M–₱18M",
+          "warehouse": "₱7M–₱35M",
+          "showroom": "₱10M–₱50M"
+        },
+        "land": {
+          "residential_lot": "₱4,000–₱11,000 per sqm",
+          "commercial_lot": "₱9,000–₱28,000 per sqm",
+          "agricultural_land": "₱1,500–₱3,500 per sqm",
+          "industrial_lot": "₱7,000–₱18,000 per sqm",
+          "beachfront": "₱12,000–₱36,000 per sqm"
+        },
+        "condo": {
+          "condo_unit": "₱2.5M–₱6.5M",
+          "penthouse": "₱7M–₱18M",
+          "studio": "₱2.2M–₱3.8M",
+          "loft": "₱3M–₱7.5M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall"
+      ],
+      "lifestyle_description": "A first-class municipality known as the 'Rice Granary of Batangas' with a mix of agriculture, industrial zones (e.g., racing circuit), scenic hills, community parks, and growing commercial amenities — ideal for families, commuters, and agribusiness interests."
+    },
+
+    "Calatagan": {
+      "barangays": [
+        "Apitong", "Bagong Silang", "Balitoc", "Balian",
+        "Calubcub I", "Calubcub II", "Catilo", "Ipil",
+        "Laguan", "Lemery", "Ligid-Talim", "Malamig",
+        "Malihao", "Maliwalo", "Masla", "Poblacion Barangay 1",
+        "Poblacion Barangay 2", "Poblacion Barangay 3",
+        "Poblacion Barangay 4", "Poblacion Barangay 5",
+        "Poblacion Barangay 6", "San Guillermo", "San Jose",
+        "San Ramon", "Santa Maria", "Talahib", "Turbina",
+        "Villa Aurora", "Villa Celestina"
+      ],
+      "landmarks": [
+        "Calatagan Beach", "Cape Santiago Lighthouse",
+        "Mt.s Palay-Palay/Mataas Na Gulod Protected Landscape",
+        "Burot Beach", "Apolinario Mabini Shrine (Calatagan)",
+        "White Beach Resort", "Palm Beach Resort",
+        "Acuatico Beach Resort", "Discovery Beach Resort",
+        "Twin Beach", "Burot Beach Mangrove Trails",
+        "Punta Fuego Beach Club", "La Playa Beach & Golf Resort"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱7,000–₱14,000",
+          "boarding_house": "₱3,000–₱6,000",
+          "condo": "₱9,000–₱18,000",
+          "room": "₱2,500–₱5,500",
+          "townhouse": "₱10,000–₱20,000",
+          "house": "₱9,000–₱20,000",
+          "dormitory": "₱3,000–₱5,000"
+        },
+        "commercial": {
+          "office_unit": "₱10,000–₱28,000",
+          "retail_space": "₱12,000–₱32,000",
+          "food_stall": "₱4,000–₱15,000",
+          "shop": "₱8,000–₱25,000",
+          "showroom": "₱18,000–₱45,000"
+        },
+        "industrial": {
+          "warehouse": "₱15,000–₱40,000",
+          "storage_unit": "₱6,000–₱16,000",
+          "factory": "₱28,000–₱80,000",
+          "workshop": "₱10,000–₱28,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱45,000–₱120,000",
+          "retail_space_lease": "₱30,000–₱90,000",
+          "building_lease": "₱90,000–₱280,000",
+          "commercial_unit": "₱20,000–₱65,000",
+          "showroom_lease": "₱65,000–₱170,000",
+          "warehouse_lease": "₱50,000–₱150,000"
+        },
+        "land": {
+          "commercial_lot": "₱40–₱130 per sqm",
+          "agricultural_land": "₱12–₱30 per sqm",
+          "development_land": "₱45–₱160 per sqm",
+          "industrial_lot": "₱55–₱145 per sqm",
+          "residential_lot": "₱25–₱65 per sqm",
+          "vacant_lot": "₱22–₱58 per sqm"
+        },
+        "special": {
+          "resort_property": "₱70,000–₱250,000",
+          "event_venue": "₱40,000–₱170,000",
+          "parking_area": "₱8,000–₱30,000",
+          "school_property": "₱80,000–₱300,000",
+          "hospitality": "₱55,000–₱200,000",
+          "sports_facility": "₱50,000–₱150,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱2.3M–₱5.8M",
+          "townhouse": "₱1.8M–₱4M",
+          "bungalow": "₱2.7M–₱6.5M",
+          "duplex": "₱3.0M–₱7M",
+          "village_lot": "₱5,000–₱14,000 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱8M–₱45M",
+          "office_space": "₱3.5M–₱12M",
+          "retail_space": "₱4.5M–₱18M",
+          "warehouse": "₱7M–₱35M",
+          "showroom": "₱10M–₱50M"
+        },
+        "land": {
+          "residential_lot": "₱4,000–₱11,000 per sqm",
+          "commercial_lot": "₱9,000–₱28,000 per sqm",
+          "agricultural_land": "₱1,500–₱3,500 per sqm",
+          "industrial_lot": "₱7,000–₱18,000 per sqm",
+          "beachfront": "₱12,000–₱38,000 per sqm"
+        },
+        "condo": {
+          "condo_unit": "₱2.5M–₱6.5M",
+          "penthouse": "₱7M–₱18M",
+          "studio": "₱2.2M–₱4M",
+          "loft": "₱3M–₱7.5M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall",
+        "beachfront_property", "resort_property"
+      ],
+      "lifestyle_description": "Quiet coastal municipality ideal for retirement, beach homes, and resort living. Known for long sandy beaches, scenic lighthouses, and access to natural parks like Mt. Palay-Palay/Mataas Na Gulod."
+    },
+
+    "Nasugbu": {
+      "barangays": [
+        "Aga", "Balaytigui", "Banilad", "Barangay 1 (Pob.)", "Barangay 2 (Pob.)",
+        "Barangay 3 (Pob.)", "Barangay 4 (Pob.)", "Barangay 5 (Pob.)", "Barangay 6 (Pob.)",
+        "Barangay 7 (Pob.)", "Barangay 8 (Pob.)", "Barangay 9 (Pob.)", "Barangay 10 (Pob.)",
+        "Barangay 11 (Pob.)", "Barangay 12 (Pob.)", "Barangay 13 (Pob.)", "Barangay 14 (Pob.)",
+        "Bilaran", "Bucana", "Bulihan", "Calayo", "Catandaan",
+        "Kaylaway", "Kayrilaw", "Cogunan", "Dayap", "Latag",
+        "Looc", "Lumbangan", "Malapad Na Bato", "Mataas Na Pulo", "Natipuan",
+        "Pantalan", "Papaya", "Putat", "Reparo", "Talisay",
+        "Tumalim", "Tutuban", "Wawa"
+      ],
+      "landmarks": [
+        "Punta Fuego", "Club Punta Fuego", "Nasugbu Beach",
+        "Calayo Beach", "Mt. Batulao", "Mt. Talamitam",
+        "St. Francis Xavier Parish Church", "Nasugbu Town Plaza",
+        "Fortune Island", "Caysasay Garden Resort",
+        "Pico de Loro Beach and Country Club", "Tali Beach"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱8,000–₱15,000",
+          "boarding_house": "₱3,500–₱7,000",
+          "condo": "₱10,000–₱25,000",
+          "room": "₱3,000–₱7,000",
+          "townhouse": "₱12,000–₱25,000",
+          "house": "₱12,000–₱30,000",
+          "dormitory": "₱3,000–₱6,000"
+        },
+        "commercial": {
+          "office_unit": "₱15,000–₱35,000",
+          "retail_space": "₱18,000–₱40,000",
+          "food_stall": "₱5,000–₱15,000",
+          "shop": "₱12,000–₱30,000",
+          "showroom": "₱25,000–₱70,000"
+        },
+        "industrial": {
+          "warehouse": "₱20,000–₱55,000",
+          "storage_unit": "₱8,000–₱20,000",
+          "factory": "₱40,000–₱120,000",
+          "workshop": "₱15,000–₱40,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱55,000–₱150,000",
+          "retail_space_lease": "₱40,000–₱120,000",
+          "building_lease": "₱120,000–₱350,000",
+          "commercial_unit": "₱25,000–₱80,000",
+          "showroom_lease": "₱80,000–₱220,000",
+          "warehouse_lease": "₱60,000–₱180,000"
+        },
+        "land": {
+          "commercial_lot": "₱50–₱160 per sqm",
+          "agricultural_land": "₱15–₱40 per sqm",
+          "development_land": "₱60–₱200 per sqm",
+          "industrial_lot": "₱70–₱180 per sqm",
+          "residential_lot": "₱35–₱85 per sqm",
+          "vacant_lot": "₱30–₱75 per sqm"
+        },
+        "special": {
+          "resort_property": "₱80,000–₱300,000",
+          "event_venue": "₱50,000–₱220,000",
+          "parking_area": "₱10,000–₱40,000",
+          "school_property": "₱100,000–₱400,000",
+          "hospitality": "₱70,000–₱250,000",
+          "sports_facility": "₱60,000–₱180,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱3M–₱8M",
+          "townhouse": "₱2.5M–₱6M",
+          "bungalow": "₱3.5M–₱9M",
+          "duplex": "₱4M–₱10M",
+          "village_lot": "₱7,000–₱20,000 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱12M–₱70M",
+          "office_space": "₱5M–₱20M",
+          "retail_space": "₱6M–₱30M",
+          "warehouse": "₱10M–₱50M",
+          "showroom": "₱15M–₱80M"
+        },
+        "land": {
+          "residential_lot": "₱6,000–₱15,000 per sqm",
+          "commercial_lot": "₱12,000–₱40,000 per sqm",
+          "agricultural_land": "₱2,000–₱5,000 per sqm",
+          "industrial_lot": "₱10,000–₱25,000 per sqm",
+          "beachfront": "₱20,000–₱60,000 per sqm"
+        },
+        "condo": {
+          "condo_unit": "₱4M–₱10M",
+          "penthouse": "₱10M–₱30M",
+          "studio": "₱3M–₱6M",
+          "loft": "₱5M–₱12M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall",
+        "beachfront_property", "resort_property", "villa"
+      ],
+      "lifestyle_description": "A premier beach and leisure destination with luxury resorts, golf courses, and high-end residential communities. Known for pristine beaches, mountain hiking trails, and upscale living with strong tourism and hospitality industries."
+    },
+
+    "Balayan": {
+      "barangays": [
+        "Baclaran", "Barangay 1 (Pob.)", "Barangay 2 (Pob.)", "Barangay 3 (Pob.)",
+        "Barangay 4 (Pob.)", "Barangay 5 (Pob.)", "Barangay 6 (Pob.)", "Barangay 7 (Pob.)",
+        "Barangay 8 (Pob.)", "Barangay 9 (Pob.)", "Barangay 10 (Pob.)", "Barangay 11 (Pob.)",
+        "Barangay 12 (Pob.)", "Calan", "Caloocan", "Calzada",
+        "Canda", "Carenahan", "Cayumba", "Dalig",
+        "Dao", "Dilao", "Duhatan", "Durungao",
+        "Gimalas", "Gumamela", "Lagnas", "Lanatan",
+        "Langgangan", "Lucban Putol", "Luma", "Mabini",
+        "Malalay", "Munting Tubig", "Navotas", "Patugo",
+        "Palikpikan", "Palsara", "Pangilao", "Pansipit",
+        "Poblacion", "Sambat", "San Juan", "San Piro",
+        "Santol", "Sukol", "Tactac", "Taludtud",
+        "Tanggoy", "Tilubong", "Tingga", "Tubigan",
+        "Tumbaga"
+      ],
+      "landmarks": [
+        "Balayan Public Market", "St. John the Baptist Church",
+        "Balayan Bay", "Balayan Town Plaza", "Heritage Houses",
+        "Balayan Port", "Local Fishponds and Aquaculture Areas",
+        "Parish of St. John the Baptist Historical Marker"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱5,000–₱10,000",
+          "boarding_house": "₱2,500–₱5,000",
+          "condo": "₱7,000–₱15,000",
+          "room": "₱2,000–₱4,500",
+          "townhouse": "₱8,000–₱15,000",
+          "house": "₱8,000–₱18,000",
+          "dormitory": "₱2,500–₱4,500"
+        },
+        "commercial": {
+          "office_unit": "₱8,000–₱20,000",
+          "retail_space": "₱10,000–₱25,000",
+          "food_stall": "₱3,000–₱8,000",
+          "shop": "₱6,000–₱18,000",
+          "showroom": "₱15,000–₱35,000"
+        },
+        "industrial": {
+          "warehouse": "₱12,000–₱35,000",
+          "storage_unit": "₱5,000–₱12,000",
+          "factory": "₱25,000–₱70,000",
+          "workshop": "₱8,000–₱25,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱35,000–₱100,000",
+          "retail_space_lease": "₱25,000–₱75,000",
+          "building_lease": "₱70,000–₱220,000",
+          "commercial_unit": "₱15,000–₱50,000",
+          "showroom_lease": "₱50,000–₱140,000",
+          "warehouse_lease": "₱40,000–₱120,000"
+        },
+        "land": {
+          "commercial_lot": "₱30–₱100 per sqm",
+          "agricultural_land": "₱10–₱25 per sqm",
+          "development_land": "₱40–₱130 per sqm",
+          "industrial_lot": "₱50–₱130 per sqm",
+          "residential_lot": "₱20–₱55 per sqm",
+          "vacant_lot": "₱18–₱50 per sqm"
+        },
+        "special": {
+          "resort_property": "₱50,000–₱180,000",
+          "event_venue": "₱30,000–₱130,000",
+          "parking_area": "₱6,000–₱25,000",
+          "school_property": "₱60,000–₱250,000",
+          "hospitality": "₱40,000–₱160,000",
+          "sports_facility": "₱35,000–₱120,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱1.8M–₱4M",
+          "townhouse": "₱1.5M–₱3.5M",
+          "bungalow": "₱2M–₱5M",
+          "duplex": "₱2.5M–₱6M",
+          "village_lot": "₱4,000–₱10,000 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱6M–₱30M",
+          "office_space": "₱2.5M–₱10M",
+          "retail_space": "₱3M–₱15M",
+          "warehouse": "₱5M–₱25M",
+          "showroom": "₱8M–₱35M"
+        },
+        "land": {
+          "residential_lot": "₱3,000–₱8,000 per sqm",
+          "commercial_lot": "₱6,000–₱20,000 per sqm",
+          "agricultural_land": "₱1,000–₱2,500 per sqm",
+          "industrial_lot": "₱5,000–₱15,000 per sqm",
+          "beachfront": "₱10,000–₱30,000 per sqm"
+        },
+        "condo": {
+          "condo_unit": "₱2M–₱5M",
+          "penthouse": "₱5M–₱15M",
+          "studio": "₱1.8M–₱3.5M",
+          "loft": "₱2.5M–₱6M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall"
+      ],
+      "lifestyle_description": "Historic municipality with a rich cultural heritage, known for its annual Parada ng Lechon festival. Coastal town with fishing and aquaculture industries, featuring heritage churches and traditional town life."
+    },
+
+    "Lemery": {
+      "barangays": [
+        "Anak-Dagat", "Arumahan", "Ayusan I", "Ayusan II",
+        "Bagong Sikat", "Balanga", "Bukal", "Cahilan I",
+        "Cahilan II", "Dacanlao", "Dalahican", "Dayapan",
+        "District I (Pob.)", "District II (Pob.)", "District III (Pob.)",
+        "District IV (Pob.)", "Gulod", "Lucky", "Maguihan",
+        "Mahabang Dahilig", "Mahayahay", "Maigsing Dahilig",
+        "Maligaya", "Mahabang Parang", "Malinis", "Mataas Na Bayan",
+        "Mataas Na Lupa", "Mayasang", "Niugan", "Nonong Casto",
+        "Palanas", "Payapa Ibaba", "Payapa Ilaya", "Rizal",
+        "Sinalhan", "Sinisian", "Tubigan", "Tubuan"
+      ],
+      "landmarks": [
+        "Lemery Public Market", "St. Michael the Archangel Parish Church",
+        "Lemery Town Plaza", "Lemery Port", "Local Beaches",
+        "Fish Port and Drying Areas", "Lemery Commercial District"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱5,000–₱10,000",
+          "boarding_house": "₱2,500–₱5,000",
+          "condo": "₱7,000–₱15,000",
+          "room": "₱2,000–₱4,500",
+          "townhouse": "₱8,000–₱15,000",
+          "house": "₱8,000–₱18,000",
+          "dormitory": "₱2,500–₱4,500"
+        },
+        "commercial": {
+          "office_unit": "₱8,000–₱20,000",
+          "retail_space": "₱10,000–₱25,000",
+          "food_stall": "₱3,000–₱8,000",
+          "shop": "₱6,000–₱18,000",
+          "showroom": "₱15,000–₱35,000"
+        },
+        "industrial": {
+          "warehouse": "₱12,000–₱35,000",
+          "storage_unit": "₱5,000–₱12,000",
+          "factory": "₱25,000–₱70,000",
+          "workshop": "₱8,000–₱25,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱35,000–₱100,000",
+          "retail_space_lease": "₱25,000–₱75,000",
+          "building_lease": "₱70,000–₱220,000",
+          "commercial_unit": "₱15,000–₱50,000",
+          "showroom_lease": "₱50,000–₱140,000",
+          "warehouse_lease": "₱40,000–₱120,000"
+        },
+        "land": {
+          "commercial_lot": "₱30–₱100 per sqm",
+          "agricultural_land": "₱10–₱25 per sqm",
+          "development_land": "₱40–₱130 per sqm",
+          "industrial_lot": "₱50–₱130 per sqm",
+          "residential_lot": "₱20–₱55 per sqm",
+          "vacant_lot": "₱18–₱50 per sqm"
+        },
+        "special": {
+          "resort_property": "₱50,000–₱180,000",
+          "event_venue": "₱30,000–₱130,000",
+          "parking_area": "₱6,000–₱25,000",
+          "school_property": "₱60,000–₱250,000",
+          "hospitality": "₱40,000–₱160,000",
+          "sports_facility": "₱35,000–₱120,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱1.8M–₱4M",
+          "townhouse": "₱1.5M–₱3.5M",
+          "bungalow": "₱2M–₱5M",
+          "duplex": "₱2.5M–₱6M",
+          "village_lot": "₱4,000–₱10,000 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱6M–₱30M",
+          "office_space": "₱2.5M–₱10M",
+          "retail_space": "₱3M–₱15M",
+          "warehouse": "₱5M–₱25M",
+          "showroom": "₱8M–₱35M"
+        },
+        "land": {
+          "residential_lot": "₱3,000–₱8,000 per sqm",
+          "commercial_lot": "₱6,000–₱20,000 per sqm",
+          "agricultural_land": "₱1,000–₱2,500 per sqm",
+          "industrial_lot": "₱5,000–₱15,000 per sqm",
+          "beachfront": "₱10,000–₱30,000 per sqm"
+        },
+        "condo": {
+          "condo_unit": "₱2M–₱5M",
+          "penthouse": "₱5M–₱15M",
+          "studio": "₱1.8M–₱3.5M",
+          "loft": "₱2.5M–₱6M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall"
+      ],
+      "lifestyle_description": "Coastal municipality with fishing and trading as main economic activities. Features a busy public market, port facilities, and access to local beaches. Traditional Batangas town life with commercial activities."
+    },
+
+    "Taal": {
+      "barangays": [
+        "Apacay", "Balisong", "Bihis", "Bolbok",
+        "Buli", "Butong", "Carasuche", "Cawit",
+        "Caysasay", "Cubo", "Gahol", "Halang",
+        "Iba", "Ilog", "Imamawo", "Ipil",
+        "Laguile", "Latag", "Luntal", "Mahabang Lodlod",
+        "Niogan", "Pansol", "Poblacion", "Pook",
+        "Seiran", "Sinait", "Tabla", "Talaib",
+        "Tambo", "Tatlong Maria", "Tayuman", "Tierra Alta"
+      ],
+      "landmarks": [
+        "Basilica of St. Martin of Tours (Taal Basilica)",
+        "Marcela Agoncillo House (Heritage House)", "Taal Public Market",
+        "Taal Lake Viewpoints", "Our Lady of Caysasay Shrine",
+        "Galleria Taal", "Taal Town Plaza", "Leon Apacible Historical Landmark"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱5,000–₱10,000",
+          "boarding_house": "₱2,500–₱5,000",
+          "condo": "₱7,000–₱15,000",
+          "room": "₱2,000–₱4,500",
+          "townhouse": "₱8,000–₱15,000",
+          "house": "₱8,000–₱20,000",
+          "dormitory": "₱2,500–₱4,500"
+        },
+        "commercial": {
+          "office_unit": "₱8,000–₱22,000",
+          "retail_space": "₱10,000–₱28,000",
+          "food_stall": "₱3,000–₱9,000",
+          "shop": "₱7,000–₱20,000",
+          "showroom": "₱16,000–₱40,000"
+        },
+        "industrial": {
+          "warehouse": "₱12,000–₱38,000",
+          "storage_unit": "₱5,000–₱14,000",
+          "factory": "₱25,000–₱75,000",
+          "workshop": "₱9,000–₱28,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱40,000–₱110,000",
+          "retail_space_lease": "₱28,000–₱85,000",
+          "building_lease": "₱80,000–₱250,000",
+          "commercial_unit": "₱18,000–₱60,000",
+          "showroom_lease": "₱60,000–₱170,000",
+          "warehouse_lease": "₱45,000–₱140,000"
+        },
+        "land": {
+          "commercial_lot": "₱35–₱120 per sqm",
+          "agricultural_land": "₱12–₱30 per sqm",
+          "development_land": "₱45–₱150 per sqm",
+          "industrial_lot": "₱55–₱140 per sqm",
+          "residential_lot": "₱25–₱65 per sqm",
+          "vacant_lot": "₱20–₱55 per sqm"
+        },
+        "special": {
+          "resort_property": "₱60,000–₱220,000",
+          "event_venue": "₱35,000–₱150,000",
+          "parking_area": "₱7,000–₱30,000",
+          "school_property": "₱70,000–₱280,000",
+          "hospitality": "₱50,000–₱190,000",
+          "sports_facility": "₱40,000–₱140,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱2M–₱5M",
+          "townhouse": "₱1.6M–₱4M",
+          "bungalow": "₱2.2M–₱5.5M",
+          "duplex": "₱2.8M–₱6.5M",
+          "village_lot": "₱4,500–₱12,000 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱7M–₱35M",
+          "office_space": "₱3M–₱12M",
+          "retail_space": "₱4M–₱18M",
+          "warehouse": "₱6M–₱30M",
+          "showroom": "₱9M–₱45M"
+        },
+        "land": {
+          "residential_lot": "₱3,500–₱9,000 per sqm",
+          "commercial_lot": "₱7,000–₱25,000 per sqm",
+          "agricultural_land": "₱1,200–₱3,000 per sqm",
+          "industrial_lot": "₱6,000–₱18,000 per sqm",
+          "beachfront": "₱12,000–₱35,000 per sqm"
+        },
+        "condo": {
+          "condo_unit": "₱2.2M–₱5.5M",
+          "penthouse": "₱6M–₱18M",
+          "studio": "₱1.8M–₱3.8M",
+          "loft": "₱2.8M–₱7M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall",
+        "heritage_property", "tourist_accommodation"
+      ],
+      "lifestyle_description": "Historic town known for its Spanish colonial architecture, heritage houses, and the famous Taal Basilica. Tourism-oriented with cultural attractions, traditional crafts (balisong/barong), and views of Taal Lake."
+    },
+
+    "Ibaan": {
+      "barangays": [
+        "Bago", "Balanga", "Bungahan", "Calamias",
+        "Catandala", "Coliat", "Dayapan", "Lapu-Lapu",
+        "Lucsuhin", "Mabalor", "Malamig", "Matala",
+        "Munting Tubig", "Palindan", "Panabo", "Pangao",
+        "Poblacion", "Quilo", "Sabang", "Salaban I",
+        "Salaban II", "San Agustin", "Sandalan", "Santo Niño",
+        "Talaibon", "Tulay Na Patpat"
+      ],
+      "landmarks": [
+        "St. James the Apostle Parish Church", "Ibaan Public Market",
+        "Ibaan Town Plaza", "Ibaan Sports Complex", "Local Rice Fields",
+        "Ibaan Central School", "Municipal Hall"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱4,500–₱9,000",
+          "boarding_house": "₱2,200–₱4,500",
+          "condo": "₱6,000–₱13,000",
+          "room": "₱1,800–₱4,000",
+          "townhouse": "₱7,000–₱14,000",
+          "house": "₱7,000–₱16,000",
+          "dormitory": "₱2,200–₱4,000"
+        },
+        "commercial": {
+          "office_unit": "₱7,000–₱18,000",
+          "retail_space": "₱9,000–₱22,000",
+          "food_stall": "₱2,500–₱7,000",
+          "shop": "₱5,000–₱16,000",
+          "showroom": "₱14,000–₱32,000"
+        },
+        "industrial": {
+          "warehouse": "₱10,000–₱32,000",
+          "storage_unit": "₱4,000–₱10,000",
+          "factory": "₱22,000–₱65,000",
+          "workshop": "₱7,000–₱22,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱30,000–₱90,000",
+          "retail_space_lease": "₱22,000–₱70,000",
+          "building_lease": "₱60,000–₱200,000",
+          "commercial_unit": "₱12,000–₱45,000",
+          "showroom_lease": "₱45,000–₱130,000",
+          "warehouse_lease": "₱35,000–₱110,000"
+        },
+        "land": {
+          "commercial_lot": "₱25–₱90 per sqm",
+          "agricultural_land": "₱8–₱20 per sqm",
+          "development_land": "₱35–₱120 per sqm",
+          "industrial_lot": "₱45–₱115 per sqm",
+          "residential_lot": "₱18–₱50 per sqm",
+          "vacant_lot": "₱15–₱45 per sqm"
+        },
+        "special": {
+          "resort_property": "₱45,000–₱160,000",
+          "event_venue": "₱25,000–₱120,000",
+          "parking_area": "₱5,000–₱22,000",
+          "school_property": "₱55,000–₱220,000",
+          "hospitality": "₱35,000–₱140,000",
+          "sports_facility": "₱30,000–₱110,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱1.5M–₱3.5M",
+          "townhouse": "₱1.2M–₱3M",
+          "bungalow": "₱1.8M–₱4M",
+          "duplex": "₱2.2M–₱5M",
+          "village_lot": "₱3,500–₱9,000 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱5M–₱25M",
+          "office_space": "₱2M–₱8M",
+          "retail_space": "₱2.5M–₱12M",
+          "warehouse": "₱4M–₱20M",
+          "showroom": "₱6M–₱30M"
+        },
+        "land": {
+          "residential_lot": "₱3,000–₱7,000 per sqm",
+          "commercial_lot": "₱5,000–₱18,000 per sqm",
+          "agricultural_land": "₱800–₱2,000 per sqm",
+          "industrial_lot": "₱4,000–₱13,000 per sqm",
+          "beachfront": "N/A"
+        },
+        "condo": {
+          "condo_unit": "₱1.8M–₱4.5M",
+          "penthouse": "₱4M–₱12M",
+          "studio": "₱1.5M–₱3.2M",
+          "loft": "₱2.2M–₱5.5M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall"
+      ],
+      "lifestyle_description": "Agricultural municipality known for rice production and rural living. Quiet town life with basic amenities, suitable for those seeking affordable residential options away from urban centers."
+    },
+
+    "Tuy": {
+      "barangays": [
+        "Acle", "Bayudbud", "Bolboc", "Dalima",
+        "Dao", "Guinhawa", "Lumbangan", "Luntal",
+        "Magahis", "Malibu", "Mataywanac", "Palincaro",
+        "Poblacion", "Pook", "Rizal", "Sabang",
+        "San Jose", "San Jose (Putic)", "Talon", "Toong",
+        "Tuyon-tuyon"
+      ],
+      "landmarks": [
+        "St. Francis of Assisi Parish Church", "Tuy Public Market",
+        "Tuy Town Plaza", "Local Beaches", "Tuy Port",
+        "Municipal Hall", "Tuy Central School"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱4,000–₱8,000",
+          "boarding_house": "₱2,000–₱4,000",
+          "condo": "₱5,500–₱12,000",
+          "room": "₱1,500–₱3,500",
+          "townhouse": "₱6,000–₱12,000",
+          "house": "₱6,000–₱14,000",
+          "dormitory": "₱2,000–₱3,500"
+        },
+        "commercial": {
+          "office_unit": "₱6,000–₱15,000",
+          "retail_space": "₱8,000–₱20,000",
+          "food_stall": "₱2,000–₱6,000",
+          "shop": "₱4,000–₱14,000",
+          "showroom": "₱12,000–₱28,000"
+        },
+        "industrial": {
+          "warehouse": "₱9,000–₱28,000",
+          "storage_unit": "₱3,500–₱8,000",
+          "factory": "₱20,000–₱55,000",
+          "workshop": "₱6,000–₱20,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱25,000–₱75,000",
+          "retail_space_lease": "₱18,000–₱60,000",
+          "building_lease": "₱50,000–₱180,000",
+          "commercial_unit": "₱10,000–₱40,000",
+          "showroom_lease": "₱40,000–₱120,000",
+          "warehouse_lease": "₱30,000–₱100,000"
+        },
+        "land": {
+          "commercial_lot": "₱20–₱80 per sqm",
+          "agricultural_land": "₱7–₱18 per sqm",
+          "development_land": "₱30–₱100 per sqm",
+          "industrial_lot": "₱40–₱100 per sqm",
+          "residential_lot": "₱15–₱45 per sqm",
+          "vacant_lot": "₱12–₱40 per sqm"
+        },
+        "special": {
+          "resort_property": "₱40,000–₱140,000",
+          "event_venue": "₱20,000–₱100,000",
+          "parking_area": "₱4,000–₱18,000",
+          "school_property": "₱45,000–₱180,000",
+          "hospitality": "₱30,000–₱120,000",
+          "sports_facility": "₱25,000–₱95,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱1.2M–₱3M",
+          "townhouse": "₱1M–₱2.5M",
+          "bungalow": "₱1.5M–₱3.5M",
+          "duplex": "₱1.8M–₱4M",
+          "village_lot": "₱3,000–₱8,000 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱4M–₱20M",
+          "office_space": "₱1.5M–₱6M",
+          "retail_space": "₱2M–₱10M",
+          "warehouse": "₱3M–₱15M",
+          "showroom": "₱5M–₱25M"
+        },
+        "land": {
+          "residential_lot": "₱2,500–₱6,000 per sqm",
+          "commercial_lot": "₱4,000–₱15,000 per sqm",
+          "agricultural_land": "₱600–₱1,800 per sqm",
+          "industrial_lot": "₱3,000–₱10,000 per sqm",
+          "beachfront": "₱8,000–₱25,000 per sqm"
+        },
+        "condo": {
+          "condo_unit": "₱1.5M–₱4M",
+          "penthouse": "₱3.5M–₱10M",
+          "studio": "₱1.2M–₱2.8M",
+          "loft": "₱1.8M–₱4.5M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall"
+      ],
+      "lifestyle_description": "Coastal municipality with fishing and agriculture as main livelihoods. Quiet provincial life with basic commercial establishments and access to beaches."
+    },
+
+    "Lian": {
+      "barangays": [
+        "Bagong Pook", "Balibago", "Binubusan", "Bungahan",
+        "Cumba", "Humayingan", "Kapito", "Lumaniag",
+        "Luyahan", "Malaruhatan", "Matabungkay", "Barangay I (Pob.)",
+        "Barangay II (Pob.)", "Barangay III (Pob.)", "Barangay IV (Pob.)",
+        "Barangay V (Pob.)", "Prenza", "Puting-Kahoy",
+        "Sibayan", "Tulay Na Patag"
+      ],
+      "landmarks": [
+        "Matabungkay Beach", "Lian Public Market",
+        "St. Peter the Apostle Parish Church", "Lian Town Plaza",
+        "Matabungkay Beach Resort Area", "Local Fish Ports",
+        "Municipal Hall"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱5,000–₱10,000",
+          "boarding_house": "₱2,500–₱5,000",
+          "condo": "₱7,000–₱15,000",
+          "room": "₱2,000–₱4,500",
+          "townhouse": "₱8,000–₱16,000",
+          "house": "₱8,000–₱20,000",
+          "dormitory": "₱2,500–₱4,500"
+        },
+        "commercial": {
+          "office_unit": "₱8,000–₱22,000",
+          "retail_space": "₱10,000–₱28,000",
+          "food_stall": "₱3,000–₱9,000",
+          "shop": "₱7,000–₱22,000",
+          "showroom": "₱16,000–₱42,000"
+        },
+        "industrial": {
+          "warehouse": "₱12,000–₱40,000",
+          "storage_unit": "₱5,000–₱14,000",
+          "factory": "₱25,000–₱80,000",
+          "workshop": "₱9,000–₱30,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱40,000–₱120,000",
+          "retail_space_lease": "₱30,000–₱90,000",
+          "building_lease": "₱80,000–₱260,000",
+          "commercial_unit": "₱18,000–₱65,000",
+          "showroom_lease": "₱60,000–₱180,000",
+          "warehouse_lease": "₱50,000–₱150,000"
+        },
+        "land": {
+          "commercial_lot": "₱35–₱130 per sqm",
+          "agricultural_land": "₱10–₱28 per sqm",
+          "development_land": "₱45–₱160 per sqm",
+          "industrial_lot": "₱55–₱145 per sqm",
+          "residential_lot": "₱25–₱70 per sqm",
+          "vacant_lot": "₱20–₱60 per sqm"
+        },
+        "special": {
+          "resort_property": "₱70,000–₱250,000",
+          "event_venue": "₱40,000–₱180,000",
+          "parking_area": "₱8,000–₱35,000",
+          "school_property": "₱90,000–₱350,000",
+          "hospitality": "₱60,000–₱220,000",
+          "sports_facility": "₱50,000–₱160,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱2M–₱5.5M",
+          "townhouse": "₱1.6M–₱4.2M",
+          "bungalow": "₱2.2M–₱6M",
+          "duplex": "₱2.8M–₱7M",
+          "village_lot": "₱4,500–₱12,000 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱7M–₱40M",
+          "office_space": "₱3M–₱14M",
+          "retail_space": "₱4M–₱20M",
+          "warehouse": "₱6M–₱32M",
+          "showroom": "₱9M–₱50M"
+        },
+        "land": {
+          "residential_lot": "₱3,500–₱10,000 per sqm",
+          "commercial_lot": "₱7,000–₱28,000 per sqm",
+          "agricultural_land": "₱1,200–₱3,200 per sqm",
+          "industrial_lot": "₱6,000–₱18,000 per sqm",
+          "beachfront": "₱15,000–₱45,000 per sqm"
+        },
+        "condo": {
+          "condo_unit": "₱2.2M–₱6M",
+          "penthouse": "₱6M–₱20M",
+          "studio": "₱1.8M–₱4M",
+          "loft": "₱2.8M–₱8M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall",
+        "beachfront_property", "resort_property"
+      ],
+      "lifestyle_description": "Coastal municipality famous for Matabungkay Beach, a popular weekend destination. Tourism-focused with beach resorts, water sports, and fishing activities. Mix of local community and tourist-oriented businesses."
+    },
+
+    "Taysan": {
+      "barangays": [
+        "Baclayan", "Bilogo", "Bukal", "Dagatan",
+        "Guinhawa", "Laurel", "Mabayabas", "Mahanadiong",
+        "Mapulo", "Mataas Na Lupa", "Pag-Asa", "Panghayaan",
+        "Piña", "Pinagbayanan", "Poblacion East", "Poblacion West",
+        "San Isidro", "San Marcelino", "San Miguel", "San Vicente",
+        "Santa Rita", "Santo Niño", "Till"
+      ],
+      "landmarks": [
+        "St. Michael the Archangel Parish Church", "Taysan Public Market",
+        "Taysan Town Plaza", "Taysan Municipal Hall",
+        "Local Agricultural Areas", "Taysan Central School"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱3,500–₱7,500",
+          "boarding_house": "₱1,800–₱3,800",
+          "condo": "₱5,000–₱11,000",
+          "room": "₱1,500–₱3,200",
+          "townhouse": "₱6,000–₱12,000",
+          "house": "₱6,000–₱14,000",
+          "dormitory": "₱1,800–₱3,500"
+        },
+        "commercial": {
+          "office_unit": "₱6,000–₱16,000",
+          "retail_space": "₱8,000–₱20,000",
+          "food_stall": "₱2,000–₱6,500",
+          "shop": "₱4,500–₱15,000",
+          "showroom": "₱12,000–₱30,000"
+        },
+        "industrial": {
+          "warehouse": "₱10,000–₱32,000",
+          "storage_unit": "₱4,000–₱10,000",
+          "factory": "₱22,000–₱65,000",
+          "workshop": "₱7,000–₱22,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱28,000–₱85,000",
+          "retail_space_lease": "₱20,000–₱70,000",
+          "building_lease": "₱55,000–₱190,000",
+          "commercial_unit": "₱12,000–₱50,000",
+          "showroom_lease": "₱45,000–₱140,000",
+          "warehouse_lease": "₱35,000–₱120,000"
+        },
+        "land": {
+          "commercial_lot": "₱25–₱95 per sqm",
+          "agricultural_land": "₱7–₱20 per sqm",
+          "development_land": "₱35–₱125 per sqm",
+          "industrial_lot": "₱45–₱120 per sqm",
+          "residential_lot": "₱18–₱55 per sqm",
+          "vacant_lot": "₱15–₱50 per sqm"
+        },
+        "special": {
+          "resort_property": "₱45,000–₱170,000",
+          "event_venue": "₱25,000–₱130,000",
+          "parking_area": "₱5,000–₱25,000",
+          "school_property": "₱55,000–₱240,000",
+          "hospitality": "₱35,000–₱150,000",
+          "sports_facility": "₱30,000–₱120,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱1.3M–₱3.2M",
+          "townhouse": "₱1.1M–₱2.8M",
+          "bungalow": "₱1.6M–₱3.8M",
+          "duplex": "₱2M–₱4.5M",
+          "village_lot": "₱3,200–₱8,500 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱4.5M–₱22M",
+          "office_space": "₱1.8M–₱7M",
+          "retail_space": "₱2.2M–₱11M",
+          "warehouse": "₱3.5M–₱18M",
+          "showroom": "₱5.5M–₱28M"
+        },
+        "land": {
+          "residential_lot": "₱2,800–₱7,500 per sqm",
+          "commercial_lot": "₱4,500–₱16,000 per sqm",
+          "agricultural_land": "₱700–₱1,900 per sqm",
+          "industrial_lot": "₱3,500–₱12,000 per sqm",
+          "beachfront": "N/A"
+        },
+        "condo": {
+          "condo_unit": "₱1.6M–₱4M",
+          "penthouse": "₱3.8M–₱11M",
+          "studio": "₱1.3M–₱3M",
+          "loft": "₱2M–₱5M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall"
+      ],
+      "lifestyle_description": "Agricultural municipality with rice and crop farming as primary industries. Rural living with basic municipal services and quiet community atmosphere."
+    },
+
+    "San Luis": {
+      "barangays": [
+        "Abiacao", "Bagong Tubig", "Balagtasin", "Balite",
+        "Banay-banay", "Banay-banay East", "Banay-banay West",
+        "Burgal", "Calumpang", "Calumpang East", "Dulangan",
+        "Durungao", "Locloc", "Luya", "Mabini",
+        "Maluya", "Palakpak", "Poblacion", "San Antonio",
+        "San Isidro", "San Jose", "San Martin", "Santa Monica",
+        "Taliba", "Taliba East", "Talon"
+      ],
+      "landmarks": [
+        "San Luis Public Market", "St. Aloysius Gonzaga Parish Church",
+        "San Luis Town Plaza", "Municipal Hall",
+        "Local Agricultural Areas", "San Luis Central School"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱3,500–₱7,000",
+          "boarding_house": "₱1,800–₱3,600",
+          "condo": "₱5,000–₱10,000",
+          "room": "₱1,500–₱3,000",
+          "townhouse": "₱5,500–₱11,000",
+          "house": "₱5,500–₱13,000",
+          "dormitory": "₱1,800–₱3,300"
+        },
+        "commercial": {
+          "office_unit": "₱6,000–₱15,000",
+          "retail_space": "₱7,500–₱18,000",
+          "food_stall": "₱2,000–₱6,000",
+          "shop": "₱4,000–₱13,000",
+          "showroom": "₱11,000–₱28,000"
+        },
+        "industrial": {
+          "warehouse": "₱9,000–₱30,000",
+          "storage_unit": "₱3,500–₱9,000",
+          "factory": "₱20,000–₱60,000",
+          "workshop": "₱6,000–₱20,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱25,000–₱80,000",
+          "retail_space_lease": "₱18,000–₱65,000",
+          "building_lease": "₱50,000–₱180,000",
+          "commercial_unit": "₱10,000–₱45,000",
+          "showroom_lease": "₱40,000–₱130,000",
+          "warehouse_lease": "₱30,000–₱110,000"
+        },
+        "land": {
+          "commercial_lot": "₱22–₱85 per sqm",
+          "agricultural_land": "₱6–₱18 per sqm",
+          "development_land": "₱32–₱115 per sqm",
+          "industrial_lot": "₱42–₱110 per sqm",
+          "residential_lot": "₱16–₱50 per sqm",
+          "vacant_lot": "₱13–₱45 per sqm"
+        },
+        "special": {
+          "resort_property": "₱40,000–₱150,000",
+          "event_venue": "₱22,000–₱120,000",
+          "parking_area": "₱4,500–₱22,000",
+          "school_property": "₱50,000–₱220,000",
+          "hospitality": "₱32,000–₱140,000",
+          "sports_facility": "₱28,000–₱110,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱1.2M–₱3M",
+          "townhouse": "₱1M–₱2.5M",
+          "bungalow": "₱1.5M–₱3.5M",
+          "duplex": "₱1.8M–₱4.2M",
+          "village_lot": "₱3,000–₱8,000 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱4M–₱20M",
+          "office_space": "₱1.6M–₱6.5M",
+          "retail_space": "₱2M–₱10M",
+          "warehouse": "₱3M–₱16M",
+          "showroom": "₱5M–₱25M"
+        },
+        "land": {
+          "residential_lot": "₱2,500–₱7,000 per sqm",
+          "commercial_lot": "₱4,000–₱15,000 per sqm",
+          "agricultural_land": "₱600–₱1,800 per sqm",
+          "industrial_lot": "₱3,000–₱11,000 per sqm",
+          "beachfront": "N/A"
+        },
+        "condo": {
+          "condo_unit": "₱1.5M–₱3.8M",
+          "penthouse": "₱3.5M–₱10M",
+          "studio": "₱1.2M–₱2.8M",
+          "loft": "₱1.8M–₱4.5M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall"
+      ],
+      "lifestyle_description": "Agricultural municipality with focus on rice and crop production. Rural community with basic amenities and peaceful provincial living."
+    },
+
+    "Padre Garcia": {
+      "barangays": [
+        "Banay-banay", "Banaybanay II", "Bawi", "Bukal",
+        "Castillo", "Cawongan", "Manggas", "Maulawin",
+        "Pansol", "Payapa", "Poblacion", "Quilo-quilo North",
+        "Quilo-quilo South", "San Felipe", "San Miguel",
+        "Santa Maria", "Santo Niño", "Tambo"
+      ],
+      "landmarks": [
+        "Padre Garcia Public Market", "Our Lady of the Holy Rosary Parish Church",
+        "Padre Garcia Town Plaza", "Municipal Hall",
+        "Local Agricultural Areas", "Padre Garcia Central School"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱3,800–₱8,000",
+          "boarding_house": "₱1,900–₱4,000",
+          "condo": "₱5,500–₱12,000",
+          "room": "₱1,600–₱3,500",
+          "townhouse": "₱6,000–₱13,000",
+          "house": "₱6,000–₱15,000",
+          "dormitory": "₱1,900–₱3,800"
+        },
+        "commercial": {
+          "office_unit": "₱6,500–₱17,000",
+          "retail_space": "₱8,500–₱22,000",
+          "food_stall": "₱2,200–₱7,000",
+          "shop": "₱4,800–₱16,000",
+          "showroom": "₱13,000–₱35,000"
+        },
+        "industrial": {
+          "warehouse": "₱11,000–₱35,000",
+          "storage_unit": "₱4,500–₱11,000",
+          "factory": "₱24,000–₱70,000",
+          "workshop": "₱8,000–₱25,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱30,000–₱90,000",
+          "retail_space_lease": "₱22,000–₱75,000",
+          "building_lease": "₱60,000–₱200,000",
+          "commercial_unit": "₱13,000–₱55,000",
+          "showroom_lease": "₱48,000–₱150,000",
+          "warehouse_lease": "₱38,000–₱130,000"
+        },
+        "land": {
+          "commercial_lot": "₱28–₱100 per sqm",
+          "agricultural_land": "₱8–₱22 per sqm",
+          "development_land": "₱38–₱135 per sqm",
+          "industrial_lot": "₱48–₱125 per sqm",
+          "residential_lot": "₱20–₱60 per sqm",
+          "vacant_lot": "₱16–₱55 per sqm"
+        },
+        "special": {
+          "resort_property": "₱50,000–₱180,000",
+          "event_venue": "₱28,000–₱140,000",
+          "parking_area": "₱6,000–₱28,000",
+          "school_property": "₱60,000–₱250,000",
+          "hospitality": "₱40,000–₱160,000",
+          "sports_facility": "₱35,000–₱130,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱1.4M–₱3.5M",
+          "townhouse": "₱1.2M–₱3M",
+          "bungalow": "₱1.7M–₱4M",
+          "duplex": "₱2.1M–₱4.8M",
+          "village_lot": "₱3,500–₱9,000 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱5M–₱25M",
+          "office_space": "₱2M–₱8M",
+          "retail_space": "₱2.5M–₱12M",
+          "warehouse": "₱4M–₱20M",
+          "showroom": "₱6M–₱30M"
+        },
+        "land": {
+          "residential_lot": "₱3,000–₱8,500 per sqm",
+          "commercial_lot": "₱5,000–₱18,000 per sqm",
+          "agricultural_land": "₱800–₱2,200 per sqm",
+          "industrial_lot": "₱4,000–₱13,000 per sqm",
+          "beachfront": "N/A"
+        },
+        "condo": {
+          "condo_unit": "₱1.7M–₱4.2M",
+          "penthouse": "₱4M–₱12M",
+          "studio": "₱1.4M–₱3.2M",
+          "loft": "₱2.1M–₱5.2M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall"
+      ],
+      "lifestyle_description": "Agricultural municipality with a focus on livestock (particularly cattle trading, known as 'Cattle Trading Capital of Batangas'). Rural community with weekly livestock market and agricultural activities."
+    },
+
+    "Malvar": {
+      "barangays": [
+        "Bagong Pook", "Bilucao", "Bulihan", "San Gregorio",
+        "San Pioquinto", "San Piro", "Santiago"
+      ],
+      "landmarks": [
+        "Malvar Public Market", "St. Roch Parish Church",
+        "Malvar Town Plaza", "Municipal Hall",
+        "Industrial Zones", "Malvar Central School"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱4,500–₱9,500",
+          "boarding_house": "₱2,200–₱4,500",
+          "condo": "₱6,500–₱14,000",
+          "room": "₱1,800–₱4,000",
+          "townhouse": "₱7,000–₱15,000",
+          "house": "₱7,000–₱18,000",
+          "dormitory": "₱2,200–₱4,200"
+        },
+        "commercial": {
+          "office_unit": "₱7,500–₱20,000",
+          "retail_space": "₱10,000–₱25,000",
+          "food_stall": "₱2,500–₱8,000",
+          "shop": "₱5,500–₱18,000",
+          "showroom": "₱15,000–₱40,000"
+        },
+        "industrial": {
+          "warehouse": "₱13,000–₱40,000",
+          "storage_unit": "₱5,000–₱13,000",
+          "factory": "₱28,000–₱80,000",
+          "workshop": "₱9,000–₱28,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱35,000–₱105,000",
+          "retail_space_lease": "₱25,000–₱85,000",
+          "building_lease": "₱70,000–₱230,000",
+          "commercial_unit": "₱15,000–₱65,000",
+          "showroom_lease": "₱55,000–₱170,000",
+          "warehouse_lease": "₱45,000–₱150,000"
+        },
+        "land": {
+          "commercial_lot": "₱32–₱115 per sqm",
+          "agricultural_land": "₱9–₱25 per sqm",
+          "development_land": "₱42–₱150 per sqm",
+          "industrial_lot": "₱52–₱140 per sqm",
+          "residential_lot": "₱22–₱65 per sqm",
+          "vacant_lot": "₱18–₱60 per sqm"
+        },
+        "special": {
+          "resort_property": "₱55,000–₱200,000",
+          "event_venue": "₱32,000–₱160,000",
+          "parking_area": "₱7,000–₱32,000",
+          "school_property": "₱70,000–₱280,000",
+          "hospitality": "₱45,000–₱180,000",
+          "sports_facility": "₱40,000–₱150,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱1.6M–₱4M",
+          "townhouse": "₱1.3M–₱3.5M",
+          "bungalow": "₱2M–₱4.5M",
+          "duplex": "₱2.4M–₱5.5M",
+          "village_lot": "₱4,000–₱10,000 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱6M–₱30M",
+          "office_space": "₱2.5M–₱10M",
+          "retail_space": "₱3M–₱15M",
+          "warehouse": "₱5M–₱25M",
+          "showroom": "₱7M–₱35M"
+        },
+        "land": {
+          "residential_lot": "₱3,500–₱9,500 per sqm",
+          "commercial_lot": "₱6,000–₱22,000 per sqm",
+          "agricultural_land": "₱1,000–₱2,500 per sqm",
+          "industrial_lot": "₱5,000–₱16,000 per sqm",
+          "beachfront": "N/A"
+        },
+        "condo": {
+          "condo_unit": "₱2M–₱5M",
+          "penthouse": "₱4.5M–₱14M",
+          "studio": "₱1.6M–₱3.8M",
+          "loft": "₱2.4M–₱6M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall"
+      ],
+      "lifestyle_description": "Emerging industrial municipality strategically located between Batangas City and Lipa. Mix of agricultural, residential, and developing industrial zones. Convenient access to major highways and nearby urban centers."
+    },
+
+    "Laurel": {
+      "barangays": [
+        "As-Is", "Balakilong", "Berinayan", "Bugaan East",
+        "Bugaan West", "Dayap Itaas", "Gulod", "J. Leviste",
+        "Molto", "Niyugan", "Paliparan", "Barangay 1 (Pob.)",
+        "Barangay 2 (Pob.)", "Barangay 3 (Pob.)", "Barangay 4 (Pob.)",
+        "Barangay 5 (Pob.)", "San Diego", "San Gregorio",
+        "Santa Maria", "Ticub"
+      ],
+      "landmarks": [
+        "People's Park in the Sky (formerly Palace in the Sky)",
+        "Taal Volcano Viewpoints", "Laurel Public Market",
+        "St. Joseph Parish Church", "Laurel Town Plaza",
+        "Municipal Hall", "Taal Lake Shoreline Areas"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱4,000–₱8,500",
+          "boarding_house": "₱2,000–₱4,200",
+          "condo": "₱6,000–₱13,000",
+          "room": "₱1,700–₱3,800",
+          "townhouse": "₱6,500–₱14,000",
+          "house": "₱6,500–₱16,000",
+          "dormitory": "₱2,000–₱4,000"
+        },
+        "commercial": {
+          "office_unit": "₱7,000–₱19,000",
+          "retail_space": "₱9,000–₱24,000",
+          "food_stall": "₱2,300–₱7,500",
+          "shop": "₱5,000–₱17,000",
+          "showroom": "₱14,000–₱38,000"
+        },
+        "industrial": {
+          "warehouse": "₱12,000–₱38,000",
+          "storage_unit": "₱4,800–₱12,000",
+          "factory": "₱26,000–₱75,000",
+          "workshop": "₱8,500–₱26,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱33,000–₱100,000",
+          "retail_space_lease": "₱24,000–₱80,000",
+          "building_lease": "₱65,000–₱220,000",
+          "commercial_unit": "₱14,000–₱60,000",
+          "showroom_lease": "₱52,000–₱165,000",
+          "warehouse_lease": "₱42,000–₱145,000"
+        },
+        "land": {
+          "commercial_lot": "₱30–₱110 per sqm",
+          "agricultural_land": "₱8–₱23 per sqm",
+          "development_land": "₱40–₱145 per sqm",
+          "industrial_lot": "₱50–₱135 per sqm",
+          "residential_lot": "₱20–₱62 per sqm",
+          "vacant_lot": "₱17–₱58 per sqm"
+        },
+        "special": {
+          "resort_property": "₱60,000–₱220,000",
+          "event_venue": "₱35,000–₱170,000",
+          "parking_area": "₱7,500–₱35,000",
+          "school_property": "₱75,000–₱300,000",
+          "hospitality": "₱50,000–₱190,000",
+          "sports_facility": "₱45,000–₱160,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱1.8M–₱4.5M",
+          "townhouse": "₱1.5M–₱3.8M",
+          "bungalow": "₱2.2M–₱5M",
+          "duplex": "₱2.6M–₱6M",
+          "village_lot": "₱4,500–₱12,000 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱7M–₱35M",
+          "office_space": "₱3M–₱12M",
+          "retail_space": "₱3.5M–₱18M",
+          "warehouse": "₱5.5M–₱28M",
+          "showroom": "₱8M–₱40M"
+        },
+        "land": {
+          "residential_lot": "₱4,000–₱11,000 per sqm",
+          "commercial_lot": "₱7,000–₱25,000 per sqm",
+          "agricultural_land": "₱1,200–₱3,000 per sqm",
+          "industrial_lot": "₱6,000–₱18,000 per sqm",
+          "beachfront": "₱15,000–₱40,000 per sqm"
+        },
+        "condo": {
+          "condo_unit": "₱2.2M–₱5.5M",
+          "penthouse": "₱5M–₱16M",
+          "studio": "₱1.8M–₱4.2M",
+          "loft": "₱2.6M–₱6.5M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall",
+        "tourist_accommodation", "view_property"
+      ],
+      "lifestyle_description": "Scenic municipality with panoramic views of Taal Volcano and Taal Lake. Tourism potential with cool climate and natural attractions. Mix of agricultural areas and emerging tourism-related developments."
+    },
+
+    "Agoncillo": {
+      "barangays": [
+        "Adia", "Bagong Sikat", "Balangon", "Banyaga",
+        "Bilibinwang", "Bangin", "Barigon", "Coral na Munti",
+        "Guinhawa", "Mabini", "Pamiga", "Panhulan",
+        "Pansipit", "Poblacion", "Pook", "San Jacinto",
+        "San Teodoro", "Santa Cruz", "Santo Tomas"
+      ],
+      "landmarks": [
+        "Taal Volcano Viewpoints", "Agoncillo Public Market",
+        "St. John the Baptist Parish Church", "Agoncillo Town Plaza",
+        "Municipal Hall", "Taal Lake Shoreline Areas",
+        "Local Fishports and Drying Areas"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱3,800–₱8,000",
+          "boarding_house": "₱1,900–₱4,000",
+          "condo": "₱5,500–₱12,000",
+          "room": "₱1,600–₱3,600",
+          "townhouse": "₱6,000–₱13,000",
+          "house": "₱6,000–₱15,000",
+          "dormitory": "₱1,900–₱3,800"
+        },
+        "commercial": {
+          "office_unit": "₱6,500–₱18,000",
+          "retail_space": "₱8,500–₱22,000",
+          "food_stall": "₱2,200–₱7,200",
+          "shop": "₱4,800–₱16,500",
+          "showroom": "₱13,000–₱36,000"
+        },
+        "industrial": {
+          "warehouse": "₱11,000–₱36,000",
+          "storage_unit": "₱4,500–₱11,500",
+          "factory": "₱24,000–₱72,000",
+          "workshop": "₱8,000–₱26,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱32,000–₱95,000",
+          "retail_space_lease": "₱23,000–₱78,000",
+          "building_lease": "₱62,000–₱210,000",
+          "commercial_unit": "₱14,000–₱58,000",
+          "showroom_lease": "₱50,000–₱160,000",
+          "warehouse_lease": "₱40,000–₱140,000"
+        },
+        "land": {
+          "commercial_lot": "₱28–₱105 per sqm",
+          "agricultural_land": "₱8–₱22 per sqm",
+          "development_land": "₱38–₱140 per sqm",
+          "industrial_lot": "₱48–₱130 per sqm",
+          "residential_lot": "₱20–₱60 per sqm",
+          "vacant_lot": "₱16–₱55 per sqm"
+        },
+        "special": {
+          "resort_property": "₱55,000–₱200,000",
+          "event_venue": "₱32,000–₱155,000",
+          "parking_area": "₱6,500–₱30,000",
+          "school_property": "₱65,000–₱270,000",
+          "hospitality": "₱42,000–₱170,000",
+          "sports_facility": "₱38,000–₱145,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱1.7M–₱4.2M",
+          "townhouse": "₱1.4M–₱3.6M",
+          "bungalow": "₱2M–₱4.8M",
+          "duplex": "₱2.4M–₱5.6M",
+          "village_lot": "₱4,000–₱10,500 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱6.5M–₱32M",
+          "office_space": "₱2.8M–₱11M",
+          "retail_space": "₱3.2M–₱16M",
+          "warehouse": "₱5.2M–₱26M",
+          "showroom": "₱7.5M–₱38M"
+        },
+        "land": {
+          "residential_lot": "₱3,800–₱10,000 per sqm",
+          "commercial_lot": "₱6,500–₱23,000 per sqm",
+          "agricultural_land": "₱1,000–₱2,600 per sqm",
+          "industrial_lot": "₱5,500–₱17,000 per sqm",
+          "beachfront": "₱14,000–₱38,000 per sqm"
+        },
+        "condo": {
+          "condo_unit": "₱2.1M–₱5.2M",
+          "penthouse": "₱4.8M–₱15M",
+          "studio": "₱1.7M–₱4M",
+          "loft": "₱2.4M–₱6.2M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall",
+        "lakeview_property", "agricultural_farm"
+      ],
+      "lifestyle_description": "Lakeside municipality with views of Taal Volcano and Taal Lake. Agricultural and fishing community with tourism potential. Peaceful rural living with access to lake activities and volcano viewpoints."
+    },
+
+    "San Pascual": {
+      "barangays": [
+        "Antipolo", "Balimbing", "Banaba", "Bayanan",
+        "Danglayan", "Del Pilar", "Gelerang Kawayan", "Ilat North",
+        "Ilat South", "Kaingin", "Lumbangan", "Mataas Na Lupa",
+        "Natunuan North", "Natunuan South", "Palsara", "Pila",
+        "Poblacion", "Pook", "Rizal", "San Antonio",
+        "San Mariano", "San Mateo", "Santa Elena", "Santa Rita",
+        "Santo Niño"
+      ],
+      "landmarks": [
+        "San Pascual Baywalk", "San Pascual Public Market",
+        "St. Paschal Baylon Parish Church", "San Pascual Town Plaza",
+        "Municipal Hall", "Coastal Areas and Beaches",
+        "San Pascual Port Area"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱4,500–₱9,500",
+          "boarding_house": "₱2,200–₱4,500",
+          "condo": "₱6,500–₱14,000",
+          "room": "₱1,800–₱4,000",
+          "townhouse": "₱7,000–₱15,000",
+          "house": "₱7,000–₱18,000",
+          "dormitory": "₱2,200–₱4,200"
+        },
+        "commercial": {
+          "office_unit": "₱7,500–₱20,000",
+          "retail_space": "₱10,000–₱25,000",
+          "food_stall": "₱2,500–₱8,000",
+          "shop": "₱5,500–₱18,000",
+          "showroom": "₱15,000–₱40,000"
+        },
+        "industrial": {
+          "warehouse": "₱13,000–₱40,000",
+          "storage_unit": "₱5,000–₱13,000",
+          "factory": "₱28,000–₱80,000",
+          "workshop": "₱9,000–₱28,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱35,000–₱105,000",
+          "retail_space_lease": "₱25,000–₱85,000",
+          "building_lease": "₱70,000–₱230,000",
+          "commercial_unit": "₱15,000–₱65,000",
+          "showroom_lease": "₱55,000–₱170,000",
+          "warehouse_lease": "₱45,000–₱150,000"
+        },
+        "land": {
+          "commercial_lot": "₱32–₱115 per sqm",
+          "agricultural_land": "₱9–₱25 per sqm",
+          "development_land": "₱42–₱150 per sqm",
+          "industrial_lot": "₱52–₱140 per sqm",
+          "residential_lot": "₱22–₱65 per sqm",
+          "vacant_lot": "₱18–₱60 per sqm"
+        },
+        "special": {
+          "resort_property": "₱60,000–₱220,000",
+          "event_venue": "₱35,000–₱170,000",
+          "parking_area": "₱7,500–₱35,000",
+          "school_property": "₱75,000–₱300,000",
+          "hospitality": "₱50,000–₱190,000",
+          "sports_facility": "₱45,000–₱160,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱1.8M–₱4.5M",
+          "townhouse": "₱1.5M–₱3.8M",
+          "bungalow": "₱2.2M–₱5M",
+          "duplex": "₱2.6M–₱6M",
+          "village_lot": "₱4,500–₱12,000 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱7M–₱35M",
+          "office_space": "₱3M–₱12M",
+          "retail_space": "₱3.5M–₱18M",
+          "warehouse": "₱5.5M–₱28M",
+          "showroom": "₱8M–₱40M"
+        },
+        "land": {
+          "residential_lot": "₱4,000–₱11,000 per sqm",
+          "commercial_lot": "₱7,000–₱25,000 per sqm",
+          "agricultural_land": "₱1,200–₱3,000 per sqm",
+          "industrial_lot": "₱6,000–₱18,000 per sqm",
+          "beachfront": "₱15,000–₱42,000 per sqm"
+        },
+        "condo": {
+          "condo_unit": "₱2.2M–₱5.5M",
+          "penthouse": "₱5M–₱16M",
+          "studio": "₱1.8M–₱4.2M",
+          "loft": "₱2.6M–₱6.5M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall",
+        "coastal_property", "port_related"
+      ],
+      "lifestyle_description": "Coastal municipality with fishing and maritime activities. Features baywalk area, port facilities, and access to beaches. Mix of fishing community and emerging commercial activities along coastal areas."
+    },
+
+    "Cuenca": {
+      "barangays": [
+        "Balagbag", "Bungahan", "Calumayin", "Dalipit East",
+        "Dalipit West", "Dita", "Don Juan", "Emmanuel",
+        "Ibabao", "Labac", "Pinagkaisahan", "Poblacion 1",
+        "Poblacion 2", "Poblacion 3", "Poblacion 4", "Pulo",
+        "Saimsim", "Tikihan"
+      ],
+      "landmarks": [
+        "Cuenca Public Market", "St. Isidore the Farmer Parish Church",
+        "Cuenca Town Plaza", "Municipal Hall",
+        "Local Agricultural Areas", "Cuenca Central School",
+        "Scenic Rural Landscapes"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱3,500–₱7,500",
+          "boarding_house": "₱1,800–₱3,800",
+          "condo": "₱5,000–₱11,000",
+          "room": "₱1,500–₱3,200",
+          "townhouse": "₱6,000–₱12,000",
+          "house": "₱6,000–₱14,000",
+          "dormitory": "₱1,800–₱3,500"
+        },
+        "commercial": {
+          "office_unit": "₱6,000–₱16,000",
+          "retail_space": "₱8,000–₱20,000",
+          "food_stall": "₱2,000–₱6,500",
+          "shop": "₱4,500–₱15,000",
+          "showroom": "₱12,000–₱30,000"
+        },
+        "industrial": {
+          "warehouse": "₱10,000–₱32,000",
+          "storage_unit": "₱4,000–₱10,000",
+          "factory": "₱22,000–₱65,000",
+          "workshop": "₱7,000–₱22,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱28,000–₱85,000",
+          "retail_space_lease": "₱20,000–₱70,000",
+          "building_lease": "₱55,000–₱190,000",
+          "commercial_unit": "₱12,000–₱50,000",
+          "showroom_lease": "₱45,000–₱140,000",
+          "warehouse_lease": "₱35,000–₱120,000"
+        },
+        "land": {
+          "commercial_lot": "₱25–₱95 per sqm",
+          "agricultural_land": "₱7–₱20 per sqm",
+          "development_land": "₱35–₱125 per sqm",
+          "industrial_lot": "₱45–₱120 per sqm",
+          "residential_lot": "₱18–₱55 per sqm",
+          "vacant_lot": "₱15–₱50 per sqm"
+        },
+        "special": {
+          "resort_property": "₱45,000–₱170,000",
+          "event_venue": "₱25,000–₱130,000",
+          "parking_area": "₱5,000–₱25,000",
+          "school_property": "₱55,000–₱240,000",
+          "hospitality": "₱35,000–₱150,000",
+          "sports_facility": "₱30,000–₱120,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱1.3M–₱3.2M",
+          "townhouse": "₱1.1M–₱2.8M",
+          "bungalow": "₱1.6M–₱3.8M",
+          "duplex": "₱2M–₱4.5M",
+          "village_lot": "₱3,200–₱8,500 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱4.5M–₱22M",
+          "office_space": "₱1.8M–₱7M",
+          "retail_space": "₱2.2M–₱11M",
+          "warehouse": "₱3.5M–₱18M",
+          "showroom": "₱5.5M–₱28M"
+        },
+        "land": {
+          "residential_lot": "₱2,800–₱7,500 per sqm",
+          "commercial_lot": "₱4,500–₱16,000 per sqm",
+          "agricultural_land": "₱700–₱1,900 per sqm",
+          "industrial_lot": "₱3,500–₱12,000 per sqm",
+          "beachfront": "N/A"
+        },
+        "condo": {
+          "condo_unit": "₱1.6M–₱4M",
+          "penthouse": "₱3.8M–₱11M",
+          "studio": "₱1.3M–₱3M",
+          "loft": "₱2M–₱5M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall"
+      ],
+      "lifestyle_description": "Agricultural municipality known for rice production and rural living. Quiet community with basic amenities and scenic rural landscapes. Close proximity to Lipa City for additional services."
+    },
+
+    "Alitagtag": {
+      "barangays": [
+        "Balagbag", "Concepcion", "Concordia", "Dalipit East",
+        "Dalipit West", "Dominador East", "Dominador West", "Munlawin Norte",
+        "Munlawin Sur", "Muzon", "Pinagkurusan", "Ping-As",
+        "Poblacion East", "Poblacion West", "San Jose", "Santa Cruz",
+        "Tadlac"
+      ],
+      "landmarks": [
+        "Alitagtag Public Market", "St. Michael the Archangel Parish Church",
+        "Alitagtag Town Plaza", "Municipal Hall",
+        "Local Agricultural Areas", "Alitagtag Central School"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱3,800–₱8,000",
+          "boarding_house": "₱1,900–₱4,000",
+          "condo": "₱5,500–₱12,000",
+          "room": "₱1,600–₱3,600",
+          "townhouse": "₱6,000–₱13,000",
+          "house": "₱6,000–₱15,000",
+          "dormitory": "₱1,900–₱3,800"
+        },
+        "commercial": {
+          "office_unit": "₱6,500–₱18,000",
+          "retail_space": "₱8,500–₱22,000",
+          "food_stall": "₱2,200–₱7,200",
+          "shop": "₱4,800–₱16,500",
+          "showroom": "₱13,000–₱36,000"
+        },
+        "industrial": {
+          "warehouse": "₱11,000–₱36,000",
+          "storage_unit": "₱4,500–₱11,500",
+          "factory": "₱24,000–₱72,000",
+          "workshop": "₱8,000–₱26,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱32,000–₱95,000",
+          "retail_space_lease": "₱23,000–₱78,000",
+          "building_lease": "₱62,000–₱210,000",
+          "commercial_unit": "₱14,000–₱58,000",
+          "showroom_lease": "₱50,000–₱160,000",
+          "warehouse_lease": "₱40,000–₱140,000"
+        },
+        "land": {
+          "commercial_lot": "₱28–₱105 per sqm",
+          "agricultural_land": "₱8–₱22 per sqm",
+          "development_land": "₱38–₱140 per sqm",
+          "industrial_lot": "₱48–₱130 per sqm",
+          "residential_lot": "₱20–₱60 per sqm",
+          "vacant_lot": "₱16–₱55 per sqm"
+        },
+        "special": {
+          "resort_property": "₱55,000–₱200,000",
+          "event_venue": "₱32,000–₱155,000",
+          "parking_area": "₱6,500–₱30,000",
+          "school_property": "₱65,000–₱270,000",
+          "hospitality": "₱42,000–₱170,000",
+          "sports_facility": "₱38,000–₱145,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱1.7M–₱4.2M",
+          "townhouse": "₱1.4M–₱3.6M",
+          "bungalow": "₱2M–₱4.8M",
+          "duplex": "₱2.4M–₱5.6M",
+          "village_lot": "₱4,000–₱10,500 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱6.5M–₱32M",
+          "office_space": "₱2.8M–₱11M",
+          "retail_space": "₱3.2M–₱16M",
+          "warehouse": "₱5.2M–₱26M",
+          "showroom": "₱7.5M–₱38M"
+        },
+        "land": {
+          "residential_lot": "₱3,800–₱10,000 per sqm",
+          "commercial_lot": "₱6,500–₱23,000 per sqm",
+          "agricultural_land": "₱1,000–₱2,600 per sqm",
+          "industrial_lot": "₱5,500–₱17,000 per sqm",
+          "beachfront": "N/A"
+        },
+        "condo": {
+          "condo_unit": "₱2.1M–₱5.2M",
+          "penthouse": "₱4.8M–₱15M",
+          "studio": "₱1.7M–₱4M",
+          "loft": "₱2.4M–₱6.2M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall"
+      ],
+      "lifestyle_description": "Agricultural municipality with focus on rice and crop farming. Rural community with peaceful living environment and basic municipal services."
+    },
+
+    "Santo Tomas": {
+      "barangays": [
+        "Barangay 1 (Pob.)", "Barangay 2 (Pob.)", "Barangay 3 (Pob.)",
+        "Barangay 4 (Pob.)", "Barangay 5 (Pob.)", "Barangay 6 (Pob.)",
+        "Barangay 7 (Pob.)", "Barangay 8 (Pob.)", "Barangay 9 (Pob.)",
+        "Barangay 10 (Pob.)", "Barangay 11 (Pob.)", "Barangay 12 (Pob.)",
+        "Barangay 13 (Pob.)", "Barangay 14 (Pob.)", "Barangay 15 (Pob.)",
+        "Barangay 16 (Pob.)", "Barangay 17 (Pob.)", "Barangay 18 (Pob.)",
+        "Barangay 19 (Pob.)", "Barangay 20 (Pob.)", "San Antonio",
+        "San Bartolome", "San Felix", "San Fernando",
+        "San Francisco", "San Isidro Norte", "San Isidro Sur",
+        "San Joaquin", "San Jose", "San Juan",
+        "San Luis", "San Miguel", "San Pablo",
+        "San Pedro", "San Rafael", "San Roque",
+        "San Vicente", "Santa Ana", "Santa Cruz",
+        "Santa Elena", "Santa Maria", "Santa Teresita",
+        "Santiago"
+      ],
+      "landmarks": [
+        "First Philippine Industrial Park (FPIP)", "SM City Sto. Tomas",
+        "Sto. Tomas City Hall", "Sto. Tomas Public Market",
+        "Mt. Manabu", "Palanan Integrated Transport Terminal",
+        "DA-Bureau of Fisheries and Aquatic Resources",
+        "Sto. Tomas Gym and Sports Complex", "Sto. Tomas Boulevard"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱7,000–₱13,000",
+          "boarding_house": "₱3,500–₱6,500",
+          "condo": "₱9,000–₱18,000",
+          "room": "₱3,000–₱7,000",
+          "townhouse": "₱11,000–₱20,000",
+          "house": "₱12,000–₱22,000",
+          "dormitory": "₱3,000–₱5,500"
+        },
+        "commercial": {
+          "office_unit": "₱12,000–₱30,000",
+          "retail_space": "₱15,000–₱35,000",
+          "food_stall": "₱5,000–₱12,000",
+          "shop": "₱10,000–₱25,000",
+          "showroom": "₱20,000–₱60,000"
+        },
+        "industrial": {
+          "warehouse": "₱18,000–₱50,000",
+          "storage_unit": "₱7,000–₱18,000",
+          "factory": "₱35,000–₱100,000",
+          "workshop": "₱12,000–₱35,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱50,000–₱130,000",
+          "retail_space_lease": "₱35,000–₱100,000",
+          "building_lease": "₱100,000–₱300,000",
+          "commercial_unit": "₱22,000–₱70,000",
+          "showroom_lease": "₱70,000–₱180,000",
+          "warehouse_lease": "₱55,000–₱160,000"
+        },
+        "land": {
+          "commercial_lot": "₱45–₱140 per sqm",
+          "agricultural_land": "₱15–₱35 per sqm",
+          "development_land": "₱55–₱180 per sqm",
+          "industrial_lot": "₱65–₱160 per sqm",
+          "residential_lot": "₱30–₱75 per sqm",
+          "vacant_lot": "₱25–₱65 per sqm"
+        },
+        "special": {
+          "resort_property": "₱70,000–₱250,000",
+          "event_venue": "₱45,000–₱180,000",
+          "parking_area": "₱8,000–₱35,000",
+          "school_property": "₱90,000–₱350,000",
+          "hospitality": "₱60,000–₱220,000",
+          "sports_facility": "₱55,000–₱160,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱2.5M–₱6M",
+          "townhouse": "₱2M–₱4.5M",
+          "bungalow": "₱3M–₱7M",
+          "duplex": "₱3.5M–₱8M",
+          "village_lot": "₱6,000–₱15,000 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱10M–₱50M",
+          "office_space": "₱4M–₱15M",
+          "retail_space": "₱5M–₱20M",
+          "warehouse": "₱8M–₱40M",
+          "showroom": "₱12M–₱60M"
+        },
+        "land": {
+          "residential_lot": "₱5,000–₱12,000 per sqm",
+          "commercial_lot": "₱10,000–₱30,000 per sqm",
+          "agricultural_land": "₱1,500–₱4,000 per sqm",
+          "industrial_lot": "₱8,000–₱20,000 per sqm",
+          "beachfront": "₱15,000–₱40,000 per sqm"
+        },
+        "condo": {
+          "condo_unit": "₱3M–₱7M",
+          "penthouse": "₱8M–₱20M",
+          "studio": "₱2.5M–₱4M",
+          "loft": "₱4M–₱9M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall"
+      ],
+      "lifestyle_description": "Growing industrial and residential city strategically located near Laguna and Cavite. Ideal for factory workers, commuters, and families with access to malls, transport hubs, and work centers."
+    },
+
+    "Lobo": {
+      "barangays": [
+        "Apar", "Balatbat", "Balibago", "Banalo",
+        "Biga", "Bignay", "Calo", "Calumpit",
+        "Fabrica", "Jaybanga", "Lagadlarin", "Mabilog Na Bundok",
+        "Malabrigo", "Malalim Na Sanog", "Matamis", "Olo-olo",
+        "Pinaghawanan", "San Miguel", "San Nicolas",
+        "Sawang", "Soloc", "Tayuman", "Poblacion"
+      ],
+      "landmarks": [
+        "Malabrigo Lighthouse", "Lobo Beach",
+        "Lobo Public Market", "St. Michael the Archangel Parish Church",
+        "Lobo Town Plaza", "Municipal Hall",
+        "Malabrigo Port", "Scenic Coastal Areas"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱4,000–₱8,500",
+          "boarding_house": "₱2,000–₱4,200",
+          "condo": "₱6,000–₱13,000",
+          "room": "₱1,700–₱3,800",
+          "townhouse": "₱6,500–₱14,000",
+          "house": "₱6,500–₱16,000",
+          "dormitory": "₱2,000–₱4,000"
+        },
+        "commercial": {
+          "office_unit": "₱7,000–₱19,000",
+          "retail_space": "₱9,000–₱24,000",
+          "food_stall": "₱2,300–₱7,500",
+          "shop": "₱5,000–₱17,000",
+          "showroom": "₱14,000–₱38,000"
+        },
+        "industrial": {
+          "warehouse": "₱12,000–₱38,000",
+          "storage_unit": "₱4,800–₱12,000",
+          "factory": "₱26,000–₱75,000",
+          "workshop": "₱8,500–₱26,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱33,000–₱100,000",
+          "retail_space_lease": "₱24,000–₱80,000",
+          "building_lease": "₱65,000–₱220,000",
+          "commercial_unit": "₱14,000–₱60,000",
+          "showroom_lease": "₱52,000–₱165,000",
+          "warehouse_lease": "₱42,000–₱145,000"
+        },
+        "land": {
+          "commercial_lot": "₱30–₱110 per sqm",
+          "agricultural_land": "₱8–₱23 per sqm",
+          "development_land": "₱40–₱145 per sqm",
+          "industrial_lot": "₱50–₱135 per sqm",
+          "residential_lot": "₱20–₱62 per sqm",
+          "vacant_lot": "₱17–₱58 per sqm"
+        },
+        "special": {
+          "resort_property": "₱60,000–₱220,000",
+          "event_venue": "₱35,000–₱170,000",
+          "parking_area": "₱7,500–₱35,000",
+          "school_property": "₱75,000–₱300,000",
+          "hospitality": "₱50,000–₱190,000",
+          "sports_facility": "₱45,000–₱160,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱1.8M–₱4.5M",
+          "townhouse": "₱1.5M–₱3.8M",
+          "bungalow": "₱2.2M–₱5M",
+          "duplex": "₱2.6M–₱6M",
+          "village_lot": "₱4,500–₱12,000 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱7M–₱35M",
+          "office_space": "₱3M–₱12M",
+          "retail_space": "₱3.5M–₱18M",
+          "warehouse": "₱5.5M–₱28M",
+          "showroom": "₱8M–₱40M"
+        },
+        "land": {
+          "residential_lot": "₱4,000–₱11,000 per sqm",
+          "commercial_lot": "₱7,000–₱25,000 per sqm",
+          "agricultural_land": "₱1,200–₱3,000 per sqm",
+          "industrial_lot": "₱6,000–₱18,000 per sqm",
+          "beachfront": "₱15,000–₱40,000 per sqm"
+        },
+        "condo": {
+          "condo_unit": "₱2.2M–₱5.5M",
+          "penthouse": "₱5M–₱16M",
+          "studio": "₱1.8M–₱4.2M",
+          "loft": "₱2.6M–₱6.5M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall",
+        "beachfront_property", "coastal_resort"
+      ],
+      "lifestyle_description": "Coastal municipality with scenic beaches, historic lighthouse, and fishing communities. Tourism potential with natural attractions and relaxed coastal living. Known for Malabrigo Lighthouse and local beaches."
+    },
+
+    "San Nicolas": {
+      "barangays": [
+        "Abelo", "Balete", "Baluk-baluk", "Bancoro",
+        "Bangin", "Calangay", "Hipit", "Maabud North",
+        "Maabud South", "Munlawin", "Pansipit", "Poblacion",
+        "Pulang-Bato", "San Jose", "Santo Niño",
+        "Tagudtod", "Talang", "Tucana"
+      ],
+      "landmarks": [
+        "San Nicolas Public Market", "St. Nicholas of Tolentino Parish Church",
+        "San Nicolas Town Plaza", "Municipal Hall",
+        "Local Agricultural Areas", "San Nicolas Central School",
+        "Taal Lake Proximity"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱3,500–₱7,500",
+          "boarding_house": "₱1,800–₱3,800",
+          "condo": "₱5,000–₱11,000",
+          "room": "₱1,500–₱3,200",
+          "townhouse": "₱6,000–₱12,000",
+          "house": "₱6,000–₱14,000",
+          "dormitory": "₱1,800–₱3,500"
+        },
+        "commercial": {
+          "office_unit": "₱6,000–₱16,000",
+          "retail_space": "₱8,000–₱20,000",
+          "food_stall": "₱2,000–₱6,500",
+          "shop": "₱4,500–₱15,000",
+          "showroom": "₱12,000–₱30,000"
+        },
+        "industrial": {
+          "warehouse": "₱10,000–₱32,000",
+          "storage_unit": "₱4,000–₱10,000",
+          "factory": "₱22,000–₱65,000",
+          "workshop": "₱7,000–₱22,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱28,000–₱85,000",
+          "retail_space_lease": "₱20,000–₱70,000",
+          "building_lease": "₱55,000–₱190,000",
+          "commercial_unit": "₱12,000–₱50,000",
+          "showroom_lease": "₱45,000–₱140,000",
+          "warehouse_lease": "₱35,000–₱120,000"
+        },
+        "land": {
+          "commercial_lot": "₱25–₱95 per sqm",
+          "agricultural_land": "₱7–₱20 per sqm",
+          "development_land": "₱35–₱125 per sqm",
+          "industrial_lot": "₱45–₱120 per sqm",
+          "residential_lot": "₱18–₱55 per sqm",
+          "vacant_lot": "₱15–₱50 per sqm"
+        },
+        "special": {
+          "resort_property": "₱45,000–₱170,000",
+          "event_venue": "₱25,000–₱130,000",
+          "parking_area": "₱5,000–₱25,000",
+          "school_property": "₱55,000–₱240,000",
+          "hospitality": "₱35,000–₱150,000",
+          "sports_facility": "₱30,000–₱120,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱1.3M–₱3.2M",
+          "townhouse": "₱1.1M–₱2.8M",
+          "bungalow": "₱1.6M–₱3.8M",
+          "duplex": "₱2M–₱4.5M",
+          "village_lot": "₱3,200–₱8,500 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱4.5M–₱22M",
+          "office_space": "₱1.8M–₱7M",
+          "retail_space": "₱2.2M–₱11M",
+          "warehouse": "₱3.5M–₱18M",
+          "showroom": "₱5.5M–₱28M"
+        },
+        "land": {
+          "residential_lot": "₱2,800–₱7,500 per sqm",
+          "commercial_lot": "₱4,500–₱16,000 per sqm",
+          "agricultural_land": "₱700–₱1,900 per sqm",
+          "industrial_lot": "₱3,500–₱12,000 per sqm",
+          "beachfront": "N/A"
+        },
+        "condo": {
+          "condo_unit": "₱1.6M–₱4M",
+          "penthouse": "₱3.8M–₱11M",
+          "studio": "₱1.3M–₱3M",
+          "loft": "₱2M–₱5M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall"
+      ],
+      "lifestyle_description": "Agricultural municipality with proximity to Taal Lake. Rural community focused on farming and fishing. Peaceful living environment with basic municipal services."
+    },
+
+    "Mataasnakahoy": {
+      "barangays": [
+        "Bayorbor", "Buli", "Calayaan", "Kinalaglagan",
+        "Loob", "Lumang Lipa", "Muntinlupa", "San Sebastian",
+        "Santa Rita", "Santo Toribio"
+      ],
+      "landmarks": [
+        "Mataasnakahoy Public Market", "St. John the Baptist Parish Church",
+        "Mataasnakahoy Town Plaza", "Municipal Hall",
+        "Local Agricultural Areas", "Mataasnakahoy Central School"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱4,000–₱8,500",
+          "boarding_house": "₱2,000–₱4,200",
+          "condo": "₱6,000–₱13,000",
+          "room": "₱1,700–₱3,800",
+          "townhouse": "₱6,500–₱14,000",
+          "house": "₱6,500–₱16,000",
+          "dormitory": "₱2,000–₱4,000"
+        },
+        "commercial": {
+          "office_unit": "₱7,000–₱19,000",
+          "retail_space": "₱9,000–₱24,000",
+          "food_stall": "₱2,300–₱7,500",
+          "shop": "₱5,000–₱17,000",
+          "showroom": "₱14,000–₱38,000"
+        },
+        "industrial": {
+          "warehouse": "₱12,000–₱38,000",
+          "storage_unit": "₱4,800–₱12,000",
+          "factory": "₱26,000–₱75,000",
+          "workshop": "₱8,500–₱26,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱33,000–₱100,000",
+          "retail_space_lease": "₱24,000–₱80,000",
+          "building_lease": "₱65,000–₱220,000",
+          "commercial_unit": "₱14,000–₱60,000",
+          "showroom_lease": "₱52,000–₱165,000",
+          "warehouse_lease": "₱42,000–₱145,000"
+        },
+        "land": {
+          "commercial_lot": "₱30–₱110 per sqm",
+          "agricultural_land": "₱8–₱23 per sqm",
+          "development_land": "₱40–₱145 per sqm",
+          "industrial_lot": "₱50–₱135 per sqm",
+          "residential_lot": "₱20–₱62 per sqm",
+          "vacant_lot": "₱17–₱58 per sqm"
+        },
+        "special": {
+          "resort_property": "₱60,000–₱220,000",
+          "event_venue": "₱35,000–₱170,000",
+          "parking_area": "₱7,500–₱35,000",
+          "school_property": "₱75,000–₱300,000",
+          "hospitality": "₱50,000–₱190,000",
+          "sports_facility": "₱45,000–₱160,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱1.8M–₱4.5M",
+          "townhouse": "₱1.5M–₱3.8M",
+          "bungalow": "₱2.2M–₱5M",
+          "duplex": "₱2.6M–₱6M",
+          "village_lot": "₱4,500–₱12,000 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱7M–₱35M",
+          "office_space": "₱3M–₱12M",
+          "retail_space": "₱3.5M–₱18M",
+          "warehouse": "₱5.5M–₱28M",
+          "showroom": "₱8M–₱40M"
+        },
+        "land": {
+          "residential_lot": "₱4,000–₱11,000 per sqm",
+          "commercial_lot": "₱7,000–₱25,000 per sqm",
+          "agricultural_land": "₱1,200–₱3,000 per sqm",
+          "industrial_lot": "₱6,000–₱18,000 per sqm",
+          "beachfront": "N/A"
+        },
+        "condo": {
+          "condo_unit": "₱2.2M–₱5.5M",
+          "penthouse": "₱5M–₱16M",
+          "studio": "₱1.8M–₱4.2M",
+          "loft": "₱2.6M–₱6.5M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall"
+      ],
+      "lifestyle_description": "Agricultural municipality known for its elevated location (mataas na kahoy means tall tree). Rural community with farming as main livelihood. Quiet living with cool climate due to elevation."
+    },
+
+    "Talisay": {
+      "barangays": [
+        "Aya", "Balas", "Buco", "Caloocan",
+        "Leynes", "Miranda", "Poblacion Barangay 1",
+        "Poblacion Barangay 2", "Poblacion Barangay 3",
+        "Poblacion Barangay 4", "Poblacion Barangay 5",
+        "Poblacion Barangay 6", "Poblacion Barangay 7",
+        "Poblacion Barangay 8", "Quiling", "Sampaloc",
+        "San Guillermo", "Santa Maria", "Tranca"
+      ],
+      "landmarks": [
+        "Taal Volcano Viewpoints", "Talisay Public Market",
+        "St. Mary Magdalene Parish Church", "Talisay Town Plaza",
+        "Municipal Hall", "Taal Lake Shoreline Areas",
+        "Talisay Baywalk", "Taal Volcano Island Access Point"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱5,000–₱10,000",
+          "boarding_house": "₱2,500–₱5,000",
+          "condo": "₱7,000–₱15,000",
+          "room": "₱2,000–₱4,500",
+          "townhouse": "₱8,000–₱16,000",
+          "house": "₱8,000–₱20,000",
+          "dormitory": "₱2,500–₱4,500"
+        },
+        "commercial": {
+          "office_unit": "₱8,000–₱22,000",
+          "retail_space": "₱10,000–₱28,000",
+          "food_stall": "₱3,000–₱9,000",
+          "shop": "₱7,000–₱22,000",
+          "showroom": "₱16,000–₱42,000"
+        },
+        "industrial": {
+          "warehouse": "₱12,000–₱40,000",
+          "storage_unit": "₱5,000–₱14,000",
+          "factory": "₱25,000–₱80,000",
+          "workshop": "₱9,000–₱30,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱40,000–₱120,000",
+          "retail_space_lease": "₱30,000–₱90,000",
+          "building_lease": "₱80,000–₱260,000",
+          "commercial_unit": "₱18,000–₱65,000",
+          "showroom_lease": "₱60,000–₱180,000",
+          "warehouse_lease": "₱50,000–₱150,000"
+        },
+        "land": {
+          "commercial_lot": "₱35–₱130 per sqm",
+          "agricultural_land": "₱10–₱28 per sqm",
+          "development_land": "₱45–₱160 per sqm",
+          "industrial_lot": "₱55–₱145 per sqm",
+          "residential_lot": "₱25–₱70 per sqm",
+          "vacant_lot": "₱20–₱60 per sqm"
+        },
+        "special": {
+          "resort_property": "₱70,000–₱250,000",
+          "event_venue": "₱40,000–₱180,000",
+          "parking_area": "₱8,000–₱35,000",
+          "school_property": "₱90,000–₱350,000",
+          "hospitality": "₱60,000–₱220,000",
+          "sports_facility": "₱50,000–₱160,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱2M–₱5.5M",
+          "townhouse": "₱1.6M–₱4.2M",
+          "bungalow": "₱2.2M–₱6M",
+          "duplex": "₱2.8M–₱7M",
+          "village_lot": "₱4,500–₱12,000 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱7M–₱40M",
+          "office_space": "₱3M–₱14M",
+          "retail_space": "₱4M–₱20M",
+          "warehouse": "₱6M–₱32M",
+          "showroom": "₱9M–₱50M"
+        },
+        "land": {
+          "residential_lot": "₱3,500–₱10,000 per sqm",
+          "commercial_lot": "₱7,000–₱28,000 per sqm",
+          "agricultural_land": "₱1,200–₱3,200 per sqm",
+          "industrial_lot": "₱6,000–₱18,000 per sqm",
+          "beachfront": "₱15,000–₱45,000 per sqm"
+        },
+        "condo": {
+          "condo_unit": "₱2.2M–₱6M",
+          "penthouse": "₱6M–₱20M",
+          "studio": "₱1.8M–₱4M",
+          "loft": "₱2.8M–₱8M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall",
+        "lakeview_property", "tourist_accommodation"
+      ],
+      "lifestyle_description": "Gateway to Taal Volcano with panoramic views of the volcano and Taal Lake. Tourism-oriented municipality with hotels, restaurants, and boat services to Volcano Island. Mix of local community and tourism businesses."
+    },
+
+    "La Paz": {
+      "barangays": [
+        "Bagong Pook", "Baliti", "Bancao", "Bucal",
+        "Bulakin", "Castillo", "Cumba", "Danglayan",
+        "Dao", "Gulod", "Inuman", "Langgangan",
+        "Lucsuhin", "Maraouy", "Palakpakin", "Pangao",
+        "Poblacion", "Pook", "Rizal", "San Carlos",
+        "San Jose", "San Juan", "San Roque", "Santa Monica",
+        "Santa Rita"
+      ],
+      "landmarks": [
+        "La Paz Public Market", "St. Raphael the Archangel Parish Church",
+        "La Paz Town Plaza", "Municipal Hall",
+        "Local Agricultural Areas", "La Paz Central School"
+      ],
+      "average_rents": {
+        "residential": {
+          "apartment": "₱3,500–₱7,500",
+          "boarding_house": "₱1,800–₱3,800",
+          "condo": "₱5,000–₱11,000",
+          "room": "₱1,500–₱3,200",
+          "townhouse": "₱6,000–₱12,000",
+          "house": "₱6,000–₱14,000",
+          "dormitory": "₱1,800–₱3,500"
+        },
+        "commercial": {
+          "office_unit": "₱6,000–₱16,000",
+          "retail_space": "₱8,000–₱20,000",
+          "food_stall": "₱2,000–₱6,500",
+          "shop": "₱4,500–₱15,000",
+          "showroom": "₱12,000–₱30,000"
+        },
+        "industrial": {
+          "warehouse": "₱10,000–₱32,000",
+          "storage_unit": "₱4,000–₱10,000",
+          "factory": "₱22,000–₱65,000",
+          "workshop": "₱7,000–₱22,000"
+        }
+      },
+      "average_leases": {
+        "commercial": {
+          "office_floor": "₱28,000–₱85,000",
+          "retail_space_lease": "₱20,000–₱70,000",
+          "building_lease": "₱55,000–₱190,000",
+          "commercial_unit": "₱12,000–₱50,000",
+          "showroom_lease": "₱45,000–₱140,000",
+          "warehouse_lease": "₱35,000–₱120,000"
+        },
+        "land": {
+          "commercial_lot": "₱25–₱95 per sqm",
+          "agricultural_land": "₱7–₱20 per sqm",
+          "development_land": "₱35–₱125 per sqm",
+          "industrial_lot": "₱45–₱120 per sqm",
+          "residential_lot": "₱18–₱55 per sqm",
+          "vacant_lot": "₱15–₱50 per sqm"
+        },
+        "special": {
+          "resort_property": "₱45,000–₱170,000",
+          "event_venue": "₱25,000–₱130,000",
+          "parking_area": "₱5,000–₱25,000",
+          "school_property": "₱55,000–₱240,000",
+          "hospitality": "₱35,000–₱150,000",
+          "sports_facility": "₱30,000–₱120,000"
+        }
+      },
+      "average_sale_prices": {
+        "residential": {
+          "house": "₱1.3M–₱3.2M",
+          "townhouse": "₱1.1M–₱2.8M",
+          "bungalow": "₱1.6M–₱3.8M",
+          "duplex": "₱2M–₱4.5M",
+          "village_lot": "₱3,200–₱8,500 per sqm"
+        },
+        "commercial": {
+          "commercial_building": "₱4.5M–₱22M",
+          "office_space": "₱1.8M–₱7M",
+          "retail_space": "₱2.2M–₱11M",
+          "warehouse": "₱3.5M–₱18M",
+          "showroom": "₱5.5M–₱28M"
+        },
+        "land": {
+          "residential_lot": "₱2,800–₱7,500 per sqm",
+          "commercial_lot": "₱4,500–₱16,000 per sqm",
+          "agricultural_land": "₱700–₱1,900 per sqm",
+          "industrial_lot": "₱3,500–₱12,000 per sqm",
+          "beachfront": "N/A"
+        },
+        "condo": {
+          "condo_unit": "₱1.6M–₱4M",
+          "penthouse": "₱3.8M–₱11M",
+          "studio": "₱1.3M–₱3M",
+          "loft": "₱2M–₱5M"
+        }
+      },
+      "property_types_common": [
+        "apartment", "boarding_house", "condo",
+        "room", "townhouse", "house",
+        "office_unit", "retail_space", "food_stall"
+      ],
+      "lifestyle_description": "Agricultural municipality focused on rice and crop production. Rural community with peaceful living environment and basic municipal services."
+    }
+  },
+
+  "landmark_categories": {
+    "school": [
+      "Batangas State University", "De La Salle Lipa", "University of Batangas",
+      "STI College", "AMA Computer College", "Liceo de San Pablo",
+      "St. Bridget College", "Mondrian Aura College",
+      "Batangas Eastern Colleges", "St. Thomas Academy"
+    ],
+    "hospital": [
+      "Batangas Medical Center", "St. Patrick Hospital", "Lipa Medix Medical Center",
+      "Metro Lipa Medical Center", "Mary Mediatrix Medical Center",
+      "Bauan Doctors Hospital", "Lemery Doctors Hospital",
+      "Tanauan Medical Center", "St. Cabrini Medical Center"
+    ],
+    "mall": [
+      "SM City Batangas", "SM City Lipa", "Robinsons Place Lipa",
+      "Robinsons Place Batangas", "Nova Mall", "Ayala Malls Serin",
+      "SM City Sto. Tomas", "The Outlets at Lipa",
+      "WalterMart Batangas City", "WalterMart Lipa"
+    ],
+    "beach": [
+      "Laiya Beach", "Matabungkay Beach", "Calatagan Beach",
+      "Anilao Beach", "Maricaban Beach", "Nasugbu Beach",
+      "Calayo Beach", "Punta Fuego", "Lobo Beach",
+      "Malabrigo Beach"
+    ],
+    "church": [
+      "Lipa Cathedral", "Batangas Cathedral", "Taal Basilica",
+      "St. Padre Pio Shrine", "Mt. Carmel Church",
+      "St. Martin of Tours Basilica", "San Sebastian Cathedral",
+      "Our Lady of Caysasay Shrine", "St. John the Baptist Church",
+      "St. Michael the Archangel Parish Church"
+    ],
+    "industrial": [
+      "First Philippine Industrial Park (FPIP)", "Petron Refinery",
+      "Batangas Port", "Batangas Racing Circuit",
+      "Industrial Zones in Malvar", "Industrial Zones in Sto. Tomas"
+    ],
+    "natural": [
+      "Taal Volcano", "Taal Lake", "Mt. Maculot",
+      "Mt. Batulao", "Mt. Talamitam", "Mt. Daguldol",
+      "Mt. Gulugod Baboy", "Anilao Diving Sites",
+      "Malabrigo Lighthouse", "Cape Santiago Lighthouse"
+    ]
+  },
+
+  "property_categories": {
+    "residential": ["house", "apartment", "condo", "townhouse", "villa", "bungalow", "duplex", "boarding_house", "dormitory", "room"],
+    "commercial": ["office_space", "retail_space", "commercial_building", "warehouse", "showroom", "shop", "food_stall", "office_unit"],
+    "land": ["residential_lot", "commercial_lot", "agricultural_land", "beachfront_property", "industrial_lot", "vacant_lot", "development_land"],
+    "special": ["resort", "hotel", "dormitory", "boarding_house", "beachfront_property", "lakeview_property", "mountain_view", "heritage_property", "farm", "industrial_property"]
+  },
+
+  "price_ranges": {
+    "rent": ["5k", "10k", "15k", "20k", "25k", "30k", "40k", "50k", "75k", "100k"],
+    "sale": ["1M", "2M", "3M", "5M", "10M", "15M", "20M", "30M", "50M", "100M"],
+    "lease": ["100k", "200k", "500k", "1M", "2M", "5M", "10M", "20M"],
+    "per_sqm": ["1k", "2k", "3k", "5k", "10k", "15k", "20k", "30k", "50k"]
+  },
+
+  "synonyms": {
+    "find": ["look for", "search for", "locate", "discover", "seek", "identify"],
+    "show": ["display", "present", "list", "give me", "tell me about", "provide"],
+    "house": ["home", "residence", "dwelling", "villa", "bungalow", "residential property"],
+    "apartment": ["condo", "condominium", "flat", "unit", "studio", "apartment unit"],
+    "near": ["close to", "around", "beside", "next to", "in the vicinity of", "adjacent to"],
+    "under": ["below", "less than", "within", "maximum", "up to", "not exceeding"],
+    "good": ["reasonable", "affordable", "fair", "decent", "acceptable", "moderate"],
+    "big": ["spacious", "large", "roomy", "expansive", "generous", "sizeable"],
+    "cheap": ["inexpensive", "low-cost", "budget", "economical", "affordable"],
+    "expensive": ["high-end", "luxury", "premium", "costly", "high-priced"]
+  }
+}

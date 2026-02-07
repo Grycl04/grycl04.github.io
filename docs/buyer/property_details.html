@@ -1,0 +1,3290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Property Details - BahAI Real Estate</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<!-- Bootstrap Icons (if used in content) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<style>
+    /* Same design tokens as buyer dashboard */
+    :root {
+      --primary-gradient: linear-gradient(135deg, #0b2e52 0%, #667eea 100%);
+      --primary-light: #667eea;
+      --primary-dark: #764ba2;
+      --secondary-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      --accent-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      --card-hover-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+      --border-radius: 16px;
+      --border-radius-sm: 12px;
+      --border-radius-lg: 24px;
+      --text-dark: #1a202c;
+      --text-light: #718096;
+      --bg-light: #f8fafc;
+      --bg-white: #ffffff;
+      --border: #e5e7eb;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      color: var(--text-dark);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Mobile Menu Toggle - same as buyer dashboard */
+    .mobile-menu-toggle {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1001;
+      background: var(--primary-gradient);
+      color: white;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: var(--border-radius-sm);
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: var(--card-hover-shadow);
+    }
+
+    .container {
+      flex: 1;
+      margin-left: 280px;
+      padding: 30px;
+      transition: margin-left 0.3s ease;
+    }
+
+    /* Back Button - same as buyer dashboard */
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary-gradient);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: var(--border-radius-sm);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: var(--card-shadow);
+      text-decoration: none;
+      margin-bottom: 30px;
+    }
+    .back-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+    }
+
+    /* Property Header - same card style as dashboard */
+    .property-header {
+      background: white;
+      padding: 30px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--card-shadow);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      margin-bottom: 30px;
+    }
+
+    .property-badges {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .property-badge {
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .badge-sale {
+      background: var(--primary-gradient);
+      color: white;
+    }
+    .badge-rent {
+      background: var(--secondary-gradient);
+      color: white;
+    }
+    .badge-lease {
+      background: var(--accent-gradient);
+      color: white;
+    }
+    .badge-active {
+      background: var(--secondary-gradient);
+      color: white;
+    }
+    .badge-pending {
+      background: var(--accent-gradient);
+      color: white;
+    }
+
+    .property-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 15px;
+      line-height: 1.3;
+    }
+
+    .property-location {
+      color: var(--text-light);
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .property-stats {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg-light);
+      padding: 12px 20px;
+      border-radius: 12px;
+      min-width: 150px;
+    }
+
+    .stat-icon {
+      font-size: 20px;
+      color: var(--primary-light);
+    }
+
+    .stat-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    .stat-value {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .price-section {
+      background: var(--primary-gradient);
+      color: white;
+      padding: 25px;
+      border-radius: var(--border-radius);
+      margin-top: 20px;
+    }
+
+    .price-label {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-bottom: 5px;
+    }
+
+    .price-value {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .action-button {
+      width: 100%;
+      background: white;
+      color: var(--primary-dark);
+      border: none;
+      padding: 14px;
+      border-radius: var(--border-radius-sm);
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .action-button:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--card-shadow);
+    }
+
+    /* Two Column Layout */
+    .two-column-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    /* Image/Video Gallery - same card style as dashboard */
+    .property-gallery {
+      background: white;
+      padding: 25px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--card-shadow);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      margin-bottom: 30px;
+    }
+
+    .main-image-container {
+      position: relative;
+      width: 100%;
+      height: 500px;
+      overflow: hidden;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+    
+    .main-property-image, .main-property-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    
+    .main-property-video {
+      background: #000;
+    }
+    
+    .image-navigation {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      transform: translateY(-50%);
+    }
+    
+    .image-nav-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      color: var(--text-dark);
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      box-shadow: var(--card-shadow);
+    }
+    
+    .image-nav-btn:hover {
+      background: white;
+      transform: scale(1.1);
+    }
+    
+    .image-nav-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    .image-counter {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .image-thumbnails {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 10px 0;
+    }
+    
+    .thumbnail {
+      width: 100px;
+      height: 70px;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: all 0.3s;
+      flex-shrink: 0;
+      position: relative;
+    }
+    
+    .thumbnail:hover {
+      opacity: 0.9;
+    }
+    
+    .thumbnail.active {
+      opacity: 1;
+      border: 3px solid var(--primary-light);
+    }
+    
+    .thumbnail img, .thumbnail video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .video-badge {
+      position: absolute;
+      bottom: 5px;
+      left: 5px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: bold;
+    }
+
+    /* Property Section - same card style as dashboard */
+    .property-section {
+      background: white;
+      padding: 25px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--card-shadow);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      margin-bottom: 25px;
+    }
+    /* Section title - same as buyer dashboard */
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-title i {
+      color: var(--primary-light);
+      font-size: 1.3rem;
+    }
+
+    .property-description {
+      line-height: 1.8;
+      font-size: 16px;
+      color: var(--text-dark);
+    }
+
+    /* Amenities Grid */
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+    }
+
+    .amenity-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 15px;
+      background: var(--bg-light);
+      border-radius: var(--border-radius-sm);
+      border-left: 4px solid var(--primary-light);
+    }
+
+    /* Contact Card */
+    .contact-card {
+      background: var(--primary-gradient);
+      color: white;
+      padding: 30px;
+      border-radius: var(--border-radius);
+      position: sticky;
+      top: 20px;
+    }
+
+    .contact-header {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .contact-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .contact-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: white;
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 24px;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-name {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .contact-role {
+      opacity: 0.9;
+      font-size: 14px;
+    }
+
+    .contact-methods {
+      margin-bottom: 25px;
+    }
+
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+    }
+
+    .method-label {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+
+    .method-value {
+      font-weight: 500;
+    }
+
+    /* Pricing Card - dashboard card style */
+    .pricing-card {
+      background: var(--bg-light);
+      border-radius: var(--border-radius);
+      padding: 25px;
+    }
+
+    .pricing-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pricing-details {
+      background: white;
+      padding: 20px;
+      border-radius: var(--border-radius-sm);
+      box-shadow: var(--card-shadow);
+    }
+
+    .pricing-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pricing-item:last-child {
+      border-bottom: none;
+    }
+
+    .pricing-label {
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    .pricing-value {
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+
+    /* Universal Calculator Widget - dashboard card style */
+    .calculator-widget {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 30px;
+      margin-top: 40px;
+      box-shadow: var(--card-shadow);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .calculator-header {
+      margin-bottom: 25px;
+    }
+
+    .calc-panel {
+      background: var(--bg-light);
+      padding: 25px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .calc-input-group {
+      margin-bottom: 20px;
+    }
+
+    .calc-input-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text-dark);
+    }
+
+    .calc-input-group input[type="number"],
+    .calc-input-group select {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e5e7eb;
+      border-radius: var(--border-radius-sm);
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
+    }
+    .calc-input-group input:focus, .calc-input-group select:focus {
+      outline: none;
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .calc-input-group input[type="range"] {
+      width: 100%;
+      height: 8px;
+      border-radius: 4px;
+      background: var(--border);
+      outline: none;
+    }
+
+    .calc-input-group input[type="range"]::-webkit-slider-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      cursor: pointer;
+    }
+    .range-value {
+      display: inline-block;
+      min-width: 50px;
+      font-weight: 600;
+      color: var(--primary-light);
+      text-align: right;
+    }
+
+    .calc-btn {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .calc-btn.mortgage {
+      background: var(--primary-gradient);
+      color: white;
+    }
+    .calc-btn.rent {
+      background: var(--secondary-gradient);
+      color: white;
+    }
+    .calc-btn.lease {
+      background: var(--accent-gradient);
+      color: white;
+    }
+    .calc-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--card-shadow);
+    }
+    .calc-results {
+      background: var(--primary-gradient);
+      color: white;
+      padding: 25px;
+      border-radius: var(--border-radius-sm);
+      margin-top: 20px;
+      display: none;
+    }
+
+    .calc-results h4 {
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+
+    .calc-results-content {
+      font-size: 14px;
+    }
+
+    .result-highlight {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .result-amount {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .result-label {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .result-details {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .result-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    .result-item-label {
+      font-size: 12px;
+      opacity: 0.8;
+      margin-bottom: 5px;
+    }
+
+    .result-item-value {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .calc-note {
+      font-size: 12px;
+      opacity: 0.8;
+      margin-top: 15px;
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    /* Map Section */
+    #propertyMap {
+      width: 100%;
+      height: 400px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    /* Action Buttons */
+    .property-actions {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding-top: 30px;
+      border-top: 2px solid var(--border);
+    }
+
+    .action-btn-large {
+      padding: 16px 32px;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .action-btn-large:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--card-hover-shadow);
+    }
+
+    .contact-btn {
+      background: var(--primary-gradient);
+      color: white;
+    }
+    .contact-btn:hover {
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+    }
+    .calculator-btn {
+      background: var(--accent-gradient);
+      color: white;
+    }
+    .save-btn {
+      background: white;
+      color: var(--text-dark);
+      border: 2px solid #e5e7eb;
+    }
+    .save-btn:hover {
+      border-color: var(--primary-light);
+      background: #f9fafb;
+    }
+
+    /* Loading State - same as buyer dashboard */
+    .loading-state {
+      text-align: center;
+      padding: 100px 20px;
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--card-shadow);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    .spinner {
+      border: 4px solid rgba(102, 126, 234, 0.2);
+      border-top: 4px solid var(--primary-light);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Error State - same as buyer dashboard */
+    .error-state {
+      text-align: center;
+      padding: 100px 20px;
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--card-shadow);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    .error-icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+      color: var(--danger);
+    }
+
+    /* Toast Styles */
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    
+    @keyframes slideOut {
+      from { transform: translateX(0); opacity: 1; }
+      to { transform: translateX(100%); opacity: 0; }
+    }
+
+    /* Property Information Grid */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 15px;
+      background: var(--bg-light);
+      border-radius: 10px;
+    }
+
+    .info-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--primary-gradient);
+      color: white;
+      border-radius: var(--border-radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .info-content {
+      flex: 1;
+    }
+
+    .info-label {
+      font-size: 12px;
+      color: var(--text-light);
+      margin-bottom: 4px;
+    }
+
+    .info-value {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    /* Bank Financing Grid */
+    .bank-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .bank-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      background: var(--bg-light);
+      border-radius: 8px;
+      border: 2px solid var(--border);
+    }
+
+    .bank-logo {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+
+    .bank-name {
+      font-weight: 500;
+      color: var(--text-dark);
+      flex: 1;
+    }
+
+    /* Sale/Layout Specific Styles */
+    .detail-section {
+      margin-bottom: 30px;
+    }
+
+    .detail-section h4 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .detail-row:last-child {
+      border-bottom: none;
+    }
+
+    .detail-label {
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    .detail-value {
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+
+    /* Sale Type Badge */
+    .sale-type-badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-left: 10px;
+    }
+
+    .badge-outright {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .badge-installment {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .badge-bank-financing {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    /* Lease Specific Styles */
+    .lease-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .lease-item {
+      background: white;
+      padding: 20px;
+      border-radius: var(--border-radius-sm);
+      border: 1px solid var(--border);
+      box-shadow: var(--card-shadow);
+    }
+
+    .lease-item h5 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .lease-item p {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.5;
+    }
+
+    /* Tabs for Sale/Lease Specific Info */
+    .info-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 10px;
+    }
+
+    .info-tab {
+      padding: 10px 20px;
+      background: none;
+      border: none;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-light);
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .info-tab:hover {
+      background: var(--bg-light);
+      color: var(--text-dark);
+    }
+
+    .info-tab.active {
+      background: var(--primary-gradient);
+      color: white;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .container {
+        margin-left: 0;
+        padding: 25px;
+      }
+      
+      .mobile-menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .two-column-layout {
+        grid-template-columns: 1fr;
+      }
+      
+      .property-stats {
+        flex-direction: column;
+      }
+      
+      .stat-item {
+        width: 100%;
+      }
+      
+      .main-image-container {
+        height: 400px;
+      }
+      
+      .result-details {
+        grid-template-columns: 1fr;
+      }
+      
+      .info-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+      
+      .bank-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+      
+      .property-title {
+        font-size: 24px;
+      }
+      
+      .property-actions {
+        flex-direction: column;
+      }
+      
+      .action-btn-large {
+        width: 100%;
+      }
+      
+      .main-image-container {
+        height: 300px;
+      }
+      
+      .price-value {
+        font-size: 32px;
+      }
+      
+      .calculator-widget {
+        padding: 20px;
+      }
+      
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .bank-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .lease-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .property-header {
+        padding: 20px;
+      }
+      
+      .property-stats .stat-item {
+        min-width: auto;
+      }
+      
+      .main-image-container {
+        height: 250px;
+      }
+      
+      .info-tabs {
+        flex-direction: column;
+      }
+    }
+</style>
+</head>
+
+<body>
+<!-- Mobile Menu Toggle -->
+<button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+
+<!-- Include Sidebar -->
+<div id="sidebar-container"></div>
+
+<!-- Main Content -->
+<div class="container">
+    <!-- Back Button - Will be dynamically updated -->
+    <div>
+        <a href="#" id="backButton" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+    </div>
+
+    <!-- Property Details Container -->
+    <div id="propertyDetailsContainer">
+        <div class="loading-state">
+            <div class="spinner"></div>
+            <p>Loading property details...</p>
+        </div>
+    </div>
+</div>
+
+<!-- Sidebar Loader Script -->
+<script>
+// Mobile menu functionality
+document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar) {
+        sidebar.style.transform = sidebar.style.transform === 'translateX(0px)' ? 
+            'translateX(-100%)' : 'translateX(0px)';
+    }
+});
+
+// Simple logout function
+function setupLogoutButton() {
+    const logoutBtn = document.getElementById("logoutBtn");
+    if (!logoutBtn) {
+        console.warn("Logout button not found, retrying...");
+        setTimeout(setupLogoutButton, 100);
+        return;
+    }
+
+    // Remove existing event listeners
+    const newLogoutBtn = logoutBtn.cloneNode(true);
+    logoutBtn.parentNode.replaceChild(newLogoutBtn, logoutBtn);
+
+    // Add new event listener
+    newLogoutBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (confirm("Are you sure you want to log out?")) {
+            // Check if performLogout function exists (from main script)
+            if (typeof window.performLogout === 'function') {
+                window.performLogout();
+            } else {
+                // Fallback to simple redirect
+                window.location.href = "../login.html";
+            }
+        }
+    });
+
+    console.log('Logout button initialized successfully');
+}
+
+// Function to load sidebar based on user role
+async function loadSidebarBasedOnRole(userRole) {
+    let sidebarFile = 'sidebar.html'; // Default
+    
+    if (userRole === 'agent') {
+        sidebarFile = 'agent_sidebar.html';
+    } else if (userRole === 'broker') {
+        sidebarFile = 'broker_sidebar.html';
+    }
+    // For other roles (admin, landlord, user) use default sidebar
+    
+    try {
+        const response = await fetch(sidebarFile);
+        if (!response.ok) {
+            throw new Error('Failed to load sidebar: ' + response.status);
+        }
+        const html = await response.text();
+        document.getElementById('sidebar-container').innerHTML = html;
+        
+        // Setup logout button
+        setupLogoutButton();
+        
+        console.log(`✅ Loaded sidebar: ${sidebarFile} for role: ${userRole}`);
+    } catch (error) {
+        console.error('Error loading sidebar:', error);
+        // Fallback to default sidebar
+        try {
+            const fallbackResponse = await fetch('sidebar.html');
+            const fallbackHtml = await fallbackResponse.text();
+            document.getElementById('sidebar-container').innerHTML = fallbackHtml;
+            setupLogoutButton();
+        } catch (fallbackError) {
+            console.error('Failed to load fallback sidebar:', fallbackError);
+            document.getElementById('sidebar-container').innerHTML = 
+                '<div class="sidebar" style="padding: 20px; background: var(--bg-light); color: #ef4444;">' +
+                '<p>Unable to load navigation. Please refresh the page.</p>' +
+                '</div>';
+        }
+    }
+}
+
+// Function to load default sidebar for guests
+async function loadDefaultSidebar() {
+    try {
+        // Load a simple sidebar without user-specific links
+        const sidebarHTML = `
+        <div class="sidebar" style="width: 280px; background: white; height: 100vh; position: fixed; left: 0; top: 0; box-shadow: 2px 0 20px rgba(0,0,0,0.1); z-index: 1000; padding-top: 20px; overflow-y: auto;">
+            <div style="padding: 20px; text-align: center;">
+                <h2 style="color: var(--primary-dark); margin-bottom: 30px; font-size: 22px;">BahAI Real Estate</h2>
+                <div style="margin-top: 40px;">
+                    <a href="../index.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 20px; background: var(--bg-light); border-radius: 8px; text-decoration: none; color: var(--text-dark); margin-bottom: 10px; transition: all 0.3s;">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="buyer_dashboard.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 20px; background: var(--bg-light); border-radius: 8px; text-decoration: none; color: var(--text-dark); margin-bottom: 10px; transition: all 0.3s;">
+                        <i class="fas fa-building"></i>
+                        <span>Browse Properties</span>
+                    </a>
+                    <a href="../login.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 20px; background: var(--primary-gradient); border-radius: 8px; text-decoration: none; color: white; margin-top: 20px; font-weight: 600;">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>Login</span>
+                    </a>
+                    <a href="../signup.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 20px; background: var(--secondary-gradient); border-radius: 8px; text-decoration: none; color: white; margin-top: 10px; font-weight: 600;">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Register</span>
+                    </a>
+                </div>
+                <div style="margin-top: 50px; padding: 20px; background: var(--bg-light); border-radius: 12px;">
+                    <p style="font-size: 14px; color: var(--text-light); margin-bottom: 10px;">Want full access?</p>
+                    <p style="font-size: 12px; color: var(--text-light);">Login to save properties, contact agents directly, and get personalized recommendations.</p>
+                </div>
+            </div>
+        </div>`;
+        
+        document.getElementById('sidebar-container').innerHTML = sidebarHTML;
+        
+        console.log('✅ Loaded default sidebar for guest');
+    } catch (error) {
+        console.error('Error loading default sidebar:', error);
+        document.getElementById('sidebar-container').innerHTML = 
+            '<div class="sidebar" style="padding: 20px; background: var(--bg-light); color: var(--text-dark);">' +
+            '<p><a href="../index.html">← Back to Home</a></p>' +
+            '</div>';
+    }
+}
+
+// Function to update back button based on user role
+function updateBackButton(userRole) {
+    const backButton = document.getElementById('backButton');
+    
+    if (userRole === 'agent') {
+        backButton.href = '../agent/agent_dashboard.html';
+        backButton.innerHTML = '<i class="fas fa-arrow-left"></i> Back to Agent Dashboard';
+    } else if (userRole === 'broker') {
+        backButton.href = '../broker/broker_dashboard.html';
+        backButton.innerHTML = '<i class="fas fa-arrow-left"></i> Back to Broker Dashboard';
+    } else if (userRole === 'landlord') {
+        backButton.href = '../landlord/landlord_dashboard.html';
+        backButton.innerHTML = '<i class="fas fa-arrow-left"></i> Back to Landlord Dashboard';
+    } else if (userRole === 'admin') {
+        backButton.href = '../admin/admin_dashboard.html';
+        backButton.innerHTML = '<i class="fas fa-arrow-left"></i> Back to Admin Dashboard';
+    } else {
+        // Default for guests and other roles
+        backButton.href = 'buyer_dashboard.html';
+        backButton.innerHTML = '<i class="fas fa-arrow-left"></i> Back to Properties';
+    }
+}
+
+// Function to update back button for guests
+function updateGuestBackButton() {
+    const backButton = document.getElementById('backButton');
+    backButton.href = 'buyer_dashboard.html';
+    backButton.innerHTML = '<i class="fas fa-arrow-left"></i> Back to Properties';
+}
+
+// Function to update UI for guest users
+function updateUIForGuests() {
+    // Update save buttons to show login prompt
+    const saveButtons = document.querySelectorAll('#savePropertyBtn, #saveBtnBottom, .save-btn');
+    saveButtons.forEach(btn => {
+        if (btn) {
+            btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login to Save';
+            btn.onclick = function() {
+                window.location.href = '../login.html?redirect=' + encodeURIComponent(window.location.href);
+            };
+        }
+    });
+    
+    // Update contact buttons to show login prompt
+    const contactButtons = document.querySelectorAll('#contactOwnerBtn, #contactBtnBottom, .contact-btn');
+    contactButtons.forEach(btn => {
+        if (btn) {
+            const originalText = btn.textContent || btn.innerText;
+            btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login to Contact';
+            btn.onclick = function() {
+                alert('Please login to contact the property agent/owner.');
+                window.location.href = '../login.html?redirect=' + encodeURIComponent(window.location.href);
+            };
+        }
+    });
+}
+</script>
+
+<!-- Main Application Script -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+import {
+    getFirestore,
+    collection,
+    query,
+    where,
+    getDocs,
+    getDoc,
+    doc,
+    addDoc,
+    deleteDoc
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+// Firebase Config
+const firebaseConfig = {
+    apiKey: "AIzaSyCIfzneDzWVveG8p_0mywoA9D9F5AyzZX4",
+    authDomain: "bahai-1b76d.firebaseapp.com",
+    projectId: "bahai-1b76d",
+    storageBucket: "bahai-1b76d.firebasestorage.app",
+    messagingSenderId: "646878644941",
+    appId: "1:646878644941:web:5b4ccc3412250337587784"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// Google Maps API Key
+const GOOGLE_MAPS_API_KEY = "AIzaSyBwwAkIEixeUysaGrMb9BtTsMwz_C9Noxk";
+
+// Make signOut available globally for the logout button
+window.performLogout = async function() {
+    try {
+        await signOut(auth);
+        window.location.href = "../login.html";
+    } catch (error) {
+        console.error("Logout error:", error);
+        alert("Error logging out. Please try again.");
+    }
+};
+
+// Get property ID from URL
+const urlParams = new URLSearchParams(window.location.search);
+const propertyId = urlParams.get('id');
+
+// Global variables
+let currentMediaIndex = 0;
+let mediaUrls = [];
+let currentListing = null;
+let currentUserRole = null;
+let isGuest = true;
+
+// Property Type Mappings (from add_property.html)
+const salePropertyTypes = {
+    residential: [
+        { value: "house", label: "House" },
+        { value: "townhouse", label: "Townhouse" },
+        { value: "bungalow", label: "Bungalow" },
+        { value: "duplex", label: "Duplex" },
+        { value: "village_lot", label: "Village Lot" }
+    ],
+    commercial: [
+        { value: "commercial_building", label: "Commercial Building" },
+        { value: "office_space", label: "Office Space" },
+        { value: "retail_space", label: "Retail Space" },
+        { value: "warehouse", label: "Warehouse" },
+        { value: "showroom", label: "Showroom" }
+    ],
+    land: [
+        { value: "residential_lot", label: "Residential Lot" },
+        { value: "commercial_lot", label: "Commercial Lot" },
+        { value: "agricultural_land", label: "Agricultural Land" },
+        { value: "industrial_lot", label: "Industrial Lot" },
+        { value: "beachfront", label: "Beachfront Property" }
+    ],
+    condo: [
+        { value: "condo_unit", label: "Condominium Unit" },
+        { value: "penthouse", label: "Penthouse" },
+        { value: "studio", label: "Studio Unit" },
+        { value: "loft", label: "Loft Unit" }
+    ]
+};
+
+const leasePropertyTypes = {
+    commercial: [
+        { value: "office_floor", label: "Office Floor" },
+        { value: "retail_space_lease", label: "Retail Space" },
+        { value: "building_lease", label: "Building Lease" },
+        { value: "commercial_unit", label: "Commercial Unit" },
+        { value: "showroom_lease", label: "Showroom" },
+        { value: "warehouse_lease", label: "Warehouse" }
+    ],
+    land: [
+        { value: "commercial_lot", label: "Commercial Lot" },
+        { value: "agricultural_land", label: "Agricultural Land" },
+        { value: "development_land", label: "Development Land" },
+        { value: "industrial_lot", label: "Industrial Lot" },
+        { value: "residential_lot", label: "Residential Lot" },
+        { value: "vacant_lot", label: "Vacant Lot" }
+    ],
+    special: [
+        { value: "resort_property", label: "Resort Property" },
+        { value: "event_venue", label: "Event Venue" },
+        { value: "parking_area", label: "Parking Area" },
+        { value: "school_property", label: "School Property" },
+        { value: "hospitality", label: "Hospitality Property" },
+        { value: "sports_facility", label: "Sports Facility" }
+    ]
+};
+
+// Property Category Labels
+const propertyCategoryLabels = {
+    residential: "Residential Property",
+    commercial: "Commercial Property",
+    land: "Land / Lot",
+    condo: "Condominium",
+    special: "Special Purpose Property"
+};
+
+// Furnishing Labels
+const furnishingLabels = {
+    furnished: "Fully Furnished",
+    "semi-furnished": "Semi-Furnished",
+    unfurnished: "Unfurnished"
+};
+
+// Lease Type Labels
+const leaseTypeLabels = {
+    gross: "Gross Lease",
+    net: "Net Lease",
+    "triple-net": "Triple Net (NNN)"
+};
+
+// Payment Terms Labels
+const paymentTermsLabels = {
+    monthly: "Monthly",
+    quarterly: "Quarterly",
+    "semi-annual": "Semi-Annual",
+    annual: "Annual"
+};
+
+// Topography Labels
+const topographyLabels = {
+    flat: "Flat",
+    sloping: "Sloping",
+    hilly: "Hilly",
+    mountainous: "Mountainous"
+};
+
+// Access Road Labels
+const accessRoadLabels = {
+    concrete: "Concrete",
+    asphalt: "Asphalt",
+    gravel: "Gravel",
+    dirt: "Dirt Road"
+};
+
+// Maintenance Labels
+const maintenanceLabels = {
+    landlord: "Landlord",
+    tenant: "Tenant",
+    shared: "Shared"
+};
+
+// Zoning Labels
+const zoningLabels = {
+    commercial: "Commercial",
+    industrial: "Industrial",
+    residential: "Residential",
+    agricultural: "Agricultural",
+    mixed_use: "Mixed Use",
+    tourism: "Tourism"
+};
+
+// Bank Logos Mapping
+const bankLogos = {
+    "Bank Financing - BDO": "../../financing_logo/3.png",
+    "Bank Financing - Metrobank": "../../financing_logo/1.png",
+    "Bank Financing - UnionBank": "../../financing_logo/2.png",
+    "Bank Financing - RCBC": "../../financing_logo/4.png",
+    "Pag-IBIG Housing Loan": "../../financing_logo/5.png"
+};
+
+// --- HELPER FUNCTIONS ---
+
+function getRoleDisplayText(role) {
+    const roleMap = {
+        'landlord': 'Property Owner',
+        'seller': 'Property Seller',
+        'broker': 'Licensed Broker',
+        'agent': 'Property Agent',
+        'admin': 'Administrator'
+    };
+    return roleMap[role] || 'Posted by';
+}
+
+function getListingType(listing) {
+    if (listing.listingType === 'lease' || listing.type === 'lease') {
+        return 'lease';
+    }
+    if (listing.listingType === 'rent' || listing.type === 'rent') {
+        return 'rent';
+    }
+    if (listing.listingType === 'sale' || listing.type === 'sale') {
+        return 'sale';
+    }
+    if (listing.monthlyRent !== undefined && listing.monthlyRent !== null && listing.monthlyRent > 0) {
+        return 'rent';
+    }
+    if (listing.annualRent !== undefined && listing.annualRent !== null && listing.annualRent > 0) {
+        return 'lease';
+    }
+    if ((listing.pricing !== undefined && listing.pricing !== null && listing.pricing > 0) ||
+        (listing.salePrice !== undefined && listing.salePrice !== null && listing.salePrice > 0)) {
+        return 'sale';
+    }
+    return 'sale';
+}
+
+function getDisplayPrice(listing) {
+    const type = getListingType(listing);
+    switch (type) {
+        case 'rent':
+            return '₱' + (listing.monthlyRent || 0).toLocaleString() + '/month';
+        case 'lease':
+            const annualRent = listing.annualRent || 0;
+            return '₱' + annualRent.toLocaleString() + '/year';
+        case 'sale':
+        default:
+            return '₱' + (listing.pricing || listing.salePrice || 0).toLocaleString();
+    }
+}
+
+function getTypeBadgeText(listing) {
+    const type = getListingType(listing);
+    switch (type) {
+        case 'rent':
+            return 'FOR RENT';
+        case 'lease':
+            return 'FOR LEASE';
+        case 'sale':
+        default:
+            return 'FOR SALE';
+    }
+}
+
+function getCompleteAddress(listing) {
+    if (listing.address && (listing.address.includes('.') || listing.address.length > 20)) {
+        return listing.address;
+    }
+    
+    const addressParts = [];
+    
+    if (listing.location) {
+        addressParts.push(listing.location);
+    } else if (listing.address) {
+        addressParts.push(listing.address);
+    }
+    
+    if (listing.city) {
+        addressParts.push(listing.city);
+    }
+    
+    if (listing.province && listing.province.toLowerCase() !== 'calabarzon') {
+        addressParts.push(listing.province);
+    }
+    
+    if (listing.city && (!listing.province || listing.province.toLowerCase() === 'calabarzon')) {
+        addressParts.push('Philippines');
+    }
+    
+    if (addressParts.length === 0) {
+        return 'Location not specified';
+    }
+    
+    return addressParts.join('. ');
+}
+
+// Check if URL is a video
+function isVideoFile(url) {
+    if (!url) return false;
+    const videoExtensions = ['.mp4', '.avi', '.mov', '.wmv', '.flv', '.webm', '.mkv', '.m4v'];
+    const urlLower = url.toLowerCase();
+    
+    return videoExtensions.some(ext => urlLower.includes(ext)) ||
+           urlLower.includes('/videos/') ||
+           urlLower.includes('video/');
+}
+
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+
+// --- PROPERTY TYPE DISPLAY FUNCTIONS ---
+
+function getPropertyCategoryDisplay(category) {
+    return propertyCategoryLabels[category] || category;
+}
+
+function getPropertyTypeDisplay(category, typeValue) {
+    // Check sale property types
+    if (salePropertyTypes[category]) {
+        const type = salePropertyTypes[category].find(t => t.value === typeValue);
+        if (type) return type.label;
+    }
+    
+    // Check lease property types
+    if (leasePropertyTypes[category]) {
+        const type = leasePropertyTypes[category].find(t => t.value === typeValue);
+        if (type) return type.label;
+    }
+    
+    // Return the value if no match found
+    return typeValue || 'Not specified';
+}
+
+function getFurnishingDisplay(furnishing) {
+    return furnishingLabels[furnishing] || furnishing;
+}
+
+function getLeaseTypeDisplay(leaseType) {
+    return leaseTypeLabels[leaseType] || leaseType;
+}
+
+function getPaymentTermsDisplay(paymentTerms) {
+    return paymentTermsLabels[paymentTerms] || paymentTerms;
+}
+
+function getTopographyDisplay(topography) {
+    return topographyLabels[topography] || topography;
+}
+
+function getAccessRoadDisplay(accessRoad) {
+    return accessRoadLabels[accessRoad] || accessRoad;
+}
+
+function getMaintenanceDisplay(maintenance) {
+    return maintenanceLabels[maintenance] || maintenance;
+}
+
+function getZoningDisplay(zoning) {
+    return zoningLabels[zoning] || zoning;
+}
+
+function getSaleTypeBadge(saleType) {
+    switch(saleType) {
+        case 'outright':
+            return '<span class="sale-type-badge badge-outright">Outright Sale</span>';
+        case 'installment':
+            return '<span class="sale-type-badge badge-installment">Installment</span>';
+        case 'bank_financing':
+            return '<span class="sale-type-badge badge-bank-financing">Bank Financing</span>';
+        default:
+            return '';
+    }
+}
+
+// --- BANK FINANCING DISPLAY ---
+function renderBankFinancing(financingOptions) {
+    if (!financingOptions || !Array.isArray(financingOptions) || financingOptions.length === 0) {
+        return '<p style="color: var(--text-light); font-style: italic;">No bank financing options specified</p>';
+    }
+    
+    let bankItems = '';
+    let otherOptions = [];
+    
+    financingOptions.forEach(option => {
+        if (bankLogos[option]) {
+            bankItems += `
+            <div class="bank-item">
+                <img src="${bankLogos[option]}" alt="${option}" class="bank-logo">
+                <span class="bank-name">${option.replace('Bank Financing - ', '')}</span>
+            </div>`;
+        } else {
+            otherOptions.push(option);
+        }
+    });
+    
+    let result = '';
+    
+    if (bankItems) {
+        result += `<div class="bank-grid">${bankItems}</div>`;
+    }
+    
+    if (otherOptions.length > 0) {
+        result += `
+        <div style="margin-top: 15px;">
+            <h5 style="font-size: 15px; font-weight: 600; color: var(--text-dark); margin-bottom: 8px;">
+                <i class="bi bi-bank"></i> Other Financing Options
+            </h5>
+            <p style="color: var(--text-light);">${otherOptions.join(', ')}</p>
+        </div>`;
+    }
+    
+    return result || '<p style="color: var(--text-light); font-style: italic;">No bank financing options specified</p>';
+}
+
+// --- UNIVERSAL CALCULATOR FUNCTIONS ---
+
+function initializePropertyCalculator(listing) {
+    const listingType = getListingType(listing);
+    const price = getNumericPrice(listing);
+    
+    // Set calculator title based on listing type
+    const calcTitle = document.getElementById('calc-title');
+    const calcDescription = document.getElementById('calc-description');
+    
+    if (listingType === 'sale') {
+        calcTitle.innerHTML = '<i class="fas fa-home"></i> Mortgage Calculator';
+        calcDescription.textContent = 'Calculate your estimated monthly mortgage payments';
+        showCalculatorPanel('mortgage');
+        document.getElementById('calc-property-price').value = price;
+        updateDownpaymentAmount();
+    } else if (listingType === 'rent') {
+        calcTitle.innerHTML = '<i class="fas fa-money-bill-wave"></i> Rent Affordability Calculator';
+        calcDescription.textContent = 'Check if this rent fits your budget';
+        showCalculatorPanel('rent');
+        document.getElementById('calc-monthly-rent').value = price;
+    } else if (listingType === 'lease') {
+        calcTitle.innerHTML = '<i class="fas fa-file-contract"></i> Lease Cost Calculator';
+        calcDescription.textContent = 'Calculate total lease cost over time';
+        showCalculatorPanel('lease');
+        document.getElementById('calc-annual-rent').value = price;
+    }
+    
+    setupCalculatorEventListeners();
+}
+
+function getNumericPrice(listing) {
+    const type = getListingType(listing);
+    
+    switch (type) {
+        case 'rent':
+            return listing.monthlyRent || 0;
+        case 'lease':
+            return listing.annualRent || 0;
+        case 'sale':
+        default:
+            return listing.pricing || listing.salePrice || 0;
+    }
+}
+
+function showCalculatorPanel(panelType) {
+    // Hide all panels
+    document.getElementById('calc-mortgage-panel').style.display = 'none';
+    document.getElementById('calc-rent-panel').style.display = 'none';
+    document.getElementById('calc-lease-panel').style.display = 'none';
+    
+    // Show selected panel
+    if (panelType === 'mortgage') {
+        document.getElementById('calc-mortgage-panel').style.display = 'block';
+    } else if (panelType === 'rent') {
+        document.getElementById('calc-rent-panel').style.display = 'block';
+    } else if (panelType === 'lease') {
+        document.getElementById('calc-lease-panel').style.display = 'block';
+    }
+    
+    // Hide results when switching panels
+    document.getElementById('calc-results').style.display = 'none';
+}
+
+function setupCalculatorEventListeners() {
+    // Mortgage calculator sliders
+    const downpaymentSlider = document.getElementById('calc-downpayment');
+    const interestSlider = document.getElementById('calc-interest-rate');
+    
+    if (downpaymentSlider) {
+        downpaymentSlider.addEventListener('input', function() {
+            document.getElementById('downpayment-value').textContent = this.value + '%';
+            updateDownpaymentAmount();
+        });
+    }
+    
+    if (interestSlider) {
+        interestSlider.addEventListener('input', function() {
+            document.getElementById('interest-rate-value').textContent = this.value + '%';
+        });
+    }
+    
+    // Lease calculator slider
+    const leaseIncreaseSlider = document.getElementById('calc-lease-increase');
+    if (leaseIncreaseSlider) {
+        leaseIncreaseSlider.addEventListener('input', function() {
+            document.getElementById('lease-increase-value').textContent = this.value + '%';
+        });
+    }
+    
+    // Calculate buttons
+    const mortgageBtn = document.getElementById('calc-mortgage-btn');
+    const rentBtn = document.getElementById('calc-rent-btn');
+    const leaseBtn = document.getElementById('calc-lease-btn');
+    
+    if (mortgageBtn) {
+        mortgageBtn.addEventListener('click', calculateMortgage);
+    }
+    
+    if (rentBtn) {
+        rentBtn.addEventListener('click', calculateRentAffordability);
+    }
+    
+    if (leaseBtn) {
+        leaseBtn.addEventListener('click', calculateLeaseCost);
+    }
+}
+
+function updateDownpaymentAmount() {
+    const price = parseFloat(document.getElementById('calc-property-price').value) || 0;
+    const downpaymentPercent = parseFloat(document.getElementById('calc-downpayment').value) || 20;
+    const downpaymentAmount = (price * downpaymentPercent / 100);
+    
+    document.getElementById('downpayment-amount').textContent = 
+        `₱${downpaymentAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+}
+
+function calculateMortgage() {
+    const price = parseFloat(document.getElementById('calc-property-price').value);
+    const downpaymentPercent = parseFloat(document.getElementById('calc-downpayment').value);
+    const loanTerm = parseInt(document.getElementById('calc-loan-term').value);
+    const interestRate = parseFloat(document.getElementById('calc-interest-rate').value);
+    
+    if (!price || price <= 0) {
+        showCalculatorError('Please enter a valid property price');
+        return;
+    }
+    
+    const downpaymentAmount = price * downpaymentPercent / 100;
+    const loanAmount = price - downpaymentAmount;
+    const monthlyRate = interestRate / 100 / 12;
+    const numberOfPayments = loanTerm * 12;
+    
+    // Mortgage formula: M = P [ i(1 + i)^n ] / [ (1 + i)^n - 1]
+    const monthlyPayment = loanAmount * 
+        (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) / 
+        (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
+    
+    const totalPayment = monthlyPayment * numberOfPayments;
+    const totalInterest = totalPayment - loanAmount;
+    
+    const results = `
+        <div class="result-highlight">
+            <div class="result-amount">₱${monthlyPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+            <div class="result-label">Monthly Payment</div>
+        </div>
+        
+        <div class="result-details">
+            <div class="result-item">
+                <div class="result-item-label">Loan Amount</div>
+                <div class="result-item-value">₱${loanAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+            </div>
+            <div class="result-item">
+                <div class="result-item-label">Down Payment</div>
+                <div class="result-item-value">₱${downpaymentAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (${downpaymentPercent}%)</div>
+            </div>
+            <div class="result-item">
+                <div class="result-item-label">Total Interest</div>
+                <div class="result-item-value">₱${totalInterest.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+            </div>
+            <div class="result-item">
+                <div class="result-item-label">Total Payment</div>
+                <div class="result-item-value">₱${totalPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+            </div>
+        </div>
+        
+        <div class="calc-note">
+            *Calculation based on ${loanTerm} years at ${interestRate}% interest rate. Actual payments may vary based on credit score, additional fees, and lender terms.
+        </div>
+    `;
+    
+    showCalculatorResults(results);
+}
+
+function calculateRentAffordability() {
+    const monthlyRent = parseFloat(document.getElementById('calc-monthly-rent').value);
+    const monthlyIncome = parseFloat(document.getElementById('calc-income').value);
+    const otherExpenses = parseFloat(document.getElementById('calc-expenses').value) || 0;
+    
+    if (!monthlyRent || monthlyRent <= 0) {
+        showCalculatorError('Please enter a valid monthly rent');
+        return;
+    }
+    
+    if (!monthlyIncome || monthlyIncome <= 0) {
+        showCalculatorError('Please enter your monthly income');
+        return;
+    }
+    
+    const rentPercentage = (monthlyRent / monthlyIncome) * 100;
+    const disposableIncome = monthlyIncome - monthlyRent - otherExpenses;
+    const affordabilityStatus = rentPercentage <= 30 ? 'good' : rentPercentage <= 40 ? 'moderate' : 'stressed';
+    
+    let statusText = '';
+    let statusColor = '';
+    let recommendation = '';
+    
+    if (affordabilityStatus === 'good') {
+        statusText = 'Within Budget ✓';
+        statusColor = '#10b981';
+        recommendation = 'This rent is comfortably within the recommended 30% of income.';
+    } else if (affordabilityStatus === 'moderate') {
+        statusText = 'Moderate Budget ⚠';
+        statusColor = '#f59e0b';
+        recommendation = 'This rent exceeds the 30% guideline but may be manageable depending on other expenses.';
+    } else {
+        statusText = 'Above Budget ✗';
+        statusColor = '#ef4444';
+        recommendation = 'This rent exceeds 40% of income, which may cause financial strain.';
+    }
+    
+    const results = `
+        <div class="result-highlight" style="border-left: 4px solid ${statusColor};">
+            <div class="result-amount" style="color: ${statusColor};">${rentPercentage.toFixed(1)}%</div>
+            <div class="result-label">of your income</div>
+        </div>
+        
+        <div class="result-details">
+            <div class="result-item">
+                <div class="result-item-label">Monthly Rent</div>
+                <div class="result-item-value">₱${monthlyRent.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+            </div>
+            <div class="result-item">
+                <div class="result-item-label">Monthly Income</div>
+                <div class="result-item-value">₱${monthlyIncome.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+            </div>
+            <div class="result-item">
+                <div class="result-item-label">Disposable Income</div>
+                <div class="result-item-value">₱${disposableIncome.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+            </div>
+            <div class="result-item">
+                <div class="result-item-label">Affordability</div>
+                <div class="result-item-value" style="color: ${statusColor};">${statusText}</div>
+            </div>
+        </div>
+        
+        <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+            <div style="font-size: 14px; font-weight: 600; color: ${statusColor}; margin-bottom: 5px;">
+                ${statusText}
+            </div>
+            <div style="font-size: 13px; opacity: 0.9;">
+                ${recommendation}
+            </div>
+        </div>
+        
+        <div class="calc-note">
+            *General guideline: Rent should not exceed 30% of your monthly income. Your disposable income after rent and other expenses is ₱${disposableIncome.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}.
+        </div>
+    `;
+    
+    showCalculatorResults(results);
+}
+
+function calculateLeaseCost() {
+    const annualRent = parseFloat(document.getElementById('calc-annual-rent').value);
+    const leaseTerm = parseInt(document.getElementById('calc-lease-term').value);
+    const annualIncrease = parseFloat(document.getElementById('calc-lease-increase').value);
+    
+    if (!annualRent || annualRent <= 0) {
+        showCalculatorError('Please enter a valid annual rent');
+        return;
+    }
+    
+    let totalCost = 0;
+    let currentRent = annualRent;
+    let yearDetails = [];
+    
+    for (let year = 1; year <= leaseTerm; year++) {
+        totalCost += currentRent;
+        yearDetails.push({
+            year: year,
+            rent: currentRent,
+            monthly: currentRent / 12
+        });
+        currentRent *= (1 + annualIncrease / 100);
+    }
+    
+    const avgMonthlyCost = totalCost / leaseTerm / 12;
+    const finalMonthlyRent = yearDetails[yearDetails.length - 1].monthly;
+    
+    const results = `
+        <div class="result-highlight">
+            <div class="result-amount">₱${totalCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+            <div class="result-label">Total ${leaseTerm}-Year Cost</div>
+        </div>
+        
+        <div class="result-details">
+            <div class="result-item">
+                <div class="result-item-label">Average Monthly</div>
+                <div class="result-item-value">₱${avgMonthlyCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+            </div>
+            <div class="result-item">
+                <div class="result-item-label">Final Monthly (Year ${leaseTerm})</div>
+                <div class="result-item-value">₱${finalMonthlyRent.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+            </div>
+            <div class="result-item">
+                <div class="result-item-label">Annual Increase</div>
+                <div class="result-item-value">${annualIncrease}%</div>
+            </div>
+            <div class="result-item">
+                <div class="result-item-label">Lease Term</div>
+                <div class="result-item-value">${leaseTerm} years</div>
+            </div>
+        </div>
+        
+        <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+            <div style="font-size: 14px; font-weight: 600; margin-bottom: 10px;">
+                Year-by-Year Breakdown
+            </div>
+            <div style="max-height: 150px; overflow-y: auto; font-size: 13px;">
+                ${yearDetails.map(y => `
+                    <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <span>Year ${y.year}:</span>
+                        <span>₱${y.rent.toLocaleString()}/year (₱${y.monthly.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}/month)</span>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+        
+        <div class="calc-note">
+            *Assumes annual rent increase of ${annualIncrease}%. Final monthly rent in year ${leaseTerm} will be ₱${finalMonthlyRent.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}.
+        </div>
+    `;
+    
+    showCalculatorResults(results);
+}
+
+function showCalculatorResults(htmlContent) {
+    const resultsContainer = document.getElementById('calc-results');
+    const resultsContent = document.getElementById('calc-results-content');
+    
+    resultsContent.innerHTML = htmlContent;
+    resultsContainer.style.display = 'block';
+    
+    // Scroll to results
+    resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function showCalculatorError(message) {
+    const results = `
+        <div style="color: #ef4444; padding: 12px; background: rgba(239, 68, 68, 0.1); border-radius: 8px; border-left: 4px solid #ef4444;">
+            <i class="fas fa-exclamation-circle"></i> ${message}
+        </div>
+    `;
+    showCalculatorResults(results);
+}
+
+// --- GOOGLE MAPS FUNCTIONS ---
+
+async function loadGoogleMapsAPI() {
+    return new Promise((resolve, reject) => {
+        if (window.google && window.google.maps) {
+            resolve();
+            return;
+        }
+
+        const script = document.createElement('script');
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places`;
+        script.async = true;
+        script.defer = true;
+        script.onload = () => {
+            if (window.google && window.google.maps) {
+                resolve();
+            } else {
+                reject(new Error("Google Maps API failed to initialize"));
+            }
+        };
+        script.onerror = () => reject(new Error("Failed to load Google Maps script"));
+        document.head.appendChild(script);
+    });
+}
+
+function initPropertyMap(lat, lng, title) {
+    const mapElement = document.getElementById("propertyMap");
+    if (!mapElement) {
+        console.error("Map element not found");
+        return;
+    }
+
+    try {
+        const latitude = parseFloat(lat);
+        const longitude = parseFloat(lng);
+
+        if (isNaN(latitude) || isNaN(longitude)) {
+            console.error("Invalid coordinates:", lat, lng);
+            showMapPlaceholder(lat, lng);
+            return;
+        }
+
+        const map = new google.maps.Map(mapElement, {
+            center: { lat: latitude, lng: longitude },
+            zoom: 16,
+            mapTypeControl: true,
+            streetViewControl: true,
+            fullscreenControl: true
+        });
+
+        // Add marker
+        new google.maps.Marker({
+            position: { lat: latitude, lng: longitude },
+            map: map,
+            title: title || "Property Location",
+            animation: google.maps.Animation.DROP
+        });
+    } catch (error) {
+        console.error("Error initializing map:", error);
+        showMapPlaceholder(lat, lng);
+    }
+}
+
+function showMapPlaceholder(lat, lng) {
+    const mapElement = document.getElementById("propertyMap");
+    if (!mapElement) return;
+
+    mapElement.innerHTML = `
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 400px; background: var(--bg-light); border-radius: 12px;">
+        <i class="fas fa-map-marked-alt" style="font-size: 48px; color: var(--text-light); margin-bottom: 15px;"></i>
+        <p style="color: var(--text-light); margin-bottom: 10px;">Map could not be loaded</p>
+        <a href="https://www.google.com/maps?q=${lat},${lng}" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: var(--secondary); color: white; border-radius: 6px; text-decoration: none; font-weight: 500;">
+            <i class="fas fa-external-link-alt"></i> Open in Google Maps
+        </a>
+    </div>`;
+}
+
+// --- MEDIA NAVIGATION FUNCTIONS ---
+
+function initializeMediaNavigation(mediaArray) {
+    mediaUrls = mediaArray;
+    currentMediaIndex = 0;
+
+    if (mediaArray.length <= 1) {
+        const nav = document.querySelector('.image-navigation');
+        const counter = document.querySelector('.image-counter');
+        if (nav) nav.style.display = 'none';
+        if (counter) counter.style.display = 'none';
+        return;
+    }
+
+    const nav = document.querySelector('.image-navigation');
+    const counter = document.querySelector('.image-counter');
+    if (nav) nav.style.display = 'flex';
+    if (counter) counter.style.display = 'block';
+
+    updateMediaCounter();
+
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => navigateMedia(-1));
+        prevBtn.disabled = currentMediaIndex === 0;
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => navigateMedia(1));
+        nextBtn.disabled = currentMediaIndex === mediaUrls.length - 1;
+    }
+
+    document.addEventListener('keydown', handleKeyboardNavigation);
+
+    document.querySelectorAll('.thumbnail').forEach((thumb, index) => {
+        thumb.addEventListener('click', () => goToMedia(index));
+    });
+
+    function navigateMedia(direction) {
+        const newIndex = currentMediaIndex + direction;
+        if (newIndex >= 0 && newIndex < mediaUrls.length) {
+            goToMedia(newIndex);
+        }
+    }
+
+    function goToMedia(index) {
+        if (index < 0 || index >= mediaUrls.length) return;
+
+        currentMediaIndex = index;
+        const mediaUrl = mediaUrls[index];
+        const isVideo = isVideoFile(mediaUrl);
+
+        const mainImage = document.getElementById('mainPropertyImage');
+        const mainVideo = document.getElementById('mainPropertyVideo');
+
+        if (isVideo) {
+            // Show video, hide image
+            mainImage.style.display = 'none';
+            mainVideo.style.display = 'block';
+            mainVideo.src = mediaUrl;
+            mainVideo.load(); // Load the video
+        } else {
+            // Show image, hide video
+            mainVideo.style.display = 'none';
+            mainImage.style.display = 'block';
+            mainImage.src = mediaUrl;
+        }
+
+        // Update thumbnail selection
+        document.querySelectorAll('.thumbnail').forEach((thumb, i) => {
+            if (i === index) {
+                thumb.classList.add('active');
+                thumb.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest',
+                    inline: 'center'
+                });
+            } else {
+                thumb.classList.remove('active');
+            }
+        });
+
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+
+        if (prevBtn) prevBtn.disabled = index === 0;
+        if (nextBtn) nextBtn.disabled = index === mediaUrls.length - 1;
+
+        updateMediaCounter();
+    }
+
+    function updateMediaCounter() {
+        const counter = document.querySelector('.image-counter');
+        if (counter) {
+            counter.textContent = `${currentMediaIndex + 1} / ${mediaUrls.length}`;
+        }
+    }
+
+    function handleKeyboardNavigation(e) {
+        if (e.key === 'ArrowLeft') {
+            navigateMedia(-1);
+        } else if (e.key === 'ArrowRight') {
+            navigateMedia(1);
+        }
+    }
+}
+
+// --- PROPERTY DETAILS FUNCTIONS ---
+
+async function loadPropertyDetails() {
+    if (!propertyId) {
+        displayError("No property ID provided");
+        return;
+    }
+
+    try {
+        const propertyDoc = await getDoc(doc(db, "properties", propertyId));
+        if (!propertyDoc.exists()) {
+            displayError("Property not found");
+            return;
+        }
+        
+        currentListing = {
+            id: propertyDoc.id,
+            ...propertyDoc.data()
+        };
+
+        let userInfo = {
+            displayName: 'User ' + (currentListing.userId ? currentListing.userId.substring(0, 8) : 'Unknown'),
+            email: 'Email not available',
+            phone: 'Phone not available',
+            role: 'user'
+        };
+
+        if (currentListing.userId) {
+            try {
+                const userDoc = await getDoc(doc(db, "users", currentListing.userId));
+                if (userDoc.exists()) {
+                    const userData = userDoc.data();
+                    userInfo.displayName = userData.fullName || userData.email?.split('@')[0] || 'User ' + currentListing.userId.substring(0, 8);
+                    userInfo.email = userData.email || 'Email not available';
+                    userInfo.phone = userData.phone || 'Phone not available';
+                    userInfo.role = userData.role || 'user';
+                } else {
+                    const brokerDoc = await getDoc(doc(db, "brokers", currentListing.userId));
+                    if (brokerDoc.exists()) {
+                        const brokerData = brokerDoc.data();
+                        userInfo.displayName = brokerData.fullName || 'Broker ' + currentListing.userId.substring(0, 8);
+                        userInfo.email = brokerData.email || 'Email not available';
+                        userInfo.phone = brokerData.phone || 'Phone not available';
+                        userInfo.role = 'broker';
+                    }
+                }
+            } catch (error) {
+                console.error("Error loading user data:", error);
+            }
+        }
+
+        displayPropertyDetails(currentListing, userInfo);
+    } catch (error) {
+        console.error("Error loading property details:", error);
+        displayError("Error loading property details");
+    }
+}
+
+function renderSalePropertyDetails(listing) {
+    return `
+    <div class="detail-section">
+        <h4><i class="bi bi-cash-coin"></i> Sale Information</h4>
+        <div class="detail-row">
+            <span class="detail-label">Sale Price:</span>
+            <span class="detail-value">₱${(listing.salePrice || listing.pricing || 0).toLocaleString()}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Price Negotiable:</span>
+            <span class="detail-value">${listing.priceNegotiable === 'yes' ? 'Yes' : 'No'}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Sale Type:</span>
+            <span class="detail-value">${getSaleTypeBadge(listing.saleType || 'outright')}</span>
+        </div>
+    </div>
+    
+    ${listing.saleType === 'bank_financing' ? `
+    <div class="detail-section">
+        <h4><i class="bi bi-bank"></i> Bank Financing Options</h4>
+        ${renderBankFinancing(listing.financingOptions || [])}
+    </div>
+    ` : ''}
+    
+    <div class="detail-section">
+        <h4><i class="bi bi-briefcase"></i> Broker Commission</h4>
+        <div class="detail-row">
+            <span class="detail-label">Commission Type:</span>
+            <span class="detail-value">${listing.commissionType === 'percentage' ? 'Percentage of Sale Price' : 'Fixed Amount'}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Commission Value:</span>
+            <span class="detail-value">
+                ${listing.commissionType === 'percentage' ? 
+                    `${listing.commissionValue || 0}%` : 
+                    `₱${(listing.commissionValue || 0).toLocaleString()}`
+                }
+            </span>
+        </div>
+    </div>`;
+}
+
+function renderLeasePropertyDetails(listing) {
+    return `
+    <div class="detail-section">
+        <h4><i class="bi bi-file-text"></i> Lease Information</h4>
+        <div class="detail-row">
+            <span class="detail-label">Annual Rent:</span>
+            <span class="detail-value">₱${(listing.annualRent || 0).toLocaleString()}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Lease Type:</span>
+            <span class="detail-value">${getLeaseTypeDisplay(listing.leaseType)}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Lease Duration:</span>
+            <span class="detail-value">${listing.leaseDuration || 'Not specified'} years</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Renewal Option:</span>
+            <span class="detail-value">${listing.renewalOption || 'Not specified'}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Payment Terms:</span>
+            <span class="detail-value">${getPaymentTermsDisplay(listing.paymentTerms)}</span>
+        </div>
+    </div>
+    
+    <div class="detail-section">
+        <h4><i class="bi bi-cash-stack"></i> Financial Details</h4>
+        <div class="detail-row">
+            <span class="detail-label">Security Bond:</span>
+            <span class="detail-value">${listing.securityBond ? `₱${listing.securityBond.toLocaleString()}` : 'Not specified'}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Advance Payment:</span>
+            <span class="detail-value">${listing.advancePayment || 1} month(s)</span>
+        </div>
+    </div>
+    
+    <div class="detail-section">
+        <h4><i class="bi bi-briefcase"></i> Broker Commission</h4>
+        <div class="detail-row">
+            <span class="detail-label">Commission Type:</span>
+            <span class="detail-value">${listing.commissionType === 'percentage' ? 'Percentage of Annual Rent' : 'Fixed Amount'}</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Commission Value:</span>
+            <span class="detail-value">
+                ${listing.commissionType === 'percentage' ? 
+                    `${listing.commissionValue || 0}%` : 
+                    `₱${(listing.commissionValue || 0).toLocaleString()}`
+                }
+            </span>
+        </div>
+    </div>
+    
+    <div class="detail-section">
+        <h4><i class="bi bi-tools"></i> Property Features</h4>
+        <div class="info-grid">
+            ${listing.accessRoad ? `
+            <div class="info-item">
+                <div class="info-icon"><i class="bi bi-signpost"></i></div>
+                <div class="info-content">
+                    <div class="info-label">Access Road</div>
+                    <div class="info-value">${getAccessRoadDisplay(listing.accessRoad)}</div>
+                </div>
+            </div>
+            ` : ''}
+            
+            ${listing.frontage ? `
+            <div class="info-item">
+                <div class="info-icon"><i class="bi bi-arrows-expand"></i></div>
+                <div class="info-content">
+                    <div class="info-label">Frontage</div>
+                    <div class="info-value">${listing.frontage} meters</div>
+                </div>
+            </div>
+            ` : ''}
+            
+            ${listing.topography ? `
+            <div class="info-item">
+                <div class="info-icon"><i class="bi bi-mountains"></i></div>
+                <div class="info-content">
+                    <div class="info-label">Topography</div>
+                    <div class="info-value">${getTopographyDisplay(listing.topography)}</div>
+                </div>
+            </div>
+            ` : ''}
+            
+            ${listing.zoning ? `
+            <div class="info-item">
+                <div class="info-icon"><i class="bi bi-buildings"></i></div>
+                <div class="info-content">
+                    <div class="info-label">Zoning</div>
+                    <div class="info-value">${getZoningDisplay(listing.zoning)}</div>
+                </div>
+            </div>
+            ` : ''}
+        </div>
+    </div>
+    
+    ${listing.restrictions ? `
+    <div class="detail-section">
+        <h4><i class="bi bi-file-earmark-lock"></i> Restrictions & Conditions</h4>
+        <div style="background: var(--bg-light); padding: 15px; border-radius: 8px; border-left: 4px solid var(--warning);">
+            <p style="color: var(--text-dark); line-height: 1.6;">${listing.restrictions}</p>
+        </div>
+    </div>
+    ` : ''}
+    
+    ${listing.maintenance ? `
+    <div class="detail-section">
+        <h4><i class="bi bi-tools"></i> Maintenance Responsibility</h4>
+        <div style="background: var(--bg-light); padding: 15px; border-radius: 8px; border-left: 4px solid var(--primary-light);">
+            <p style="color: var(--text-dark); line-height: 1.6; font-weight: 500;">${getMaintenanceDisplay(listing.maintenance)}</p>
+        </div>
+    </div>
+    ` : ''}
+    
+    ${listing.utilities ? `
+    <div class="detail-section">
+        <h4><i class="bi bi-lightning-charge"></i> Available Utilities</h4>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+            ${listing.utilities.split(',').map(util => `
+                <span style="background: var(--bg-white); padding: 8px 15px; border-radius: 20px; border: 1px solid var(--border); font-size: 14px;">
+                    ${util.trim()}
+                </span>
+            `).join('')}
+        </div>
+    </div>
+    ` : ''}`;
+}
+
+function displayPropertyDetails(listing, userInfo) {
+    const container = document.getElementById('propertyDetailsContainer');
+    
+    // Get listing details
+    const listingType = getListingType(listing);
+    const displayPrice = getDisplayPrice(listing);
+    const typeBadgeText = getTypeBadgeText(listing);
+    const completeAddress = getCompleteAddress(listing);
+    
+    // Get ALL media (images + videos)
+    let allMedia = [];
+    
+    // Add images first
+    if (listing.photos && listing.photos.length > 0) {
+        allMedia = [...listing.photos];
+    } else if (listing.imageUrls && listing.imageUrls.length > 0) {
+        allMedia = [...listing.imageUrls];
+    }
+    
+    // Add videos
+    if (listing.videoUrls && listing.videoUrls.length > 0) {
+        allMedia = [...allMedia, ...listing.videoUrls];
+    } else if (listing.mediaUrls && listing.mediaUrls.videos) {
+        listing.mediaUrls.videos.forEach(video => {
+            if (video.url) allMedia.push(video.url);
+        });
+    }
+
+    // If no media, use placeholder
+    if (allMedia.length === 0) {
+        allMedia = ['https://via.placeholder.com/800x400/0b2e52/white?text=No+Media+Available'];
+    }
+
+    const firstMedia = allMedia[0];
+    const isFirstVideo = isVideoFile(firstMedia);
+    
+    // Get badge class
+    let badgeClass = 'badge-sale';
+    if (listingType === 'rent') badgeClass = 'badge-rent';
+    if (listingType === 'lease') badgeClass = 'badge-lease';
+    if (listing.status === 'active') badgeClass = 'badge-active';
+    if (listing.status === 'pending') badgeClass = 'badge-pending';
+    
+    // Get property category and type display
+    const propertyCategory = getPropertyCategoryDisplay(listing.propertyCategory);
+    const propertyType = getPropertyTypeDisplay(listing.propertyCategory, listing.propertyType);
+    
+    // Get amenities
+    const amenities = listing.amenities || [];
+    const userInitials = userInfo.displayName.split(' ').map(n => n[0]).join('').toUpperCase() || 'UU';
+    
+    // Determine if user is logged in
+    const isLoggedIn = !isGuest;
+    const saveButtonText = isLoggedIn ? 'Save Property' : 'Login to Save';
+    const saveButtonIcon = isLoggedIn ? 'far fa-heart' : 'fas fa-sign-in-alt';
+    const contactButtonText = isLoggedIn ? 'Contact Agent' : 'Login to Contact';
+    const contactButtonIcon = isLoggedIn ? 'fas fa-comment' : 'fas fa-sign-in-alt';
+    
+    // Build HTML
+    let html = `
+    <!-- Property Header -->
+    <div class="property-header">
+        <div class="property-badges">
+            <span class="property-badge ${badgeClass}">${typeBadgeText}</span>
+            <span class="property-badge badge-active">${listing.status === 'active' ? 'Available' : (listing.status || 'Available')}</span>
+        </div>
+        
+        <h1 class="property-title">${listing.title || 'Untitled Property'}</h1>
+        
+        <div class="property-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>${completeAddress}</span>
+        </div>
+        
+        <div class="property-stats">
+            <div class="stat-item">
+                <i class="fas fa-bed stat-icon"></i>
+                <div class="stat-content">
+                    <span class="stat-label">Bedrooms</span>
+                    <span class="stat-value">${listing.bedrooms || (listingType === 'rent' && listing.propertyType === 'studio' ? 'Studio' : 0)}</span>
+                </div>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-bath stat-icon"></i>
+                <div class="stat-content">
+                    <span class="stat-label">Bathrooms</span>
+                    <span class="stat-value">${listing.bathrooms || 0}</span>
+                </div>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-ruler-combined stat-icon"></i>
+                <div class="stat-content">
+                    <span class="stat-label">Floor Area</span>
+                    <span class="stat-value">${listing.floorArea || listing.totalArea || 'N/A'} sqm</span>
+                </div>
+            </div>
+            ${listing.lotArea ? `
+            <div class="stat-item">
+                <i class="bi bi-map stat-icon"></i>
+                <div class="stat-content">
+                    <span class="stat-label">Lot Area</span>
+                    <span class="stat-value">${listing.lotArea} sqm</span>
+                </div>
+            </div>
+            ` : ''}
+        </div>
+        
+        <div class="price-section">
+            <div class="price-label">Price</div>
+            <div class="price-value">${displayPrice}</div>
+            <button id="savePropertyBtn" class="action-button">
+                <i class="${saveButtonIcon}"></i> ${saveButtonText}
+            </button>
+        </div>
+    </div>
+
+    <!-- Two Column Layout -->
+    <div class="two-column-layout">
+        <!-- Main Content Column -->
+        <div>
+            <!-- Media Gallery -->
+            <div class="property-gallery">
+                <div class="main-image-container">
+                    <!-- Main Media Display -->
+                    <div id="mainMediaDisplay">
+                        <img src="${isFirstVideo ? 'https://via.placeholder.com/800x400/0b2e52/white?text=Video+Thumbnail' : firstMedia}" 
+                             alt="${listing.title}" 
+                             id="mainPropertyImage" 
+                             class="main-property-image"
+                             style="${isFirstVideo ? 'display: none;' : 'display: block;'}">
+                        <video id="mainPropertyVideo" 
+                               class="main-property-video" 
+                               controls
+                               style="${isFirstVideo ? 'display: block;' : 'display: none;'}">
+                            ${isFirstVideo ? `<source src="${firstMedia}" type="video/mp4">Your browser does not support the video tag.` : ''}
+                        </video>
+                    </div>
+                    <div class="image-navigation">
+                        <button class="image-nav-btn prev-btn" ${allMedia.length <= 1 ? 'disabled' : ''}>
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="image-nav-btn next-btn" ${allMedia.length <= 1 ? 'disabled' : ''}>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="image-counter">
+                        ${allMedia.length > 0 ? '1 / ' + allMedia.length : 'No media'}
+                    </div>
+                </div>
+                ${allMedia.length > 1 ? `
+                <div class="image-thumbnails">
+                    ${allMedia.map((media, index) => {
+                        const isVideo = isVideoFile(media);
+                        return `
+                        <div class="thumbnail ${index === 0 ? 'active' : ''}" 
+                             data-media="${media}" 
+                             data-index="${index}" 
+                             data-type="${isVideo ? 'video' : 'image'}">
+                            ${isVideo ? 
+                                `<video src="${media}" style="width: 100%; height: 70px; object-fit: cover;"></video>
+                                 <div class="video-badge">VIDEO</div>` 
+                                : 
+                                `<img src="${media}" alt="Thumbnail ${index + 1}" style="width: 100%; height: 70px; object-fit: cover;">`
+                            }
+                        </div>
+                        `;
+                    }).join('')}
+                </div>
+                ` : ''}
+            </div>
+
+            <!-- Property Description -->
+            <div class="property-section">
+                <h3 class="section-title">
+                    <i class="fas fa-align-left"></i>
+                    Property Description
+                </h3>
+                <div class="property-description">
+                    ${listing.description || 'No description available.'}
+                </div>
+            </div>
+
+            <!-- Basic Information -->
+            <div class="property-section">
+                <h3 class="section-title">
+                    <i class="bi bi-info-circle"></i>
+                    Basic Information
+                </h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-icon"><i class="bi bi-buildings"></i></div>
+                        <div class="info-content">
+                            <div class="info-label">Property Category</div>
+                            <div class="info-value">${propertyCategory}</div>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="bi bi-house-door"></i></div>
+                        <div class="info-content">
+                            <div class="info-label">Property Type</div>
+                            <div class="info-value">${propertyType}</div>
+                        </div>
+                    </div>
+                    ${listing.furnishing ? `
+                    <div class="info-item">
+                        <div class="info-icon"><i class="bi bi-house-check"></i></div>
+                        <div class="info-content">
+                            <div class="info-label">Furnishing</div>
+                            <div class="info-value">${getFurnishingDisplay(listing.furnishing)}</div>
+                        </div>
+                    </div>
+                    ` : ''}
+                    ${listing.yearBuilt ? `
+                    <div class="info-item">
+                        <div class="info-icon"><i class="bi bi-calendar"></i></div>
+                        <div class="info-content">
+                            <div class="info-label">Year Built</div>
+                            <div class="info-value">${listing.yearBuilt}</div>
+                        </div>
+                    </div>
+                    ` : ''}
+                </div>
+            </div>
+
+            <!-- Sale or Lease Specific Information -->
+            ${listingType === 'sale' ? renderSalePropertyDetails(listing) : ''}
+            ${listingType === 'lease' ? renderLeasePropertyDetails(listing) : ''}
+
+            <!-- Property Features & Amenities -->
+            ${amenities.length > 0 ? `
+            <div class="property-section">
+                <h3 class="section-title">
+                    <i class="fas fa-star"></i>
+                    Features & Amenities
+                </h3>
+                <div class="amenities-grid">
+                    ${amenities.map(amenity => `
+                    <div class="amenity-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>${amenity}</span>
+                    </div>
+                    `).join('')}
+                </div>
+            </div>
+            ` : ''}
+        </div>
+
+        <!-- Sidebar Column -->
+        <div>
+            <!-- Contact Card -->
+            <div class="contact-card">
+                <h3 class="contact-header">
+                    <i class="fas fa-user-circle"></i>
+                    Contact ${userInfo.role === 'landlord' ? 'Owner' : 'Agent'}
+                </h3>
+                <div class="contact-info">
+                    <div class="contact-avatar">
+                        ${userInitials}
+                    </div>
+                    <div class="contact-details">
+                        <h4 class="contact-name">${userInfo.displayName}</h4>
+                        <p class="contact-role">${getRoleDisplayText(userInfo.role)}</p>
+                    </div>
+                </div>
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <div class="method-label">Email</div>
+                            <div class="method-value">${userInfo.email}</div>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <div class="method-label">Phone</div>
+                            <div class="method-value">${userInfo.phone}</div>
+                        </div>
+                    </div>
+                </div>
+                ${isLoggedIn ? `
+                <button class="action-button" id="contactOwnerBtn">
+                    <i class="fas fa-comment"></i>
+                    Contact ${userInfo.role === 'landlord' ? 'Owner' : 'Agent'}
+                </button>
+                ` : `
+                <button class="action-button" id="contactOwnerBtn" style="background: var(--secondary-gradient);">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Login to Contact
+                </button>
+                `}
+            </div>
+
+            <!-- Location Details -->
+            <div class="pricing-card" style="margin-top: 20px;">
+                <h3 class="pricing-title">
+                    <i class="bi bi-geo-alt"></i>
+                    Location Details
+                </h3>
+                <div class="pricing-details">
+                    <div class="pricing-item">
+                        <span class="pricing-label">Address</span>
+                        <span class="pricing-value" style="font-size: 14px; text-align: right;">${listing.address || 'Not specified'}</span>
+                    </div>
+                    <div class="pricing-item">
+                        <span class="pricing-label">City</span>
+                        <span class="pricing-value">${listing.city || 'Not specified'}</span>
+                    </div>
+                    <div class="pricing-item">
+                        <span class="pricing-label">Province</span>
+                        <span class="pricing-value">${listing.province || 'Not specified'}</span>
+                    </div>
+                    ${listing.latitude && listing.longitude ? `
+                    <div class="pricing-item">
+                        <span class="pricing-label">Coordinates</span>
+                        <span class="pricing-value" style="font-size: 12px;">
+                            ${listing.latitude.toFixed(6)}, ${listing.longitude.toFixed(6)}
+                        </span>
+                    </div>
+                    ` : ''}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Universal Calculator Widget -->
+    <div class="calculator-widget">
+        <div class="calculator-header">
+            <h3 id="calc-title" style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                <i class="fas fa-calculator"></i>
+                Payment Calculator
+            </h3>
+            <p id="calc-description" style="color: var(--text-light); font-size: 14px;">
+                Calculate your estimated monthly payments
+            </p>
+        </div>
+        
+        <div id="propertyCalculator">
+            <!-- Mortgage Calculator (For Sale) -->
+            <div class="calc-panel" id="calc-mortgage-panel" style="display: none;">
+                <div class="calc-input-group">
+                    <label>Property Price (₱)</label>
+                    <input type="number" id="calc-property-price" placeholder="0" min="0">
+                </div>
+                
+                <div class="calc-input-group">
+                    <label>Down Payment (%)</label>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <input type="range" id="calc-downpayment" min="0" max="100" value="20">
+                        <span id="downpayment-value" class="range-value">20%</span>
+                    </div>
+                    <div id="downpayment-amount" style="font-size: 13px; color: var(--text-light); margin-top: 5px;">Amount: ₱0</div>
+                </div>
+                
+                <div class="calc-input-group">
+                    <label>Loan Term</label>
+                    <select id="calc-loan-term">
+                        <option value="5">5 years (60 months)</option>
+                        <option value="10">10 years (120 months)</option>
+                        <option value="15" selected>15 years (180 months)</option>
+                        <option value="20">20 years (240 months)</option>
+                        <option value="25">25 years (300 months)</option>
+                        <option value="30">30 years (360 months)</option>
+                    </select>
+                </div>
+                
+                <div class="calc-input-group">
+                    <label>Interest Rate (%)</label>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <input type="range" id="calc-interest-rate" min="1" max="15" step="0.1" value="6.5">
+                        <span id="interest-rate-value" class="range-value">6.5%</span>
+                    </div>
+                </div>
+                
+                <button id="calc-mortgage-btn" class="calc-btn mortgage">
+                    Calculate Monthly Payment
+                </button>
+            </div>
+            
+            <!-- Rent Affordability Calculator (For Rent) -->
+            <div class="calc-panel" id="calc-rent-panel" style="display: none;">
+                <div class="calc-input-group">
+                    <label>Monthly Rent (₱)</label>
+                    <input type="number" id="calc-monthly-rent" placeholder="0" min="0">
+                </div>
+                
+                <div class="calc-input-group">
+                    <label>Your Monthly Income (₱)</label>
+                    <input type="number" id="calc-income" placeholder="0" min="0">
+                </div>
+                
+                <div class="calc-input-group">
+                    <label>Other Monthly Expenses (₱)</label>
+                    <input type="number" id="calc-expenses" placeholder="0" min="0" value="0">
+                </div>
+                
+                <button id="calc-rent-btn" class="calc-btn rent">
+                    Check Affordability
+                </button>
+            </div>
+            
+            <!-- Lease Calculator (For Lease) -->
+            <div class="calc-panel" id="calc-lease-panel" style="display: none;">
+                <div class="calc-input-group">
+                    <label>Annual Rent (₱)</label>
+                    <input type="number" id="calc-annual-rent" placeholder="0" min="0">
+                </div>
+                
+                <div class="calc-input-group">
+                    <label>Lease Term (years)</label>
+                    <select id="calc-lease-term">
+                        <option value="1">1 year</option>
+                        <option value="2">2 years</option>
+                        <option value="3" selected>3 years</option>
+                        <option value="5">5 years</option>
+                        <option value="10">10 years</option>
+                    </select>
+                </div>
+                
+                <div class="calc-input-group">
+                    <label>Annual Increase (%)</label>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <input type="range" id="calc-lease-increase" min="0" max="10" step="0.5" value="3">
+                        <span id="lease-increase-value" class="range-value">3.0%</span>
+                    </div>
+                </div>
+                
+                <button id="calc-lease-btn" class="calc-btn lease">
+                    Calculate Total Lease Cost
+                </button>
+            </div>
+        </div>
+        
+        <!-- Results Container -->
+        <div class="calc-results" id="calc-results">
+            <h4>Calculation Results</h4>
+            <div id="calc-results-content" class="calc-results-content"></div>
+        </div>
+    </div>
+
+    <!-- Map Section -->
+    ${listing.latitude && listing.longitude ? `
+    <div class="property-section">
+        <h3 class="section-title">
+            <i class="fas fa-map-marked-alt"></i>
+            Property Location
+        </h3>
+        <div id="propertyMap"></div>
+    </div>
+    ` : ''}
+
+    <!-- Action Buttons -->
+    <div class="property-actions">
+        ${isLoggedIn ? `
+        <button class="action-btn-large contact-btn" id="contactBtnBottom">
+            <i class="fas fa-phone"></i> Contact Agent
+        </button>
+        <button class="action-btn-large save-btn" id="saveBtnBottom">
+            <i class="far fa-heart"></i> Save Property
+        </button>
+        ` : `
+        <button class="action-btn-large contact-btn" id="contactBtnBottom" style="background: var(--secondary-gradient);">
+            <i class="fas fa-sign-in-alt"></i> Login to Contact
+        </button>
+        <button class="action-btn-large save-btn" id="saveBtnBottom" style="border-color: var(--secondary); color: var(--secondary);">
+            <i class="fas fa-sign-in-alt"></i> Login to Save
+        </button>
+        `}
+    </div>`;
+    
+    container.innerHTML = html;
+    
+    // Initialize components
+    initializeMediaNavigation(allMedia);
+    setupButtonEventListeners(listing, userInfo);
+    
+    // Only initialize save button state for logged in users
+    if (!isGuest) {
+        updateSaveButtonState();
+    }
+    
+    initializePropertyCalculator(listing);
+
+    // Preload video if first media is video
+    if (isFirstVideo) {
+        const video = document.getElementById('mainPropertyVideo');
+        video.src = firstMedia;
+    }
+
+    // Load Google Maps
+    if (listing.latitude && listing.longitude) {
+        setTimeout(async () => {
+            try {
+                await loadGoogleMapsAPI();
+                initPropertyMap(listing.latitude, listing.longitude, listing.title);
+            } catch (error) {
+                console.error("Failed to load Google Maps:", error);
+                showMapPlaceholder(listing.latitude, listing.longitude);
+            }
+        }, 500);
+    }
+}
+
+function setupButtonEventListeners(listing, userInfo) {
+    // Check if user is guest
+    if (isGuest) {
+        // Setup guest button handlers
+        document.querySelectorAll('#savePropertyBtn, #saveBtnBottom').forEach(btn => {
+            if (btn) {
+                btn.addEventListener('click', function() {
+                    alert('Please login to save properties to your favorites.');
+                    window.location.href = '../login.html?redirect=' + encodeURIComponent(window.location.href);
+                });
+            }
+        });
+        
+        document.querySelectorAll('#contactOwnerBtn, #contactBtnBottom').forEach(btn => {
+            if (btn) {
+                btn.addEventListener('click', function() {
+                    alert('Please login to contact the property agent/owner.');
+                    window.location.href = '../login.html?redirect=' + encodeURIComponent(window.location.href);
+                });
+            }
+        });
+    } else {
+        // Setup logged-in user button handlers
+        document.querySelectorAll('#contactOwnerBtn, #contactBtnBottom').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const userType = userInfo.role === 'landlord' ? 'Property Owner' : 'Broker';
+                alert(`Contact Information:\n\n${userType}: ${userInfo.displayName}\nEmail: ${userInfo.email}\nPhone: ${userInfo.phone}\n\nYou can contact this ${userType.toLowerCase()} for more information about the property.`);
+            });
+        });
+
+        // Save buttons
+        document.querySelectorAll('#savePropertyBtn, #saveBtnBottom').forEach(btn => {
+            btn.addEventListener('click', function() {
+                toggleSaveProperty();
+            });
+        });
+    }
+}
+
+async function updateSaveButtonState() {
+    if (!propertyId || isGuest) return;
+
+    const currentUser = auth.currentUser;
+    if (!currentUser) {
+        updateSaveButtonText('Login to Save');
+        return;
+    }
+    
+    try {
+        const savedRef = collection(db, 'savedProperties');
+        const q = query(savedRef,
+            where('userId', '==', currentUser.uid),
+            where('propertyId', '==', propertyId)
+        );
+        const snapshot = await getDocs(q);
+        const isSaved = !snapshot.empty;
+        updateSaveButtonText(isSaved ? 'Saved' : 'Save Property', isSaved);
+    } catch (error) {
+        console.error('Error checking saved status:', error);
+        updateSaveButtonText('Error');
+    }
+}
+
+function updateSaveButtonText(text, isSaved = false) {
+    document.querySelectorAll('#savePropertyBtn, #saveBtnBottom').forEach(btn => {
+        if (isSaved) {
+            btn.innerHTML = '<i class="fas fa-heart"></i> Saved';
+            btn.style.background = 'var(--success)';
+            btn.style.color = 'white';
+        } else {
+            if (text === 'Login to Save') {
+                btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login to Save';
+            } else {
+                btn.innerHTML = '<i class="far fa-heart"></i> ' + text;
+            }
+            btn.style.background = '';
+            btn.style.color = '';
+        }
+    });
+}
+
+async function toggleSaveProperty() {
+    if (!propertyId || isGuest) return;
+
+    const currentUser = auth.currentUser;
+    if (!currentUser) {
+        alert('Please login to save properties');
+        return;
+    }
+
+    try {
+        const savedRef = collection(db, 'savedProperties');
+        const q = query(savedRef,
+            where('userId', '==', currentUser.uid),
+            where('propertyId', '==', propertyId)
+        );
+        const snapshot = await getDocs(q);
+
+        if (!snapshot.empty) {
+            await deleteDoc(snapshot.docs[0].ref);
+            showSaveToast('Removed from saved', false);
+            updateSaveButtonText('Save Property', false);
+        } else {
+            await addDoc(collection(db, 'savedProperties'), {
+                userId: currentUser.uid,
+                propertyId: propertyId,
+                savedAt: new Date(),
+                createdAt: new Date()
+            });
+            showSaveToast('Property saved!', false);
+            updateSaveButtonText('Saved', true);
+        }
+    } catch (error) {
+        console.error('Error toggling save:', error);
+        showSaveToast('Error saving property', true);
+    }
+}
+
+function showSaveToast(message, isError = false) {
+    const toast = document.createElement('div');
+    toast.textContent = message;
+    toast.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${isError ? 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)' : 'var(--secondary-gradient)'};
+        color: white;
+        padding: 12px 24px;
+        border-radius: var(--border-radius-sm);
+        z-index: 9999;
+        font-weight: 500;
+        box-shadow: var(--card-hover-shadow);
+        animation: slideIn 0.3s ease;
+    `;
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        toast.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
+}
+
+function displayError(message) {
+    const container = document.getElementById('propertyDetailsContainer');
+    
+    // Use currentUserRole to determine back link
+    let backLink = 'buyer_dashboard.html';
+    let backText = 'Back to Properties';
+    
+    if (currentUserRole === 'agent') {
+        backLink = '../agent/agent_dashboard.html';
+        backText = 'Back to Agent Dashboard';
+    } else if (currentUserRole === 'broker') {
+        backLink = '../broker/broker_dashboard.html';
+        backText = 'Back to Broker Dashboard';
+    } else if (currentUserRole === 'landlord') {
+        backLink = '../landlord/landlord_dashboard.html';
+        backText = 'Back to Landlord Dashboard';
+    } else if (currentUserRole === 'admin') {
+        backLink = '../admin/admin_dashboard.html';
+        backText = 'Back to Admin Dashboard';
+    }
+    
+    container.innerHTML = `
+    <div class="error-state">
+        <div class="error-icon">⚠️</div>
+        <h3 style="color: var(--danger); margin-bottom: 15px;">${message}</h3>
+        <p style="color: var(--text-light); margin-bottom: 30px;">Please try again or go back to the dashboard.</p>
+        <a href="${backLink}" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            ${backText}
+        </a>
+    </div>`;
+}
+
+// Function to get user role from Firestore
+async function getUserRole(userId) {
+    try {
+        const userDoc = await getDoc(doc(db, "users", userId));
+        if (userDoc.exists()) {
+            const userData = userDoc.data();
+            return userData.role || userData.userType || 'user';
+        } else {
+            // Check brokers collection
+            const brokerDoc = await getDoc(doc(db, "brokers", userId));
+            if (brokerDoc.exists()) {
+                const brokerData = brokerDoc.data();
+                return brokerData.role || 'broker';
+            }
+        }
+    } catch (error) {
+        console.error("Error getting user role:", error);
+    }
+    return 'user'; // Default role
+}
+
+// Function to initialize user features
+function initializeUserFeatures() {
+    // Update save button state
+    updateSaveButtonState();
+}
+
+// Function to initialize guest view
+function initializeGuestView() {
+    isGuest = true;
+    // Update UI for guest users
+    updateUIForGuests();
+    
+    // Guest users can still use calculator
+    if (currentListing) {
+        initializePropertyCalculator(currentListing);
+    }
+}
+
+// --- INITIALIZATION ---
+
+// Check authentication and load property details
+onAuthStateChanged(auth, async (user) => {
+    // Always load property details first (for both guests and logged-in users)
+    await loadPropertyDetails();
+    
+    if (user) {
+        // User is logged in - load full functionality
+        isGuest = false;
+        try {
+            // Get user role
+            currentUserRole = await getUserRole(user.uid);
+            console.log(`👤 User role detected: ${currentUserRole}`);
+            
+            // Load appropriate sidebar
+            await window.loadSidebarBasedOnRole(currentUserRole);
+            
+            // Update back button based on role
+            window.updateBackButton(currentUserRole);
+            
+            // Initialize user-specific features
+            initializeUserFeatures();
+        } catch (error) {
+            console.error("Error loading user data:", error);
+            // Fallback to guest view
+            initializeGuestView();
+        }
+    } else {
+        // Guest user - load limited functionality
+        console.log("👤 Guest user - loading limited view");
+        isGuest = true;
+        
+        // Load default sidebar for guests
+        await window.loadDefaultSidebar();
+        
+        // Update back button for guests
+        window.updateGuestBackButton();
+        
+        // Initialize guest view
+        initializeGuestView();
+    }
+});
+
+// Export for global use if needed
+window.loadSidebarBasedOnRole = loadSidebarBasedOnRole;
+window.updateBackButton = updateBackButton;
+window.loadDefaultSidebar = loadDefaultSidebar;
+window.updateGuestBackButton = updateGuestBackButton;
+window.updateUIForGuests = updateUIForGuests;
+</script>
+
+</body>
+</html>

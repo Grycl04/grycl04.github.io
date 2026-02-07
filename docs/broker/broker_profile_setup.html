@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Setup Broker Profile - BahAI Real Estate</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    :root {
+      --primary: #0b2e52;
+      --primary-dark: #001F3F;
+      --primary-light: #002f3f;
+      --secondary: #1976d2;
+      --accent: #ff9800;
+      --success: #10b981;
+      --danger: #ef4444;
+      --text-dark: #1a202c;
+      --text-light: #718096;
+      --bg-light: #f8fafc;
+      --bg-white: #ffffff;
+      --border: #e2e8f0;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      color: var(--text-dark);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Mobile Menu Toggle */
+    .mobile-menu-toggle {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1001;
+      background: var(--primary);
+      color: white;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .container {
+      flex: 1;
+      margin-left: 280px;
+      padding: 30px;
+      transition: margin-left 0.3s ease;
+    }
+
+    /* Back Button */
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow);
+      text-decoration: none;
+      margin-bottom: 30px;
+    }
+
+    .back-button:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    }
+
+    /* Page Header */
+    .page-header {
+      margin-bottom: 30px;
+    }
+
+    .page-header h1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-header p {
+      color: var(--text-light);
+      font-size: 16px;
+    }
+
+    /* Setup Container */
+    .setup-container {
+      background: var(--bg-white);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .setup-header {
+      padding: 30px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      text-align: center;
+    }
+
+    .setup-header h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      color: white;
+      -webkit-background-clip: initial;
+      -webkit-text-fill-color: initial;
+      background-clip: initial;
+    }
+
+    .setup-header p {
+      opacity: 0.9;
+      font-size: 16px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .setup-progress {
+      padding: 25px 30px;
+      background: var(--bg-light);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .progress-steps {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .progress-steps::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--border);
+      z-index: 1;
+    }
+
+    .step {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--bg-white);
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: var(--text-light);
+      transition: all 0.3s ease;
+    }
+
+    .step.active .step-circle {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+
+    .step.completed .step-circle {
+      background: var(--success);
+      border-color: var(--success);
+      color: white;
+    }
+
+    .step-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-light);
+    }
+
+    .step.active .step-label {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .step.completed .step-label {
+      color: var(--success);
+    }
+
+    /* Form Container */
+    .setup-form {
+      padding: 30px;
+    }
+
+    .form-section {
+      margin-bottom: 40px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .section-header i {
+      font-size: 24px;
+      color: var(--primary);
+    }
+
+    .section-header h2 {
+      font-size: 20px;
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--text-dark);
+      font-size: 14px;
+    }
+
+    .required::after {
+      content: " *";
+      color: var(--danger);
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      background: var(--bg-white);
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(11, 46, 82, 0.1);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-help {
+      margin-top: 6px;
+      font-size: 13px;
+      color: var(--text-light);
+    }
+
+    /* Photo Upload */
+    .photo-upload-section {
+      margin-top: 30px;
+    }
+
+    .photo-upload-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .photo-upload-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .photo-preview {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: var(--bg-light);
+      border: 2px dashed var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .photo-preview:hover {
+      border-color: var(--primary);
+      background: #f0f7ff;
+    }
+
+    .photo-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-light);
+    }
+
+    .photo-placeholder i {
+      font-size: 36px;
+    }
+
+    .upload-btn {
+      padding: 10px 20px;
+      background: var(--bg-light);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: var(--text-dark);
+    }
+
+    .upload-btn:hover {
+      background: var(--border);
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    /* Tags Input */
+    .tags-input-container {
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      min-height: 52px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .tags-input {
+      border: none;
+      outline: none;
+      flex: 1;
+      min-width: 120px;
+      padding: 4px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+    }
+
+    .tag {
+      background: var(--primary);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500;
+    }
+
+    .tag-remove {
+      cursor: pointer;
+      opacity: 0.8;
+    }
+
+    .tag-remove:hover {
+      opacity: 1;
+    }
+
+    /* Social Media Inputs */
+    .social-input-group {
+      display: flex;
+      align-items: center;
+    }
+
+    .social-prefix {
+      background: var(--bg-light);
+      padding: 12px 16px;
+      border: 2px solid var(--border);
+      border-right: none;
+      border-radius: 10px 0 0 10px;
+      color: var(--text-light);
+      white-space: nowrap;
+      font-size: 14px;
+    }
+
+    .social-input {
+      border-radius: 0 10px 10px 0 !important;
+    }
+
+    /* Checkbox Group */
+    .checkbox-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .checkbox-item input {
+      width: auto;
+    }
+
+    /* Form Actions */
+    .form-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 30px;
+      margin-top: 40px;
+      border-top: 2px solid var(--border);
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      border: none;
+      font-family: inherit;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    }
+
+    .btn-secondary {
+      background: var(--bg-light);
+      color: var(--text-dark);
+      border: 2px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--border);
+    }
+
+    .btn-success {
+      background: var(--success);
+      color: white;
+    }
+
+    .btn-success:hover {
+      background: #0da271;
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      z-index: 10000;
+      font-weight: 500;
+      box-shadow: var(--shadow-lg);
+      animation: slideIn 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .toast-success {
+      background: var(--success);
+    }
+
+    .toast-error {
+      background: var(--danger);
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(-50%) translateY(100%); opacity: 0; }
+      to { transform: translateX(-50%) translateY(0); opacity: 1; }
+    }
+
+    @keyframes slideOut {
+      from { transform: translateX(-50%) translateY(0); opacity: 1; }
+      to { transform: translateX(-50%) translateY(100%); opacity: 0; }
+    }
+
+    /* Loading Overlay */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      backdrop-filter: blur(5px);
+    }
+
+    .spinner {
+      border: 4px solid var(--bg-light);
+      border-top: 4px solid var(--primary);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Success State */
+    .success-state {
+      text-align: center;
+      padding: 60px 30px;
+    }
+
+    .success-icon {
+      font-size: 64px;
+      color: var(--success);
+      margin-bottom: 20px;
+    }
+
+    .success-state h2 {
+      font-size: 28px;
+      margin-bottom: 15px;
+      color: var(--text-dark);
+      font-weight: 600;
+    }
+
+    .success-state p {
+      color: var(--text-light);
+      max-width: 500px;
+      margin: 0 auto 30px;
+      line-height: 1.6;
+    }
+
+    /* Preview Card */
+    .preview-card {
+      background: var(--bg-light);
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      margin-top: 20px;
+    }
+
+    .preview-header {
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--text-dark);
+    }
+
+    .preview-content {
+      color: var(--text-light);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .container {
+        margin-left: 0;
+        padding: 25px;
+      }
+      
+      .mobile-menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .progress-steps {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+      }
+      
+      .progress-steps::before {
+        display: none;
+      }
+      
+      .step {
+        flex-direction: row;
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+      
+      .page-header h1 {
+        font-size: 24px;
+      }
+      
+      .setup-header {
+        padding: 20px;
+      }
+      
+      .setup-header h1 {
+        font-size: 24px;
+      }
+      
+      .setup-form {
+        padding: 20px;
+      }
+      
+      .form-actions {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .form-actions .action-btn {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .success-state {
+        padding: 40px 20px;
+      }
+      
+      .success-state .action-btn {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+</style>
+</head>
+<body>
+<!-- Mobile Menu Toggle -->
+<button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+
+<!-- Include Sidebar -->
+<div id="sidebar-container"></div>
+
+<!-- Main Content -->
+<div class="container">
+  <!-- Back Button -->
+  <div>
+    <a href="profile.html" class="back-button">
+      <i class="fas fa-arrow-left"></i> Back to Profile
+    </a>
+  </div>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1>Setup Broker Profile</h1>
+    <p>Complete your profile to showcase your expertise and attract more clients</p>
+  </div>
+
+  <!-- Setup Container -->
+  <div class="setup-container">
+    <!-- Header -->
+    <div class="setup-header">
+      <h1>Complete Your Profile</h1>
+      <p>A complete profile increases your visibility by 60% and helps attract more clients</p>
+    </div>
+
+    <!-- Progress Steps -->
+    <div class="setup-progress">
+      <div class="progress-steps">
+        <div class="step active" id="step1">
+          <div class="step-circle">1</div>
+          <div class="step-label">Basic Info</div>
+        </div>
+        <div class="step" id="step2">
+          <div class="step-circle">2</div>
+          <div class="step-label">Professional Details</div>
+        </div>
+        <div class="step" id="step3">
+          <div class="step-circle">3</div>
+          <div class="step-label">Specializations</div>
+        </div>
+        <div class="step" id="step4">
+          <div class="step-circle">4</div>
+          <div class="step-label">Contact & Social</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <div class="setup-form" id="setupForm">
+      <!-- Step 1: Basic Information -->
+      <div class="form-section" id="step1Section">
+        <div class="section-header">
+          <i class="fas fa-user"></i>
+          <h2>Basic Information</h2>
+        </div>
+
+        <div class="photo-upload-section">
+          <label>Profile Photos <span class="required">*</span></label>
+          <div class="photo-upload-container">
+            <div class="photo-upload-item">
+              <div class="photo-preview" id="profilePhotoPreview" onclick="document.getElementById('profilePhotoInput').click()">
+                <div class="photo-placeholder">
+                  <i class="fas fa-user"></i>
+                  <span>Profile Photo</span>
+                </div>
+              </div>
+              <input type="file" id="profilePhotoInput" accept="image/*" onchange="previewImage(event, 'profilePhotoPreview')">
+              <button class="upload-btn" onclick="document.getElementById('profilePhotoInput').click()">Upload Photo</button>
+            </div>
+            <div class="photo-upload-item">
+              <div class="photo-preview" id="coverPhotoPreview" onclick="document.getElementById('coverPhotoInput').click()">
+                <div class="photo-placeholder">
+                  <i class="fas fa-image"></i>
+                  <span>Cover Photo</span>
+                </div>
+              </div>
+              <input type="file" id="coverPhotoInput" accept="image/*" onchange="previewImage(event, 'coverPhotoPreview')">
+              <button class="upload-btn" onclick="document.getElementById('coverPhotoInput').click()">Upload Cover</button>
+            </div>
+          </div>
+          <div class="form-help">Profile photo is required. Recommended: Profile photo (400x400px), Cover photo (1200x400px). Max file size: 5MB</div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="fullName" class="required">Full Name</label>
+            <input type="text" id="fullName" placeholder="Enter your full name" required>
+          </div>
+          <div class="form-group">
+            <label for="title" class="required">Professional Title</label>
+            <input type="text" id="title" placeholder="e.g., Licensed Real Estate Broker" required>
+          </div>
+          <div class="form-group">
+            <label for="location" class="required">Location</label>
+            <input type="text" id="location" placeholder="e.g., Manila, Philippines" required>
+          </div>
+          <div class="form-group">
+            <label for="email" class="required">Email Address</label>
+            <input type="email" id="email" placeholder="your.email@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="phone" class="required">Phone Number</label>
+            <input type="tel" id="phone" placeholder="+63 912 345 6789" required>
+          </div>
+          <div class="form-group">
+            <label for="yearsExperience">Years of Experience</label>
+            <input type="number" id="yearsExperience" placeholder="5" min="0" max="50">
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Professional Details -->
+      <div class="form-section" id="step2Section" style="display: none;">
+        <div class="section-header">
+          <i class="fas fa-briefcase"></i>
+          <h2>Professional Details</h2>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="licenseNumber">License Number</label>
+            <input type="text" id="licenseNumber" placeholder="PRC-123456">
+            <div class="form-help">Your official real estate license number (optional)</div>
+          </div>
+          <div class="form-group">
+            <label for="profession">Profession</label>
+            <input type="text" id="profession" placeholder="Real Estate Broker">
+          </div>
+          <div class="form-group">
+            <label for="languages">Languages Spoken</label>
+            <input type="text" id="languages" placeholder="English, Filipino, Spanish">
+            <div class="form-help">Separate languages with commas</div>
+          </div>
+          <div class="form-group">
+            <label for="availability">Availability</label>
+            <input type="text" id="availability" placeholder="Mon-Fri: 9AM-6PM, Sat: 10AM-2PM">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="bio">Professional Bio</label>
+          <textarea id="bio" placeholder="Tell potential clients about your experience, approach, and what makes you different..."></textarea>
+          <div class="form-help">Write a compelling bio that highlights your expertise and achievements</div>
+        </div>
+
+        <div class="preview-card">
+          <div class="preview-header">Bio Preview:</div>
+          <div class="preview-content" id="bioPreview">Your bio will appear here...</div>
+        </div>
+      </div>
+
+      <!-- Step 3: Specializations -->
+      <div class="form-section" id="step3Section" style="display: none;">
+        <div class="section-header">
+          <i class="fas fa-star"></i>
+          <h2>Specializations</h2>
+        </div>
+
+        <div class="form-group">
+          <label for="propertyTypesInput">Property Types</label>
+          <div class="tags-input-container" id="propertyTypesContainer">
+            <input type="text" id="propertyTypesInput" class="tags-input" placeholder="Type and press Enter...">
+          </div>
+          <div class="form-help">Add property types you specialize in (e.g., Residential, Commercial, Luxury, Condominium)</div>
+        </div>
+
+        <div class="form-group">
+          <label for="serviceAreasInput">Service Areas</label>
+          <div class="tags-input-container" id="serviceAreasContainer">
+            <input type="text" id="serviceAreasInput" class="tags-input" placeholder="Type and press Enter...">
+          </div>
+          <div class="form-help">Add cities or areas where you provide services</div>
+        </div>
+
+        <div class="form-group">
+          <label>Services Offered</label>
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input type="checkbox" id="serviceBuy" value="Property Buying">
+              <label for="serviceBuy">Property Buying</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="serviceSell" value="Property Selling">
+              <label for="serviceSell">Property Selling</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="serviceRent" value="Property Rental">
+              <label for="serviceRent">Property Rental</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="serviceInvest" value="Investment Properties">
+              <label for="serviceInvest">Investment Properties</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="serviceCommercial" value="Commercial Real Estate">
+              <label for="serviceCommercial">Commercial Real Estate</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="serviceLuxury" value="Luxury Properties">
+              <label for="serviceLuxury">Luxury Properties</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="serviceConsult" value="Real Estate Consulting">
+              <label for="serviceConsult">Real Estate Consulting</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="serviceLegal" value="Legal Assistance">
+              <label for="serviceLegal">Legal Assistance</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4: Contact & Social Media -->
+      <div class="form-section" id="step4Section" style="display: none;">
+        <div class="section-header">
+          <i class="fas fa-share-alt"></i>
+          <h2>Contact & Social Media</h2>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="website">Website</label>
+            <input type="url" id="website" placeholder="https://yourwebsite.com">
+          </div>
+          <div class="form-group">
+            <label for="facebook">Facebook</label>
+            <div class="social-input-group">
+              <span class="social-prefix">facebook.com/</span>
+              <input type="text" id="facebook" class="social-input" placeholder="yourusername">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="twitter">Twitter</label>
+            <div class="social-input-group">
+              <span class="social-prefix">twitter.com/</span>
+              <input type="text" id="twitter" class="social-input" placeholder="yourusername">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="linkedin">LinkedIn</label>
+            <div class="social-input-group">
+              <span class="social-prefix">linkedin.com/in/</span>
+              <input type="text" id="linkedin" class="social-input" placeholder="yourusername">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="instagram">Instagram</label>
+            <div class="social-input-group">
+              <span class="social-prefix">instagram.com/</span>
+              <input type="text" id="instagram" class="social-input" placeholder="yourusername">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="whatsapp">WhatsApp Number</label>
+            <input type="tel" id="whatsapp" placeholder="+63 912 345 6789">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Contact Preferences</label>
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input type="checkbox" id="prefEmail" checked>
+              <label for="prefEmail">Email</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="prefPhone" checked>
+              <label for="prefPhone">Phone Calls</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="prefWhatsApp">
+              <label for="prefWhatsApp">WhatsApp</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="prefSMS">
+              <label for="prefSMS">SMS/Text</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="form-actions">
+        <button class="action-btn btn-secondary" id="prevBtn" onclick="prevStep()" style="display: none;">
+          <i class="fas fa-arrow-left"></i> Previous
+        </button>
+        <div style="margin-left: auto; display: flex; gap: 10px;">
+          <button class="action-btn btn-secondary" onclick="saveAsDraft()">
+            <i class="far fa-save"></i> Save Draft
+          </button>
+          <button class="action-btn btn-primary" id="nextBtn" onclick="nextStep()">
+            Next <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success State (Hidden by default) -->
+    <div id="successState" class="success-state" style="display: none;">
+      <div class="success-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h2>Profile Setup Complete!</h2>
+      <p>Your broker profile has been successfully saved and published. You can now start receiving inquiries from potential clients.</p>
+      <div style="display: flex; gap: 15px; justify-content: center; margin-top: 30px; flex-wrap: wrap;">
+        <a href="broker_dashboard.html" class="action-btn btn-secondary">
+          <i class="fas fa-tachometer-alt"></i> Go to Dashboard
+        </a>
+        <a href="profile.html" class="action-btn btn-primary" id="viewProfileSuccessBtn">
+          <i class="fas fa-eye"></i> View Profile
+        </a>
+        <button class="action-btn btn-success" onclick="addFirstProperty()">
+          <i class="fas fa-plus"></i> Add First Property
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Sidebar Loader Script -->
+<script src="../sidebar-user.js"></script>
+<script>
+// Mobile menu functionality
+document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar) {
+        sidebar.style.transform = sidebar.style.transform === 'translateX(0px)' ? 
+            'translateX(-100%)' : 'translateX(0px)';
+    }
+});
+
+// Load sidebar
+fetch('sidebar.html')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to load sidebar: ' + response.status);
+        }
+        return response.text();
+    })
+    .then(html => {
+        document.getElementById('sidebar-container').innerHTML = html;
+        if (typeof window.updateSidebarUserProfile === 'function') window.updateSidebarUserProfile();
+        // Highlight active link
+        const links = document.querySelectorAll('.sidebar-link');
+        links.forEach(link => {
+            if (link.getAttribute('href') === 'broker_profile_setup.html') {
+                link.classList.add('active');
+            }
+        });
+        // Setup logout button
+        setupLogoutButton();
+    })
+    .catch(error => {
+        console.error('Error loading sidebar:', error);
+        document.getElementById('sidebar-container').innerHTML = 
+            '<div class="sidebar" style="padding: 20px; background: var(--bg-light); color: #ef4444;">' +
+            '<p>Unable to load navigation. Please refresh the page.</p>' +
+            '</div>';
+    });
+
+// Simple logout function
+function setupLogoutButton() {
+    const logoutBtn = document.getElementById("logoutBtn");
+    if (!logoutBtn) {
+        console.warn("Logout button not found, retrying...");
+        setTimeout(setupLogoutButton, 100);
+        return;
+    }
+
+    // Remove existing event listeners
+    const newLogoutBtn = logoutBtn.cloneNode(true);
+    logoutBtn.parentNode.replaceChild(newLogoutBtn, logoutBtn);
+
+    // Add new event listener
+    newLogoutBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (confirm("Are you sure you want to log out?")) {
+            // Check if performLogout function exists (from main script)
+            if (typeof window.performLogout === 'function') {
+                window.performLogout();
+            } else {
+                // Fallback to simple redirect
+                window.location.href = "login.html";
+            }
+        }
+    });
+
+    console.log('Logout button initialized successfully');
+}
+</script>
+
+<!-- Firebase -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+import { 
+  getAuth, 
+  onAuthStateChanged 
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+import { 
+  getFirestore, 
+  doc, 
+  setDoc,
+  getDoc,
+  updateDoc,
+  serverTimestamp 
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+import { 
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-storage.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCIfzneDzWVveG8p_0mywoA9D9F5AyzZX4",
+  authDomain: "bahai-1b76d.firebaseapp.com",
+  projectId: "bahai-1b76d",
+  storageBucket: "bahai-1b76d.firebasestorage.app",
+  messagingSenderId: "646878644941",
+  appId: "1:646878644941:web:5b4ccc3412250337587784"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+const storage = getStorage(app);
+
+let currentUser = null;
+let currentStep = 1;
+let profileData = {};
+let propertyTags = [];
+let serviceAreaTags = [];
+let servicesOffered = [];
+let profilePhotoFile = null;
+let coverPhotoFile = null;
+
+// ==================== INITIALIZATION ====================
+document.addEventListener('DOMContentLoaded', function() {
+  // Setup bio preview
+  const bioInput = document.getElementById('bio');
+  const bioPreview = document.getElementById('bioPreview');
+  
+  bioInput.addEventListener('input', function() {
+    bioPreview.textContent = bioInput.value || 'Your bio will appear here...';
+  });
+
+  // Setup tags input
+  setupTagsInput('propertyTypesInput', 'propertyTypesContainer', propertyTags);
+  setupTagsInput('serviceAreasInput', 'serviceAreasContainer', serviceAreaTags);
+
+  // Load existing profile data
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      currentUser = user;
+      
+      // Update the "View Profile" button in success state
+      const viewProfileSuccessBtn = document.getElementById('viewProfileSuccessBtn');
+      if (viewProfileSuccessBtn) {
+        viewProfileSuccessBtn.href = `profile.html?id=${user.uid}`;
+      }
+      
+      await loadExistingProfile();
+    } else {
+      // Redirect to login if not authenticated
+      window.location.href = 'login.html?redirect=broker_profile_setup.html';
+    }
+  });
+});
+
+// ==================== TAGS MANAGEMENT ====================
+function setupTagsInput(inputId, containerId, tagsArray) {
+  const input = document.getElementById(inputId);
+  const container = document.getElementById(containerId);
+
+  input.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter' && input.value.trim()) {
+      e.preventDefault();
+      const tag = input.value.trim();
+      if (!tagsArray.includes(tag)) {
+        tagsArray.push(tag);
+        updateTagsDisplay(containerId, tagsArray);
+      }
+      input.value = '';
+    }
+  });
+
+  input.addEventListener('blur', function() {
+    if (input.value.trim()) {
+      const tag = input.value.trim();
+      if (!tagsArray.includes(tag)) {
+        tagsArray.push(tag);
+        updateTagsDisplay(containerId, tagsArray);
+      }
+      input.value = '';
+    }
+  });
+}
+
+function updateTagsDisplay(containerId, tagsArray) {
+  const container = document.getElementById(containerId);
+  const tagsHTML = tagsArray.map(tag => `
+    <span class="tag">
+      ${tag.replace(/'/g, '&apos;')}
+      <span class="tag-remove" onclick="removeTag('${containerId}', '${tag.replace(/'/g, "\\'")}')">&times;</span>
+    </span>
+  `).join('');
+  
+  const input = container.querySelector('.tags-input');
+  container.innerHTML = tagsHTML + input.outerHTML;
+  
+  // Re-attach event listeners
+  const newInput = container.querySelector('.tags-input');
+  if (newInput && containerId === 'propertyTypesContainer') {
+    newInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter' && newInput.value.trim()) {
+        e.preventDefault();
+        const tag = newInput.value.trim();
+        if (!propertyTags.includes(tag)) {
+          propertyTags.push(tag);
+          updateTagsDisplay(containerId, propertyTags);
+        }
+        newInput.value = '';
+      }
+    });
+  } else if (newInput && containerId === 'serviceAreasContainer') {
+    newInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter' && newInput.value.trim()) {
+        e.preventDefault();
+        const tag = newInput.value.trim();
+        if (!serviceAreaTags.includes(tag)) {
+          serviceAreaTags.push(tag);
+          updateTagsDisplay(containerId, serviceAreaTags);
+        }
+        newInput.value = '';
+      }
+    });
+  }
+}
+
+window.removeTag = function(containerId, tagToRemove) {
+  let tagsArray;
+  if (containerId === 'propertyTypesContainer') {
+    tagsArray = propertyTags;
+  } else {
+    tagsArray = serviceAreaTags;
+  }
+  
+  const index = tagsArray.indexOf(tagToRemove);
+  if (index > -1) {
+    tagsArray.splice(index, 1);
+    updateTagsDisplay(containerId, tagsArray);
+  }
+}
+
+// ==================== IMAGE HANDLING ====================
+window.previewImage = function(event, previewId) {
+  const input = event.target;
+  const preview = document.getElementById(previewId);
+  
+  if (input.files && input.files[0]) {
+    const file = input.files[0];
+    
+    // Validate file size (5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      showToast('File size must be less than 5MB', 'error');
+      input.value = '';
+      resetPhotoPreview(previewId);
+      return;
+    }
+    
+    // Validate file type
+    const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+    if (!validTypes.includes(file.type)) {
+      showToast('File must be an image (JPEG, PNG, GIF, WebP)', 'error');
+      input.value = '';
+      resetPhotoPreview(previewId);
+      return;
+    }
+    
+    const reader = new FileReader();
+    
+    reader.onload = function(e) {
+      preview.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+      
+      // Store the file for later upload
+      if (previewId === 'profilePhotoPreview') {
+        profilePhotoFile = file;
+      } else if (previewId === 'coverPhotoPreview') {
+        coverPhotoFile = file;
+      }
+    };
+    
+    reader.onerror = function() {
+      showToast('Error reading file', 'error');
+      resetPhotoPreview(previewId);
+    };
+    
+    reader.readAsDataURL(file);
+  } else {
+    resetPhotoPreview(previewId);
+  }
+};
+
+function resetPhotoPreview(previewId) {
+  const preview = document.getElementById(previewId);
+  const type = previewId.includes('profile') ? 'Profile' : 'Cover';
+  preview.innerHTML = `
+    <div class="photo-placeholder">
+      <i class="fas fa-${previewId.includes('profile') ? 'user' : 'image'}"></i>
+      <span>${type} Photo</span>
+    </div>
+  `;
+}
+
+// ==================== DATA LOADING ====================
+async function loadExistingProfile() {
+  try {
+    showLoading('Loading existing profile...');
+    
+    // First try brokers collection (primary)
+    try {
+      const brokerDoc = await getDoc(doc(db, "brokers", currentUser.uid));
+      if (brokerDoc.exists()) {
+        const data = brokerDoc.data();
+        console.log("Loaded from brokers collection:", data);
+        populateFormFields(data);
+        showToast('Loaded existing profile data', 'success');
+        hideLoading();
+        return;
+      }
+    } catch (error) {
+      console.log("Error loading from brokers:", error);
+    }
+    
+    // Then try users collection (secondary)
+    try {
+      const userDoc = await getDoc(doc(db, "users", currentUser.uid));
+      if (userDoc.exists()) {
+        const data = userDoc.data();
+        if (data.userType === 'broker' || data.title || data.licenseNumber) {
+          console.log("Loaded from users collection:", data);
+          populateFormFields(data);
+          showToast('Loaded existing profile data', 'success');
+          hideLoading();
+          return;
+        }
+      }
+    } catch (error) {
+      console.log("Error loading from users:", error);
+    }
+    
+    // If no existing profile, pre-fill with auth data
+    if (currentUser.email) {
+      document.getElementById('email').value = currentUser.email;
+    }
+    if (currentUser.displayName) {
+      document.getElementById('fullName').value = currentUser.displayName;
+    }
+    
+    hideLoading();
+  } catch (error) {
+    console.error('Error loading profile:', error);
+    hideLoading();
+  }
+}
+
+function populateFormFields(data) {
+  // Basic info
+  document.getElementById('fullName').value = data.fullName || data.displayName || data.name || '';
+  document.getElementById('title').value = data.title || data.role || data.profession || '';
+  document.getElementById('location').value = data.location || data.city || data.address || '';
+  document.getElementById('email').value = data.email || currentUser.email || '';
+  document.getElementById('phone').value = data.phone || data.phoneNumber || data.contactNumber || '';
+  document.getElementById('yearsExperience').value = data.yearsExperience || data.experienceYears || '';
+  
+  // Professional details
+  document.getElementById('licenseNumber').value = data.licenseNumber || data.license || '';
+  document.getElementById('profession').value = data.profession || '';
+  document.getElementById('languages').value = data.languages || data.spokenLanguages || '';
+  document.getElementById('availability').value = data.availability || '';
+  document.getElementById('bio').value = data.bio || data.description || data.about || '';
+  
+  // Specializations
+  if (data.propertyTypes) {
+    propertyTags = ensureArray(data.propertyTypes);
+    updateTagsDisplay('propertyTypesContainer', propertyTags);
+  }
+  
+  if (data.serviceAreas) {
+    serviceAreaTags = ensureArray(data.serviceAreas);
+    updateTagsDisplay('serviceAreasContainer', serviceAreaTags);
+  }
+  
+  // Services offered
+  if (data.servicesOffered) {
+    const services = ensureArray(data.servicesOffered);
+    services.forEach(service => {
+      const checkbox = document.querySelector(`input[value="${service}"]`);
+      if (checkbox) checkbox.checked = true;
+    });
+  }
+  
+  // Social media
+  document.getElementById('website').value = data.website || (data.socialMedia && data.socialMedia.website) || '';
+  document.getElementById('facebook').value = data.socialMedia?.facebook || '';
+  document.getElementById('twitter').value = data.socialMedia?.twitter || '';
+  document.getElementById('linkedin').value = data.socialMedia?.linkedin || '';
+  document.getElementById('instagram').value = data.socialMedia?.instagram || '';
+  document.getElementById('whatsapp').value = data.socialMedia?.whatsapp || data.whatsapp || '';
+  
+  // Contact preferences
+  if (data.contactPreferences) {
+    document.getElementById('prefEmail').checked = data.contactPreferences.email !== false;
+    document.getElementById('prefPhone').checked = data.contactPreferences.phone !== false;
+    document.getElementById('prefWhatsApp').checked = data.contactPreferences.whatsapp === true;
+    document.getElementById('prefSMS').checked = data.contactPreferences.sms === true;
+  }
+  
+  // Photos
+  if (data.photoURL) {
+    document.getElementById('profilePhotoPreview').innerHTML = `<img src="${data.photoURL}" alt="Profile">`;
+  }
+  if (data.coverPhotoURL) {
+    document.getElementById('coverPhotoPreview').innerHTML = `<img src="${data.coverPhotoURL}" alt="Cover">`;
+  }
+}
+
+function ensureArray(data) {
+  if (!data) return [];
+  if (Array.isArray(data)) return data;
+  if (typeof data === 'string') return data.split(',').map(item => item.trim());
+  return [String(data)];
+}
+
+// ==================== STEP NAVIGATION ====================
+function validateStep(step) {
+  switch(step) {
+    case 1:
+      const fullName = document.getElementById('fullName').value.trim();
+      const title = document.getElementById('title').value.trim();
+      const location = document.getElementById('location').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      
+      if (!fullName) {
+        showToast('Full name is required', 'error');
+        return false;
+      }
+      if (!title) {
+        showToast('Professional title is required', 'error');
+        return false;
+      }
+      if (!location) {
+        showToast('Location is required', 'error');
+        return false;
+      }
+      if (!email || !isValidEmail(email)) {
+        showToast('Valid email is required', 'error');
+        return false;
+      }
+      if (!phone) {
+        showToast('Phone number is required', 'error');
+        return false;
+      }
+      
+      // Check profile photo
+      const profilePhotoImg = document.getElementById('profilePhotoPreview').querySelector('img');
+      if (!profilePhotoImg && !profilePhotoFile) {
+        showToast('Profile photo is required', 'error');
+        return false;
+      }
+      return true;
+      
+    case 2:
+      return true; // All fields optional in step 2
+      
+    default:
+      return true;
+  }
+}
+
+function isValidEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
+}
+
+window.nextStep = function() {
+  if (!validateStep(currentStep)) return;
+  
+  // Save current step data
+  saveStepData(currentStep);
+  
+  // Hide current step
+  document.getElementById(`step${currentStep}Section`).style.display = 'none';
+  
+  // Update progress
+  document.getElementById(`step${currentStep}`).classList.remove('active');
+  document.getElementById(`step${currentStep}`).classList.add('completed');
+  
+  currentStep++;
+  
+  if (currentStep > 4) {
+    // Final step - submit form
+    submitProfile();
+    return;
+  }
+  
+  // Show next step
+  document.getElementById(`step${currentStep}Section`).style.display = 'block';
+  document.getElementById(`step${currentStep}`).classList.add('active');
+  
+  // Update buttons
+  document.getElementById('prevBtn').style.display = 'flex';
+  
+  if (currentStep === 4) {
+    document.getElementById('nextBtn').innerHTML = 'Complete Setup <i class="fas fa-check"></i>';
+    document.getElementById('nextBtn').onclick = submitProfile;
+  } else {
+    document.getElementById('nextBtn').innerHTML = 'Next <i class="fas fa-arrow-right"></i>';
+    document.getElementById('nextBtn').onclick = nextStep;
+  }
+}
+
+window.prevStep = function() {
+  // Hide current step
+  document.getElementById(`step${currentStep}Section`).style.display = 'none';
+  document.getElementById(`step${currentStep}`).classList.remove('active');
+  
+  currentStep--;
+  
+  // Show previous step
+  document.getElementById(`step${currentStep}Section`).style.display = 'block';
+  document.getElementById(`step${currentStep}`).classList.add('active');
+  
+  // Update buttons
+  if (currentStep === 1) {
+    document.getElementById('prevBtn').style.display = 'none';
+  }
+  
+  document.getElementById('nextBtn').innerHTML = 'Next <i class="fas fa-arrow-right"></i>';
+  document.getElementById('nextBtn').onclick = nextStep;
+}
+
+function saveStepData(step) {
+  switch(step) {
+    case 1:
+      profileData.fullName = document.getElementById('fullName').value.trim();
+      profileData.title = document.getElementById('title').value.trim();
+      profileData.location = document.getElementById('location').value.trim();
+      profileData.email = document.getElementById('email').value.trim();
+      profileData.phone = document.getElementById('phone').value.trim();
+      profileData.yearsExperience = parseInt(document.getElementById('yearsExperience').value) || 0;
+      break;
+      
+    case 2:
+      profileData.licenseNumber = document.getElementById('licenseNumber').value.trim();
+      profileData.profession = document.getElementById('profession').value.trim();
+      profileData.languages = document.getElementById('languages').value.trim();
+      profileData.availability = document.getElementById('availability').value.trim();
+      profileData.bio = document.getElementById('bio').value.trim();
+      break;
+      
+    case 3:
+      profileData.propertyTypes = propertyTags;
+      profileData.serviceAreas = serviceAreaTags;
+      
+      // Get services offered
+      servicesOffered = [];
+      const serviceCheckboxes = document.querySelectorAll('.checkbox-group input[type="checkbox"]:checked');
+      serviceCheckboxes.forEach(checkbox => {
+        servicesOffered.push(checkbox.value);
+      });
+      profileData.servicesOffered = servicesOffered;
+      break;
+      
+    case 4:
+      profileData.socialMedia = {
+        website: document.getElementById('website').value.trim(),
+        facebook: document.getElementById('facebook').value.trim(),
+        twitter: document.getElementById('twitter').value.trim(),
+        linkedin: document.getElementById('linkedin').value.trim(),
+        instagram: document.getElementById('instagram').value.trim(),
+        whatsapp: document.getElementById('whatsapp').value.trim()
+      };
+      
+      profileData.contactPreferences = {
+        email: document.getElementById('prefEmail').checked,
+        phone: document.getElementById('prefPhone').checked,
+        whatsapp: document.getElementById('prefWhatsApp').checked,
+        sms: document.getElementById('prefSMS').checked
+      };
+      break;
+  }
+}
+
+// ==================== PROFILE SUBMISSION ====================
+async function uploadPhoto(file, type) {
+  try {
+    if (!file) return null;
+    
+    // Create a unique filename
+    const timestamp = Date.now();
+    const fileExtension = file.name.split('.').pop().toLowerCase();
+    const filename = `${type}_${timestamp}.${fileExtension}`;
+    
+    // Create storage reference
+    const storageRef = ref(storage, `brokers/${currentUser.uid}/${filename}`);
+    
+    // Upload file
+    const snapshot = await uploadBytes(storageRef, file);
+    
+    // Get download URL
+    const downloadURL = await getDownloadURL(snapshot.ref);
+    
+    return downloadURL;
+  } catch (error) {
+    console.error('Error uploading photo:', error);
+    throw error;
+  }
+}
+
+async function submitProfile() {
+  try {
+    console.log('Starting profile submission...');
+    showLoading('Saving profile...');
+    
+    // Save all step data
+    for (let i = 1; i <= 4; i++) {
+      saveStepData(i);
+    }
+    
+    // Upload photos
+    let profilePhotoURL = '';
+    let coverPhotoURL = '';
+    
+    // Upload profile photo
+    if (profilePhotoFile) {
+      showLoading('Uploading profile photo...');
+      profilePhotoURL = await uploadPhoto(profilePhotoFile, 'profile');
+      console.log('Profile photo URL:', profilePhotoURL);
+    }
+    
+    // Upload cover photo (optional)
+    if (coverPhotoFile) {
+      showLoading('Uploading cover photo...');
+      coverPhotoURL = await uploadPhoto(coverPhotoFile, 'cover');
+      console.log('Cover photo URL:', coverPhotoURL);
+    }
+    
+    // Prepare complete profile data
+    const userData = {
+      // Basic info
+      fullName: profileData.fullName,
+      displayName: profileData.fullName,
+      title: profileData.title,
+      location: profileData.location,
+      email: profileData.email || currentUser.email,
+      phone: profileData.phone,
+      yearsExperience: profileData.yearsExperience || 0,
+      
+      // Professional details
+      licenseNumber: profileData.licenseNumber || '',
+      profession: profileData.profession || '',
+      languages: profileData.languages || '',
+      availability: profileData.availability || '',
+      bio: profileData.bio || '',
+      
+      // Specializations
+      propertyTypes: profileData.propertyTypes || [],
+      serviceAreas: profileData.serviceAreas || [],
+      servicesOffered: profileData.servicesOffered || [],
+      
+      // Social & contact
+      socialMedia: profileData.socialMedia || {},
+      contactPreferences: profileData.contactPreferences || {},
+      website: profileData.socialMedia?.website || '',
+      
+      // Metadata
+      userId: currentUser.uid,
+      userType: 'broker',
+      userRole: 'broker',
+      isProfileComplete: true,
+      profileCompleted: true,
+      lastUpdated: new Date().toISOString(),
+      updatedAt: serverTimestamp()
+    };
+    
+    // Add photos
+    if (profilePhotoURL) {
+      userData.photoURL = profilePhotoURL;
+      userData.profilePhoto = profilePhotoURL;
+    }
+    if (coverPhotoURL) {
+      userData.coverPhotoURL = coverPhotoURL;
+      userData.coverPhoto = coverPhotoURL;
+    }
+    
+    // Add creation date if new profile
+    if (!profileData.createdAt) {
+      userData.createdAt = new Date().toISOString();
+      userData.joinedDate = new Date().toISOString();
+      userData.createdAtTimestamp = serverTimestamp();
+    }
+    
+    console.log('Saving profile data to Firestore...');
+    
+    // Save to both collections for redundancy
+    const savePromises = [];
+    
+    // Save to brokers collection (primary)
+    savePromises.push(
+      setDoc(doc(db, "brokers", currentUser.uid), userData, { merge: true })
+    );
+    
+    // Save to users collection (secondary)
+    savePromises.push(
+      setDoc(doc(db, "users", currentUser.uid), userData, { merge: true })
+    );
+    
+    // Wait for all saves to complete
+    await Promise.all(savePromises);
+    
+    hideLoading();
+    
+    // Update success state links
+    const viewProfileSuccessBtn = document.getElementById('viewProfileSuccessBtn');
+    if (viewProfileSuccessBtn) {
+      viewProfileSuccessBtn.href = `profile.html?id=${currentUser.uid}`;
+    }
+    
+    // Show success state
+    document.getElementById('setupForm').style.display = 'none';
+    document.getElementById('successState').style.display = 'block';
+    
+    showToast('Profile saved successfully!', 'success');
+    
+    // Store in localStorage for immediate access
+    localStorage.setItem(`broker_${currentUser.uid}`, JSON.stringify(userData));
+    
+  } catch (error) {
+    console.error('Error saving profile:', error);
+    hideLoading();
+    
+    let errorMessage = 'Error saving profile. Please try again.';
+    if (error.message.includes('permission-denied')) {
+      errorMessage = 'Permission denied. Please check Firebase rules.';
+    } else if (error.message.includes('storage')) {
+      errorMessage = 'Error uploading photos. Please try again.';
+    } else if (error.message) {
+      errorMessage = `Error: ${error.message}`;
+    }
+    
+    showToast(errorMessage, 'error');
+    
+    // Re-enable the submit button
+    const nextBtn = document.getElementById('nextBtn');
+    if (nextBtn) {
+      nextBtn.disabled = false;
+      nextBtn.innerHTML = 'Complete Setup <i class="fas fa-check"></i>';
+    }
+  }
+}
+
+// ==================== UTILITY FUNCTIONS ====================
+window.saveAsDraft = function() {
+  // Save all current data
+  for (let i = 1; i <= currentStep; i++) {
+    saveStepData(i);
+  }
+  
+  // Prepare draft data
+  const draftData = {
+    ...profileData,
+    isDraft: true,
+    lastSaved: new Date().toISOString(),
+    userId: currentUser.uid
+  };
+  
+  // Save to local storage
+  localStorage.setItem('brokerProfileDraft', JSON.stringify(draftData));
+  
+  showToast('Draft saved locally', 'success');
+};
+
+window.addFirstProperty = function() {
+  window.location.href = 'add_property.html';
+};
+
+function showToast(message, type = 'info') {
+  const toast = document.createElement('div');
+  toast.className = `toast toast-${type}`;
+  toast.innerHTML = `
+    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+    <span>${message}</span>
+  `;
+  
+  document.body.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.style.animation = 'slideOut 0.3s ease';
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+}
+
+function showLoading(message = 'Loading...') {
+  let overlay = document.getElementById('loadingOverlay');
+  
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.id = 'loadingOverlay';
+    overlay.className = 'loading-overlay';
+    document.body.appendChild(overlay);
+  }
+  
+  overlay.innerHTML = `
+    <div class="spinner"></div>
+    <p>${message}</p>
+  `;
+  overlay.style.display = 'flex';
+  document.body.style.pointerEvents = 'none';
+}
+
+function hideLoading() {
+  const overlay = document.getElementById('loadingOverlay');
+  if (overlay) {
+    overlay.style.display = 'none';
+  }
+  document.body.style.pointerEvents = 'auto';
+}
+
+// Make performLogout available globally
+window.performLogout = async function() {
+    try {
+        await signOut(auth);
+        window.location.href = "login.html";
+    } catch (error) {
+        console.error("Logout error:", error);
+        alert("Error logging out. Please try again.");
+    }
+};
+</script>
+</body>
+</html>
