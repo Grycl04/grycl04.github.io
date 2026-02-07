@@ -725,6 +725,17 @@
   </div>
 
   <script>
+      console.log('=== OAuth Debug Information ===');
+  console.log('Current URL:', window.location.href);
+  console.log('Origin:', window.location.origin);
+  console.log('Expected OAuth origin: https://grycl04.github.io');
+  console.log('Is mobile:', isMobile);
+  console.log('Firebase auth domain:', auth.config.authDomain);
+  
+  // Verify we're on the correct domain
+  if (window.location.origin !== 'https://grycl04.github.io') {
+    console.warn('⚠️ Not on GitHub Pages domain! OAuth may fail.');
+  }
     // Clear storage on page load
     (function clearStorage() {
       console.log('Clearing authentication storage...');
@@ -835,84 +846,104 @@
     }
   });
 
-  // Google Login Handler
+  // Google Login Handler - GitHub Pages Compatible
   document.getElementById("googleLoginBtn").addEventListener("click", async () => {
     try {
-      // Dynamic imports to avoid issues
-      const { GoogleAuthProvider } = await import(
+      // Use OAuthProvider for better control
+      const { OAuthProvider, signInWithPopup, signInWithRedirect } = await import(
         "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js"
       );
       
-      const googleProvider = new GoogleAuthProvider();
+      // Create OAuth provider for Google
+      const provider = new OAuthProvider('google.com');
       
-      // Add custom parameters for better UX
-      googleProvider.setCustomParameters({
-        prompt: 'select_account'
+      // FORCE GitHub Pages domain for OAuth
+      provider.setCustomParameters({
+        prompt: 'select_account',
+        redirect_uri: 'https://grycl04.github.io/__/auth/handler'
       });
       
-      if (isRestrictedEnv || isMobile) {
-        // Use a direct OAuth approach for restricted environments
-        await useDirectGoogleOAuth();
+      // Add scopes
+      provider.addScope('email');
+      provider.addScope('profile');
+      provider.addScope('openid');
+      
+      console.log('OAuth Configuration:', {
+        redirect_uri: 'https://grycl04.github.io/__/auth/handler',
+        isMobile: isMobile,
+        currentDomain: window.location.origin
+      });
+      
+      if (isMobile) {
+        // Use redirect for mobile
+        showNotification('info', 'Redirecting to Google sign-in...');
+        await signInWithRedirect(auth, provider);
       } else {
-        // Use Firebase popup for normal desktop environments
-        const { signInWithPopup } = await import(
-          "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js"
-        );
-        
+        // Use popup for desktop
         showNotification('info', 'Opening Google sign-in...');
-        const result = await signInWithPopup(auth, googleProvider);
+        const result = await signInWithPopup(auth, provider);
         await handleGoogleSignIn(result.user);
       }
+      
     } catch (error) {
       console.error('Google login error:', error);
       
-      // Fallback to direct OAuth if Firebase fails
-      if (error.code === 'auth/popup-blocked' || 
-          error.code === 'auth/unauthorized-domain' ||
-          error.code === 'auth/operation-not-supported-in-this-environment') {
-        
-        showNotification('info', 'Using alternative Google sign-in method...');
-        await useDirectGoogleOAuth();
-      } else {
-        showNotification('error', 'Google sign-in failed. Please try email login or contact support.');
+      // Specific error handling
+      switch(error.code) {
+        case 'auth/popup-blocked':
+          // Try redirect if popup blocked
+          try {
+            const { OAuthProvider, signInWithRedirect } = await import(
+              "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js"
+            );
+            const provider = new OAuthProvider('google.com');
+            provider.setCustomParameters({
+              prompt: 'select_account',
+              redirect_uri: 'https://grycl04.github.io/__/auth/handler'
+            });
+            await signInWithRedirect(auth, provider);
+          } catch (redirectError) {
+            showNotification('error', 'Please allow popups or try email login.');
+          }
+          break;
+        case 'auth/unauthorized-domain':
+          showNotification('error', '⚠️ Please use: https://grycl04.github.io/login.html');
+          setTimeout(() => {
+            if (!window.location.href.includes('grycl04.github.io')) {
+              window.location.href = 'https://grycl04.github.io/login.html';
+            }
+          }, 2000);
+          break;
+        case 'auth/popup-closed-by-user':
+          // User closed popup, no action needed
+          break;
+        default:
+          showNotification('error', 'Google sign-in failed. Please try email login.');
       }
     }
   });
 
-  // Direct Google OAuth (Fallback method)
-  async function useDirectGoogleOAuth() {
+    // Handle OAuth redirect when page loads
+  window.addEventListener('load', async () => {
     try {
-      // Create a custom OAuth URL
-      const clientId = '646878644941'; // Your Firebase web client ID
-      const redirectUri = encodeURIComponent(window.location.origin + '/google-callback.html');
-      const scope = encodeURIComponent('email profile');
-      const state = Date.now().toString();
+      const { getRedirectResult, OAuthProvider } = await import(
+        "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js"
+      );
       
-      // Store state for verification
-      sessionStorage.setItem('oauth_state', state);
-      sessionStorage.setItem('oauth_redirect', window.location.href);
-      
-      // Build OAuth URL
-      const oauthUrl = `https://accounts.google.com/o/oauth2/v2/auth?
-        client_id=${clientId}&
-        redirect_uri=${redirectUri}&
-        response_type=id_token&
-        scope=openid%20${scope}&
-        state=${state}&
-        nonce=${Math.random().toString(36).substring(2)}`;
-      
-      // Open in same window for mobile, new window for desktop
-      if (isMobile) {
-        window.location.href = oauthUrl.replace(/\s+/g, '');
-      } else {
-        window.open(oauthUrl.replace(/\s+/g, ''), 'google_auth', 
-          'width=500,height=600,menubar=no,toolbar=no,location=no,resizable=yes,scrollbars=yes');
+      const result = await getRedirectResult(auth);
+      if (result) {
+        console.log('Redirect login successful:', result.user.email);
+        await handleGoogleSignIn(result.user);
       }
     } catch (error) {
-      console.error('Direct OAuth error:', error);
-      showNotification('error', 'Unable to start Google sign-in. Please use email login.');
+      console.error('Redirect login error:', error);
+      // Don't show error for user closing popup/redirect
+      if (error.code !== 'auth/popup-closed-by-user') {
+        showNotification('error', 'Authentication error: ' + error.message);
+      }
     }
-  }
+  });
+
 
   // Handle Google sign-in result
   async function handleGoogleSignIn(user) {
